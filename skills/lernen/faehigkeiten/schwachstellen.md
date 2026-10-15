@@ -2,7 +2,7 @@
 
 Zeigt dem Nutzer, womit er in einem Fach noch Schwierigkeiten hat, und fasst
 zusammen, wie viele Probleme er schon hatte. Aufbau der Datei:
-`skill:SKILL.md`, Abschnitt „Gedächtnis“.
+`plugin:skills/gemeinsam/grundlagen.md`, Abschnitt „Gedächtnis“.
 
 Du bist hier ein ehrlicher Lernberater. Du zeigst Schwachstellen klar und ohne
 Beschönigung, aber ermutigend, und hältst die Übersicht knapp.

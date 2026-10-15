@@ -10,9 +10,9 @@ und änderst nur, was die Änderung verlangt.
 
 ## Pfade in dieser Fähigkeit
 
-Es gelten die Präfixe aus `skill:SKILL.md`, Abschnitt „Pfade“. Zusätzlich
-steht `kopie:` für die Arbeitskopie `arbeit:lernhelfer-entwicklung/`. Auch
-dieses Präfix gehört nicht zum Pfad.
+Es gelten die Präfixe aus `plugin:skills/gemeinsam/grundlagen.md`, Abschnitt
+„Pfade“. Zusätzlich steht `kopie:` für die Arbeitskopie
+`arbeit:lernhelfer-entwicklung/`. Auch dieses Präfix gehört nicht zum Pfad.
 
 ## Grundsatz
 
@@ -42,9 +42,10 @@ Einmal pro Chat, vor der ersten Änderung oder dem ersten Export.
    - Sonst ist die Wurzel `plugin:`.
 
    Prüfe danach: In der Wurzel liegen `.claude-plugin/plugin.json`,
-   `skills/hilfe/SKILL.md`, `skills/verwalten/SKILL.md` und
-   `skills/lernen/SKILL.md`, und keine Datei ist leer. Stimmt das nicht,
-   ergänze keine Dateien aus eigenem Wissen und antworte:
+   `skills/gemeinsam/grundlagen.md`, `skills/helfen/SKILL.md`,
+   `skills/verwalten/SKILL.md` und `skills/lernen/SKILL.md`, und keine Datei
+   ist leer. Stimmt das nicht, ergänze keine Dateien aus eigenem Wissen und
+   antworte:
 
    ```text
    Ich finde die Dateien des Lernhelfers in meiner Arbeitsumgebung nicht vollständig. Häng mir bitte die Datei lernhelfer.plugin oder ein Archiv deines Repositorys hier im Chat an. Danach mache ich weiter.
@@ -58,24 +59,26 @@ Einmal pro Chat, vor der ersten Änderung oder dem ersten Export.
 
 ## Änderungen machen
 
-1. Lies `kopie:skills/{skill}/SKILL.md` des betroffenen Skills und alle
+1. Lies `kopie:skills/gemeinsam/grundlagen.md`,
+   `kopie:skills/{skill}/SKILL.md` des betroffenen Skills und alle
    Fähigkeiten, die die Änderung betrifft, vollständig.
 2. Halte diese Konventionen ein:
-   - Schreib Fähigkeiten für eine Claude-Instanz, die nur den jeweiligen Skill
-     und das Projekt kennt: klar, knapp, im Imperativ, mit nummerierten
-     Schritten, wo die Reihenfolge zählt. Begründe eine Regel in einem
-     Halbsatz, wenn ihr Zweck nicht offensichtlich ist (z.B. „das kostet viele
-     Token“). Schreib so genau, dass auch Haiku dem Ablauf folgen kann, und
-     zeig jedes Dateiformat an einem Beispiel.
+   - Schreib Fähigkeiten für eine Claude-Instanz, die nur den jeweiligen Skill,
+     die Grundlagen und das Projekt kennt: klar, knapp, im Imperativ, mit
+     nummerierten Schritten, wo die Reihenfolge zählt. Begründe eine Regel in
+     einem Halbsatz, wenn ihr Zweck nicht offensichtlich ist (z.B. „das kostet
+     viele Token“). Schreib so genau, dass auch Haiku dem Ablauf folgen kann,
+     und zeig jedes Dateiformat an einem Beispiel.
    - Nenne Anweisungsdateien „Fähigkeiten“, nie „Skills“. „Skill“ heißen nur
-     die drei Skills des Plugins (`lernen`, `verwalten`, `hilfe`). In
+     die drei Skills des Plugins (`lernen`, `verwalten`, `helfen`). In
      Anweisungen heißt ein Fach „Modul“, in Nachrichten an den Nutzer „Fach“.
      „Schule“ ist der einzige Überbegriff für jede Bildungseinrichtung. Der
      Lernhelfer richtet sich an Volljährige in Oberstufe, Berufsschule oder
      Studium. Mische in Beispielen Schule und Uni.
    - Schreib jeden Pfad mit Präfix (`skill:`, `plugin:`, `projekt:`, `daten:`,
-     `arbeit:`), wie im Abschnitt „Pfade“ der `SKILL.md` von `lernen` und
-     `verwalten` beschrieben, z.B. `skill:faehigkeiten/indizieren.md` oder
+     `arbeit:`), wie im Abschnitt „Pfade“ von
+     `kopie:skills/gemeinsam/grundlagen.md` beschrieben, z.B.
+     `skill:faehigkeiten/indizieren.md` oder
      `projekt:module/{modul}/index.md`. Nie ohne Präfix, auch nicht für kurze
      Dateinamen wie `index.md`. So bleibt jeder Verweis eindeutig, auch wenn
      sich Ordner ändern. Ausgenommen sind Dateinamen in Vorlagen, in Beispielen
@@ -83,22 +86,23 @@ Einmal pro Chat, vor der ersten Änderung oder dem ersten Export.
    - Jeder Skill steht für sich. Claude wählt den passenden Skill selbst anhand
      der Beschreibung im Frontmatter. Ein Skill lädt nie einen anderen Skill
      und liest keine Dateien eines anderen Skills. Was `lernen` und `verwalten`
-     beide brauchen, steht deshalb wortgleich in
-     `kopie:skills/lernen/SKILL.md` und `kopie:skills/verwalten/SKILL.md`: die
-     Abschnitte „Pfade“, „Nachrichten und Rückfragen“, „Dateien und Pfade“,
-     „Schreiben“, „Formate“, „Module“, „Gedächtnis“ und „Benutzererfahrung“
-     und in „Betriebsart“ die Liste mit dem Absatz danach. Änderst du einen
-     gemeinsamen Abschnitt, änderst du ihn in beiden. Was nur ein Skill
-     braucht, steht nur in dessen `SKILL.md` (Vorbild: „Dateiprüfung“ in
-     `lernen`, „Datenquelle“ in `verwalten`). Verhalten für einzelne Abläufe
-     gehört in die jeweilige Fähigkeit.
+     beide brauchen, steht nur einmal in
+     `kopie:skills/gemeinsam/grundlagen.md`. Der Ordner `gemeinsam` ist kein
+     Skill, hat keine `SKILL.md` und keine Fähigkeiten. Beide `SKILL.md`
+     verlangen im Abschnitt „Grundlagen“, die Datei vor allem anderen zu
+     lesen. Was nur ein Skill braucht, steht nur in dessen `SKILL.md`
+     (Vorbild: „Dateiprüfung“ in `lernen`, „Dateien der Datenquelle“ in
+     `verwalten`), nie in den Grundlagen. Verhalten für einzelne Abläufe
+     gehört in die jeweilige Fähigkeit. Der Skill `helfen` liest die
+     Grundlagen nicht.
    - Gib jede Nachricht an den Nutzer wörtlich in einem `text`-Block vor, mit
      Platzhaltern in `{geschweiften Klammern}`, und erkläre jeden Platzhalter.
      Schreib keine vagen Anweisungen wie „sag dem Nutzer, dass …“. Wie `text`-
-     und `auswahl`-Blöcke ausgegeben werden, steht nur in der `SKILL.md` des
-     Skills. Wiederhol es nicht in den Fähigkeiten.
+     und `auswahl`-Blöcke ausgegeben werden, steht nur in
+     `kopie:skills/gemeinsam/grundlagen.md`. Wiederhol es nicht in den
+     Fähigkeiten.
    - Gib Rückfragen mit festen Antworten als `auswahl`-Block vor (Aufbau in
-     der `SKILL.md` des Skills).
+     `kopie:skills/gemeinsam/grundlagen.md`).
    - Braucht der Nutzer eine Funktion des anderen Skills, nenne in der
      Nachricht den Satz mit Präfix, z.B. „/lernhelfer:verwalten Indiziere“.
    - Vermeide Ausnahmen und Sonderfälle. Formuliere Regeln so, dass sie
@@ -111,14 +115,15 @@ Einmal pro Chat, vor der ersten Änderung oder dem ersten Export.
      `kopie:skills/lernen/faehigkeiten/`, wenn sie mit dem Nutzer an einem
      Fach lernt, in `kopie:skills/verwalten/faehigkeiten/`, wenn sie Fächer,
      Datenquelle, Projekt oder den Lernhelfer selbst verwaltet (Vorbild:
-     „Indizieren“, „Modul bearbeiten“). Der Skill `hilfe` besteht nur aus
-     `kopie:skills/hilfe/SKILL.md`.
+     „Indizieren“, „Modul bearbeiten“). Der Skill `helfen` besteht nur aus
+     `kopie:skills/helfen/SKILL.md`.
    - Trag jede neue Fähigkeit in die Tabelle ihres Skills ein: in `lernen` in
      „Fähigkeiten“, in `verwalten` in „Was ist zu tun?“. Dort steht in der
      Spalte „Verfügbar“ `Datenquelle`, wenn sie `daten:` braucht,
      `eingerichtetes Projekt`, wenn sie sonst Projektdateien liest oder
      schreibt, und sonst `immer`. Fähigkeiten in `lernen` sagen selbst, was im
-     **Chat** anders ist (Abschnitt „Betriebsart“). Nimm in die Beschreibung im
+     **Chat** anders ist (Abschnitt „Betriebsart“ in
+     `kopie:skills/gemeinsam/grundlagen.md`). Nimm in die Beschreibung im
      Frontmatter ihres Skills die Sätze auf, mit denen der Nutzer sie aufruft.
      Danach entscheidet Claude, wann es den Skill lädt.
    - Jede Fähigkeit steht für sich. Verweise nie auf Schritte oder Abschnitte
@@ -134,8 +139,9 @@ Einmal pro Chat, vor der ersten Änderung oder dem ersten Export.
      passt, denn mit einer Rolle arbeitet Claude besser (z.B. „Du bist hier
      ein geduldiger Tutor.“). Schreib sie in zwei, drei Sätzen direkt unter
      die einleitende Beschreibung: wer du bist, dazu Haltung und Ton. Der Skill
-     `hilfe` bekommt keine Rolle. Dass eine Rolle nur für ihre Fähigkeit gilt,
-     steht in der `SKILL.md`. Wiederhol es nicht in den Fähigkeiten.
+     `helfen` bekommt keine Rolle. Dass eine Rolle nur für ihre Fähigkeit gilt,
+     steht in `kopie:skills/gemeinsam/grundlagen.md`. Wiederhol es nicht in
+     den Fähigkeiten.
    - Jede Fähigkeit in `lernen` arbeitet mit genau einem Modul. Sie liest nur
      dessen Dateien, `projekt:daten.xml` und `daten:` und schreibt nur
      `projekt:gedaechtnis/{modul}/probleme.md` und
@@ -153,29 +159,27 @@ Einmal pro Chat, vor der ersten Änderung oder dem ersten Export.
      `kopie:skills/verwalten/faehigkeiten/initialisieren.md`.
    - Jede Fähigkeit in `lernen` und `verwalten` außer „Initialisieren“ und
      „Test“ pflegt `projekt:gedaechtnis/benutzererfahrung.md`. Das regelt der
-     Abschnitt „Benutzererfahrung“ in der `SKILL.md`. Wiederhol es nicht in den
-     Fähigkeiten und schreib keiner Fähigkeit vor, die Datei nicht zu ändern.
-     Eine Fähigkeit, die sonst nichts schreibt, darf deshalb keinen Grundsatz
-     wie „Ändere nichts“ haben, sondern nennt genau, was sie nicht ändert.
-     Der Skill `hilfe` schreibt nichts.
+     Abschnitt „Benutzererfahrung“ in `kopie:skills/gemeinsam/grundlagen.md`.
+     Wiederhol es nicht in den Fähigkeiten und schreib keiner Fähigkeit vor,
+     die Datei nicht zu ändern. Eine Fähigkeit, die sonst nichts schreibt, darf
+     deshalb keinen Grundsatz wie „Ändere nichts“ haben, sondern nennt genau,
+     was sie nicht ändert. Der Skill `helfen` schreibt nichts.
    - Prüfe bei jeder neuen oder geänderten Funktion, ob
-     `kopie:skills/hilfe/SKILL.md` angepasst werden muss. Der Skill `hilfe`
+     `kopie:skills/helfen/SKILL.md` angepasst werden muss. Der Skill `helfen`
      steht für sich und beschreibt alle Funktionen selbst.
    - Änderst du das Format einer Datei unter `projekt:module/`,
      `projekt:gedaechtnis/` oder von `projekt:daten.xml`, erhöhe ihre Nummer in
-     der Tabelle „Formate“ in `kopie:skills/lernen/SKILL.md` und
-     `kopie:skills/verwalten/SKILL.md` und in allen Vorlagen dieser Datei. Leg
-     dazu eine Migration
+     der Tabelle „Formate“ in `kopie:skills/gemeinsam/grundlagen.md` und in
+     allen Vorlagen dieser Datei. Leg dazu eine Migration
      `kopie:skills/verwalten/faehigkeiten/migrationen/{nummer}.md` mit der
      nächsten freien Nummer an (Aufbau in
      `kopie:skills/verwalten/faehigkeiten/migrieren.md`, Abschnitt
-     „Migrationen“). Neue Dateiarten bekommen Format 1 und einen Eintrag in
-     der Tabelle. Bevorzuge billige Migrationen. Ändert sich der Aufbau des
-     Index, leere in der Migration das Stichwortverzeichnis, setz in
-     „Dateien“ jede Beschreibung auf `-` und entferne alle `<datei>` aus
-     `projekt:daten.xml`, statt Indexe umzuschreiben. Die Dateiprüfung meldet
-     dann, dass neu indiziert werden muss. Lösch nie eine vorhandene
-     Migration.
+     „Migrationen“). Neue Dateiarten bekommen Format 1 und einen Eintrag in der
+     Tabelle. Bevorzuge billige Migrationen. Ändert sich der Aufbau des Index,
+     leere in der Migration das Stichwortverzeichnis, setz in „Dateien“ jede
+     Beschreibung auf `-` und entferne alle `<datei>` aus `projekt:daten.xml`,
+     statt Indexe umzuschreiben. Die Dateiprüfung meldet dann, dass neu
+     indiziert werden muss. Lösch nie eine vorhandene Migration.
    - Keine Fähigkeit startet „Indizieren“ von selbst, weil es viel vom
      Nutzungslimit verbrauchen kann. Ist ein Index veraltet, weist sie mit einer
      Nachricht darauf hin.
@@ -204,8 +208,9 @@ aus.
 2. **Plugin-Datei packen:** Pack aus `kopie:` genau `.claude-plugin/plugin.json`
    und den Ordner `skills/` als `arbeit:lernhelfer.plugin` (im Ordner `kopie:`
    z.B. `zip -r ../lernhelfer.plugin .claude-plugin/plugin.json skills`). Prüf
-   mit `unzip -l`, dass `.claude-plugin/plugin.json` und
-   `skills/{skill}/SKILL.md` für alle drei Skills im Archiv liegen.
+   mit `unzip -l`, dass `.claude-plugin/plugin.json`,
+   `skills/gemeinsam/grundlagen.md` und `skills/{skill}/SKILL.md` für alle
+   drei Skills im Archiv liegen.
 3. **Repository packen:** Nur wenn unter `kopie:` noch andere Dateien liegen
    (z.B. `kopie:README.md`): Pack den ganzen Inhalt von `kopie:` als
    `arbeit:lernhelfer-repository.zip`, ohne Oberordner.

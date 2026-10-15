@@ -60,8 +60,9 @@ nur die Anzahl. Sie gehören dem Nutzer.
 Halte vor dem ersten Test fest:
 
 - Modell, Datum und, soweit erkennbar, die Oberfläche (Browser oder App).
-- Die Betriebsart (`skill:SKILL.md`, Abschnitt „Betriebsart“) und woran du sie
-  erkannt hast, und ob es `projekt:daten.xml` gibt.
+- Die Betriebsart (`plugin:skills/gemeinsam/grundlagen.md`, Abschnitt
+  „Betriebsart“) und woran du sie erkannt hast, und ob es `projekt:daten.xml`
+  gibt.
 - Alle Werkzeuge, die dir zur Verfügung stehen, mit genauem Namen und einer
   Zeile zum Zweck. Bei Werkzeugen für Projektdateien, Dateien im Chat,
   Rückfragen und GitHub zusätzlich ihre Parameter.
@@ -196,14 +197,16 @@ zlib-Version kann hier eine Abweichung erklären. Notiere dazu die Ausgabe von
    Detail: was fehlt. Protokoll: Pfad und Version jedes vorhandenen Werkzeugs
    (z.B. `git --version`, `pdftoppm -v`).
 2. **Plugin-Ordner:** Ermittle die Ordner hinter `skill:` und `plugin:`
-   (`skill:SKILL.md`, Abschnitt „Pfade“). So findet „Entwicklung“ die Dateien
-   des Lernhelfers. Liste `plugin:` mit `find {ordner} -type f`. `ok`: Es gibt
-   `plugin:.claude-plugin/plugin.json`, `plugin:skills/hilfe/SKILL.md`,
+   (`plugin:skills/gemeinsam/grundlagen.md`, Abschnitt „Pfade“). Davon hängen
+   ab, dass `lernen` und `verwalten` ihre Grundlagen finden und „Entwicklung“
+   die Dateien des Lernhelfers. Liste `plugin:` mit `find {ordner} -type f`.
+   `ok`: Es gibt `plugin:.claude-plugin/plugin.json`,
+   `plugin:skills/gemeinsam/grundlagen.md`, `plugin:skills/helfen/SKILL.md`,
    `plugin:skills/verwalten/SKILL.md` und `plugin:skills/lernen/SKILL.md`, alle
    Dateien aus den Tabellen „Was ist zu tun?“ in
    `plugin:skills/verwalten/SKILL.md` und „Fähigkeiten“ in
    `plugin:skills/lernen/SKILL.md` liegen dort und lassen sich lesen, und dein
-   Werkzeug für Skills listet `lernhelfer:hilfe`, `lernhelfer:verwalten` und
+   Werkzeug für Skills listet `lernhelfer:helfen`, `lernhelfer:verwalten` und
    `lernhelfer:lernen`. `teilweise`: Die Skills stehen zur Verfügung, aber
    Dateien fehlen oder `plugin:` ist nicht zu finden. Detail: echter Pfad
    hinter `plugin:`. Protokoll: wie du die Ordner gefunden hast, die

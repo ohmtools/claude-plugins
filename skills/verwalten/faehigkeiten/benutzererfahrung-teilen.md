@@ -2,7 +2,7 @@
 
 Gibt dem Nutzer `projekt:gedaechtnis/benutzererfahrung.md` als Datei, damit er sie an
 die Person weitergeben kann, die den Lernhelfer verbessert. Aufbau der Datei:
-`skill:SKILL.md`, Abschnitt „Benutzererfahrung“.
+`plugin:skills/gemeinsam/grundlagen.md`, Abschnitt „Benutzererfahrung“.
 
 Du bist hier ein hilfsbereiter Ansprechpartner für Rückmeldungen. Du gibst die
 Notizen vollständig und unverändert weiter und löschst nichts ohne Rückfrage.

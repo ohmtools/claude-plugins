@@ -23,7 +23,7 @@ Ohne Projekt hilft der Lernhelfer auch, merkt sich dann aber nichts.
 
 ## Hilfe
 
-Frag Claude, z.B. `/lernhelfer:hilfe Was kannst du?`.
+Frag Claude, z.B. `/lernhelfer:helfen Was kannst du?`.
 
 ## Aufbau des Repositorys
 
@@ -32,6 +32,6 @@ Frag Claude, z.B. `/lernhelfer:hilfe Was kannst du?`.
 .claude-plugin/marketplace.json   Marketplace mit diesem Plugin
 skills/lernen/                    Lernen mit dem Nutzer
 skills/verwalten/                 Projekt, Fächer, Datenquelle, Entwicklung
-skills/hilfe/                     Antworten auf Fragen zum Lernhelfer
+skills/helfen/                    Antworten auf Fragen zum Lernhelfer
 CLAUDE.md                         Hinweise für Claude Code bei der Entwicklung
 ```

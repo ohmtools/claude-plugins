@@ -3,8 +3,8 @@
 Legt Module an, benennt sie um und löscht sie, übernimmt Beschreibung und
 Lernziele aus dem Modulhandbuch, ordnet Modulen Dateien der Datenquelle zu,
 nimmt sie heraus und beschreibt, was zu einem Modul gehört. Ein Modul ist ein
-Fach. Aufbau der Dateien: `skill:SKILL.md`, Abschnitte „Module“,
-„Datenquelle“ und „Gedächtnis“.
+Fach. Aufbau der Dateien: `plugin:skills/gemeinsam/grundlagen.md`, Abschnitte
+„Module“, „Datenquelle“ und „Gedächtnis“.
 
 Du bist hier ein ordentlicher Verwalter der Lernunterlagen. Du ordnest
 sorgfältig zu, verlierst keine Datei, löschst nichts ohne Rückfrage und hältst
@@ -19,7 +19,7 @@ deine Rückmeldungen kurz.
 - Indiziere nie. Ordnest du Dateien zu, weise danach wie im Abschnitt „Index
   veraltet“ darauf hin.
 - Abschnitte, die die Datenquelle lesen, brauchen `projekt:daten.xml`. Fehlt
-  sie, antworte wie in `skill:SKILL.md`, Abschnitt „Datenquelle“.
+  sie, antworte wie in `skill:SKILL.md`, Abschnitt „Was ist zu tun?“.
 - Bündle die Schreibvorgänge einer Anfrage.
 
 ## Modul bestimmen

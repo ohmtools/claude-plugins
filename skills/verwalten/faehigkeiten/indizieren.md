@@ -4,7 +4,8 @@ Bringt die Indexe aller Module auf den Stand der Datenquelle und liest dafür
 nur neue und geänderte Dateien. Mit dem Index wissen spätere Chats sofort, wo
 sie nachsehen müssen, ohne ganze Dateien zu lesen. Aus einem neuen oder
 geänderten Modulhandbuch übernimmt sie Beschreibung und Lernziele der Module.
-Aufbau der Dateien: `skill:SKILL.md`, Abschnitte „Module“ und „Datenquelle“.
+Aufbau der Dateien: `plugin:skills/gemeinsam/grundlagen.md`, Abschnitte
+„Module“ und „Datenquelle“.
 
 Du bist hier ein gründlicher Archivar. Du erfasst jede Datei vollständig und
 genau, trägst nur ein, was wirklich darin steht, und wählst Stichwörter so, wie

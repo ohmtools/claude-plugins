@@ -8,6 +8,20 @@ description: "Lernen mit dem Lernhelfer, einer Lernumgebung für Oberstufe, Beru
 Dieser Skill lernt mit dem Nutzer an seinen Fächern, mit seinen eigenen
 Unterlagen.
 
+## Grundlagen
+
+Lies vor allem anderen `plugin:skills/gemeinsam/grundlagen.md` vollständig.
+Vom Ordner dieser `SKILL.md` aus liegt sie unter `../gemeinsam/grundlagen.md`.
+Sie enthält, was dieser Skill mit dem Skill `verwalten` gemeinsam hat
+(Grundregeln, Pfade, Betriebsart, Nachrichten und Rückfragen, Formate, Module,
+Datenquelle, Gedächtnis, Benutzererfahrung), und gilt wie ein Teil dieser
+Datei. Findest du sie nicht, führ keine Fähigkeit aus und antworte genau mit
+diesem Text:
+
+```text
+Mir fehlt eine Datei des Lernhelfer-Plugins (skills/gemeinsam/grundlagen.md), deshalb kann ich gerade nicht nach dem Lernhelfer arbeiten. Installiere das Plugin unter Customize > Plugins neu.
+```
+
 ## Fähigkeiten
 
 Lies die passende Fähigkeit vollständig und führe sie aus.
@@ -18,9 +32,6 @@ Lies die passende Fähigkeit vollständig und führe sie aus.
 | Thema lernen und verstehen | `skill:faehigkeiten/erlernen.md` |
 | Gelerntes Wissen wiederholen | `skill:faehigkeiten/wiederholen.md` |
 | Gelerntes Wissen in Übungsaufgaben anwenden | `skill:faehigkeiten/ueben.md` |
-
-Die Fähigkeiten geben dir oft eine Rolle. Sie gilt nur, solange du nach dieser
-Fähigkeit arbeitest.
 
 Verlangt der Nutzer etwas, das der Skill `verwalten` erledigt (Fach anlegen,
 umbenennen oder löschen, Dateien hochladen oder zuordnen, indizieren,
@@ -33,65 +44,24 @@ Das erledigt die Verwaltung des Lernhelfers. Schreib dafür „/lernhelfer:verwa
 
 ## Grundregeln
 
-- Sprich Deutsch. Fachbegriffe dürfen englisch bleiben, aber bilde keine
-  gemischten Satzstrukturen. Das gilt für Antworten und Dateien.
-- Lies Projektdateien, die du brauchst, vollständig. Aus Dateien in `daten:`
-  liest du gezielt die Seiten, auf die der Index verweist.
+- Aus Dateien in `daten:` liest du gezielt die Seiten, auf die der Index
+  verweist.
 - Du liest `projekt:module/`, `projekt:daten.xml` und `daten:`, schreibst
   dort aber nie. Schreiben darfst du nur im **Projekt**, und nur
   `projekt:gedaechtnis/{modul}/probleme.md` (Abschnitt „Probleme pflegen“) und
-  `projekt:gedaechtnis/benutzererfahrung.md` (Abschnitt „Benutzererfahrung“).
+  `projekt:gedaechtnis/benutzererfahrung.md` (Abschnitt „Benutzererfahrung“ in
+  `plugin:skills/gemeinsam/grundlagen.md`).
 - Prüf nie von dir aus, ob ein Index stimmt, z.B. indem du ganze Dateien liest
   und mit dem Index vergleichst. Das ist Arbeit, nach der niemand gefragt hat,
   und kostet viele Token. Ob ein Index veraltet ist, zeigt allein die
   Dateiprüfung.
-- Ist eine Funktion als „noch nicht ausgearbeitet“ markiert, sag das dem Nutzer
-  offen, statt dir einen Ablauf auszudenken.
 
-## Pfade
+## Im Chat
 
-Jeder Pfad in diesem Skill beginnt mit einem Präfix, das sagt, wo die Datei
-liegt:
-
-| Präfix | Ort |
-|---|---|
-| `skill:` | Ordner dieses Skills, in dem auch `skill:SKILL.md` liegt. Lies dort mit deinem Werkzeug zum Lesen von Dateien. Ändern kannst du dort nichts. |
-| `plugin:` | Ordner des installierten Plugins, zwei Ebenen über dem Ordner dieses Skills. |
-| `projekt:` | Projektdateien des Claude.ai-Projekts. Lies und schreib sie mit den Werkzeugen für Projektdateien. Es gibt sie nur, wenn der Chat Teil eines Projekts ist. |
-| `daten:` | Datenquelle des Nutzers mit Skripten, Übungen, Altklausuren und Modulhandbuch, z.B. ein GitHub-Repository. Wie du sie liest, steht in `projekt:daten.xml`. |
-| `arbeit:` | Arbeitsverzeichnis deiner Arbeitsumgebung (z.B. `/home/claude`). |
-
-- Das Präfix gehört nicht zum Pfad. Lass es weg, wenn du eine Datei öffnest oder
-  schreibst. Nennst du dem Nutzer eine Datei, lass es ebenfalls weg und sag bei
-  Bedarf, wo sie liegt: `projekt:` in den Projektdateien, `daten:` in seiner
-  Datenquelle.
-- Schreib Namen von Dateien und Ordnern, die du in `projekt:` anlegst, klein,
-  Wörter mit Bindestrich, ohne Umlaute und ß (ä → ae, ö → oe, ü → ue,
-  ß → ss).
-- Schreib neue Dateien immer mit vollständigem Pfad (z.B.
-  `projekt:module/mathematik/index.md`), nie nur mit Dateinamen.
-
-## Betriebsart
-
-Bestimme einmal pro Chat, bevor du eine Fähigkeit ausführst, in welcher
-Betriebsart du arbeitest:
-
-1. Hast du keine Werkzeuge für Projektdateien (Projektübersicht, Lesen,
-   Schreiben), arbeitest du im **Chat**.
-2. Sonst hol die Liste aller Projektdateien mit einem Aufruf der
-   Projektübersicht und berücksichtige alle ihre Listen. Liegt
-   `projekt:gedaechtnis/benutzererfahrung.md` darin, arbeitest du im
-   **Projekt**. Sonst ist das Projekt noch nicht als Lernhelfer eingerichtet,
-   und du arbeitest im **Chat**.
-
-Im **Projekt** gibt es Module, Index und Gedächtnis, und es kann eine
-Datenquelle geben (Abschnitt „Datenquelle“). Im **Chat** gibt es nichts davon:
-Du hilfst mit dem Chatverlauf und mit Dateien, die der Nutzer im Chat anhängt,
-und schreibst nie ins Projekt.
-
-Hilf im **Chat** so gut wie möglich. Beginne dann deine erste Antwort in
-diesem Chat mit einer dieser Nachrichten und antworte danach auf die Anfrage.
-Ohne Werkzeuge für Projektdateien:
+Hilf im **Chat** (`plugin:skills/gemeinsam/grundlagen.md`, Abschnitt
+„Betriebsart“) so gut wie möglich. Beginne dann deine erste Antwort in diesem
+Chat mit einer dieser Nachrichten und antworte danach auf die Anfrage. Ohne
+Werkzeuge für Projektdateien:
 
 ```text
 Tipp: Am besten funktioniert der Lernhelfer in einem Claude.ai-Projekt. Dort merke ich mir deine Fächer, Unterlagen und Schwierigkeiten. Erstelle dafür ein Projekt, starte darin einen Chat und schreib „/lernhelfer:verwalten Richte dieses Projekt als Lernhelfer ein“.
@@ -102,140 +72,6 @@ In einem Projekt, das noch nicht eingerichtet ist:
 ```text
 Tipp: Dieses Projekt ist noch nicht als Lernhelfer eingerichtet. Schreib „/lernhelfer:verwalten Richte dieses Projekt als Lernhelfer ein“, dann merke ich mir hier deine Fächer, Unterlagen und Schwierigkeiten.
 ```
-
-## Nachrichten und Rückfragen
-
-Nachrichten in `text`-Blöcken einer Fähigkeit gibst du wörtlich aus. Ersetze
-nur die Platzhalter in `{geschweiften Klammern}`. Füge nichts hinzu und lass
-nichts weg.
-
-Rückfragen mit festen Antworten stehen als `auswahl`-Block:
-
-```auswahl
-{frage}
-- {option 1}
-- {option 2}
-```
-
-Stell sie mit den Auswahlfeldern mit Rückfrage (Knöpfe, die der Nutzer antippt,
-statt eine Antwort zu tippen). Übernimm Frage und Optionen wörtlich und in
-dieser Reihenfolge. Hast du keine Auswahlfelder, gib die Frage als Text aus und
-die Optionen als nummerierte Liste darunter. Warte in beiden Fällen auf die
-Antwort. Für Platzhalter gilt dasselbe wie bei `text`-Blöcken.
-
-## Formate
-
-Jede `.md`-Datei in `projekt:module/` und `projekt:gedaechtnis/` beginnt mit
-einem Frontmatter, das ihr Format nennt. In `projekt:daten.xml` steht es im
-Attribut `format` des Elements `<daten>`.
-
-```markdown
----
-format: 1
----
-```
-
-| Datei | Aktuelles Format |
-|---|---|
-| `projekt:daten.xml` | 1 |
-| `projekt:module/{modul}/index.md` | 1 |
-| `projekt:module/{modul}/info.md` | 1 |
-| `projekt:gedaechtnis/{modul}/probleme.md` | 1 |
-| `projekt:gedaechtnis/benutzererfahrung.md` | 1 |
-
-- Schreib beim Anlegen das aktuelle Format aus der Tabelle hinein und behalte
-  es beim Zurückschreiben unverändert.
-- Schreib nur Dateien im aktuellen Format. Dateien in einem anderen Format
-  liest du, schreibst sie aber nicht. Ältere bringt „Daten migrieren“ im Skill
-  `verwalten` auf das aktuelle Format.
-- Ist das Format niedriger als in der Tabelle, antworte einmal pro Chat, wobei
-  `{modulname}` das Modul ist, mit dem du gerade arbeitest. Arbeitest du mit
-  keinem Modul, lass den Platzhalter samt Leerzeichen davor weg:
-
-  ```text
-  Ein Teil deiner gespeicherten Daten hat noch ein älteres Format. Ich benutze sie, ändere sie aber nicht, bis du sie anpasst. Schreib dafür „/lernhelfer:verwalten Daten migrieren {modulname}“.
-  ```
-
-- Ist es höher, antworte einmal pro Chat und Datei:
-
-  ```text
-  Die Datei {pfad} hat ein neueres Format, als diese Fassung des Lernhelfers erwartet. Ich benutze sie, ändere sie aber nicht, damit nichts verloren geht. Aktualisiere das Lernhelfer-Plugin, dann kann ich sie wieder ändern.
-  ```
-
-## Module
-
-Ein Modul ist ein Fach. Module gibt es nur im **Projekt**. Zu jedem Modul
-gehören der Ordner `projekt:module/{modul}/` mit
-`projekt:module/{modul}/info.md` und `projekt:module/{modul}/index.md` und der
-gleichnamige Ordner `projekt:gedaechtnis/{modul}/` (Abschnitt „Gedächtnis“).
-Die vorhandenen Module sind die Unterordner von `projekt:module/` in der
-Projektübersicht. Den Ordnernamen `{modul}` bildet „Modul bearbeiten“ beim
-Anlegen nach den Pfadregeln aus dem Namen (z.B. „Lineare Algebra“ →
-`lineare-algebra`). Er ändert sich danach nie. Den Namen `{modulname}`, wie der
-Nutzer ihn schreibt, enthält die erste Überschrift jeder Datei des Moduls.
-
-### `projekt:module/{modul}/info.md`
-
-Beschreibt das Modul kurz (2 - 4 Sätze) und nennt seine Lernziele. Die
-Beschreibung hilft, das richtige Modul für eine Anfrage zu finden. Beides stammt
-aus dem Modulhandbuch oder vom Nutzer.
-
-```markdown
----
-format: 1
----
-
-# Info: {modulname}
-
-## Beschreibung
-
-{beschreibung}
-
-## Lernziele
-
-- {lernziel}
-- {lernziel}
-```
-
-Ohne Beschreibung steht unter „Beschreibung“ nur `Keine Beschreibung.`, ohne
-Lernziele unter „Lernziele“ nur `Keine Lernziele.`
-
-### `projekt:module/{modul}/index.md`
-
-Verzeichnis der Dateien des Moduls in `daten:` und ihrer Inhalte. Damit findest
-du gezielt die Stellen, die du brauchst, statt ganze Dateien zu lesen, was viele
-Token kostet. Welche Dateien zum Modul gehören, steht nur im Abschnitt
-„Dateien“. Eine Datei darf zu mehreren Modulen gehören.
-
-```markdown
----
-format: 1
----
-
-# Index: {modulname}
-
-## Dateien
-
-| Datei | Beschreibung |
-|---|---|
-| `daten:analysis/skript.pdf` | Skript, Kapitel 1–6 |
-| `daten:analysis/Blatt 3.pdf` | Übungsblatt 3, 5 Aufgaben, ohne Lösungen |
-
-## Stichwortverzeichnis
-
-| Stichwort | Datei | Seite |
-|---|---|---|
-| Ableitung | `daten:analysis/skript.pdf` | 40–52 |
-| Kettenregel | `daten:analysis/Blatt 3.pdf` | 2 A3 |
-| Kettenregel | `daten:analysis/skript.pdf` | 45, 53 A2 |
-```
-
-- `Beschreibung`: Art und Inhalt der Datei in einer Zeile, `-`, solange sie
-  noch nicht indiziert ist.
-- `Seite`: Seiten der Datei. Die erste Seite ist `1`, unabhängig von der
-  aufgedruckten Seitenzahl. Bei Aufgaben folgt die Nummer (`53 A2`). Bei
-  Dateien ohne Seiten steht hier die Überschrift des Abschnitts.
-- Eine Zeile pro Stichwort und Datei, alphabetisch nach Stichwort.
 
 ## Mit einem Modul arbeiten
 
@@ -275,29 +111,12 @@ Module lesen.
 2. **Lesen:** Lies `projekt:module/{modul}/info.md` und
    `projekt:module/{modul}/index.md` vollständig.
 3. **Nachschlagen:** Führ vor dem ersten Öffnen einer Datei des Moduls aus
-   `daten:` die Dateiprüfung durch (Abschnitt „Datenquelle“). Such dann im
+   `daten:` die Dateiprüfung durch (Abschnitt „Dateiprüfung“). Such dann im
    Stichwortverzeichnis die passenden Stellen und lies gezielt diese Seiten
    (Abschnitt „PDF-Dateien“). Durchsuch keine ganzen Dateien, das kostet viele
    Token. Steht ein Thema nicht im Index, sag das offen.
 
-## Datenquelle
-
-Eine Datenquelle (`daten:`) gibt es nur im **Projekt** und nur, wenn
-`projekt:daten.xml` vorhanden ist. Sonst arbeitest du nur mit Dateien, die der
-Nutzer im Chat anhängt.
-
-`projekt:daten.xml` enthält:
-
-- `<quelle>`: was die Datenquelle ist und wie du sie liest (`<art>`), wo sie
-  liegt (`<url>`) und wie du die aktuelle Identifikation einer Datei bestimmst
-  (`<identifizieren>`). Folge diesen Beschreibungen genau.
-- `<dateien>`: jede Datei mit ihrem Pfad ohne Präfix (`<pfad>`) und ihrer
-  Identifikation beim letzten Indizieren (`<identifikation>`).
-
-Ändert sich eine Datei, ändert sich ihre Identifikation, und ihre Einträge im
-Index passen nicht mehr.
-
-### Dateiprüfung
+## Dateiprüfung
 
 Führ sie einmal pro Chat und Modul durch, bevor du eine Datei des Moduls aus
 `daten:` öffnest. Sie muss billig bleiben und liest keine Dateiinhalte.
@@ -349,49 +168,11 @@ Soll ich mir {datei} auch für spätere Chats merken? Schreib „/lernhelfer:ver
   `arbeit:`) und sieh es dir an. Bleibt sie unklar, sag das offen, statt zu
   raten.
 
-## Gedächtnis
-
-`projekt:gedaechtnis/` spiegelt `projekt:module/`: Zu jedem
-`projekt:module/{modul}/` gibt es `projekt:gedaechtnis/{modul}/` mit demselben
-Ordnernamen. Dazu kommt `projekt:gedaechtnis/benutzererfahrung.md`, die zu
-keinem Modul gehört (Abschnitt „Benutzererfahrung“).
-
-`projekt:gedaechtnis/` ist die maßgebliche Quelle für das, was du über den
-Nutzer weißt. Die eingebaute Erinnerungsfunktion von Claude darf aktiv sein,
-ist aber nicht Teil des Lernhelfers. Bei Widerspruch gilt
-`projekt:gedaechtnis/`.
-
-### `projekt:gedaechtnis/{modul}/probleme.md`
-
-Hält fest, womit der Nutzer im Modul Schwierigkeiten hat oder hatte. Zeilen
-werden nie gelöscht, so bleibt der Verlauf erhalten.
-
-```markdown
----
-format: 1
----
-
-# Probleme: {modulname}
-
-| Thema | Beschreibung | Verstanden | Historie |
-|---|---|---|---|
-| Kettenregel | Vergisst die innere Ableitung, z.B. bei sin(x²). | - | 2026-10-08, 2026-10-10 |
-| Partielle Integration | Wählt u und v' ungünstig, z.B. bei ∫ x·eˣ dx. | 2026-10-12 | 2026-10-05, 2026-10-09 |
-| Leistungsanpassung | Versteht Konzept hinter Blindstromkompensation nicht | - | 2026-10-09 |
-```
-
-- `Verstanden`: das Datum, an dem der Nutzer zuletzt gezeigt hat, dass er das
-  Thema verstanden hat, sonst `-`.
-- `Historie`: die Tage, an denen der Nutzer mit dem Thema Probleme hatte,
-  aufsteigend, jeder Tag einmal.
-
-Fehlt die Datei, gilt sie als leer. Leg sie dann vor dem ersten Eintrag mit
-dieser Vorlage an, ohne Zeilen unter der Kopfzeile der Tabelle.
-
 ## Probleme pflegen
 
 Fähigkeiten, die mit dem Nutzer lernen, verlangen in ihrem Ablauf, diese
-Regeln für `projekt:gedaechtnis/{modul}/probleme.md` anzuwenden. Im **Chat**
+Regeln für `projekt:gedaechtnis/{modul}/probleme.md` anzuwenden (Aufbau in
+`plugin:skills/gemeinsam/grundlagen.md`, Abschnitt „Gedächtnis“). Im **Chat**
 entfallen sie.
 
 - **Lesen:** Lies die Datei vollständig, bevor du mit dem Nutzer am Modul
@@ -410,43 +191,3 @@ entfallen sie.
   am Ende eines Lernblocks, beim Wechsel des Themas und spätestens nach etwa
   sechs Nachrichten, wenn sich seit dem letzten Schreiben etwas geändert hat.
   Schreib nicht, wenn sich nichts geändert hat.
-
-## Benutzererfahrung
-
-`projekt:gedaechtnis/benutzererfahrung.md` hält fest, wo der Umgang mit dem
-Lernhelfer hakt. Der Nutzer gibt die Datei mit „Benutzererfahrung teilen“ an
-die Person weiter, die den Lernhelfer verbessert. „Initialisieren“ legt sie
-an, und an ihr erkennst du ein eingerichtetes Projekt (Abschnitt
-„Betriebsart“). Jede Fähigkeit außer „Initialisieren“ und „Test“ pflegt sie im
-**Projekt**, solange du nach ihr arbeitest. Aufbau:
-
-```markdown
----
-format: 1
----
-
-# Benutzererfahrung
-
-| Datum | Fähigkeit | Art | Was passiert ist |
-|---|---|---|---|
-| 2026-10-10 | Hochladen | Bedienung | Wollte ein Skript hochladen, ohne es im Chat anzuhängen. |
-```
-
-- **Eintragen:** Häng eine Zeile an, sobald eines davon passiert:
-  - `Bedienung`: Der Nutzer versteht einen Ablauf oder eine Nachricht nicht,
-    fragt mehrfach nach, macht etwas anders als vorgesehen oder ist
-    unzufrieden.
-  - `Fähigkeit`: Keine Fähigkeit passt zur Anfrage, eine Anweisung ist
-    mehrdeutig oder eine vorgegebene Nachricht passt nicht zur Situation.
-  - `Technik`: Ein Werkzeug schlägt fehl oder verhält sich anders, als die
-    Fähigkeit annimmt.
-  - `Wunsch`: Der Nutzer wünscht sich etwas vom Lernhelfer oder schlägt eine
-    Verbesserung vor.
-- **Inhalt:** `Fähigkeit` mit dem Namen der Fähigkeit, nach der du arbeitest.
-  Beschreib in einem oder zwei Sätzen, was passiert ist, so konkret, dass
-  jemand ohne den Chat den Lernhelfer gezielt verbessern kann. Schreib keine
-  persönlichen Daten und keine Inhalte aus Skripten oder Übungen hinein. Die
-  Datei ist zum Weitergeben gedacht.
-- **Wann schreiben:** zusammen mit den übrigen Schreibvorgängen der Fähigkeit,
-  spätestens an ihrem Ende. Ändere und lösch vorhandene Zeilen nur, wenn eine
-  Fähigkeit es verlangt.

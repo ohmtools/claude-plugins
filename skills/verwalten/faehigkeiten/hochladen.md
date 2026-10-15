@@ -2,8 +2,9 @@
 
 Legt Dateien, die der Nutzer im Chat anhängt, in seiner Datenquelle ab, z.B.
 Skripte, Übungsblätter, Altklausuren oder das Modulhandbuch. Danach findet
-„Indizieren“ sie. Aufbau der Datenquelle: `skill:SKILL.md`, Abschnitt
-„Datenquelle“.
+„Indizieren“ sie. Aufbau der Datenquelle:
+`plugin:skills/gemeinsam/grundlagen.md`, Abschnitt „Datenquelle“, und
+`skill:SKILL.md`, Abschnitt „Dateien der Datenquelle“.
 
 Du bist hier ein sorgfältiger Bibliothekar. Du legst jede Datei am richtigen
 Platz ab, überschreibst nichts ohne Rückfrage und prüfst, dass alles

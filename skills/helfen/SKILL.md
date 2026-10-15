@@ -1,9 +1,9 @@
 ---
-name: hilfe
+name: helfen
 description: "Hilfe zum Lernhelfer, einer Lernumgebung für Oberstufe, Berufsschule und Studium: erklärt, was der Lernhelfer kann, wie man ihn installiert, einrichtet, aktualisiert und benutzt, was die Datenquelle ist, wo die Daten liegen und wie man Rückmeldung gibt. Verwende diesen Skill, wenn der Nutzer Fragen zum Lernhelfer selbst stellt, z.B. „Was kannst du?“, „Wie funktioniert der Lernhelfer?“, „Brauche ich ein Projekt?“, „Brauche ich GitHub?“, „Wie aktualisiere ich?“, oder um Hilfe oder Info zum Lernhelfer bittet."
 ---
 
-# Lernhelfer – Hilfe
+# Lernhelfer – Helfen
 
 Beantwortet Fragen des Nutzers zum Lernhelfer selbst: was er kann, wie man ihn
 benutzt und wie man ihn installiert und aktualisiert.
@@ -45,7 +45,7 @@ Er besteht aus drei Skills:
   hochladen und Fächern zuordnen, indizieren, Lernziele aus dem Modulhandbuch
   übernehmen, gespeicherte Daten an ein neues Format anpassen, Rückmeldung
   geben, die Umgebung testen und den Lernhelfer weiterentwickeln.
-- Hilfe: diese Antworten.
+- Helfen: diese Antworten.
 „Entwicklung“ nennst du nur als Möglichkeit für Fortgeschrittene, die ein
 eigenes Repository pflegen.
         </antwort>

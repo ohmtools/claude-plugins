@@ -1,7 +1,7 @@
 # Lernhelfer – Hinweise für Claude Code
 
 Lernhelfer ist ein Plugin für Claude.ai mit den Skills `lernen`, `verwalten`
-und `hilfe`. Ihre Markdown-Anweisungen („Fähigkeiten“) schreibst du für eine
+und `helfen`. Ihre Markdown-Anweisungen („Fähigkeiten“) schreibst du für eine
 **andere** Claude-Instanz in Claude.ai (Browser und Mobil-App). Sie kennt
 weder dieses Repository noch diese Datei, nur das Plugin und die
 Projektdateien.
@@ -13,9 +13,10 @@ Projektdateien.
 | Installation | `README.md` |
 | Plugin und Marketplace | `.claude-plugin/plugin.json`, `.claude-plugin/marketplace.json` |
 | Text der Projektanweisungen | `skills/verwalten/faehigkeiten/projektanweisung.md` |
-| Lernen: Pfade, Betriebsart, Module, Datenquelle, Dateiprüfung, Gedächtnis, Formate | `skills/lernen/SKILL.md` |
+| Gemeinsam für `lernen` und `verwalten`: Grundregeln, Pfade, Betriebsart, Nachrichten, Formate, Module, Datenquelle (`daten.xml`), Gedächtnis, Benutzererfahrung | `skills/gemeinsam/grundlagen.md` |
+| Lernen: Fähigkeiten, Modul bestimmen, Dateiprüfung, Dateien im Chat, PDF-Dateien, Probleme pflegen | `skills/lernen/SKILL.md` |
 | Lernmodi und Schwachstellen | `skills/lernen/faehigkeiten/` |
-| Verwalten: Fähigkeiten, Projektstruktur, `daten.xml` | `skills/verwalten/SKILL.md` |
+| Verwalten: Fähigkeiten und ihre Verfügbarkeit, Projektstruktur, Dateien der Datenquelle | `skills/verwalten/SKILL.md` |
 | Konventionen für Fähigkeiten | `skills/verwalten/faehigkeiten/entwicklung.md`, „Änderungen machen“, Schritt 2 |
 | Einrichten, Datenquelle anlegen | `skills/verwalten/faehigkeiten/initialisieren.md` |
 | Fächer, Dateien zuordnen, Lernziele | `skills/verwalten/faehigkeiten/modul-bearbeiten.md` |
@@ -23,11 +24,11 @@ Projektdateien.
 | Migrationen | `skills/verwalten/faehigkeiten/migrieren.md` |
 | Export | `skills/verwalten/faehigkeiten/entwicklung.md`, „Exportieren“ |
 | Annahmen über die Zielumgebung prüfen | `skills/verwalten/faehigkeiten/test.md` |
-| Antworten auf Fragen zum Lernhelfer | `skills/hilfe/SKILL.md` |
+| Antworten auf Fragen zum Lernhelfer | `skills/helfen/SKILL.md` |
 
-Lies vor einer Änderung `skills/lernen/SKILL.md`,
-`skills/verwalten/SKILL.md`, `entwicklung.md` und alle Dateien, die die
-Änderung betrifft, vollständig.
+Lies vor einer Änderung `skills/gemeinsam/grundlagen.md`,
+`skills/lernen/SKILL.md`, `skills/verwalten/SKILL.md`, `entwicklung.md` und
+alle Dateien, die die Änderung betrifft, vollständig.
 
 ## Regeln für dieses Repository
 
@@ -37,11 +38,13 @@ Lies vor einer Änderung `skills/lernen/SKILL.md`,
 - Prüf nach jeder Änderung mit `claude plugin validate .`.
 - Diese Stellen sind bewusst doppelt und müssen übereinstimmen:
   - Repository-URL: `README.md`, `plugin.json` (`homepage`, `repository`),
-    `projektanweisung.md` und `hilfe/SKILL.md`.
-  - Die gemeinsamen Abschnitte von `lernen/SKILL.md` und
-    `verwalten/SKILL.md` (Liste in `entwicklung.md`).
-  - Formatnummern: Tabelle „Formate“ in beiden `SKILL.md` und die Vorlagen
-    in beiden `SKILL.md`, `modul-bearbeiten.md` und `initialisieren.md`.
+    `projektanweisung.md` und `helfen/SKILL.md`.
+  - Pfad der Grundlagen (`skills/gemeinsam/grundlagen.md`): Abschnitt
+    „Grundlagen“ in `lernen/SKILL.md` und `verwalten/SKILL.md` (dort auch die
+    Fehlermeldung), `entwicklung.md` („Vorbereiten“, „Exportieren“) und
+    `test.md`, Test 2.
+  - Formatnummern: Tabelle „Formate“ und die Vorlagen in `grundlagen.md`,
+    dazu die Vorlagen in `modul-bearbeiten.md` und `initialisieren.md`.
   - Zugriff auf die Datenquelle mit git: Vorlage für `daten.xml` in
     `initialisieren.md`, Befehle in `hochladen.md`, Tests 8 und 9 in
     `test.md`.
@@ -51,13 +54,16 @@ Lies vor einer Änderung `skills/lernen/SKILL.md`,
   - Erkennen des Modulhandbuchs am Dateinamen („Modulhandbuch“ oder
     „Lehrplan“): `verwalten/SKILL.md` („Dateien der Datenquelle“), die
     Abschlussnachricht in `initialisieren.md`, `modul-bearbeiten.md` und
-    `hilfe/SKILL.md`.
+    `helfen/SKILL.md`.
   - Seiten zählen mit `pdftotext` und `\f`: `lernen/SKILL.md`
     („PDF-Dateien“), `indizieren.md`, Schritt 4, und `test.md`, Test 11.
 
 ## Stand
 
 - Aufbau: Plugin mit drei Skills, kein Lernhelfer-Code mehr im Projekt.
+  Was `lernen` und `verwalten` beide brauchen, steht nur einmal in
+  `skills/gemeinsam/grundlagen.md` (kein Skill, keine `SKILL.md`). Beide
+  `SKILL.md` lassen die Datei vor allem anderen lesen, `helfen` nicht.
   `lernen` arbeitet mit genau einem Modul, liest `module/`, `daten.xml` und
   `daten:` und schreibt nur `gedaechtnis/{modul}/probleme.md` und
   `gedaechtnis/benutzererfahrung.md`. `verwalten` darf überall schreiben und
@@ -88,9 +94,12 @@ Lies vor einer Änderung `skills/lernen/SKILL.md`,
   Dateiinhalte, `ls-tree`, einzelne Datei mit `checkout`, Commit nach
   `git reset` und Push aus diesem Klon ohne Verlust anderer Dateien;
   `pdftotext` beendet jede Seite mit `\f`, auch leere. In Claude.ai
-  ungeprüft: Klon mit `--filter` über den Proxy, die GitHub-Anbindung zum
-  Lesen privater Repositorys und zum Pushen, Installation über
-  `marketplace.json` mit `"source": "./"` (besteht `claude plugin validate`).
+  ungeprüft: ob Claude.ai den ganzen Plugin-Ordner bereitstellt, sodass
+  `lernen` und `verwalten` `skills/gemeinsam/grundlagen.md` finden (Test 2,
+  sonst sind beide Skills unbrauchbar), Klon mit `--filter` über den Proxy,
+  die GitHub-Anbindung zum Lesen privater Repositorys und zum Pushen,
+  Installation über `marketplace.json` mit `"source": "./"` (besteht
+  `claude plugin validate`).
 - Lernmodi (`erlernen.md`, `wiederholen.md`, `ueben.md`) sind Platzhalter, an
   denen der Nutzer arbeitet. Nicht anfassen. Erst sie pflegen
   `probleme.md`, bis dahin bleibt „Schwachstellen listen“ meist leer.
@@ -124,7 +133,7 @@ Grund für die Datenquelle: Von Uploads über die Projektseite liefert
 eine PDF lässt sich nicht wieder lokal herstellen.
 
 Nächster Testlauf: „/lernhelfer:verwalten Teste den Lernhelfer“ in einem
-Projekt mit Datenquelle (vor allem Tests 8 und 9), danach „Teste das
+Projekt mit Datenquelle (vor allem Tests 2, 8 und 9), danach „Teste das
 Indizieren“ mit Haiku. Danach die Lernmodi.
 
 ## Arbeitsweise

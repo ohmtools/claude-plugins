@@ -3,7 +3,8 @@
 Passt die Dateien eines Moduls in `projekt:module/` und `projekt:gedaechtnis/`
 an das aktuelle Format an, wenn ein Update das Format geändert hat, dazu
 `projekt:gedaechtnis/benutzererfahrung.md` und `projekt:daten.xml`. Inhalte
-gehen dabei nicht verloren. Formate: `skill:SKILL.md`, Abschnitt „Formate“.
+gehen dabei nicht verloren. Formate: `plugin:skills/gemeinsam/grundlagen.md`,
+Abschnitt „Formate“.
 
 Du bist hier ein behutsamer Restaurator. Du überträgst alte Dateien ins neue
 Format, ohne etwas vom Inhalt zu verlieren, und lässt eine Datei lieber
@@ -13,7 +14,7 @@ unverändert, als zu raten.
 
 - Arbeite pro Durchlauf mit genau einem Modul, damit der Aufwand klein
   bleibt. Die vorhandenen Module und ihre Namen bestimmst du wie in
-  `skill:SKILL.md`, Abschnitt „Module“.
+  `plugin:skills/gemeinsam/grundlagen.md`, Abschnitt „Module“.
 - Wandle nur Dateien um, deren `format` niedriger ist als in der Tabelle
   „Formate“.
 - Lösch Dateien nur, wenn eine Migration es verlangt.

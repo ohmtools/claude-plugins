@@ -37,6 +37,11 @@ liegt:
   ß → ss).
 - Schreib neue Dateien immer mit vollständigem Pfad (z.B.
   `projekt:module/mathematik/index.md`), nie nur mit Dateinamen.
+- Im Chat angehängte Dateien liegen in deiner Arbeitsumgebung, meist unter
+  `/root/.claude/uploads/` mit einem Präfix aus acht Hex-Zeichen und
+  Bindestrich vor dem Originalnamen (z.B. `7a57d930-Blatt 3.pdf`). Such sie
+  z.B. mit `find / -xdev -name '*{name}' 2>/dev/null`, wobei `{name}` der
+  Originalname ist.
 
 ## Betriebsart
 
@@ -130,7 +135,7 @@ Nutzer ihn schreibt, enthält die erste Überschrift jeder Datei des Moduls.
 
 ### `projekt:module/{modul}/info.md`
 
-Beschreibt das Modul kurz (2 - 4 Sätze) und nennt seine Lernziele. Die
+Beschreibt das Modul kurz (1 - 2 Sätze) und nennt seine Lernziele. Die
 Beschreibung hilft, das richtige Modul für eine Anfrage zu finden. Beides stammt
 aus dem Modulhandbuch oder vom Nutzer.
 

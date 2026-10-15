@@ -22,9 +22,9 @@ angekommen ist.
 ## Ablauf
 
 1. **Dateien finden:** Such die angehängten Dateien in deiner Arbeitsumgebung
-   (`skill:SKILL.md`, Abschnitt „Dateien und Pfade“). `{name}` ist jeweils der
-   Originalname ohne das Präfix aus acht Hex-Zeichen und Bindestrich. Hat der
-   Nutzer keine Datei angehängt, antworte:
+   (`plugin:skills/gemeinsam/grundlagen.md`, Abschnitt „Pfade“). `{name}` ist
+   jeweils der Originalname ohne das Präfix aus acht Hex-Zeichen und
+   Bindestrich. Hat der Nutzer keine Datei angehängt, antworte:
 
    ```text
    Häng mir die Dateien, die ich hochladen soll, hier im Chat an und schreib dazu, zu welchem Fach sie gehören.

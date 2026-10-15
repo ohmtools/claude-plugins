@@ -22,7 +22,7 @@ unverändert, als zu raten.
 
 Ändert sich das Format einer Datei in `projekt:module/`, `projekt:gedaechtnis/`
 oder von `projekt:daten.xml`, kommt eine Migration dazu:
-`skill:referenzen/migrationen/{nummer}.md`. Die Nummern zählen ab 1 hoch, in
+`skill:faehigkeiten/migrationen/{nummer}.md`. Die Nummern zählen ab 1 hoch, in
 der Reihenfolge, in der die Migrationen entstanden sind. Eine Migration passt
 vorhandene Dateien an das neue Format an. Migrationen werden nie gelöscht,
 weil Nutzer Updates überspringen können.
@@ -60,8 +60,8 @@ Aufbau einer Migration:
    und `projekt:daten.xml` an. `{bereich}` ist in den Nachrichten unten
    `das Fach {modulname}`, ohne Modul `den Lernhelfer`.
 2. **Betroffene Dateien bestimmen:** Lies alle Migrationen unter
-   `skill:referenzen/migrationen/` vollständig und sortiere sie aufsteigend nach
-   ihrer Nummer (als Zahl). Gibt es den Ordner nicht, gibt es keine
+   `skill:faehigkeiten/migrationen/` vollständig und sortiere sie aufsteigend
+   nach ihrer Nummer (als Zahl). Gibt es den Ordner nicht, gibt es keine
    Migrationen. In Frage kommen nur Dateien unter `projekt:module/{modul}/` und
    `projekt:gedaechtnis/{modul}/` sowie
    `projekt:gedaechtnis/benutzererfahrung.md` und `projekt:daten.xml`. Lies jede

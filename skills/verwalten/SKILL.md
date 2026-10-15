@@ -23,14 +23,14 @@ Spalte „Verfügbar“ zur Verfügung steht.
 
 | Situation | Fähigkeit | Lies | Verfügbar |
 |---|---|---|---|
-| Projekt als Lernhelfer einrichten oder eine Datenquelle nachtragen („Richte dieses Projekt als Lernhelfer ein“) | Initialisieren | `skill:referenzen/initialisieren.md` | immer |
-| Fach anlegen, umbenennen oder löschen, Lernziele aus dem Modulhandbuch übernehmen, Dateien einem Fach zuordnen, ersetzen oder herausnehmen, fragen, welche Fächer es gibt, was zu einem Fach gehört oder welche Dateien zu keinem Fach gehören | Modul bearbeiten | `skill:referenzen/modul-bearbeiten.md` | eingerichtetes Projekt |
-| Im Chat angehängte Dateien in die Datenquelle hochladen („Lade … hoch“) | Hochladen | `skill:referenzen/hochladen.md` | Datenquelle |
-| Neue und geänderte Dateien der Datenquelle indizieren („Indiziere“) | Indizieren | `skill:referenzen/indizieren.md` | Datenquelle |
-| Gespeicherte Daten an ein neues Format anpassen („Daten migrieren“) | Daten migrieren | `skill:referenzen/migrieren.md` | eingerichtetes Projekt |
-| Benutzererfahrung teilen | Benutzererfahrung teilen | `skill:referenzen/benutzererfahrung-teilen.md` | eingerichtetes Projekt |
-| Den Lernhelfer selbst verbessern oder exportieren | Entwicklung | `skill:referenzen/entwicklung.md` | immer |
-| Testen, ob der Lernhelfer in dieser Umgebung funktioniert, oder nur das Indizieren testen | Test | `skill:referenzen/test.md` | eingerichtetes Projekt |
+| Projekt als Lernhelfer einrichten oder eine Datenquelle nachtragen („Richte dieses Projekt als Lernhelfer ein“) | Initialisieren | `skill:faehigkeiten/initialisieren.md` | immer |
+| Fach anlegen, umbenennen oder löschen, Lernziele aus dem Modulhandbuch übernehmen, Dateien einem Fach zuordnen, ersetzen oder herausnehmen, fragen, welche Fächer es gibt, was zu einem Fach gehört oder welche Dateien zu keinem Fach gehören | Modul bearbeiten | `skill:faehigkeiten/modul-bearbeiten.md` | eingerichtetes Projekt |
+| Im Chat angehängte Dateien in die Datenquelle hochladen („Lade … hoch“) | Hochladen | `skill:faehigkeiten/hochladen.md` | Datenquelle |
+| Neue und geänderte Dateien der Datenquelle indizieren („Indiziere“) | Indizieren | `skill:faehigkeiten/indizieren.md` | Datenquelle |
+| Gespeicherte Daten an ein neues Format anpassen („Daten migrieren“) | Daten migrieren | `skill:faehigkeiten/migrieren.md` | eingerichtetes Projekt |
+| Benutzererfahrung teilen | Benutzererfahrung teilen | `skill:faehigkeiten/benutzererfahrung-teilen.md` | eingerichtetes Projekt |
+| Den Lernhelfer selbst verbessern oder exportieren | Entwicklung | `skill:faehigkeiten/entwicklung.md` | immer |
+| Testen, ob der Lernhelfer in dieser Umgebung funktioniert, oder nur das Indizieren testen | Test | `skill:faehigkeiten/test.md` | eingerichtetes Projekt |
 
 - `immer`: in jedem Claude.ai-Projekt.
 - `eingerichtetes Projekt`: nur im **Projekt** (Abschnitt „Betriebsart“).
@@ -47,7 +47,7 @@ Spalte „Verfügbar“ zur Verfügung steht.
   nur „Entwicklung“, und zwar an einer Kopie.
 - Ist eine Funktion als „noch nicht ausgearbeitet“ markiert, sag das dem Nutzer
   offen, statt dir einen Ablauf auszudenken.
-- Fähigkeiten in `skill:referenzen/` geben dir eine Rolle. Sie gilt nur,
+- Fähigkeiten in `skill:faehigkeiten/` geben dir eine Rolle. Sie gilt nur,
   solange du nach dieser Fähigkeit arbeitest.
 
 ## Pfade

@@ -320,7 +320,7 @@ zlib-Version kann hier eine Abweichung erklären. Notiere dazu die Ausgabe von
     Ausgabe von `file` und wie der Anhang bei dir ankam (Text, Bilder, Hinweis
     auf einen Pfad).
 11. **Indizieren:** Lies die Fähigkeit „Indizieren“
-    (`skill:referenzen/indizieren.md`) vollständig. Lies danach
+    (`skill:faehigkeiten/indizieren.md`) vollständig. Lies danach
     `arbeit:lernhelfer-test/lernhelfer-test.pdf` und
     `arbeit:lernhelfer-test/lernhelfer-test-2.pdf` so, wie Schritt 4 dort es
     beschreibt, und mach dieselben Notizen. Schreib nichts. Vergleiche mit

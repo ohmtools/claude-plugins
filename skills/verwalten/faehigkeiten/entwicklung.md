@@ -75,7 +75,7 @@ Einmal pro Chat, vor der ersten Änderung oder dem ersten Export.
      Studium. Mische in Beispielen Schule und Uni.
    - Schreib jeden Pfad mit Präfix (`skill:`, `plugin:`, `projekt:`, `daten:`,
      `arbeit:`), wie im Abschnitt „Pfade“ der `SKILL.md` von `lernen` und
-     `verwalten` beschrieben, z.B. `skill:referenzen/indizieren.md` oder
+     `verwalten` beschrieben, z.B. `skill:faehigkeiten/indizieren.md` oder
      `projekt:module/{modul}/index.md`. Nie ohne Präfix, auch nicht für kurze
      Dateinamen wie `index.md`. So bleibt jeder Verweis eindeutig, auch wenn
      sich Ordner ändern. Ausgenommen sind Dateinamen in Vorlagen, in Beispielen
@@ -109,7 +109,7 @@ Einmal pro Chat, vor der ersten Änderung oder dem ersten Export.
      claude.ai verwaltet das Plugin.
    - Leg jede Fähigkeit nach ihrer Aufgabe ab: in
      `kopie:skills/lernen/faehigkeiten/`, wenn sie mit dem Nutzer an einem
-     Fach lernt, in `kopie:skills/verwalten/referenzen/`, wenn sie Fächer,
+     Fach lernt, in `kopie:skills/verwalten/faehigkeiten/`, wenn sie Fächer,
      Datenquelle, Projekt oder den Lernhelfer selbst verwaltet (Vorbild:
      „Indizieren“, „Modul bearbeiten“). Der Skill `hilfe` besteht nur aus
      `kopie:skills/hilfe/SKILL.md`.
@@ -125,12 +125,12 @@ Einmal pro Chat, vor der ersten Änderung oder dem ersten Export.
      einer anderen Fähigkeit und führe keine andere Fähigkeit aus. Braucht der
      Nutzer danach eine andere Fähigkeit, weis ihn mit einer Nachricht darauf
      hin, was er schreiben soll (Vorbild:
-     `kopie:skills/verwalten/referenzen/modul-bearbeiten.md`, Abschnitt „Index
-     veraltet“). Gleiche Abläufe stehen deshalb in mehreren Fähigkeiten, z.B.
-     das Auslesen der Lernziele in „Indizieren“ und „Modul bearbeiten“.
-     Änderst du einen, änderst du alle Kopien.
+     `kopie:skills/verwalten/faehigkeiten/modul-bearbeiten.md`, Abschnitt
+     „Index veraltet“). Gleiche Abläufe stehen deshalb in mehreren
+     Fähigkeiten, z.B. das Auslesen der Lernziele in „Indizieren“ und „Modul
+     bearbeiten“. Änderst du einen, änderst du alle Kopien.
    - Gib jeder Fähigkeit in `kopie:skills/lernen/faehigkeiten/` und
-     `kopie:skills/verwalten/referenzen/` eine Rolle, die zu ihrer Aufgabe
+     `kopie:skills/verwalten/faehigkeiten/` eine Rolle, die zu ihrer Aufgabe
      passt, denn mit einer Rolle arbeitet Claude besser (z.B. „Du bist hier
      ein geduldiger Tutor.“). Schreib sie in zwei, drei Sätzen direkt unter
      die einleitende Beschreibung: wer du bist, dazu Haltung und Ton. Der Skill
@@ -150,7 +150,7 @@ Einmal pro Chat, vor der ersten Änderung oder dem ersten Export.
    - Auf `daten:` greifen Fähigkeiten nur so zu, wie es `projekt:daten.xml`
      beschreibt. Schreiben in `daten:` darf nur „Hochladen“. Eine neue Art von
      Datenquelle bekommt Vorlagen für `<art>` und `<identifizieren>` in
-     `kopie:skills/verwalten/referenzen/initialisieren.md`.
+     `kopie:skills/verwalten/faehigkeiten/initialisieren.md`.
    - Jede Fähigkeit in `lernen` und `verwalten` außer „Initialisieren“ und
      „Test“ pflegt `projekt:gedaechtnis/benutzererfahrung.md`. Das regelt der
      Abschnitt „Benutzererfahrung“ in der `SKILL.md`. Wiederhol es nicht in den
@@ -166,9 +166,9 @@ Einmal pro Chat, vor der ersten Änderung oder dem ersten Export.
      der Tabelle „Formate“ in `kopie:skills/lernen/SKILL.md` und
      `kopie:skills/verwalten/SKILL.md` und in allen Vorlagen dieser Datei. Leg
      dazu eine Migration
-     `kopie:skills/verwalten/referenzen/migrationen/{nummer}.md` mit der
+     `kopie:skills/verwalten/faehigkeiten/migrationen/{nummer}.md` mit der
      nächsten freien Nummer an (Aufbau in
-     `kopie:skills/verwalten/referenzen/migrieren.md`, Abschnitt
+     `kopie:skills/verwalten/faehigkeiten/migrieren.md`, Abschnitt
      „Migrationen“). Neue Dateiarten bekommen Format 1 und einen Eintrag in
      der Tabelle. Bevorzuge billige Migrationen. Ändert sich der Aufbau des
      Index, leere in der Migration das Stichwortverzeichnis, setz in
@@ -231,7 +231,7 @@ aus.
    ```
 
    `{anweisung-hinweis}`: Hast du
-   `kopie:skills/verwalten/referenzen/projektanweisung.md` geändert, setze
+   `kopie:skills/verwalten/faehigkeiten/projektanweisung.md` geändert, setze
    diese Zeile ein, sonst lass den Platzhalter samt Zeile weg:
 
    ```text

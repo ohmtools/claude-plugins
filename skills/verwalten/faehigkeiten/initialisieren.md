@@ -112,7 +112,7 @@ Bei „Ich habe ein Repository“:
 
 ## 4. Projektanweisung prüfen
 
-Lies `skill:referenzen/projektanweisung.md` vollständig. Vergleiche ihren
+Lies `skill:faehigkeiten/projektanweisung.md` vollständig. Vergleiche ihren
 Inhalt mit der Projektanweisung, die dir in diesem Chat vorliegt. Liegt dir
 keine vor, gelten sie als verschieden.
 
@@ -157,7 +157,7 @@ Du arbeitest ohne Datenquelle. Ich merke mir trotzdem deine Fächer und Schwieri
 ```
 
 **Projektanweisungen:** `{anweisung}` ist der Inhalt von
-`skill:referenzen/projektanweisung.md`, exakt und unverändert. Sind die
+`skill:faehigkeiten/projektanweisung.md`, exakt und unverändert. Sind die
 Projektanweisungen verschieden:
 
 ````text

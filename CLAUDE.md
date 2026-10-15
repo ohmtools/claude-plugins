@@ -12,17 +12,17 @@ Projektdateien.
 |---|---|
 | Installation | `README.md` |
 | Plugin und Marketplace | `.claude-plugin/plugin.json`, `.claude-plugin/marketplace.json` |
-| Text der Projektanweisungen | `skills/verwalten/referenzen/projektanweisung.md` |
+| Text der Projektanweisungen | `skills/verwalten/faehigkeiten/projektanweisung.md` |
 | Lernen: Pfade, Betriebsart, Module, Datenquelle, Dateiprüfung, Gedächtnis, Formate | `skills/lernen/SKILL.md` |
 | Lernmodi und Schwachstellen | `skills/lernen/faehigkeiten/` |
 | Verwalten: Fähigkeiten, Projektstruktur, `daten.xml` | `skills/verwalten/SKILL.md` |
-| Konventionen für Fähigkeiten | `skills/verwalten/referenzen/entwicklung.md`, „Änderungen machen“, Schritt 2 |
-| Einrichten, Datenquelle anlegen | `skills/verwalten/referenzen/initialisieren.md` |
-| Fächer, Dateien zuordnen, Lernziele | `skills/verwalten/referenzen/modul-bearbeiten.md` |
-| Hochladen, Indizieren | `skills/verwalten/referenzen/hochladen.md`, `skills/verwalten/referenzen/indizieren.md` |
-| Migrationen | `skills/verwalten/referenzen/migrieren.md` |
-| Export | `skills/verwalten/referenzen/entwicklung.md`, „Exportieren“ |
-| Annahmen über die Zielumgebung prüfen | `skills/verwalten/referenzen/test.md` |
+| Konventionen für Fähigkeiten | `skills/verwalten/faehigkeiten/entwicklung.md`, „Änderungen machen“, Schritt 2 |
+| Einrichten, Datenquelle anlegen | `skills/verwalten/faehigkeiten/initialisieren.md` |
+| Fächer, Dateien zuordnen, Lernziele | `skills/verwalten/faehigkeiten/modul-bearbeiten.md` |
+| Hochladen, Indizieren | `skills/verwalten/faehigkeiten/hochladen.md`, `skills/verwalten/faehigkeiten/indizieren.md` |
+| Migrationen | `skills/verwalten/faehigkeiten/migrieren.md` |
+| Export | `skills/verwalten/faehigkeiten/entwicklung.md`, „Exportieren“ |
+| Annahmen über die Zielumgebung prüfen | `skills/verwalten/faehigkeiten/test.md` |
 | Antworten auf Fragen zum Lernhelfer | `skills/hilfe/SKILL.md` |
 
 Lies vor einer Änderung `skills/lernen/SKILL.md`,
@@ -95,8 +95,7 @@ Lies vor einer Änderung `skills/lernen/SKILL.md`,
   denen der Nutzer arbeitet. Nicht anfassen. Erst sie pflegen
   `probleme.md`, bis dahin bleibt „Schwachstellen listen“ meist leer.
 - Offen: Was passiert, wenn ein Nutzer trotzdem Dateien über die Projektseite
-  hochlädt (dafür gibt es keine Regel mehr). `verwalten/referenzen/` heißt
-  noch nicht wie `lernen/faehigkeiten/`.
+  hochlädt (dafür gibt es keine Regel mehr).
 
 ### Frühere Testläufe (vor dem Plugin, Version 0.11.2 und 0.14.0)
 

@@ -1,0 +1,15 @@
+{
+  "name": "lernhelfer",
+  "description": "Lernumgebung für Oberstufe, Berufsschule und Studium: Claude erklärt, übt und fragt ab, mit deinen eigenen Skripten und Übungen. Am besten in einem Claude.ai-Projekt, wo sich Claude Fächer und Schwierigkeiten merkt; auch in einzelnen Chats nutzbar.",
+  "author": {
+    "name": "tobilinz"
+  },
+  "homepage": "https://github.com/tobilinz/lernhelfer",
+  "repository": "https://github.com/tobilinz/lernhelfer",
+  "keywords": [
+    "lernen",
+    "schule",
+    "studium",
+    "lernhelfer"
+  ]
+}

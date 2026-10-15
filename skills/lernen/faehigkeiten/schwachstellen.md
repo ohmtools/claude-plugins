@@ -49,10 +49,10 @@ steht, und erfinde keine Schwachstellen.
      ```
 
    - `{statistik}`: nur im **Projekt**, sonst lass den Platzhalter samt Zeile
-     weg. `{gesamt}` ist die Zahl der Zeilen in der Tabelle, `{verstanden}`
-     die Zahl der Zeilen mit einem Datum unter `Verstanden`, `{mehr3}` die
-     Zahl der Zeilen mit mehr als drei Daten unter `Historie`, `{mehr1}` die
-     mit mehr als einem:
+     weg. `{gesamt}` ist die Zahl der Zeilen in der Tabelle, `{verstanden}` die
+     Zahl der Zeilen mit einem Datum unter `Verstanden`, `{mehr3}` die Zahl der
+     Zeilen mit mehr als drei Daten unter `Historie`, `{mehr1}` die mit mehr als
+     einem:
 
      ```text
      Insgesamt habe ich mir {gesamt} Probleme notiert, {verstanden} davon hast du inzwischen verstanden. {mehr3} waren an mehr als drei Tagen ein Problem, {mehr1} an mehr als einem Tag. Frag mich nach ihnen, wenn du sie wiederholen willst, z.B. „Welche Probleme hatte ich an mehr als drei Tagen?“

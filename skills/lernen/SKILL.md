@@ -61,10 +61,15 @@ liegt:
 | `daten:` | Datenquelle des Nutzers mit Skripten, Übungen, Altklausuren und Modulhandbuch, z.B. ein GitHub-Repository. Wie du sie liest, steht in `projekt:daten.xml`. |
 | `arbeit:` | Arbeitsverzeichnis deiner Arbeitsumgebung (z.B. `/home/claude`). |
 
-Das Präfix gehört nicht zum Pfad. Lass es weg, wenn du eine Datei öffnest oder
-schreibst. Nennst du dem Nutzer eine Datei, lass es ebenfalls weg und sag bei
-Bedarf, wo sie liegt: `projekt:` in den Projektdateien, `daten:` in seiner
-Datenquelle.
+- Das Präfix gehört nicht zum Pfad. Lass es weg, wenn du eine Datei öffnest oder
+  schreibst. Nennst du dem Nutzer eine Datei, lass es ebenfalls weg und sag bei
+  Bedarf, wo sie liegt: `projekt:` in den Projektdateien, `daten:` in seiner
+  Datenquelle.
+- Schreib Namen von Dateien und Ordnern, die du in `projekt:` anlegst, klein,
+  Wörter mit Bindestrich, ohne Umlaute und ß (ä → ae, ö → oe, ü → ue,
+  ß → ss).
+- Schreib neue Dateien immer mit vollständigem Pfad (z.B.
+  `projekt:module/mathematik/index.md`), nie nur mit Dateinamen.
 
 ## Betriebsart
 
@@ -117,32 +122,6 @@ statt eine Antwort zu tippen). Übernimm Frage und Optionen wörtlich und in
 dieser Reihenfolge. Hast du keine Auswahlfelder, gib die Frage als Text aus und
 die Optionen als nummerierte Liste darunter. Warte in beiden Fällen auf die
 Antwort. Für Platzhalter gilt dasselbe wie bei `text`-Blöcken.
-
-## Dateien und Pfade
-
-- Schreib Namen von Dateien und Ordnern, die du in `projekt:` anlegst, klein,
-  Wörter mit Bindestrich, ohne Umlaute und ß (ä → ae, ö → oe, ü → ue,
-  ß → ss). Sie enden auf `.md`, nur `projekt:daten.xml` nicht.
-- Schreib neue Projektdateien immer mit vollständigem Pfad (z.B.
-  `projekt:module/mathematik/index.md`), nie nur mit Dateinamen.
-- Ordner entstehen, sobald die erste Datei darin geschrieben wird. Leg keine
-  Dateien an, nur damit ein Ordner entsteht.
-- Nenne Dateien in `daten:` immer genau mit ihrem Pfad in der Datenquelle
-  (z.B. `daten:analysis/Blatt 3.pdf`).
-- Leg Arbeitsordner und Dateien zum Herunterladen unter `arbeit:` an, nicht in
-  `/tmp`.
-- Im Chat angehängte Dateien liegen in deiner Arbeitsumgebung, meist unter
-  `/root/.claude/uploads/` mit einem Präfix aus acht Hex-Zeichen und
-  Bindestrich vor dem Originalnamen (z.B. `7a57d930-Blatt 3.pdf`). Such sie
-  z.B. mit `find / -xdev -name '*{name}' 2>/dev/null`.
-
-## Schreiben
-
-- Jede Änderung an einer Projektdatei kostet Kontext-Cache für alle Chats im
-  Projekt. Bündle deshalb Änderungen, statt nach jeder Nachricht zu schreiben,
-  z.B. am Ende eines Lernblocks.
-- Lies vor dem Schreiben die aktuelle Fassung und schreib sie vollständig
-  zurück. Verlier nichts, was nicht bewusst entfernt werden soll.
 
 ## Formate
 
@@ -197,9 +176,9 @@ Nutzer ihn schreibt, enthält die erste Überschrift jeder Datei des Moduls.
 
 ### `projekt:module/{modul}/info.md`
 
-Beschreibt das Modul kurz und nennt seine Lernziele. Die Beschreibung hilft,
-das richtige Modul für eine Anfrage zu finden. Beides stammt aus dem
-Modulhandbuch oder vom Nutzer.
+Beschreibt das Modul kurz (2 - 4 Sätze) und nennt seine Lernziele. Die
+Beschreibung hilft, das richtige Modul für eine Anfrage zu finden. Beides stammt
+aus dem Modulhandbuch oder vom Nutzer.
 
 ```markdown
 ---
@@ -239,7 +218,7 @@ format: 1
 
 | Datei | Beschreibung |
 |---|---|
-| `daten:analysis/skript.pdf` | Skript, Kapitel 1–6, 120 Seiten |
+| `daten:analysis/skript.pdf` | Skript, Kapitel 1–6 |
 | `daten:analysis/Blatt 3.pdf` | Übungsblatt 3, 5 Aufgaben, ohne Lösungen |
 
 ## Stichwortverzeichnis
@@ -267,8 +246,8 @@ die Dateien aus dem Abschnitt „Dateien“ seines Index, `projekt:daten.xml` un
 Nur um das Modul zu bestimmen, darfst du `projekt:module/{modul}/info.md` aller
 Module lesen.
 
-1. **Modul bestimmen:** Ordne die Anfrage anhand der Namen und Beschreibungen
-   in `projekt:module/{modul}/info.md` einem Modul zu (z.B. „Mathe“ →
+1. **Modul bestimmen:** Ordne die Anfrage anhand der Namen und Beschreibungen in
+   `projekt:module/{modul}/info.md` einem Modul zu (z.B. „Mathe“ →
    `mathematik`). Ist das nicht eindeutig, stell diese Rückfrage, mit einer
    Option pro in Frage kommendem Modul:
 
@@ -286,8 +265,8 @@ Module lesen.
    ```
 
    Nennt der Nutzer mehrere Module, arbeite nur mit dem zuerst genannten und
-   beende deine Antwort mit dieser Nachricht, wobei `{module}` die übrigen
-   Namen durch Kommas getrennt sind:
+   beende deine Antwort mit dieser Nachricht, wobei `{module}` die übrigen Namen
+   durch Kommas getrennt sind:
 
    ```text
    Ich arbeite immer nur mit einem Fach auf einmal. Sag mir danach noch einmal Bescheid für {module}.
@@ -398,6 +377,7 @@ format: 1
 |---|---|---|---|
 | Kettenregel | Vergisst die innere Ableitung, z.B. bei sin(x²). | - | 2026-10-08, 2026-10-10 |
 | Partielle Integration | Wählt u und v' ungünstig, z.B. bei ∫ x·eˣ dx. | 2026-10-12 | 2026-10-05, 2026-10-09 |
+| Leistungsanpassung | Versteht Konzept hinter Blindstromkompensation nicht | - | 2026-10-09 |
 ```
 
 - `Verstanden`: das Datum, an dem der Nutzer zuletzt gezeigt hat, dass er das
@@ -406,7 +386,7 @@ format: 1
   aufsteigend, jeder Tag einmal.
 
 Fehlt die Datei, gilt sie als leer. Leg sie dann vor dem ersten Eintrag mit
-dieser Vorlage an, ohne Zeilen unter der Kopfzeile.
+dieser Vorlage an, ohne Zeilen unter der Kopfzeile der Tabelle.
 
 ## Probleme pflegen
 
@@ -428,7 +408,7 @@ entfallen sie.
   erklären), setz `Verstanden` auf das heutige Datum.
 - **Wann schreiben:** Schreib von selbst, ohne dass der Nutzer darum bittet:
   am Ende eines Lernblocks, beim Wechsel des Themas und spätestens nach etwa
-  zehn Nachrichten, wenn sich seit dem letzten Schreiben etwas geändert hat.
+  sechs Nachrichten, wenn sich seit dem letzten Schreiben etwas geändert hat.
   Schreib nicht, wenn sich nichts geändert hat.
 
 ## Benutzererfahrung

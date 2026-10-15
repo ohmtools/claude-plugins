@@ -63,10 +63,15 @@ liegt:
 | `daten:` | Datenquelle des Nutzers mit Skripten, Übungen, Altklausuren und Modulhandbuch, z.B. ein GitHub-Repository. Wie du sie liest, steht in `projekt:daten.xml`. |
 | `arbeit:` | Arbeitsverzeichnis deiner Arbeitsumgebung (z.B. `/home/claude`). |
 
-Das Präfix gehört nicht zum Pfad. Lass es weg, wenn du eine Datei öffnest oder
-schreibst. Nennst du dem Nutzer eine Datei, lass es ebenfalls weg und sag bei
-Bedarf, wo sie liegt: `projekt:` in den Projektdateien, `daten:` in seiner
-Datenquelle.
+- Das Präfix gehört nicht zum Pfad. Lass es weg, wenn du eine Datei öffnest oder
+  schreibst. Nennst du dem Nutzer eine Datei, lass es ebenfalls weg und sag bei
+  Bedarf, wo sie liegt: `projekt:` in den Projektdateien, `daten:` in seiner
+  Datenquelle.
+- Schreib Namen von Dateien und Ordnern, die du in `projekt:` anlegst, klein,
+  Wörter mit Bindestrich, ohne Umlaute und ß (ä → ae, ö → oe, ü → ue,
+  ß → ss).
+- Schreib neue Dateien immer mit vollständigem Pfad (z.B.
+  `projekt:module/mathematik/index.md`), nie nur mit Dateinamen.
 
 ## Betriebsart
 
@@ -112,8 +117,6 @@ Wer wohin schreibt:
   mehreren Modulen arbeiten. „Test“ schreibt nur in `projekt:test/`.
 - In `daten:` schreibt nur „Hochladen“, dazu „Test“ in einem eigenen Zweig,
   den er wieder löscht.
-- Der Skill `lernen` schreibt nur `projekt:gedaechtnis/{modul}/probleme.md`
-  und `projekt:gedaechtnis/benutzererfahrung.md`.
 - Jede Fähigkeit außer „Initialisieren“ und „Test“ hängt Zeilen an
   `projekt:gedaechtnis/benutzererfahrung.md` an (Abschnitt
   „Benutzererfahrung“).
@@ -137,32 +140,6 @@ statt eine Antwort zu tippen). Übernimm Frage und Optionen wörtlich und in
 dieser Reihenfolge. Hast du keine Auswahlfelder, gib die Frage als Text aus und
 die Optionen als nummerierte Liste darunter. Warte in beiden Fällen auf die
 Antwort. Für Platzhalter gilt dasselbe wie bei `text`-Blöcken.
-
-## Dateien und Pfade
-
-- Schreib Namen von Dateien und Ordnern, die du in `projekt:` anlegst, klein,
-  Wörter mit Bindestrich, ohne Umlaute und ß (ä → ae, ö → oe, ü → ue,
-  ß → ss). Sie enden auf `.md`, nur `projekt:daten.xml` nicht.
-- Schreib neue Projektdateien immer mit vollständigem Pfad (z.B.
-  `projekt:module/mathematik/index.md`), nie nur mit Dateinamen.
-- Ordner entstehen, sobald die erste Datei darin geschrieben wird. Leg keine
-  Dateien an, nur damit ein Ordner entsteht.
-- Nenne Dateien in `daten:` immer genau mit ihrem Pfad in der Datenquelle
-  (z.B. `daten:analysis/Blatt 3.pdf`).
-- Leg Arbeitsordner und Dateien zum Herunterladen unter `arbeit:` an, nicht in
-  `/tmp`.
-- Im Chat angehängte Dateien liegen in deiner Arbeitsumgebung, meist unter
-  `/root/.claude/uploads/` mit einem Präfix aus acht Hex-Zeichen und
-  Bindestrich vor dem Originalnamen (z.B. `7a57d930-Blatt 3.pdf`). Such sie
-  z.B. mit `find / -xdev -name '*{name}' 2>/dev/null`.
-
-## Schreiben
-
-- Jede Änderung an einer Projektdatei kostet Kontext-Cache für alle Chats im
-  Projekt. Bündle deshalb Änderungen, statt nach jeder Nachricht zu schreiben,
-  z.B. am Ende eines Lernblocks.
-- Lies vor dem Schreiben die aktuelle Fassung und schreib sie vollständig
-  zurück. Verlier nichts, was nicht bewusst entfernt werden soll.
 
 ## Formate
 
@@ -208,8 +185,8 @@ format: 1
 Ein Modul ist ein Fach. Module gibt es nur im **Projekt**. Zu jedem Modul
 gehören der Ordner `projekt:module/{modul}/` mit
 `projekt:module/{modul}/info.md` und `projekt:module/{modul}/index.md` und der
-gleichnamige Ordner `projekt:gedaechtnis/{modul}/` (Abschnitt „Gedächtnis“).
-Die vorhandenen Module sind die Unterordner von `projekt:module/` in der
+gleichnamige Ordner `projekt:gedaechtnis/{modul}/` (Abschnitt „Gedächtnis“). Die
+vorhandenen Module sind die Unterordner von `projekt:module/` in der
 Projektübersicht. Den Ordnernamen `{modul}` bildet „Modul bearbeiten“ beim
 Anlegen nach den Pfadregeln aus dem Namen (z.B. „Lineare Algebra“ →
 `lineare-algebra`). Er ändert sich danach nie. Den Namen `{modulname}`, wie der
@@ -365,6 +342,7 @@ format: 1
 |---|---|---|---|
 | Kettenregel | Vergisst die innere Ableitung, z.B. bei sin(x²). | - | 2026-10-08, 2026-10-10 |
 | Partielle Integration | Wählt u und v' ungünstig, z.B. bei ∫ x·eˣ dx. | 2026-10-12 | 2026-10-05, 2026-10-09 |
+| Leistungsanpassung | Versteht Konzept hinter Blindstromkompensation nicht | - | 2026-10-09 |
 ```
 
 - `Verstanden`: das Datum, an dem der Nutzer zuletzt gezeigt hat, dass er das

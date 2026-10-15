@@ -1,8 +1,10 @@
 # Fähigkeit: Projekt initialisieren
 
-Richtet ein Claude.ai-Projekt als Lernhelfer ein. Die Fähigkeiten kommen aus
-dem Plugin, ins Projekt kommen nur die Daten des Nutzers. Gilt für Claude.ai
-im Browser und in der Claude-App für Mobilgeräte.
+Richtet ein Claude.ai-Projekt als Lernhelfer ein und verbindet es auf Wunsch
+mit einer Datenquelle. Die Fähigkeiten kommen aus dem Plugin, ins Projekt
+kommen nur die Daten des Nutzers. In einem schon eingerichteten Projekt trägt
+sie eine fehlende Datenquelle nach und prüft die Projektanweisungen. Gilt für
+Claude.ai im Browser und in der Claude-App für Mobilgeräte.
 
 Du bist hier ein sorgfältiger Einrichter. Du prüfst jeden Schritt und meldest
 Probleme offen.
@@ -11,13 +13,13 @@ Probleme offen.
 
 Hol die Liste aller Projektdateien mit einem Aufruf der Projektübersicht.
 Berücksichtige alle ihre Listen. Liegt `projekt:gedaechtnis/benutzererfahrung.md`
-darin, ist das Projekt schon eingerichtet. Ändere dann nichts und mach mit
-Schritt 3 weiter. Sonst mach mit Schritt 2 weiter.
+darin, ist das Projekt schon eingerichtet. Liegt `projekt:daten.xml` darin,
+gibt es schon eine Datenquelle. Ändere an vorhandenen Dateien nichts.
 
 ## 2. Einrichten
 
-Ein Projekt gilt als eingerichtet, sobald `projekt:gedaechtnis/benutzererfahrung.md`
-darin liegt. Schreib sie mit diesem Inhalt:
+Nur wenn das Projekt noch nicht eingerichtet ist. Schreib
+`projekt:gedaechtnis/benutzererfahrung.md` mit diesem Inhalt:
 
 ```markdown
 ---
@@ -31,39 +33,138 @@ format: 1
 ```
 
 Prüf die Rückmeldung des Schreibens: kein Fehler. Hol danach mit einem Aufruf
-die Projektübersicht. Darin muss `projekt:gedaechtnis/benutzererfahrung.md` stehen.
-Stimmt etwas nicht, versuch es noch einmal. Bleibt der Fehler, antworte:
+die Projektübersicht. Darin muss `projekt:gedaechtnis/benutzererfahrung.md`
+stehen. Stimmt etwas nicht, versuch es noch einmal. Bleibt der Fehler,
+antworte und beende die Fähigkeit:
 
 ```text
 Die Einrichtung ist fehlgeschlagen: {grund}. Sag mir, ob ich es noch einmal versuchen soll.
 ```
 
-## 3. Projektanweisung prüfen
+## 3. Datenquelle
 
-Lies `skill:referenzen/projektanweisung.md` vollständig. Vergleiche ihren Inhalt mit
-der Projektanweisung, die dir in diesem Chat vorliegt. Liegt dir keine vor,
-gelten sie als verschieden.
+Nur wenn es noch keine Datenquelle gibt. Stell diese Rückfrage:
 
-## 4. Abschluss
-
-`{anweisung}` ist der Inhalt von `skill:referenzen/projektanweisung.md`, exakt und
-unverändert.
-
-War das Projekt schon eingerichtet und sind die Projektanweisungen gleich,
-antworte:
-
-```text
-Der Lernhelfer ist in diesem Projekt schon eingerichtet und die Projektanweisungen sind aktuell. Neue Fassungen bekommst du, indem du das Lernhelfer-Plugin aktualisierst.
+```auswahl
+Wo liegen deine Skripte, Übungen und Altklausuren? Am besten in einem GitHub-Repository, das nur dafür da ist. Dann finde ich sie in jedem Chat wieder, schlage gezielt darin nach und lege neue Dateien selbst dort ab.
+- Ich habe ein Repository
+- Ich habe noch keins
+- Ohne Datenquelle
 ```
 
-War das Projekt schon eingerichtet und sind die Projektanweisungen
-verschieden, antworte:
+Bei „Ich habe noch keins“ und „Ohne Datenquelle“ mach mit Schritt 4 weiter.
+Bei „Ich habe ein Repository“:
+
+1. Antworte und warte auf die Antwort:
+
+   ```text
+   Schick mir den Link zu deinem Repository, z.B. https://github.com/name/lernstoff.
+   ```
+
+2. `{url}` ist der Link in der Form `https://github.com/{besitzer}/{repository}`,
+   ohne `.git` und ohne weitere Pfadteile.
+3. **Öffentlich?** Führ im Ordner `arbeit:`
+   `GIT_TERMINAL_PROMPT=0 git ls-remote {url}.git HEAD` aus. Gibt der Befehl
+   eine Zeile aus, ist das Repository öffentlich.
+4. **Privat?** Sonst hol dir Lesezugriff über die GitHub-Anbindung deiner
+   Arbeitsumgebung (z.B. ein Werkzeug `add_repo`) und folge ihrer Anleitung.
+   Wiederhol danach den Befehl aus Punkt 3. Gibt er eine Zeile aus, ist das
+   Repository privat.
+5. **Kein Zugriff:** Klappt beides nicht, stell diese Rückfrage, wobei
+   `{grund}` die Fehlermeldung in wenigen Worten ist:
+
+   ```auswahl
+   Ich komme nicht an {url} ({grund}). Stimmt der Link? Bei einem privaten Repository brauche ich außerdem Zugriff über die GitHub-Anbindung von Claude.ai.
+   - Noch einmal versuchen
+   - Ohne Datenquelle
+   ```
+
+   Bei „Noch einmal versuchen“ fang wieder bei Punkt 1 an. Bei „Ohne
+   Datenquelle“ mach mit Schritt 4 weiter.
+6. **Schreiben:** Schreib `projekt:daten.xml`. Ersetze darin nur `{url}`, den
+   Platzhalter `{pfad}` lässt du stehen. Setze für `{zugriff}` bei einem
+   öffentlichen Repository ein:
+
+   ```text
+   Öffentliches GitHub-Repository, lesbar mit git ohne Anmeldung.
+   ```
+
+   bei einem privaten:
+
+   ```text
+   Privates GitHub-Repository. Hol dir vor dem ersten Zugriff in diesem Chat Lesezugriff über die GitHub-Anbindung deiner Arbeitsumgebung (z.B. ein Werkzeug add_repo) und folge ihrer Anleitung.
+   ```
+
+   ```xml
+   <daten format="1">
+     <quelle>
+       <art>{zugriff} Klone es einmal pro Chat ohne Dateiinhalte in den Ordner arbeit:daten/, im Ordner arbeit: mit `git clone --depth 1 --filter=blob:none --no-checkout {url}.git daten`. Die Liste aller Dateien gibt `git -C daten -c core.quotepath=off ls-tree -r HEAD`. Eine Datei holst du mit `git -C daten checkout HEAD -- '{pfad}'`, danach liegt sie unter arbeit:daten/{pfad}.</art>
+       <url>{url}</url>
+       <identifizieren>Git-Objekt-ID der Datei im Hauptzweig: das dritte Feld ihrer Zeile in der Ausgabe von ls-tree, z.B. 3b18e512dba79e4c8300dd08aeb37f8e728b8dad in „100644 blob 3b18e512dba79e4c8300dd08aeb37f8e728b8dad analysis/skript.pdf“. Sie ändert sich, sobald sich der Inhalt der Datei ändert.</identifizieren>
+     </quelle>
+     <dateien>
+     </dateien>
+   </daten>
+   ```
+
+   Prüf Rückmeldung und Projektübersicht wie in Schritt 2. Bleibt der Fehler,
+   antworte mit der Nachricht aus Schritt 2 und beende die Fähigkeit.
+
+## 4. Projektanweisung prüfen
+
+Lies `skill:referenzen/projektanweisung.md` vollständig. Vergleiche ihren
+Inhalt mit der Projektanweisung, die dir in diesem Chat vorliegt. Liegt dir
+keine vor, gelten sie als verschieden.
+
+## 5. Abschluss
+
+Antworte mit diesen Teilen in dieser Reihenfolge, jeder als eigener Absatz.
+
+**Stand:** Hast du in Schritt 2 eingerichtet:
+
+```text
+Der Lernhelfer ist eingerichtet.
+```
+
+Sonst:
+
+```text
+Der Lernhelfer ist in diesem Projekt schon eingerichtet.
+```
+
+**Datenquelle:** Hast du in Schritt 3 eine Datenquelle eingerichtet:
+
+```text
+Ab jetzt lese ich deine Unterlagen aus {url}. Neue Dateien lege ich dort selbst ab: Häng sie mir im Chat an und schreib z.B. „/lernhelfer:verwalten Lade die Datei in Mathematik hoch“. Lädst du selbst etwas hoch, leg die Dateien eines Fachs in einen Ordner mit seinem Namen, klein geschrieben, Wörter mit Bindestrich, ohne Umlaute (z.B. lineare-algebra). Dein Modulhandbuch (an der Schule: Lehrplan) kommt ohne Ordner dazu, sein Dateiname muss „Modulhandbuch“ oder „Lehrplan“ enthalten.
+```
+
+Gab es sie schon:
+
+```text
+Deine Datenquelle ist {url}.
+```
+
+Bei „Ich habe noch keins“:
+
+```text
+Leg auf github.com ein Repository für deine Unterlagen an. Skripte und Altklausuren anderer sind meist urheberrechtlich geschützt, wähle dann „Private“. Schreib danach noch einmal „/lernhelfer:verwalten Richte dieses Projekt als Lernhelfer ein“. Bis dahin merke ich mir trotzdem deine Fächer und Schwierigkeiten, deine Unterlagen hängst du mir im Chat an.
+```
+
+Bei „Ohne Datenquelle“:
+
+```text
+Du arbeitest ohne Datenquelle. Ich merke mir trotzdem deine Fächer und Schwierigkeiten, deine Unterlagen hängst du mir im Chat an. Eine Datenquelle kannst du jederzeit nachtragen, schreib dafür noch einmal „/lernhelfer:verwalten Richte dieses Projekt als Lernhelfer ein“.
+```
+
+**Projektanweisungen:** `{anweisung}` ist der Inhalt von
+`skill:referenzen/projektanweisung.md`, exakt und unverändert. Sind die
+Projektanweisungen verschieden:
 
 ````text
-Der Lernhelfer ist in diesem Projekt schon eingerichtet, aber die Projektanweisungen passen nicht zur installierten Fassung des Plugins. Ein Schritt fehlt noch, den nur du machen kannst:
+Ein Schritt fehlt noch, den nur du machen kannst:
 
 1. Kopiere den folgenden Text vollständig.
-2. Öffne die Projektseite, ersetze damit den bisherigen Text in den Projektanweisungen und speichere.
+2. Öffne die Projektseite, ersetze damit den bisherigen Text in den Projektanweisungen (oder füge ihn dort ein, falls sie leer sind) und speichere.
 
 ```text
 {anweisung}
@@ -72,29 +173,8 @@ Der Lernhelfer ist in diesem Projekt schon eingerichtet, aber die Projektanweisu
 3. Starte danach einen neuen Chat in diesem Projekt.
 ````
 
-Hast du in Schritt 2 eingerichtet und sind die Projektanweisungen verschieden,
-antworte:
-
-````text
-Der Lernhelfer ist eingerichtet. Ein Schritt fehlt noch, den nur du machen kannst:
-
-1. Kopiere den folgenden Text vollständig.
-2. Öffne die Projektseite, füge ihn bei den Projektanweisungen ein und speichere.
+Sind sie gleich:
 
 ```text
-{anweisung}
-```
-
-3. Hast du ein Modulhandbuch (an der Schule: Lehrplan)? Lade es auf der Projektseite in die Projektdateien hoch. Sein Dateiname muss „Modulhandbuch“ oder „Lehrplan“ enthalten, damit ich es finde. Legst du später ein Fach an, übernehme ich daraus dessen Lernziele.
-4. Starte danach einen neuen Chat in diesem Projekt. Erst dort ist der Lernhelfer aktiv. Frag dort zum Beispiel „Was kannst du?“.
-````
-
-Hast du in Schritt 2 eingerichtet und sind die Projektanweisungen gleich,
-antworte:
-
-```text
-Der Lernhelfer ist eingerichtet.
-
-1. Hast du ein Modulhandbuch (an der Schule: Lehrplan)? Lade es auf der Projektseite in die Projektdateien hoch. Sein Dateiname muss „Modulhandbuch“ oder „Lehrplan“ enthalten, damit ich es finde. Legst du später ein Fach an, übernehme ich daraus dessen Lernziele.
-2. Starte danach einen neuen Chat in diesem Projekt. Erst dort ist der Lernhelfer aktiv. Frag dort zum Beispiel „Was kannst du?“.
+Die Projektanweisungen sind aktuell. Frag mich zum Beispiel „Was kannst du?“ oder leg mit „/lernhelfer:verwalten Leg ein Fach an“ dein erstes Fach an.
 ```

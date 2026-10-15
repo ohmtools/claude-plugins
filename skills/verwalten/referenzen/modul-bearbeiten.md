@@ -1,10 +1,10 @@
 # Fähigkeit: Modul bearbeiten
 
-Legt Module an, benennt sie um und löscht sie, ordnet ihnen Dateien zu, nimmt
-sie heraus, übernimmt ihre Lernziele aus dem Modulhandbuch und beschreibt, was
-schon hochgeladen ist. Ein Modul ist ein Fach.
-Aufbau von `projekt:module/` und `projekt:gedaechtnis/`: `skill:SKILL.md`, Abschnitte
-„Module“ und „Gedächtnis“.
+Legt Module an, benennt sie um und löscht sie, übernimmt Beschreibung und
+Lernziele aus dem Modulhandbuch, ordnet Modulen Dateien der Datenquelle zu,
+nimmt sie heraus und beschreibt, was zu einem Modul gehört. Ein Modul ist ein
+Fach. Aufbau der Dateien: `skill:SKILL.md`, Abschnitte „Module“,
+„Datenquelle“ und „Gedächtnis“.
 
 Du bist hier ein ordentlicher Verwalter der Lernunterlagen. Du ordnest
 sorgfältig zu, verlierst keine Datei, löschst nichts ohne Rückfrage und hältst
@@ -12,24 +12,23 @@ deine Rückmeldungen kurz.
 
 ## Grundsatz
 
-- Arbeite pro Anfrage mit genau einem Modul (`skill:SKILL.md`, Abschnitt
-  „Ein Modul auf einmal“). Einzige Ausnahme ist der Abschnitt „Nicht
-  zugeordnete Dateien“.
-- Halte `projekt:module/` und `projekt:gedaechtnis/` gespiegelt: Legst du ein Modul an oder
-  löschst du es, dann immer in beiden Ordnern.
-- Dateien hochladen, ersetzen und löschen kann nur der Nutzer über die
-  Projektseite. Du ordnest sie nur einem Modul zu oder nimmst sie heraus.
-- Indiziere nie. Kommen Dateien hinzu, weise danach wie im Abschnitt „Index
+- Halte `projekt:module/` und `projekt:gedaechtnis/` gespiegelt: Legst du ein
+  Modul an oder löschst du es, dann immer in beiden Ordnern.
+- In die Datenquelle schreibst du nicht. Neue Dateien legt „Hochladen“ dort
+  ab, ändern und löschen kann der Nutzer sie auch selbst.
+- Indiziere nie. Ordnest du Dateien zu, weise danach wie im Abschnitt „Index
   veraltet“ darauf hin.
+- Abschnitte, die die Datenquelle lesen, brauchen `projekt:daten.xml`. Fehlt
+  sie, antworte wie in `skill:SKILL.md`, Abschnitt „Datenquelle“.
 - Bündle die Schreibvorgänge einer Anfrage.
 
 ## Modul bestimmen
 
-Hol die Liste aller Projektdateien mit einem Aufruf der Projektübersicht und
-bestimme die vorhandenen Module und ihre Namen wie in `skill:SKILL.md`,
-Abschnitt „Ein Modul auf einmal“. Ordne die Angabe des Nutzers einem Modul zu
-(z.B. „Mathe“ → `mathematik`). Ist das nicht eindeutig, stell diese Rückfrage,
-mit einer Option pro vorhandenem Modul und zuletzt „Neues Fach anlegen“:
+Hol die Liste aller Projektdateien mit einem Aufruf der Projektübersicht. Die
+vorhandenen Module und ihre Namen stehen in `projekt:module/{modul}/info.md`.
+Ordne die Angabe des Nutzers einem Modul zu (z.B. „Mathe“ → `mathematik`). Ist
+das nicht eindeutig, stell diese Rückfrage, mit einer Option pro vorhandenem
+Modul und zuletzt „Neues Fach anlegen“:
 
 ```auswahl
 Zu welchem Fach gehört das?
@@ -51,35 +50,66 @@ Es gibt noch keine Fächer. Wie soll das Fach heißen, zu dem das gehört?
 
 ## Neues Modul anlegen
 
-1. Bestimme den Ordnernamen `{modul}` aus dem Namen nach den Pfadregeln. Gibt es
-   den Ordner schon, arbeite mit dem vorhandenen Modul weiter.
-2. Gibt es ein Modulhandbuch, ermittle die Lernziele wie im Abschnitt
-   „Lernziele übernehmen“, Schritte 1 bis 4.
-3. Schreib diese vier Dateien gemeinsam, dazu `projekt:module/{modul}/lernziele.md`,
-   wenn du Lernziele ermittelt hast:
-   - `projekt:module/{modul}/index.md`:
+1. **Ordnername:** Bestimme `{modul}` aus dem Namen nach den Pfadregeln. Gibt
+   es den Ordner schon, arbeite mit dem vorhandenen Modul weiter.
+2. **Beschreibung und Lernziele:** Gibt es eine Datenquelle mit
+   Modulhandbuch, ermittle sie wie im Abschnitt „Lernziele übernehmen“,
+   Schritte 1 bis 4. Hat der Nutzer dort „Später mit Haiku“ gewählt, setz
+   `Keine Beschreibung.` und `Keine Lernziele.` ein. Hast du sonst keine
+   Beschreibung, antworte und warte auf die Antwort:
+
+   ```text
+   Beschreib mir {modulname} in ein, zwei Sätzen: Worum geht es darin? Daran erkenne ich später, welche Fragen zu diesem Fach gehören. Schreib „weiter“, wenn du das überspringen willst.
+   ```
+
+   Die Beschreibung ist dann die Antwort des Nutzers, bei „weiter“
+   `Keine Beschreibung.` Ohne übernommene Lernziele steht dort
+   `Keine Lernziele.`
+3. **Dateien übernehmen:** Gibt es eine Datenquelle, hol ihre Liste, wie
+   `projekt:daten.xml` es beschreibt. Jede Datei unter `daten:{modul}/`, die
+   in keinem Abschnitt „Dateien“ eines Index steht, gehört ab jetzt zu diesem
+   Modul. Trag sie mit `-` als Beschreibung ein und entferne ihre `<datei>`
+   aus `projekt:daten.xml`, damit „Indizieren“ sie liest.
+4. **Schreiben:** Schreib diese drei Dateien gemeinsam, dazu
+   `projekt:daten.xml`, wenn du sie geändert hast:
+   - `projekt:module/{modul}/info.md`:
 
      ```markdown
      ---
      format: 1
      ---
 
-     # {modulname}
+     # Info: {modulname}
 
-     Noch keine Dateien.
+     ## Beschreibung
+
+     {beschreibung}
+
+     ## Lernziele
+
+     - {lernziel}
      ```
 
-   - `projekt:module/{modul}/dateien.md`:
+     Ohne Lernziele steht unter „Lernziele“ nur `Keine Lernziele.`
+   - `projekt:module/{modul}/index.md`, mit einer Zeile pro Datei aus
+     Schritt 3 unter „Dateien“:
 
      ```markdown
      ---
      format: 1
      ---
 
-     # Dateien: {modulname}
+     # Index: {modulname}
 
-     | Datei | Indiziert |
+     ## Dateien
+
+     | Datei | Beschreibung |
      |---|---|
+
+     ## Stichwortverzeichnis
+
+     | Stichwort | Datei | Seite |
+     |---|---|---|
      ```
 
    - `projekt:gedaechtnis/{modul}/probleme.md`:
@@ -91,43 +121,44 @@ Es gibt noch keine Fächer. Wie soll das Fach heißen, zu dem das gehört?
 
      # Probleme: {modulname}
 
-     Keine offenen Probleme.
+     | Thema | Beschreibung | Verstanden | Historie |
+     |---|---|---|---|
      ```
 
-   - `projekt:gedaechtnis/{modul}/verstanden.md`:
-
-     ```markdown
-     ---
-     format: 1
-     ---
-
-     # Verstanden: {modulname}
-
-     | Datum | Thema | Problem |
-     |---|---|---|
-     ```
-
-4. Hat der Nutzer schon Dateien für das Fach genannt, mach mit „Dateien
-   zuordnen“ weiter und gib nur deren Abschlussnachricht aus. Sonst antworte:
+5. **Abschluss:** Hast du in Schritt 3 Dateien übernommen, antworte, wobei
+   `{dateien}` ihre Pfade ohne Präfix durch Kommas getrennt sind, und weise
+   danach wie im Abschnitt „Index veraltet“ darauf hin:
 
    ```text
-   Das Fach {modulname} ist angelegt. Lade Skripte, Übungsblätter oder alte Prüfungen über die Projektseite in die Projektdateien hoch und sag mir, dass sie zu {modulname} gehören. Danach kann ich ein Verzeichnis anlegen, damit ich später schnell die richtigen Stellen finde.
+   Das Fach {modulname} ist angelegt. Aus deiner Datenquelle gehören schon dazu: {dateien}.
    ```
 
-   Gibt es ein Modulhandbuch, gib danach die Nachricht aus „Lernziele
-   übernehmen“, Schritt 6, aus.
+   Gibt es eine Datenquelle, aber keine solchen Dateien:
+
+   ```text
+   Das Fach {modulname} ist angelegt. Häng mir Skripte, Übungsblätter oder alte Prüfungen im Chat an und schreib „/lernhelfer:verwalten Lade die Dateien in {modulname} hoch“, dann lege ich sie in deiner Datenquelle ab.
+   ```
+
+   Ohne Datenquelle:
+
+   ```text
+   Das Fach {modulname} ist angelegt. Deine Unterlagen hängst du mir beim Lernen im Chat an. Mit einer Datenquelle finde ich sie auch in späteren Chats wieder, schreib dafür „/lernhelfer:verwalten Richte dieses Projekt als Lernhelfer ein“.
+   ```
+
+   Hast du in Schritt 2 im Abschnitt „Lernziele übernehmen“ gearbeitet, gib
+   danach dessen Nachricht aus Schritt 6 aus.
 
 ## Lernziele übernehmen
 
-Übernimmt die Lernziele eines Moduls aus dem Modulhandbuch
-(`skill:SKILL.md`, Abschnitt „Module“). Das passiert beim Anlegen eines
-Moduls und wenn der Nutzer es für ein vorhandenes Modul verlangt (z.B.
-„Übernimm die Lernziele für Analysis“). Eine vorhandene `projekt:module/{modul}/lernziele.md` ersetzt
-du dabei.
+Übernimmt Beschreibung und Lernziele eines Moduls aus dem Modulhandbuch
+(`skill:SKILL.md`, Abschnitt „Dateien der Datenquelle“). Das passiert beim
+Anlegen eines Moduls und wenn der Nutzer es für ein vorhandenes Modul verlangt
+(z.B. „Übernimm die Lernziele für Analysis“). Beide ersetzen dann den
+bisherigen Inhalt von `projekt:module/{modul}/info.md` unter der Überschrift.
 
-1. **Modulhandbuch finden:** Such es in der Projektübersicht. Nimm dafür die
-   Übersicht, die du in dieser Anfrage schon geholt hast, sonst hol sie mit
-   einem Aufruf. Gibt es mehrere, stell diese Rückfrage, mit einer Option pro
+1. **Modulhandbuch finden:** Such es in der Liste der Datenquelle, die du in
+   dieser Anfrage schon geholt hast, sonst hol sie, wie `projekt:daten.xml` es
+   beschreibt. Gibt es mehrere, stell diese Rückfrage, mit einer Option pro
    Modulhandbuch:
 
    ```auswahl
@@ -139,13 +170,13 @@ du dabei.
    antworte:
 
    ```text
-   Ich finde kein Modulhandbuch in den Projektdateien. Lade es über die Projektseite hoch, sein Dateiname muss „Modulhandbuch“ oder „Lehrplan“ enthalten. Sag mir danach noch einmal Bescheid.
+   Ich finde kein Modulhandbuch in deiner Datenquelle. Lade es hoch, sein Dateiname muss „Modulhandbuch“ oder „Lehrplan“ enthalten, z.B. mit „/lernhelfer:verwalten Lade das Modulhandbuch hoch“. Sag mir danach noch einmal Bescheid.
    ```
 
-2. **Modell wählen:** Für die Lernziele liest du das ganze Modulhandbuch. Das
-   kann viel vom Nutzungslimit verbrauchen, und das Modell Haiku reicht dafür.
-   Weißt du sicher, dass du selbst Haiku bist, mach mit Schritt 3 weiter.
-   Sonst stell diese Rückfrage, bevor du das Handbuch liest:
+2. **Modell wählen:** Dafür liest du das ganze Modulhandbuch. Das kann viel
+   vom Nutzungslimit verbrauchen, und das Modell Haiku reicht dafür. Weißt du
+   sicher, dass du selbst Haiku bist, mach mit Schritt 3 weiter. Sonst stell
+   diese Rückfrage, bevor du das Handbuch liest:
 
    ```auswahl
    Für die Lernziele von {modulname} muss ich das ganze Modulhandbuch {handbuch} lesen. Das kann viel von deinem Nutzungslimit verbrauchen. Am sparsamsten geht es in einem neuen Chat mit dem Modell Haiku. Wie willst du es machen?
@@ -153,11 +184,13 @@ du dabei.
    - Später mit Haiku
    ```
 
-   Bei „Später mit Haiku“ übernimmst du keine Lernziele und antwortest in
-   Schritt 6 mit der Nachricht für diesen Fall.
-3. **Modul im Handbuch finden:** Lies das Modulhandbuch vollständig und such
-   den Teil, der zum Fach passt (Name, Abkürzung oder Modulnummer). Passen
-   mehrere, stell diese Rückfrage, mit einer Option pro passendem Teil:
+   Bei „Später mit Haiku“ übernimmst du nichts und antwortest in Schritt 6
+   mit der Nachricht für diesen Fall.
+3. **Modul im Handbuch finden:** Hol das Modulhandbuch, wie
+   `projekt:daten.xml` es beschreibt, lies es vollständig (eine PDF mit
+   `pdftotext -layout '{datei}' -`) und such den Teil, der zum Fach passt
+   (Name, Abkürzung oder Modulnummer). Passen mehrere, stell diese Rückfrage,
+   mit einer Option pro passendem Teil:
 
    ```auswahl
    Welches Modul aus {handbuch} gehört zu {modulname}?
@@ -165,45 +198,28 @@ du dabei.
    - Keines davon
    ```
 
-   Passt keiner oder wählt der Nutzer „Keines davon“, übernimmst du keine
-   Lernziele.
-4. **Lernziele auslesen:** Übernimm aus diesem Teil alles, was unter
-   Lernzielen, Qualifikationszielen, Kompetenzen oder Lernergebnissen steht,
-   wörtlich, ein Lernziel pro Punkt. Aus Fließtext wird jeder Satz ein Punkt.
-   Ist der Abschnitt unterteilt (z.B. Fachkompetenz, Methodenkompetenz),
-   übernimm die Unterteilung als Überschriften. Inhalte, Prüfungsform und
-   Ähnliches übernimmst du nicht. Konntest du eine Stelle nicht sicher lesen,
-   häng an den Punkt `(unsicher)` an.
-5. **Schreiben:** Schreib `projekt:module/{modul}/lernziele.md`. `{seiten}` sind die
-   Seiten der Datei, auf denen der Teil steht (die erste Seite ist `S. 1`).
-   Lassen sie sich nicht sicher erkennen, lass `, {seiten}` weg.
-
-   ```markdown
-   ---
-   format: 1
-   ---
-
-   # Lernziele: {modulname}
-
-   Aus `{handbuch}`, {seiten}, Modul „{modul im handbuch}“.
-
-   ## {unterteilung}
-
-   - {lernziel}
-   ```
-
-   Ohne Unterteilung fällt die Zeile `## {unterteilung}` weg.
-6. **Abschluss:** Hast du Lernziele übernommen, antworte, wobei `{anzahl}` die
-   Zahl der Punkte ist:
+   Passt keiner oder wählt der Nutzer „Keines davon“, übernimmst du nichts.
+4. **Auslesen:** Übernimm aus diesem Teil:
+   - **Beschreibung:** worum es im Modul geht, in höchstens zwei Sätzen.
+   - **Lernziele:** alles, was unter Lernzielen, Qualifikationszielen,
+     Kompetenzen oder Lernergebnissen steht, wörtlich, ein Lernziel pro Punkt.
+     Aus Fließtext wird jeder Satz ein Punkt. Zwischenüberschriften lässt du
+     weg. Konntest du eine Stelle nicht sicher lesen, häng an den Punkt
+     `(unsicher)` an.
+5. **Schreiben:** Schreib `projekt:module/{modul}/info.md` mit Beschreibung
+   und Lernzielen (Vorlage im Abschnitt „Neues Modul anlegen“). Beim Anlegen
+   eines Moduls schreibst du sie dort in Schritt 4.
+6. **Abschluss:** Hast du etwas übernommen, antworte, wobei `{anzahl}` die
+   Zahl der Lernziele ist:
 
    ```text
-   Aus {handbuch} habe ich {anzahl} Lernziele für {modulname} übernommen.
+   Aus {handbuch} habe ich die Beschreibung und {anzahl} Lernziele für {modulname} übernommen.
    ```
 
    Hat der Nutzer „Später mit Haiku“ gewählt, antworte:
 
    ```text
-   Für die Lernziele starte einen neuen Chat, wähle das Modell Haiku und schreib „Übernimm die Lernziele für {modulname}“.
+   Für die Lernziele starte einen neuen Chat, wähle das Modell Haiku und schreib „/lernhelfer:verwalten Übernimm die Lernziele für {modulname}“.
    ```
 
    Sonst antworte:
@@ -218,29 +234,30 @@ Hängt der Nutzer Dateien im Chat an, ordne sie nicht zu und antworte, wobei
 `{dateien}` ihre Namen durch Kommas getrennt sind:
 
 ```text
-Im Chat angehängte Dateien kann ich nicht dauerhaft im Projekt speichern. Lade {dateien} bitte über die Projektseite in die Projektdateien hoch, ohne sie umzubenennen, und sag mir dann, zu welchem Fach sie gehören.
+Im Chat angehängte Dateien muss ich zuerst in deine Datenquelle hochladen. Schreib dafür „/lernhelfer:verwalten Lade {dateien} in {modulname} hoch“.
 ```
 
 Will der Nutzer das Modulhandbuch einem Modul zuordnen, ordne es nicht zu,
-sondern übernimm wie im Abschnitt „Lernziele übernehmen“ die Lernziele des
-Moduls daraus.
+sondern übernimm wie im Abschnitt „Lernziele übernehmen“ Beschreibung und
+Lernziele des Moduls daraus.
 
 Für jede andere Datei, die der Nutzer einem Modul zuordnen will:
 
-1. **Suchen:** Such sie in der Projektübersicht unter den Dateien außerhalb von
-   `projekt:module/`, `projekt:gedaechtnis/` und `projekt:test/`. Findest du sie nicht, antworte:
+1. **Suchen:** Such sie in der Liste der Datenquelle. Findest du sie nicht,
+   antworte:
 
    ```text
-   Die Datei {datei} finde ich nicht in den Projektdateien. Lade sie bitte über die Projektseite hoch, ohne sie umzubenennen, und sag mir dann noch einmal Bescheid.
+   Die Datei {datei} finde ich nicht in deiner Datenquelle. Häng sie mir hier im Chat an und schreib „/lernhelfer:verwalten Lade {datei} in {modulname} hoch“.
    ```
 
-2. **Eintragen:** Steht die Datei schon in `projekt:module/{modul}/dateien.md`, ändere
-   nichts. Sonst füg in `projekt:module/{modul}/dateien.md` eine Zeile mit ihrem Namen
-   genau wie in der Projektübersicht und `-` unter `Indiziert` an.
+2. **Eintragen:** Steht die Datei schon im Abschnitt „Dateien“ von
+   `projekt:module/{modul}/index.md`, ändere nichts. Sonst füg dort eine Zeile
+   mit ihrem Pfad und `-` als Beschreibung an und entferne ihre `<datei>` aus
+   `projekt:daten.xml`, damit „Indizieren“ sie für alle ihre Module liest.
 
-Antworte danach, wobei `{dateiliste}` eine Zeile pro neu zugeordneter Datei ist
-(z.B. `- Blatt 3.pdf`), und weise danach wie im Abschnitt „Index veraltet“
-darauf hin:
+Antworte danach, wobei `{dateiliste}` eine Zeile pro neu zugeordneter Datei
+ist (z.B. `- analysis/Blatt 3.pdf`), und weise danach wie im Abschnitt „Index
+veraltet“ darauf hin:
 
 ```text
 Dem Fach {modulname} zugeordnet:
@@ -253,7 +270,7 @@ Dem Fach {modulname} zugeordnet:
 Will der Nutzer eine Datei durch eine neue Fassung ersetzen, antworte:
 
 ```text
-So ersetzt du {datei}: Lösche die Datei auf der Projektseite und lade die neue Fassung unter genau demselben Namen hoch. Ich erkenne die Änderung dann selbst. Danach muss jedes Fach, zu dem die Datei gehört, neu indiziert werden.
+So ersetzt du {datei}: Häng mir die neue Fassung hier im Chat an und schreib „/lernhelfer:verwalten Lade die Datei hoch und ersetze {datei}“. Du kannst sie auch selbst in deiner Datenquelle unter genau demselben Pfad ersetzen. Danach muss neu indiziert werden.
 ```
 
 ## Datei herausnehmen
@@ -268,38 +285,37 @@ Soll ich {datei} aus dem Fach {modulname} herausnehmen?
 
 Bei „Herausnehmen“:
 
-1. Entferne die Zeile der Datei aus `projekt:module/{modul}/dateien.md` und alle
-   Einträge zu ihr aus `projekt:module/{modul}/index.md`. Ein Thema oder Stichwort
-   ohne verbleibende Fundstelle fällt ganz weg. Der Index bleibt so aktuell.
+1. Entferne in `projekt:module/{modul}/index.md` ihre Zeile aus „Dateien“ und
+   ihre Zeilen aus dem Stichwortverzeichnis. Der Index bleibt so aktuell.
+   `projekt:daten.xml` bleibt unverändert.
 2. Antworte:
 
    ```text
-   {datei} gehört nicht mehr zum Fach {modulname}. Brauchst du die Datei nicht mehr, lösche sie auf der Projektseite. Sonst sag mir, zu welchem Fach sie gehört.
+   {datei} gehört nicht mehr zum Fach {modulname}. In deiner Datenquelle bleibt sie liegen. Brauchst du sie nicht mehr, lösch sie dort, sonst sag mir, zu welchem Fach sie gehört.
    ```
 
 ## Index veraltet
 
-Nach dem Zuordnen von Dateien ist der Index des Moduls veraltet. Antworte einmal
-pro Anfrage, auch bei mehreren Dateien:
+Nach dem Zuordnen von Dateien ist der Index des Moduls veraltet. Antworte
+einmal pro Anfrage, auch bei mehreren Dateien:
 
 ```text
-Der Index von {modulname} ist jetzt veraltet. Bis du neu indizierst, kann ich mit diesem Fach nicht lernen, sonst würde ich mit falschen Inhalten arbeiten. Indizieren kann viel von deinem Nutzungslimit verbrauchen. Am sparsamsten: Starte einen neuen Chat, wähle das Modell Haiku und schreib „Indiziere {modulname}“.
+Der Index von {modulname} ist jetzt veraltet. Mit den neuen Dateien kann ich erst lernen, wenn sie indiziert sind. Indizieren kann viel von deinem Nutzungslimit verbrauchen. Am sparsamsten: Starte einen neuen Chat, wähle das Modell Haiku und schreib „/lernhelfer:verwalten Indiziere“.
 ```
 
-## Beschreiben, was hochgeladen ist
+## Beschreiben, was zu einem Fach gehört
 
-Lies `projekt:module/{modul}/dateien.md` und `projekt:module/{modul}/index.md` vollständig und
-antworte:
+Lies `projekt:module/{modul}/index.md` vollständig und antworte:
 
 ```text
-Im Fach {modulname} liegen:
+Zum Fach {modulname} gehören:
 
 {dateiliste}
 ```
 
-`{dateiliste}`: eine Zeile pro Datei aus `projekt:module/{modul}/dateien.md`, `- {datei}: {inhalt}`
-mit dem Inhalt aus dem Abschnitt „Dateien“ im Index. Steht die Datei noch nicht
-im Index: `- {datei}: noch nicht indiziert`. Ohne Dateien: `- noch keine`.
+`{dateiliste}`: eine Zeile `- {datei}: {beschreibung}` pro Zeile im Abschnitt
+„Dateien“, mit dem Pfad ohne Präfix. Steht dort `-`:
+`- {datei}: noch nicht indiziert`. Ohne Dateien: `- noch keine Dateien`.
 
 Fragt der Nutzer, welche Fächer es gibt, antworte:
 
@@ -309,34 +325,28 @@ Deine Fächer: {module}.
 
 ## Nicht zugeordnete Dateien
 
-Fragt der Nutzer, welche Dateien noch zu keinem Fach gehören:
-
-1. Hol die Liste aller Projektdateien mit einem Aufruf der Projektübersicht.
-   Berücksichtige alle ihre Listen. Dateien, die über die Projektseite
-   hochgeladen wurden, stehen oft in einer eigenen Liste.
-2. Lies `projekt:module/{modul}/dateien.md` aller Module. Nutze daraus nur die Spalte `Datei`.
-3. Nicht zugeordnet ist jede Datei der Übersicht außerhalb von `projekt:module/`,
-   `projekt:gedaechtnis/` und `projekt:test/`, die in keiner `projekt:module/{modul}/dateien.md` steht und kein
-   Modulhandbuch ist.
-
-Gibt es solche Dateien, antworte, wobei `{dateien}` ihre Namen durch Kommas
-getrennt sind:
+Fragt der Nutzer, welche Dateien noch zu keinem Fach gehören, hol die Liste der
+Datenquelle und lies den Abschnitt „Dateien“ im Index aller Module. Nicht
+zugeordnet sind die Dateien wie in `skill:SKILL.md`, Abschnitt „Dateien der
+Datenquelle“. Gibt es welche, antworte, wobei `{dateien}` ihre Pfade ohne
+Präfix durch Kommas getrennt sind:
 
 ```text
-Diese Dateien sind noch keinem Fach zugeordnet: {dateien}. Sag mir, zu welchem Fach sie gehören, dann ordne ich sie zu.
+Diese Dateien in deiner Datenquelle gehören noch zu keinem Fach: {dateien}. Sag mir, zu welchem Fach sie gehören, dann ordne ich sie zu.
 ```
 
 Sonst antworte:
 
 ```text
-Alle hochgeladenen Dateien sind einem Fach zugeordnet.
+Alle Dateien in deiner Datenquelle gehören zu einem Fach.
 ```
 
 ## Modul umbenennen
 
-Der Ordnername bleibt, wie er ist. Ersetze nur den Namen in der ersten
-Überschrift jeder Datei unter `projekt:module/{modul}/` und `projekt:gedaechtnis/{modul}/` und
-antworte:
+Die Ordnernamen in `projekt:` und `daten:` bleiben, wie sie sind. Ersetze nur
+den Namen in der ersten Überschrift von `projekt:module/{modul}/info.md`,
+`projekt:module/{modul}/index.md` und `projekt:gedaechtnis/{modul}/probleme.md`
+und antworte:
 
 ```text
 Das Fach heißt jetzt {modulname}.
@@ -347,25 +357,26 @@ Das Fach heißt jetzt {modulname}.
 Stell diese Rückfrage:
 
 ```auswahl
-Soll ich das Fach {modulname} und alles, was ich mir dazu gemerkt habe, endgültig löschen? Die Dateien auf der Projektseite bleiben erhalten.
+Soll ich das Fach {modulname} und alles, was ich mir dazu gemerkt habe, endgültig löschen? Die Dateien in deiner Datenquelle bleiben erhalten.
 - Endgültig löschen
 - Abbrechen
 ```
 
-Bei „Endgültig löschen“ lies `projekt:module/{modul}/dateien.md`, lösch alle Dateien
-unter `projekt:module/{modul}/` und `projekt:gedaechtnis/{modul}/` und antworte:
+Bei „Endgültig löschen“ lies den Abschnitt „Dateien“ in
+`projekt:module/{modul}/index.md`, lösch alle Dateien unter
+`projekt:module/{modul}/` und `projekt:gedaechtnis/{modul}/` und antworte:
 
 ```text
 Das Fach {modulname} ist gelöscht.
 {dateien}
 ```
 
-`{dateien}`: Standen Dateien in `projekt:module/{modul}/dateien.md`, setze diese Zeile ein, wobei
-`{liste}` ihre Namen durch Kommas getrennt sind, sonst lass den Platzhalter
-samt Zeile weg:
+`{dateien}`: Standen dort Dateien, setze diese Zeile ein, wobei `{liste}` ihre
+Pfade ohne Präfix durch Kommas getrennt sind, sonst lass den Platzhalter samt
+Zeile weg:
 
 ```text
-Seine Dateien liegen noch auf der Projektseite: {liste}. Lösche sie dort, wenn du sie nicht mehr brauchst, oder sag mir, zu welchem Fach sie jetzt gehören.
+Seine Dateien liegen noch in deiner Datenquelle: {liste}. Lösch sie dort, wenn du sie nicht mehr brauchst, oder sag mir, zu welchem Fach sie jetzt gehören.
 ```
 
 ## Abbruch

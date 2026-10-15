@@ -1,9 +1,9 @@
 # Fähigkeit: Daten migrieren
 
-Passt die Dateien eines Moduls in `projekt:module/` und `projekt:gedaechtnis/` an das aktuelle
-Format an, wenn ein Update das Format geändert hat, dazu
-`projekt:gedaechtnis/benutzererfahrung.md`. Inhalte gehen dabei nicht verloren.
-Formate: `skill:SKILL.md`, Abschnitt „Formate“.
+Passt die Dateien eines Moduls in `projekt:module/` und `projekt:gedaechtnis/`
+an das aktuelle Format an, wenn ein Update das Format geändert hat, dazu
+`projekt:gedaechtnis/benutzererfahrung.md` und `projekt:daten.xml`. Inhalte
+gehen dabei nicht verloren. Formate: `skill:SKILL.md`, Abschnitt „Formate“.
 
 Du bist hier ein behutsamer Restaurator. Du überträgst alte Dateien ins neue
 Format, ohne etwas vom Inhalt zu verlieren, und lässt eine Datei lieber
@@ -12,20 +12,20 @@ unverändert, als zu raten.
 ## Grundsatz
 
 - Arbeite pro Durchlauf mit genau einem Modul, damit der Aufwand klein
-  bleibt. Wie du die vorhandenen Module und ihre Namen bestimmst, steht in
-  `skill:SKILL.md`, Abschnitt „Ein Modul auf einmal“.
+  bleibt. Die vorhandenen Module und ihre Namen bestimmst du wie in
+  `skill:SKILL.md`, Abschnitt „Module“.
 - Wandle nur Dateien um, deren `format` niedriger ist als in der Tabelle
   „Formate“.
 - Lösch Dateien nur, wenn eine Migration es verlangt.
 
 ## Migrationen
 
-Ändert sich das Format von Dateien in `projekt:module/` oder `projekt:gedaechtnis/`, kommt
-eine Migration dazu: `skill:referenzen/migrationen/{nummer}.md` in diesem Skill.
-Die Nummern zählen ab 1 hoch, in der Reihenfolge, in der die Migrationen
-entstanden sind. Eine Migration passt vorhandene Dateien an das neue Format
-an. Migrationen werden nie gelöscht, weil Nutzer Updates überspringen
-können.
+Ändert sich das Format einer Datei in `projekt:module/`, `projekt:gedaechtnis/`
+oder von `projekt:daten.xml`, kommt eine Migration dazu:
+`skill:referenzen/migrationen/{nummer}.md`. Die Nummern zählen ab 1 hoch, in
+der Reihenfolge, in der die Migrationen entstanden sind. Eine Migration passt
+vorhandene Dateien an das neue Format an. Migrationen werden nie gelöscht,
+weil Nutzer Updates überspringen können.
 
 Aufbau einer Migration:
 
@@ -56,18 +56,18 @@ Aufbau einer Migration:
    - {modulname}
    ```
 
-   Gibt es kein Modul, passt du nur `projekt:gedaechtnis/benutzererfahrung.md` an.
-   `{bereich}` ist in den Nachrichten unten `das Fach {modulname}`, ohne Modul
-   `den Lernhelfer`.
+   Gibt es kein Modul, passt du nur `projekt:gedaechtnis/benutzererfahrung.md`
+   und `projekt:daten.xml` an. `{bereich}` ist in den Nachrichten unten
+   `das Fach {modulname}`, ohne Modul `den Lernhelfer`.
 2. **Betroffene Dateien bestimmen:** Lies alle Migrationen unter
    `skill:referenzen/migrationen/` vollständig und sortiere sie aufsteigend nach
    ihrer Nummer (als Zahl). Gibt es den Ordner nicht, gibt es keine
-   Migrationen. In Frage
-   kommen nur Dateien unter `projekt:module/{modul}/` und `projekt:gedaechtnis/{modul}/` sowie
-   `projekt:gedaechtnis/benutzererfahrung.md`. Lies jede davon, die zu einem Pfadmuster
-   unter „Betrifft“ passt, vollständig. Betroffen ist sie, wenn ihr `format`
-   niedriger ist als in der Tabelle „Formate“. Gibt es keine betroffene Datei,
-   antworte:
+   Migrationen. In Frage kommen nur Dateien unter `projekt:module/{modul}/` und
+   `projekt:gedaechtnis/{modul}/` sowie
+   `projekt:gedaechtnis/benutzererfahrung.md` und `projekt:daten.xml`. Lies jede
+   davon, die zu einem Pfadmuster unter „Betrifft“ passt, vollständig.
+   Betroffen ist sie, wenn ihr `format` niedriger ist als in der Tabelle
+   „Formate“. Gibt es keine betroffene Datei, antworte:
 
    ```text
    Deine gespeicherten Daten für {bereich} haben schon das aktuelle Format. Es gibt nichts anzupassen.
@@ -104,7 +104,7 @@ Aufbau einer Migration:
    sonst lass den Platzhalter samt Zeile weg:
 
    ```text
-   Ich passe immer nur ein Fach auf einmal an. Schreib für jedes weitere Fach „Daten migrieren“ und seinen Namen: {module}.
+   Ich passe immer nur ein Fach auf einmal an. Schreib für jedes weitere Fach „/lernhelfer:verwalten Daten migrieren“ und seinen Namen: {module}.
    ```
 
    Hast du gar keine Datei angepasst, antworte nur mit den Nachrichten aus

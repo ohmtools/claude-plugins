@@ -7,7 +7,9 @@ Das Ergebnis dient der Entwicklung des Lernhelfers.
 ## Grundsatz
 
 - Schreib im Projekt nur in den Ordner `projekt:test/` und lösch ihn am Ende
-  vollständig. Alles andere im Projekt fasst du nicht an.
+  vollständig. In der Datenquelle schreibst du nur in Test 9, nur in den Zweig
+  `lernhelfer-test`, und löschst ihn gleich danach. Alles andere fasst du
+  nicht an.
 - Beschönige nichts. Auch ein Fehlschlag ist ein wertvolles Ergebnis.
 - Schlägt ein Test fehl, notiere das und mach mit dem nächsten weiter. Brich
   nicht ab.
@@ -32,8 +34,8 @@ Notiere für die Vorbereitung, jeden ausgeführten Test und das Aufräumen:
   lange Wartezeiten, abweichende Pfade oder Dateinamen, Hinweise der
   Oberfläche, Einschränkungen, die in der Beschreibung eines Werkzeugs stehen.
 - **Ausweichwege:** Schlägt ein Weg fehl, probier mindestens einen anderen
-  sinnvollen Weg, solange du dabei nur in `projekt:test/` und deiner
-  Arbeitsumgebung schreibst. Notiere jeden mit Ergebnis.
+  sinnvollen Weg, solange du dabei nur dort schreibst, wo dieser Test es
+  erlaubt. Notiere jeden mit Ergebnis.
 - **Ursache:** deine Vermutung, warum etwas nicht geklappt hat, und woran du
   sie festmachst. Kennzeichne Vermutungen als Vermutungen.
 - **Offen:** was du nicht prüfen oder nicht sicher feststellen konntest, und
@@ -41,17 +43,15 @@ Notiere für die Vorbereitung, jeden ausgeführten Test und das Aufräumen:
 - **Folgen:** welche Fähigkeit (Datei und Abschnitt) betroffen ist und was dort
   geändert werden sollte.
 
-Nenne im Protokoll nur Projektdateien, die der Test selbst anlegt oder
-anfordert, und Dateien des Plugins. Von allen anderen nennst du nur die
-Anzahl. Sie gehören dem Nutzer.
+Nenne im Protokoll nur Dateien, die der Test selbst anlegt, und Dateien des
+Plugins. Von allen anderen Dateien im Projekt und in der Datenquelle nennst du
+nur die Anzahl. Sie gehören dem Nutzer.
 
 ## Umfang
 
-- **Alles** (Standard): Tests 1 bis 12.
+- **Alles** (Standard): Tests 1 bis 11.
 - **Nur Indizieren** (z.B. „Teste das Indizieren“, typischerweise in einem Chat
-  mit Haiku): Vorbereitung, Test 2, Test 7, Test 8, Test 12, Aufräumen. Liegen
-  `projekt:lernhelfer-test.pdf` und `projekt:lernhelfer-test-2.pdf` schon,
-  entfallen Test 7 und 8.
+  mit Haiku): Vorbereitung, Test 1, Test 11, Aufräumen.
 
 ## Vorbereitung
 
@@ -61,10 +61,10 @@ Halte vor dem ersten Test fest:
 
 - Modell, Datum und, soweit erkennbar, die Oberfläche (Browser oder App).
 - Die Betriebsart (`skill:SKILL.md`, Abschnitt „Betriebsart“) und woran du sie
-  erkannt hast.
+  erkannt hast, und ob es `projekt:daten.xml` gibt.
 - Alle Werkzeuge, die dir zur Verfügung stehen, mit genauem Namen und einer
-  Zeile zum Zweck. Bei Werkzeugen für Projektdateien, Dateien im Chat und
-  Rückfragen zusätzlich ihre Parameter.
+  Zeile zum Zweck. Bei Werkzeugen für Projektdateien, Dateien im Chat,
+  Rückfragen und GitHub zusätzlich ihre Parameter.
 - Arbeitsumgebung: Ausgabe von `uname -a`, `python3 --version`, `pwd` und
   `df -h .`.
 
@@ -74,7 +74,7 @@ Leg den neuen, leeren Ordner `arbeit:lernhelfer-test/` an und erzeuge darin
 mit den beiden Skripten unten die Dateien
 `arbeit:lernhelfer-test/lernhelfer-test.pdf` und
 `arbeit:lernhelfer-test/lernhelfer-test-2.pdf`. Ändere die
-Skripte nicht, Test 12 vergleicht mit genau diesem Inhalt. Notiere jeweils
+Skripte nicht, Test 11 vergleicht mit genau diesem Inhalt. Notiere jeweils
 Größe in Bytes und SHA-256 (`sha256sum`). Weicht eine Datei von der Erwartung
 ab, notiere es bei Test 1 und mach mit deiner Datei weiter.
 
@@ -191,25 +191,26 @@ zlib-Version kann hier eine Abweichung erklären. Notiere dazu die Ausgabe von
 
 ## Tests
 
-1. **Werkzeuge:** Prüf mit `command -v` `curl`, `git`, `unzip`, `zip`, `file`,
-   `sha256sum`, `python3`, `pdftoppm`, `pdftotext` und mit
-   `python3 -c "import pymupdf"` PyMuPDF. Detail: was fehlt. Protokoll: Pfad
-   und Version jedes vorhandenen Werkzeugs (z.B. `pdftoppm -v`,
-   `python3 -c "import pymupdf; print(pymupdf.__doc__)"`).
+1. **Werkzeuge:** Prüf mit `command -v` `curl`, `git`, `unzip`, `zip`,
+   `file`, `sha256sum`, `python3`, `pdftoppm`, `pdftotext` und `pdfinfo`.
+   Detail: was fehlt. Protokoll: Pfad und Version jedes vorhandenen Werkzeugs
+   (z.B. `git --version`, `pdftoppm -v`).
 2. **Plugin-Ordner:** Ermittle die Ordner hinter `skill:` und `plugin:`
    (`skill:SKILL.md`, Abschnitt „Pfade“). So findet „Entwicklung“ die Dateien
    des Lernhelfers. Liste `plugin:` mit `find {ordner} -type f`. `ok`: Es gibt
    `plugin:.claude-plugin/plugin.json`, `plugin:skills/hilfe/SKILL.md`,
    `plugin:skills/verwalten/SKILL.md` und `plugin:skills/lernen/SKILL.md`, alle
-   Dateien aus den Tabellen „Was ist zu tun?“ von `verwalten` und `lernen`
-   liegen dort und lassen sich lesen, und dein
+   Dateien aus den Tabellen „Was ist zu tun?“ in
+   `plugin:skills/verwalten/SKILL.md` und „Fähigkeiten“ in
+   `plugin:skills/lernen/SKILL.md` liegen dort und lassen sich lesen, und dein
    Werkzeug für Skills listet `lernhelfer:hilfe`, `lernhelfer:verwalten` und
-   `lernhelfer:lernen`. `teilweise`: Die Skills stehen zur Verfügung, aber Dateien
-   fehlen oder `plugin:` ist nicht zu finden. Detail: echter Pfad hinter
-   `plugin:`. Protokoll: wie du die Ordner gefunden hast, die vollständige
-   Ausgabe von `find`, die ersten zehn Zeilen jeder `SKILL.md` wörtlich, Name
-   und Rückmeldung des Werkzeugs für Skills und welche Werkzeuge oder Hinweise
-   zu Skills und Plugins dir sonst zur Verfügung stehen.
+   `lernhelfer:lernen`. `teilweise`: Die Skills stehen zur Verfügung, aber
+   Dateien fehlen oder `plugin:` ist nicht zu finden. Detail: echter Pfad
+   hinter `plugin:`. Protokoll: wie du die Ordner gefunden hast, die
+   vollständige Ausgabe von `find`, die ersten zehn Zeilen jeder `SKILL.md`
+   wörtlich, Name und Rückmeldung des Werkzeugs für Skills und welche
+   Werkzeuge oder Hinweise zu Skills und Plugins dir sonst zur Verfügung
+   stehen.
 3. **Schreiben:** Erzeuge im Ordner hinter `arbeit:` mit
    `printf '# Testdatei\n\nUmlaute: äöü ÄÖÜ ß\nZeichen: – „Zitat“ €\n' > schreiben.md`
    die Datei `arbeit:schreiben.md` (erwartet: 68 Bytes, SHA-256
@@ -218,141 +219,146 @@ zlib-Version kann hier eine Abweichung erklären. Notiere dazu die Ausgabe von
    Projekt, so wie alle Fähigkeiten ins Projekt schreiben. Protokoll: Werkzeug
    mit allen Parametern außer dem Inhalt und seine vollständige Rückmeldung.
 4. **Zurücklesen:** Lies `projekt:test/fach/schreiben.md` aus dem Projekt und
-   vergleiche den Inhalt Zeichen für Zeichen mit `arbeit:schreiben.md`. Schreib den
-   gelesenen Text dafür nicht mit dem Schreibwerkzeug in eine Datei, es
+   vergleiche den Inhalt Zeichen für Zeichen mit `arbeit:schreiben.md`. Schreib
+   den gelesenen Text dafür nicht mit dem Schreibwerkzeug in eine Datei, es
    entfernt Leerzeichen am Zeilenende. `ok`: identisch. Detail: wie der Inhalt
    ankam (inline oder als lokale Datei). Protokoll: Werkzeug, Rückgabe
    wörtlich, bei Abweichung welche Zeichen sich unterscheiden. Eine Abweichung
    ist schwerwiegend: Alle Fähigkeiten verlassen sich darauf, dass Umlaute und
    Sonderzeichen beim Schreiben ins Projekt erhalten bleiben.
-5. **Projektübersicht:** Ruf einmal die Projektübersicht auf. Liegt die Datei
-   genau unter `projekt:test/fach/schreiben.md`, und steht dort ein Erstellungsdatum
-   (`created_at`)? Ein veränderter Pfad ist `fehlgeschlagen`, ein fehlendes
-   Erstellungsdatum `teilweise`. Detail: welche Angaben die Übersicht pro Datei
-   liefert. Protokoll: den Eintrag für `projekt:test/fach/schreiben.md` wörtlich, Name
+5. **Projektübersicht:** Ruf einmal die Projektübersicht auf. `ok`: Die Datei
+   liegt genau unter `projekt:test/fach/schreiben.md`. Ein veränderter Pfad ist
+   `fehlgeschlagen`. Detail: welche Angaben die Übersicht pro Datei liefert.
+   Protokoll: den Eintrag für `projekt:test/fach/schreiben.md` wörtlich, Name
    des Werkzeugs und wie die Übersicht aufgebaut ist (Listen, Felder,
    Sortierung, ob Ordner vorkommen, ob sie abgeschnitten wird). Andere Dateien
    nur als Anzahl.
-6. **PDF als Bild:** Wandle Seite 1 von `arbeit:lernhelfer-test/lernhelfer-test.pdf` in ein
-   Bild um (`pdftoppm -f 1 -l 1 -r 100 -png`, sonst PyMuPDF) und sieh es dir
-   an. `ok`: Du liest darauf „Kapitel 1: Ableitungen“. Detail: welches Werkzeug.
-   Protokoll: Befehl, Größe des Bildes in Bytes und Pixeln, wie du es dir
-   angesehen hast (Werkzeug) und alles, was du darauf liest. Klappt das
-   Ansehen nicht, notiere die Meldung.
-7. **Dateien zum Herunterladen:** Stell
+6. **PDF als Bild:** Wandle Seite 1 von
+   `arbeit:lernhelfer-test/lernhelfer-test.pdf` in ein Bild um
+   (`pdftoppm -f 1 -l 1 -r 100 -png`) und sieh es dir an. `ok`: Du liest
+   darauf „Kapitel 1: Ableitungen“. Detail: welches Werkzeug. Protokoll:
+   Befehl, Größe des Bildes in Bytes und Pixeln, wie du es dir angesehen hast
+   (Werkzeug) und alles, was du darauf liest. Klappt das Ansehen nicht,
+   notiere die Meldung.
+7. **Herunterladen und Auswahlfelder:** Stell
    `arbeit:lernhelfer-test/lernhelfer-test.pdf` und
    `arbeit:lernhelfer-test/lernhelfer-test-2.pdf` dem Nutzer im Chat zum
-   Herunterladen bereit. Das Ergebnis ergibt sich aus Test 8. Protokoll:
-   Werkzeug, Parameter und Rückmeldung.
-8. **Auswahlfelder und Upload über die Projektseite:** Stell diese Rückfrage:
+   Herunterladen bereit. Stell danach diese Rückfrage:
 
    ```auswahl
-   Ich habe dir die Dateien lernhelfer-test.pdf und lernhelfer-test-2.pdf zum Herunterladen bereitgestellt. Lade bitte beide über die Projektseite in die Projektdateien hoch, ohne sie umzubenennen. Klappt das?
-   - Hochgeladen
+   Ich habe dir die Dateien lernhelfer-test.pdf und lernhelfer-test-2.pdf zum Herunterladen bereitgestellt. Lade bitte lernhelfer-test.pdf herunter, du brauchst sie für einen späteren Test. Klappt das?
+   - Heruntergeladen
    - Herunterladen klappt nicht
    - Überspringen
    ```
 
    - Auswahlfelder: `ok`, wenn du sie als Knöpfe anzeigen konntest, sonst
      `fehlgeschlagen`.
-   - Test 7: `fehlgeschlagen` bei „Herunterladen klappt nicht“, `übersprungen`
-     bei „Überspringen“, sonst `ok`.
-   - Upload über die Projektseite: Bei „Hochgeladen“ such beide Dateien in der
-     Projektübersicht. Detail: unter welchem Pfad sie liegen.
-   - Protokoll: Name des Werkzeugs für die Auswahlfelder, gewählte Antwort
-     wörtlich, Einträge der hochgeladenen Dateien in der Projektübersicht
+   - Herunterladen: `fehlgeschlagen` bei „Herunterladen klappt nicht“,
+     `übersprungen` bei „Überspringen“, sonst `ok`.
+   - Protokoll: Werkzeuge, Parameter und Rückmeldungen, gewählte Antwort
      wörtlich. Schreibt der Nutzer zusätzlich etwas, übernimm es wörtlich.
-9. **Upload lesen:** Nur nach „Hochgeladen“, sonst `übersprungen`: Lies
-   `projekt:lernhelfer-test.pdf` und `projekt:lernhelfer-test-2.pdf` und prüf,
-   ob du ihre Seiten so erkennst, wie es `plugin:skills/lernen/SKILL.md`,
-   Abschnitt „Arbeiten mit einem Modul“, beschreibt. `ok`: Der Text aller
-   Seiten kommt an, die Seiten sind so getrennt, und in
-   `projekt:lernhelfer-test-2.pdf`
-   erkennst du die leere Seite 2 als eigene Seite. `teilweise`: Der Text kommt
-   an, die Seiten sind aber anders oder nicht erkennbar getrennt. Detail:
-   woran die Seiten erkennbar sind und wie die leere Seite erscheint.
-   Protokoll: Werkzeug, wie der Inhalt ankam (inline oder als lokale Datei, Art
-   der Datei), pro Datei den Text von Seite 1 wörtlich mit allen Steuerzeichen
-   (z.B. `\r\n`) und die genauen Zeichen zwischen den Seiten, bei
-   `projekt:lernhelfer-test-2.pdf` alles von Seite 1 bis Seite 3.
-10. **Ersetzen:** Nur nach „Hochgeladen“, sonst `übersprungen`. Notiere
-    `created_at` von `projekt:lernhelfer-test.pdf` aus der Projektübersicht. Stell
-    diese Rückfrage:
+8. **Datenquelle lesen:** Nur wenn es `projekt:daten.xml` gibt, sonst
+   `übersprungen`. Lies `projekt:daten.xml` und folge `<art>`: Klone die
+   Datenquelle nach `arbeit:daten/` und miss die Dauer (`time`). Hol die Liste
+   der Dateien, dann die erste Datei der Liste wie beschrieben, und
+   vergleiche `git -C daten hash-object '{pfad}'` mit ihrer Identifikation
+   laut `<identifizieren>`. `ok`: Klonen, Liste und Holen
+   klappen, und beide IDs sind gleich. `teilweise`: Es klappt nur auf einem
+   anderen Weg (z.B. ohne `--filter=blob:none` oder nur nach Hinweis der
+   GitHub-Anbindung). Detail: Dauer, Größe von `arbeit:daten/` (`du -sh`),
+   Zahl der Dateien. Protokoll: alle Befehle mit Ausgabe, Warnungen von git
+   wörtlich, ob und wie du die GitHub-Anbindung benutzt hast.
+9. **In die Datenquelle schreiben:** Nur wenn es `projekt:daten.xml` gibt,
+   sonst `übersprungen`. Stell diese Rückfrage:
 
-    ```auswahl
-    Lösche bitte lernhelfer-test.pdf auf der Projektseite und lade dieselbe Datei unter genau demselben Namen noch einmal hoch. Klappt das?
-    - Ersetzt
-    - Überspringen
-    ```
+   ```auswahl
+   Für den nächsten Test lege ich in deiner Datenquelle den Zweig lernhelfer-test mit einer kleinen Testdatei an und lösche ihn gleich danach wieder. Deine Dateien im Hauptzweig bleiben unberührt. Einverstanden?
+   - Einverstanden
+   - Überspringen
+   ```
 
-    Bei „Ersetzt“ ruf die Projektübersicht noch einmal auf. `ok`: Die Datei
-    liegt unter demselben Pfad, und `created_at` hat sich geändert.
-    `fehlgeschlagen`: `created_at` ist gleich geblieben. Dann erkennt die
-    Dateiprüfung ersetzte Dateien nicht. Bei „Überspringen“: `übersprungen`.
-    Detail: alter und neuer Wert. Protokoll: gewählte Antwort und beide
-    Einträge der Projektübersicht wörtlich.
-11. **Anhang im Chat:** Antworte:
+   Bei „Überspringen“: `übersprungen`. Bei „Einverstanden“ hol dir über die
+   GitHub-Anbindung deiner Arbeitsumgebung (z.B. ein Werkzeug `add_repo`)
+   Schreibzugriff und folge ihrer Anleitung. Führ danach im Ordner `arbeit:`
+   aus, wobei `{url}` aus `projekt:daten.xml` stammt:
+
+   ```bash
+   git -C daten reset -q
+   cp schreiben.md daten/lernhelfer-test.md
+   git -C daten add -- lernhelfer-test.md
+   git -C daten -c user.name="Lernhelfer" -c user.email="lernhelfer@example.invalid" commit -q -m "Lernhelfer: Test"
+   git -C daten push origin HEAD:refs/heads/lernhelfer-test
+   git ls-remote {url}.git refs/heads/lernhelfer-test
+   git -C daten rev-parse HEAD
+   git -C daten push origin --delete lernhelfer-test
+   git ls-remote {url}.git refs/heads/lernhelfer-test
+   ```
+
+   `ok`: Der Push klappt, das erste `ls-remote` gibt dieselbe ID aus wie
+   `rev-parse`, und nach dem Löschen gibt es den Zweig nicht mehr.
+   `fehlgeschlagen`: Es gibt keine GitHub-Anbindung oder der Push klappt
+   nicht. Dann kann „Hochladen“ nicht selbst hochladen. Detail: Name der
+   GitHub-Anbindung und wo es hakt. Protokoll: Werkzeug mit Parametern und
+   vollständiger Rückmeldung, alle Befehle mit Ausgabe.
+10. **Anhang im Chat:** Nur nach „Heruntergeladen“ in Test 7, sonst
+    `übersprungen`. Antworte:
 
     ```text
     Häng bitte lernhelfer-test.pdf hier im Chat an und schick die Nachricht ohne weiteren Text. Geht das nicht, schreib „geht nicht“.
     ```
 
     Warte auf die Antwort. Such danach die angehängte Datei in deiner
-    Arbeitsumgebung, nicht `arbeit:lernhelfer-test/lernhelfer-test.pdf` (z.B.
-    `find / -xdev -name '*lernhelfer-test*' 2>/dev/null`, angehängte Dateien
-    bekommen oft ein Präfix). `ok`: Sie liegt als PDF-Datei vor
-    (`file`), ihr SHA-256 stimmt mit `arbeit:lernhelfer-test/lernhelfer-test.pdf`
-    überein, und `pdftoppm` macht
+    Arbeitsumgebung, nicht `arbeit:lernhelfer-test/lernhelfer-test.pdf`, mit
+    `find / -xdev -name '*lernhelfer-test*' 2>/dev/null`. `ok`: Sie liegt als
+    PDF-Datei vor (`file`), ihr SHA-256 stimmt mit
+    `arbeit:lernhelfer-test/lernhelfer-test.pdf` überein, und `pdftoppm` macht
     aus Seite 1 ein Bild, auf dem du „Kapitel 1: Ableitungen“ liest.
     `teilweise`: Der Inhalt kommt nur im Chat an (z.B. als Text oder Bilder der
     Seiten), nicht als Datei. `fehlgeschlagen` bei „geht nicht“. Detail: Pfad
-    der Datei oder wie der Inhalt ankam. Protokoll: alle Befehle mit Ausgabe,
-    Pfad, Größe, SHA-256, Ausgabe von `file` und wie der Anhang bei dir
-    ankam (Text, Bilder, Hinweis auf einen Pfad).
-12. **Indizieren:** Nur wenn `projekt:lernhelfer-test.pdf` und
-    `projekt:lernhelfer-test-2.pdf` vorhanden sind, sonst `übersprungen`. Lies
-    die Fähigkeit „Indizieren“ (`plugin:skills/lernen/referenzen/indizieren.md`)
-    vollständig. Lies danach beide
-    Projektdateien so, wie die Fähigkeit es für eine zu indizierende Datei
+    der Datei. Protokoll: alle Befehle mit Ausgabe, Pfad, Größe, SHA-256,
+    Ausgabe von `file` und wie der Anhang bei dir ankam (Text, Bilder, Hinweis
+    auf einen Pfad).
+11. **Indizieren:** Lies die Fähigkeit „Indizieren“
+    (`skill:referenzen/indizieren.md`) vollständig. Lies danach
+    `arbeit:lernhelfer-test/lernhelfer-test.pdf` und
+    `arbeit:lernhelfer-test/lernhelfer-test-2.pdf` so, wie Schritt 4 dort es
     beschreibt, und mach dieselben Notizen. Schreib nichts. Vergleiche mit
     dieser Erwartung:
 
-    | Datei | Eintrag | Erwartete Fundstellen |
+    | Datei | Stichwort | Erwartete Seiten |
     |---|---|---|
-    | `lernhelfer-test.pdf` | Thema Ableitungen | Skript S. 1; Übungen S. 3 A1 |
-    | `lernhelfer-test.pdf` | Thema Integrale | Skript S. 2; Übungen S. 3 A2, A3 |
-    | `lernhelfer-test.pdf` | Stichwort Kettenregel | S. 1; S. 3 A1 |
-    | `lernhelfer-test.pdf` | Stichwort Produktregel | S. 1 |
-    | `lernhelfer-test.pdf` | Stichwort Partielle Integration | S. 2; S. 3 A2 |
-    | `lernhelfer-test.pdf` | Stichwort Substitution | S. 2; S. 3 A3 |
-    | `lernhelfer-test-2.pdf` | Thema Grenzwerte | Skript S. 1; Übungen S. 4 A1 |
-    | `lernhelfer-test-2.pdf` | Thema Reihen | Skript S. 3; Übungen S. 4 A2 |
-    | `lernhelfer-test-2.pdf` | Stichwort Regel von L'Hospital | S. 1; S. 4 A1 |
-    | `lernhelfer-test-2.pdf` | Stichwort Geometrische Reihe | S. 3; S. 4 A2 |
+    | `lernhelfer-test.pdf` | Ableitungen | 1, 3 A1 |
+    | `lernhelfer-test.pdf` | Integrale | 2, 3 A2, 3 A3 |
+    | `lernhelfer-test.pdf` | Kettenregel | 1, 3 A1 |
+    | `lernhelfer-test.pdf` | Produktregel | 1 |
+    | `lernhelfer-test.pdf` | Partielle Integration | 2, 3 A2 |
+    | `lernhelfer-test.pdf` | Substitution | 2, 3 A3 |
+    | `lernhelfer-test-2.pdf` | Grenzwerte | 1, 4 A1 |
+    | `lernhelfer-test-2.pdf` | Reihen | 3, 4 A2 |
+    | `lernhelfer-test-2.pdf` | Regel von L'Hospital | 1, 4 A1 |
+    | `lernhelfer-test-2.pdf` | Geometrische Reihe | 3, 4 A2 |
 
-    `ok`: alle Einträge mit richtigen Fundstellen. Häufigste Fehler: die
-    aufgedruckten statt der Dateiseiten (S. 7 bis 9, S. 21 und 24) und in
-    `projekt:lernhelfer-test-2.pdf` die leere Seite nicht mitgezählt (S. 2 statt S. 3,
-    S. 3 statt S. 4). Detail: Modell, gefundene und fehlende Einträge, falsche
-    Fundstellen.
+    `ok`: alle Einträge mit richtigen Seiten. Häufigste Fehler: die
+    aufgedruckten statt der Dateiseiten (7 bis 9, 21 und 24) und in
+    `lernhelfer-test-2.pdf` die leere Seite nicht mitgezählt (2 statt 3, 3
+    statt 4). Detail: Modell, gefundene und fehlende Einträge, falsche Seiten.
 
     Protokoll:
-    - Wie du die Dateien gelesen hast (Werkzeug) und ob darin Seitengrenzen
-      erkennbar waren, z.B. als Markierung oder Seitenumbruch.
+    - Befehl und Zahl der Seitenvorschübe (`\f`) pro Datei, wie die leere
+      Seite erscheint.
     - Den gelesenen Text von Seite 1 jeder Datei wörtlich.
     - Wie du die Seitennummern bestimmt hast.
-    - Deine vollständige Notiz: Art und Inhalt, alle Themen und
-      Stichwörter mit Fundstellen, auch die, die nicht in der Erwartung stehen.
+    - Deine vollständige Notiz: Beschreibung und alle Stichwörter mit Seiten,
+      auch die, die nicht in der Erwartung stehen.
     - Stellen in der Fähigkeit „Indizieren“, die du unklar fandest.
 
 ## Aufräumen
 
-Lösch alle Dateien unter `projekt:test/`. Prüf in der Projektübersicht, dass nichts
-davon übrig ist. Die Dateien, die der Nutzer in Test 8 und 10 hochgeladen hat,
-liegen außerhalb von `projekt:test/`. Lösch sie nicht, darum bittet die
-Ergebnisnachricht.
-Bleibt etwas übrig, nenne es in `{reste}`. Protokoll: jeden Löschversuch mit
-Werkzeug und Rückmeldung.
+Lösch alle Dateien unter `projekt:test/`. Prüf in der Projektübersicht, dass
+nichts davon übrig ist. Gibt es den Zweig `lernhelfer-test` aus Test 9 noch,
+lösch ihn. Bleibt etwas übrig, nenne es in `{reste}`. Protokoll: jeden
+Löschversuch mit Werkzeug und Rückmeldung.
 
 ## Ergebnis
 
@@ -361,8 +367,8 @@ wird.
 
 - `{zeilen}`: eine Tabellenzeile pro Test, den du ausgeführt hast, in der
   Reihenfolge oben, z.B.
-  `| 5 Projektübersicht | teilweise | Pfad exakt, kein Erstellungsdatum |`. Test 8
-  bekommt die zwei Zeilen „Auswahlfelder“ und „Upload über Projektseite“.
+  `| 5 Projektübersicht | ok | Pfad exakt, Felder path und created_at |`.
+  Test 7 bekommt die zwei Zeilen „Herunterladen“ und „Auswahlfelder“.
 - `{umgebung}`: was du unter „Umgebung erfassen“ notiert hast, als Liste.
 - `{protokoll}`: ein Abschnitt `### {name}` für die Vorbereitung, jeden
   ausgeführten Test (z.B. `### 4 Zurücklesen`) und das
@@ -393,12 +399,11 @@ Testergebnis für den Lernhelfer mit {modell}:
 {vorschlaege}
 
 {reste}
-{upload}
 Kopiere dieses Ergebnis, wenn du es für die Weiterentwicklung des Lernhelfers brauchst.
 ```
 
-War Test 7 `ok`, schreib die Nachricht zusätzlich in die Datei
-`arbeit:lernhelfer-testergebnis.md`, stell sie zum Herunterladen bereit
+War das Herunterladen in Test 7 `ok`, schreib die Nachricht zusätzlich in die
+Datei `arbeit:lernhelfer-testergebnis.md`, stell sie zum Herunterladen bereit
 und häng an:
 
 ```text
@@ -409,18 +414,11 @@ Das Ergebnis liegt auch als Datei lernhelfer-testergebnis.md zum Herunterladen b
 lass den Platzhalter samt Zeile weg:
 
 ```text
-Diese Testdateien konnte ich nicht löschen, entferne sie bitte auf der Projektseite: {dateien}
-```
-
-`{upload}`: Hat der Nutzer in Test 8 „Hochgeladen“ gewählt, setze diese Zeile
-ein, sonst lass den Platzhalter samt Zeile weg:
-
-```text
-Lösche bitte auf der Projektseite die Testdateien lernhelfer-test.pdf und lernhelfer-test-2.pdf, die du hochgeladen hast.
+Diese Testdateien konnte ich nicht löschen, entferne sie bitte selbst: {dateien}
 ```
 
 Lief nur der Indizieren-Test und war das Modell nicht Haiku, häng an:
 
 ```text
-Wiederhole diesen Test am besten in einem neuen Chat mit dem Modell Haiku: Schreib dort „Teste das Indizieren“.
+Wiederhole diesen Test am besten in einem neuen Chat mit dem Modell Haiku: Schreib dort „/lernhelfer:verwalten Teste das Indizieren“.
 ```

@@ -17,10 +17,9 @@ Notizen vollständig und unverändert weiter und löschst nichts ohne Rückfrage
    ```
 
 2. **Bereitstellen:** Leg den Inhalt unverändert als
-   `arbeit:benutzererfahrung-{datum}.md` im Arbeitsverzeichnis deiner Arbeitsumgebung
-   ab, `{datum}` ist das heutige Datum (`2026-10-10`). Stell die Datei dem
-   Nutzer im Chat zum Herunterladen bereit und antworte, wobei `{anzahl}` die
-   Zahl der Zeilen in der Tabelle ist:
+   `arbeit:benutzererfahrung-{datum}.md` ab, `{datum}` ist das heutige Datum
+   (`2026-10-10`). Stell die Datei dem Nutzer im Chat zum Herunterladen bereit
+   und antworte, wobei `{anzahl}` die Zahl der Zeilen in der Tabelle ist:
 
    ```text
    Hier sind meine Notizen dazu, wo der Lernhelfer für dich nicht rund lief ({anzahl} Einträge). Schau sie kurz durch und schick die Datei an die Person, von der du den Lernhelfer hast. So kann sie ihn gezielt verbessern.

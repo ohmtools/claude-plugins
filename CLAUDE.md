@@ -121,18 +121,12 @@ die Änderung betrifft, vollständig.
   „Dateien“ als einzige Zuordnung, Stichwortverzeichnis mit Dateiseiten),
   `gedaechtnis/{modul}/probleme.md` (Thema, Beschreibung, Ursache,
   Verstanden, Historie) und `gedaechtnis/benutzererfahrung.md`. Alle Formate
-  sind 1, es gibt noch keine Migration. Zwei Erweiterungen kamen auf Wunsch
-  des Nutzers ohne neue Formatnummer dazu, weil eine Migration nichts füllen
-  könnte:
-  - die Spalte `Ursache` in `probleme.md` (Fehlerursache, Fischgräte, gefüllt
-    von „Korrigieren“). Ältere `probleme.md` aus „Modul bearbeiten“ haben die
-    Kopfzeile ohne `Ursache`, aber keine Zeilen, weil es die Lernmodi noch
-    nicht gab. Vor dem ersten Eintrag ersetzen die Lernmodi die Kopfzeile
-    (`grundlagen.md`, „Gedächtnis“).
-  - der Abschnitt „Prüfung“ in `info.md` (Form, Dauer, Hilfsmittel aus dem
-    Modulhandbuch, für den Kopf des Übungsblatts). Fehlt er, gilt
-    „Keine Angaben.“ Gefüllt wird er beim nächsten „Lernziele übernehmen“
-    oder Indizieren eines geänderten Modulhandbuchs.
+  sind 1, es gibt noch keine Migration. Das Plugin wird noch nicht genutzt.
+  Deshalb gibt es keine Regeln für ältere Dateien, und die Spalte `Ursache`
+  in `probleme.md` (Fehlerursache, Fischgräte, gefüllt von „Korrigieren“) und
+  der Abschnitt „Prüfung“ in `info.md` (Form, Dauer, Hilfsmittel aus dem
+  Modulhandbuch, für den Kopf des Übungsblatts) kamen ohne neue Formatnummer
+  dazu.
 - Datenquelle (`daten:`): freiwillig, zurzeit nur ein GitHub-Repository,
   öffentlich oder privat. `daten.xml` beschreibt den Zugriff in Worten
   (`<art>`, `<identifizieren>`), damit später andere Arten dazukommen

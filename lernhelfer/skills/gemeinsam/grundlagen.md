@@ -182,8 +182,7 @@ format: 1
 Ohne Beschreibung steht unter „Beschreibung“ nur `Keine Beschreibung.`, ohne
 Lernziele unter „Lernziele“ nur `Keine Lernziele.` Unter „Prüfung“ steht jede
 Angabe, die das Modulhandbuch nennt, eine Zeile pro Angabe. Nennt es keine,
-steht dort nur `Keine Angaben.` Ältere Dateien haben den Abschnitt noch nicht.
-Fehlt er, gilt dasselbe wie bei `Keine Angaben.`
+steht dort nur `Keine Angaben.`
 
 ### `projekt:module/{modul}/index.md`
 
@@ -300,10 +299,7 @@ format: 1
   aufsteigend, jeder Tag einmal.
 
 Fehlt die Datei, gilt sie als leer. Leg sie dann vor dem ersten Eintrag mit
-dieser Vorlage an, ohne Zeilen unter der Kopfzeile der Tabelle. Ältere Dateien
-haben noch keine Spalte `Ursache`, aber auch keine Zeilen. Ersetze dann vor
-dem ersten Eintrag Kopf- und Trennzeile der Tabelle durch die aus dieser
-Vorlage.
+dieser Vorlage an, ohne Zeilen unter der Kopfzeile der Tabelle.
 
 ## Benutzererfahrung
 

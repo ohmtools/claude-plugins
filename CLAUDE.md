@@ -186,6 +186,12 @@ die Änderung betrifft, vollständig.
   Wechsel innerhalb von `lernen` kündigt eine feste Nachricht an, mit
   optionaler Rückkehr (z.B. vom Skript zu Erlernen und zurück zur selben
   Seite).
+- Seitenzahlen: Der Lernhelfer zählt Seiten überall wie ein PDF-Programm ab
+  1 (Index, Fundstellen, Rückkehr). Zahlen, die der Nutzer nennt, und die
+  eines Inhaltsverzeichnisses gelten als aufgedruckte Nummern. Claude sucht
+  sie mit `pdftotext` auf bis zu fünf Seiten davor und danach. Der Satz zum
+  Weitermachen im Skript enthält die Überschrift als Anker
+  (`lernen/SKILL.md`, „PDF-Dateien“).
 - Vorlagen: `lernen/vorlagen/` mit `uebungsblatt.tex` und `build.sh`, beide
   unverändert vom Nutzer übernommen. Der Kopf der Vorlage verweist auf
   `build.sh`, deshalb kommt es mit, statt die Befehle in `ueben.md` zu

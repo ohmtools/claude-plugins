@@ -3,7 +3,8 @@
 Bringt die Indexe aller Module auf den Stand der Datenquelle und liest dafür
 nur neue und geänderte Dateien. Mit dem Index wissen spätere Chats sofort, wo
 sie nachsehen müssen, ohne ganze Dateien zu lesen. Aus einem neuen oder
-geänderten Modulhandbuch übernimmt sie Beschreibung und Lernziele der Module.
+geänderten Modulhandbuch übernimmt sie Beschreibung, Lernziele und Angaben zur
+Prüfung der Module.
 Aufbau der Dateien: `plugin:skills/gemeinsam/grundlagen.md`, Abschnitte
 „Module“ und „Datenquelle“.
 
@@ -105,6 +106,10 @@ ein Lernender danach suchen würde.
      Aus Fließtext wird jeder Satz ein Punkt. Zwischenüberschriften lässt du
      weg. Konntest du eine Stelle nicht sicher lesen, häng an den Punkt
      `(unsicher)` an.
+   - **Prüfung:** Prüfungsform (`Form`), Dauer (`Dauer`) und erlaubte
+     Hilfsmittel (`Hilfsmittel`), so wie sie dort stehen, z.B.
+     `Dauer: 90 Minuten`. Was dort nicht steht, lässt du weg. Ohne Angaben
+     steht unter „Prüfung“ nur `Keine Angaben.`
 
    Passt kein Teil oder wählt der Nutzer „Keines davon“, bleibt
    `projekt:module/{modul}/info.md` dieses Moduls unverändert.
@@ -140,7 +145,7 @@ ein Lernender danach suchen würde.
      `{module}` die Namen dieser Module durch Kommas getrennt sind:
 
      ```text
-     Aus {handbuch} habe ich Beschreibung und Lernziele für {module} übernommen.
+     Aus {handbuch} habe ich Beschreibung, Lernziele und Angaben zur Prüfung für {module} übernommen.
      ```
 
    - `{unsicher}`, wenn du Stellen nicht sicher lesen konntest:

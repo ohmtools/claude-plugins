@@ -115,7 +115,7 @@ Wer wohin schreibt:
   deren Name `Modulhandbuch` oder `Lehrplan` enthält (Groß- und
   Kleinschreibung egal, z.B. `Modulhandbuch Informatik.pdf`,
   `Rahmenlehrplan Mechatroniker.pdf`). Es gehört zu keinem Modul und steht in
-  keinem Index. Aus ihm stammen Beschreibung und Lernziele in
-  `projekt:module/{modul}/info.md`.
+  keinem Index. Aus ihm stammen Beschreibung, Lernziele und Angaben zur
+  Prüfung in `projekt:module/{modul}/info.md`.
 - Nicht zugeordnet ist jede übrige Datei der Datenquelle, die in keinem
   Abschnitt „Dateien“ eines Index steht.

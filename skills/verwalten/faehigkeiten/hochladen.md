@@ -30,11 +30,11 @@ angekommen ist.
    Häng mir die Dateien, die ich hochladen soll, hier im Chat an und schreib dazu, zu welchem Fach sie gehören.
    ```
 
-2. **Ziel bestimmen:** Ein Modulhandbuch (`skill:SKILL.md`, Abschnitt
-   „Dateien der Datenquelle“) kommt ohne Ordner nach `daten:{name}`. Jede
-   andere Datei kommt in den Ordner ihres Moduls nach `daten:{modul}/{name}`.
-   Nennt der Nutzer kein Modul oder ist es nicht eindeutig, stell diese
-   Rückfrage, mit einer Option pro vorhandenem Modul:
+2. **Ziel bestimmen:** Ein Modulhandbuch (`skill:SKILL.md`, Abschnitt „Dateien
+   der Datenquelle“) kommt ohne Ordner nach `daten:{name}`. Jede andere Datei
+   kommt in den Ordner ihres Moduls nach `daten:{modul}/{name}`. Nennt der
+   Nutzer kein Modul oder ist es nicht eindeutig, stell diese Rückfrage, mit
+   einer Option pro vorhandenem Modul:
 
    ```auswahl
    Zu welchem Fach gehört {name}?
@@ -48,11 +48,10 @@ angekommen ist.
    ```
 
 3. **Schreibzugriff holen:** Hol dir über die GitHub-Anbindung deiner
-   Arbeitsumgebung (z.B. ein Werkzeug `add_repo`) Schreibzugriff auf `{url}`
-   aus `projekt:daten.xml` und folge ihrer Anleitung. Klappt das nicht,
-   antworte, wobei `{grund}` die Fehlermeldung in wenigen Worten ist und
-   `{ziele}` die Zielpfade ohne Präfix durch Kommas getrennt sind, und beende
-   die Fähigkeit:
+   Arbeitsumgebung (z.B. ein Werkzeug `add_repo`) Schreibzugriff auf `{url}` aus
+   `projekt:daten.xml` und folge ihrer Anleitung. Klappt das nicht, antworte,
+   wobei `{grund}` die Fehlermeldung in wenigen Worten ist und `{ziele}` die
+   Zielpfade ohne Präfix durch Kommas getrennt sind, und beende die Fähigkeit:
 
    ```text
    Ich habe keinen Schreibzugriff auf deine Datenquelle ({grund}). Lade die Dateien selbst auf {url} hoch, unter diesen Pfaden: {ziele}. Schreib danach in einem neuen Chat mit dem Modell Haiku „/lernhelfer:verwalten Indiziere“.
@@ -83,11 +82,10 @@ angekommen ist.
    git -C daten push origin HEAD
    ```
 
-   `mkdir`, `cp` und `git add` wiederholst du für jede Datei, `{anhang}` ist
-   ihr Pfad in deiner Arbeitsumgebung. Für das Modulhandbuch entfällt
-   `mkdir`. Lehnt der Server den Push ab, weil sich die Datenquelle
-   inzwischen geändert hat, lösch `arbeit:daten/`, klone neu und wiederhol
-   diesen Schritt einmal.
+   `mkdir`, `cp` und `git add` wiederholst du für jede Datei, `{anhang}` ist ihr
+   Pfad in deiner Arbeitsumgebung. Für das Modulhandbuch entfällt `mkdir`. Lehnt
+   der Server den Push ab, weil sich die Datenquelle inzwischen geändert hat,
+   lösch `arbeit:daten/`, klone neu und wiederhol diesen Schritt einmal.
 6. **Prüfen:** `git ls-remote {url}.git HEAD` muss dieselbe ID ausgeben wie
    `git -C daten rev-parse HEAD`. Stimmt das nicht, antworte mit der
    Nachricht aus Schritt 3.

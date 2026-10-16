@@ -12,9 +12,10 @@ Probleme offen.
 ## 1. Ausgangslage prüfen
 
 Hol die Liste aller Projektdateien mit einem Aufruf der Projektübersicht.
-Berücksichtige alle ihre Listen. Liegt `projekt:gedaechtnis/benutzererfahrung.md`
-darin, ist das Projekt schon eingerichtet. Liegt `projekt:daten.xml` darin,
-gibt es schon eine Datenquelle. Ändere an vorhandenen Dateien nichts.
+Berücksichtige alle ihre Listen. Liegt
+`projekt:gedaechtnis/benutzererfahrung.md` darin, ist das Projekt schon
+eingerichtet. Liegt `projekt:daten.xml` darin, gibt es schon eine Datenquelle.
+Ändere an vorhandenen Dateien nichts.
 
 ## 2. Einrichten
 
@@ -61,8 +62,9 @@ Bei „Ich habe ein Repository“:
    Schick mir den Link zu deinem Repository, z.B. https://github.com/name/lernstoff.
    ```
 
-2. `{url}` ist der Link in der Form `https://github.com/{besitzer}/{repository}`,
-   ohne `.git` und ohne weitere Pfadteile.
+2. `{url}` ist der Link in der Form
+   `https://github.com/{besitzer}/{repository}`, ohne `.git` und ohne weitere
+   Pfadteile.
 3. **Öffentlich?** Führ im Ordner `arbeit:`
    `GIT_TERMINAL_PROMPT=0 git ls-remote {url}.git HEAD` aus. Gibt der Befehl
    eine Zeile aus, ist das Repository öffentlich.
@@ -70,8 +72,8 @@ Bei „Ich habe ein Repository“:
    Arbeitsumgebung (z.B. ein Werkzeug `add_repo`) und folge ihrer Anleitung.
    Wiederhol danach den Befehl aus Punkt 3. Gibt er eine Zeile aus, ist das
    Repository privat.
-5. **Kein Zugriff:** Klappt beides nicht, stell diese Rückfrage, wobei
-   `{grund}` die Fehlermeldung in wenigen Worten ist:
+5. **Kein Zugriff:** Klappt beides nicht, stell diese Rückfrage, wobei `{grund}`
+   die Fehlermeldung in wenigen Worten ist:
 
    ```auswahl
    Ich komme nicht an {url} ({grund}). Stimmt der Link? Bei einem privaten Repository brauche ich außerdem Zugriff über die GitHub-Anbindung von Claude.ai.

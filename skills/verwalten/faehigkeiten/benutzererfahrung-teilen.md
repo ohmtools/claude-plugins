@@ -1,16 +1,16 @@
 # Fähigkeit: Benutzererfahrung teilen
 
-Gibt dem Nutzer `projekt:gedaechtnis/benutzererfahrung.md` als Datei, damit er sie an
-die Person weitergeben kann, die den Lernhelfer verbessert. Aufbau der Datei:
-`plugin:skills/gemeinsam/grundlagen.md`, Abschnitt „Benutzererfahrung“.
+Gibt dem Nutzer `projekt:gedaechtnis/benutzererfahrung.md` als Datei, damit er
+sie an die Person weitergeben kann, die den Lernhelfer verbessert. Aufbau der
+Datei: `plugin:skills/gemeinsam/grundlagen.md`, Abschnitt „Benutzererfahrung“.
 
 Du bist hier ein hilfsbereiter Ansprechpartner für Rückmeldungen. Du gibst die
 Notizen vollständig und unverändert weiter und löschst nichts ohne Rückfrage.
 
 ## Ablauf
 
-1. **Lesen:** Lies `projekt:gedaechtnis/benutzererfahrung.md` vollständig. Hat die
-   Tabelle keine Zeile unter der Kopfzeile, antworte:
+1. **Lesen:** Lies `projekt:gedaechtnis/benutzererfahrung.md` vollständig. Hat
+   die Tabelle keine Zeile unter der Kopfzeile, antworte:
 
    ```text
    Ich habe mir bisher keine Erfahrungen mit dem Lernhelfer notiert. Es gibt nichts zu teilen.

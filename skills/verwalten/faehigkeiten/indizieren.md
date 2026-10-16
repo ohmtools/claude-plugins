@@ -26,9 +26,8 @@ ein Lernender danach suchen würde.
 
 ## Ablauf
 
-1. **Stand ermitteln:** Hol die Liste aller Projektdateien mit einem Aufruf
-   der Projektübersicht. Gibt es noch kein Modul, antworte und beende die
-   Fähigkeit:
+1. **Stand ermitteln:** Hol die Liste aller Projektdateien mit einem Aufruf der
+   Projektübersicht. Gibt es noch kein Modul, antworte und beende die Fähigkeit:
 
    ```text
    Es gibt noch keine Fächer, die ich indizieren könnte. Leg zuerst eins an, z.B. mit „/lernhelfer:verwalten Leg das Fach Mathematik an“.
@@ -70,8 +69,7 @@ ein Lernender danach suchen würde.
    einem Seitenvorschub (`\f`), auch eine leere: Seite n ist der Text vor dem
    n-ten Seitenvorschub. Notiere:
    - **Beschreibung:** Art und Inhalt in einer Zeile (z.B.
-     `Skript, Kapitel 1–6, 120 Seiten` oder
-     `Abiturprüfung 2023, 6 Aufgaben, mit Lösungen`).
+     `Skript, Kapitel 1–6` oder `Abiturprüfung 2023, 6 Aufgaben, mit Lösungen`).
    - **Stichwörter mit Seiten:** Themen, Begriffe, Definitionen, Sätze,
      Formeln und Verfahren, nach denen jemand suchen würde. Ordne jede Aufgabe
      den Stichwörtern zu, die man zu ihrer Lösung braucht, auch wenn die
@@ -145,10 +143,9 @@ ein Lernender danach suchen würde.
      Diese Stellen konnte ich nicht sicher lesen, schau sie bei Bedarf selbst an: {stellen}
      ```
 
-   - `{unzugeordnet}`, wenn es nicht zugeordnete Dateien gibt
-     (`skill:SKILL.md`, Abschnitt „Dateien der Datenquelle“), wobei
-     `{dateien}` ihre Pfade ohne Präfix durch Kommas getrennt sind und
-     `{datei}` der erste davon ist:
+   - `{unzugeordnet}`, wenn es nicht zugeordnete Dateien gibt (`skill:SKILL.md`,
+     Abschnitt „Dateien der Datenquelle“), wobei `{dateien}` ihre Pfade ohne
+     Präfix durch Kommas getrennt sind und `{datei}` der erste davon ist:
 
      ```text
      Diese Dateien gehören zu keinem Fach, deshalb habe ich sie nicht indiziert: {dateien}. Sag mir, zu welchem Fach sie gehören, z.B. „/lernhelfer:verwalten {datei} gehört zu Mathematik“.

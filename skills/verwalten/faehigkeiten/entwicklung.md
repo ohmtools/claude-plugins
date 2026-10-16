@@ -228,8 +228,8 @@ aus.
    {anweisung-hinweis}
    ```
 
-   `{repository-hinweis}`: Hast du `arbeit:lernhelfer-repository.zip`
-   gepackt, setze diese Zeile ein, sonst lass den Platzhalter samt Zeile weg:
+   `{repository-hinweis}`: Hast du `arbeit:lernhelfer-repository.zip` gepackt,
+   setze diese Zeile ein, sonst lass den Platzhalter samt Zeile weg:
 
    ```text
    Weil du mir dein Repository mitgegeben hast, liegt auch lernhelfer-repository.zip bereit. Damit kannst du stattdessen alle Dateien im Repository ersetzen (außer dem Ordner .git).

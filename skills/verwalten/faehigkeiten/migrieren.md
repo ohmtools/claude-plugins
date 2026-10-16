@@ -66,9 +66,9 @@ Aufbau einer Migration:
    Migrationen. In Frage kommen nur Dateien unter `projekt:module/{modul}/` und
    `projekt:gedaechtnis/{modul}/` sowie
    `projekt:gedaechtnis/benutzererfahrung.md` und `projekt:daten.xml`. Lies jede
-   davon, die zu einem Pfadmuster unter „Betrifft“ passt, vollständig.
-   Betroffen ist sie, wenn ihr `format` niedriger ist als in der Tabelle
-   „Formate“. Gibt es keine betroffene Datei, antworte:
+   davon, die zu einem Pfadmuster unter „Betrifft“ passt, vollständig. Betroffen
+   ist sie, wenn ihr `format` niedriger ist als in der Tabelle „Formate“. Gibt
+   es keine betroffene Datei, antworte:
 
    ```text
    Deine gespeicherten Daten für {bereich} haben schon das aktuelle Format. Es gibt nichts anzupassen.
@@ -100,9 +100,9 @@ Aufbau einer Migration:
    Diese Dateien konnte ich nicht anpassen: {dateien}. Sie bleiben, wie sie sind. Ich benutze sie weiter, ändere sie aber nicht.
    ```
 
-   `{weitere}`: Gibt es außer dem bearbeiteten Modul weitere Module, setze
-   diese Zeile ein, wobei `{module}` ihre Namen durch Kommas getrennt sind,
-   sonst lass den Platzhalter samt Zeile weg:
+   `{weitere}`: Gibt es außer dem bearbeiteten Modul weitere Module, setze diese
+   Zeile ein, wobei `{module}` ihre Namen durch Kommas getrennt sind, sonst lass
+   den Platzhalter samt Zeile weg:
 
    ```text
    Ich passe immer nur ein Fach auf einmal an. Schreib für jedes weitere Fach „/lernhelfer:verwalten Daten migrieren“ und seinen Namen: {module}.

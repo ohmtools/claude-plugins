@@ -20,7 +20,7 @@ Das geht nur in einem Claude.ai-Projekt. Erstelle in Claude.ai ein Projekt, star
 
 Lies vor allem anderen `plugin:skills/gemeinsam/grundlagen.md` vollständig.
 Vom Ordner dieser `SKILL.md` aus liegt sie unter `../gemeinsam/grundlagen.md`.
-Sie enthält, was dieser Skill mit dem Skill `lernen` gemeinsam hat
+Sie enthält, was dieser Skill mit dem Skill `verwalten` gemeinsam hat
 (Grundregeln, Pfade, Betriebsart, Nachrichten und Rückfragen, Formate, Module,
 Datenquelle, Gedächtnis, Benutzererfahrung), und gilt wie ein Teil dieser
 Datei. Findest du sie nicht, führ keine Fähigkeit aus und antworte genau mit

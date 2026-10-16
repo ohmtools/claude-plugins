@@ -1,9 +1,7 @@
 # Lernhelfer – Grundlagen
 
-Was die Skills `lernen` und `verwalten` gemeinsam haben. Beide verlangen in
-ihrer `SKILL.md`, diese Datei vor allem anderen vollständig zu lesen. Sie gilt
-wie ein Teil der `SKILL.md` des Skills, nach dem du gerade arbeitest („dieser
-Skill“).
+Diese Datei gilt wie ein Teil der `SKILL.md` des Skills, nach dem du gerade
+arbeitest („dieser Skill“).
 
 ## Grundregeln
 
@@ -273,14 +271,13 @@ format: 1
 Fehlt die Datei, gilt sie als leer. Leg sie dann vor dem ersten Eintrag mit
 dieser Vorlage an, ohne Zeilen unter der Kopfzeile der Tabelle.
 
-## Benutzererfahrung
+## `projekt:gedaechtnis/benutzererfahrung.md`
 
-`projekt:gedaechtnis/benutzererfahrung.md` hält fest, wo der Umgang mit dem
-Lernhelfer hakt. Der Nutzer gibt die Datei mit „Benutzererfahrung teilen“ an
-die Person weiter, die den Lernhelfer verbessert. „Initialisieren“ legt sie
-an, und an ihr erkennst du ein eingerichtetes Projekt (Abschnitt
-„Betriebsart“). Jede Fähigkeit außer „Initialisieren“ und „Test“ pflegt sie im
-**Projekt**, solange du nach ihr arbeitest. Aufbau:
+Hält fest, wo der Umgang mit dem Lernhelfer hakt. Der Nutzer gibt die Datei mit
+„Benutzererfahrung teilen“ an die Person weiter, die den Lernhelfer verbessert.
+„Initialisieren“ legt sie an, und an ihr erkennst du ein eingerichtetes Projekt
+(Abschnitt „Betriebsart“). Jede Fähigkeit außer „Initialisieren“ und „Test“
+pflegt sie im **Projekt**, solange du nach ihr arbeitest. Aufbau:
 
 ```markdown
 ---

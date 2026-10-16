@@ -52,11 +52,11 @@ Es gibt noch keine Fächer. Wie soll das Fach heißen, zu dem das gehört?
 
 1. **Ordnername:** Bestimme `{modul}` aus dem Namen nach den Pfadregeln. Gibt
    es den Ordner schon, arbeite mit dem vorhandenen Modul weiter.
-2. **Beschreibung und Lernziele:** Gibt es eine Datenquelle mit
-   Modulhandbuch, ermittle sie wie im Abschnitt „Lernziele übernehmen“,
-   Schritte 1 bis 4. Hat der Nutzer dort „Später mit Haiku“ gewählt, setz
-   `Keine Beschreibung.` und `Keine Lernziele.` ein. Hast du sonst keine
-   Beschreibung, antworte und warte auf die Antwort:
+2. **Beschreibung und Lernziele:** Gibt es eine Datenquelle mit Modulhandbuch,
+   ermittle sie wie im Abschnitt „Lernziele übernehmen“, Schritte 1 bis 4. Hat
+   der Nutzer dort „Später mit Haiku“ gewählt, setz `Keine Beschreibung.` und
+   `Keine Lernziele.` ein. Hast du sonst keine Beschreibung, antworte und warte
+   auf die Antwort:
 
    ```text
    Beschreib mir {modulname} in ein, zwei Sätzen: Worum geht es darin? Daran erkenne ich später, welche Fragen zu diesem Fach gehören. Schreib „weiter“, wenn du das überspringen willst.
@@ -173,8 +173,8 @@ bisherigen Inhalt von `projekt:module/{modul}/info.md` unter der Überschrift.
    Ich finde kein Modulhandbuch in deiner Datenquelle. Lade es hoch, sein Dateiname muss „Modulhandbuch“ oder „Lehrplan“ enthalten, z.B. mit „/lernhelfer:verwalten Lade das Modulhandbuch hoch“. Sag mir danach noch einmal Bescheid.
    ```
 
-2. **Modell wählen:** Dafür liest du das ganze Modulhandbuch. Das kann viel
-   vom Nutzungslimit verbrauchen, und das Modell Haiku reicht dafür. Weißt du
+2. **Modell wählen:** Dafür liest du das ganze Modulhandbuch. Das kann viel vom
+   Nutzungslimit verbrauchen, und das Modell Haiku reicht dafür. Weißt du
    sicher, dass du selbst Haiku bist, mach mit Schritt 3 weiter. Sonst stell
    diese Rückfrage, bevor du das Handbuch liest:
 
@@ -184,8 +184,8 @@ bisherigen Inhalt von `projekt:module/{modul}/info.md` unter der Überschrift.
    - Später mit Haiku
    ```
 
-   Bei „Später mit Haiku“ übernimmst du nichts und antwortest in Schritt 6
-   mit der Nachricht für diesen Fall.
+   Bei „Später mit Haiku“ übernimmst du nichts und antwortest in Schritt 6 mit
+   der Nachricht für diesen Fall.
 3. **Modul im Handbuch finden:** Hol das Modulhandbuch, wie
    `projekt:daten.xml` es beschreibt, lies es vollständig (eine PDF mit
    `pdftotext -layout '{datei}' -`) und such den Teil, der zum Fach passt
@@ -209,8 +209,8 @@ bisherigen Inhalt von `projekt:module/{modul}/info.md` unter der Überschrift.
 5. **Schreiben:** Schreib `projekt:module/{modul}/info.md` mit Beschreibung
    und Lernzielen (Vorlage im Abschnitt „Neues Modul anlegen“). Beim Anlegen
    eines Moduls schreibst du sie dort in Schritt 4.
-6. **Abschluss:** Hast du etwas übernommen, antworte, wobei `{anzahl}` die
-   Zahl der Lernziele ist:
+6. **Abschluss:** Hast du etwas übernommen, antworte, wobei `{anzahl}` die Zahl
+   der Lernziele ist:
 
    ```text
    Aus {handbuch} habe ich die Beschreibung und {anzahl} Lernziele für {modulname} übernommen.

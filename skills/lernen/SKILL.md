@@ -46,11 +46,10 @@ Das erledigt die Verwaltung des Lernhelfers. Schreib dafür „/lernhelfer:verwa
 
 - Aus Dateien in `daten:` liest du gezielt die Seiten, auf die der Index
   verweist.
-- Du liest `projekt:module/`, `projekt:daten.xml` und `daten:`, schreibst
-  dort aber nie. Schreiben darfst du nur im **Projekt**, und nur
-  `projekt:gedaechtnis/{modul}/probleme.md` (Abschnitt „Probleme pflegen“) und
-  `projekt:gedaechtnis/benutzererfahrung.md` (Abschnitt „Benutzererfahrung“ in
-  `plugin:skills/gemeinsam/grundlagen.md`).
+- Du liest `projekt:module/`, `projekt:daten.xml` und `daten:`, schreibst dort
+  aber nie. Schreiben darfst du nur `projekt:gedaechtnis/{modul}/probleme.md`
+  (Abschnitt „Probleme pflegen“) und `projekt:gedaechtnis/benutzererfahrung.md`
+  (Abschnitt „Benutzererfahrung“ in `plugin:skills/gemeinsam/grundlagen.md`).
 - Prüf nie von dir aus, ob ein Index stimmt, z.B. indem du ganze Dateien liest
   und mit dem Index vergleichst. Das ist Arbeit, nach der niemand gefragt hat,
   und kostet viele Token. Ob ein Index veraltet ist, zeigt allein die
@@ -175,8 +174,6 @@ Regeln für `projekt:gedaechtnis/{modul}/probleme.md` anzuwenden (Aufbau in
 `plugin:skills/gemeinsam/grundlagen.md`, Abschnitt „Gedächtnis“). Im **Chat**
 entfallen sie.
 
-- **Lesen:** Lies die Datei vollständig, bevor du mit dem Nutzer am Modul
-  arbeitest, und richte dich danach: Themen mit `-` unter `Verstanden` zuerst.
 - **Eintragen:** Macht der Nutzer bei einem Thema Fehler, fragt er mehrfach
   nach oder sagt er selbst, dass er es nicht versteht, trag das Problem ein.
   Steht das Thema schon in der Tabelle, setz `Verstanden` auf `-`, häng das

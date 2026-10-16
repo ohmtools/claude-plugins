@@ -68,7 +68,7 @@ Bei „Ich habe ein Repository“:
 3. **Öffentlich?** Führ im Ordner `arbeit:`
    `GIT_TERMINAL_PROMPT=0 git ls-remote {url}.git HEAD` aus. Endet der Befehl
    mit Exit-Code 0, ist das Repository öffentlich. Gibt er dabei nichts aus,
-   ist es nur noch leer.
+   ist es noch leer.
 4. **Privat?** Sonst hol dir Lesezugriff über die GitHub-Anbindung deiner
    Arbeitsumgebung (z.B. ein Werkzeug `add_repo`). Aus ihrer Antwort zählt
    nur, ob du Zugriff hast. Klone nicht nach ihrer Anleitung, das machen die
@@ -116,9 +116,10 @@ Bei „Ich habe ein Repository“:
 
 ## 4. Projektanweisung prüfen
 
-Lies `skill:projektanweisung.md` vollständig. Vergleiche ihren
-Inhalt mit der Projektanweisung, die dir in diesem Chat vorliegt. Liegt dir
-keine vor, gelten sie als verschieden.
+Lies `skill:projektanweisung.md` vollständig. Vergleiche ihren Inhalt mit der
+Projektanweisung aus der Projektübersicht von Schritt 1 (z.B. das Feld
+`instructions` von `project_info`). Fehlt sie dort oder ist sie leer, gelten
+sie als verschieden.
 
 ## 5. Abschluss
 

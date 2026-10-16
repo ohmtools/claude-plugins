@@ -7,7 +7,7 @@
   "plugins": [
     {
       "name": "lernhelfer",
-      "source": "./",
+      "source": "./plugin",
       "description": "Lernumgebung für Oberstufe, Berufsschule und Studium: Claude erklärt, übt und fragt ab, mit deinen eigenen Skripten und Übungen. Am besten in einem Claude.ai-Projekt, wo sich Claude Fächer und Schwierigkeiten merkt; auch in einzelnen Chats nutzbar."
     }
   ]

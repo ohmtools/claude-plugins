@@ -28,10 +28,10 @@ Frag Claude, z.B. `/lernhelfer:helfen Was kannst du?`.
 ## Aufbau des Repositorys
 
 ```text
-.claude-plugin/plugin.json        das Plugin
 .claude-plugin/marketplace.json   Marketplace mit diesem Plugin
-skills/lernen/                    Lernen mit dem Nutzer
-skills/verwalten/                 Projekt, Fächer, Datenquelle, Entwicklung
-skills/helfen/                    Antworten auf Fragen zum Lernhelfer
+plugin/                           das Plugin, nur dieser Ordner wird installiert
+plugin/skills/lernen/             Lernen mit dem Nutzer
+plugin/skills/verwalten/          Projekt, Fächer, Datenquelle, Entwicklung
+plugin/skills/helfen/             Antworten auf Fragen zum Lernhelfer
 CLAUDE.md                         Hinweise für Claude Code bei der Entwicklung
 ```

@@ -84,10 +84,17 @@ Rückfragen mit festen Antworten stehen als `auswahl`-Block:
 Stell sie mit den Auswahlfeldern mit Rückfrage (Knöpfe, die der Nutzer antippt,
 statt eine Antwort zu tippen). Übernimm Frage und Optionen wörtlich und in
 dieser Reihenfolge. Verlangt das Werkzeug zusätzlich eine kurze Überschrift,
-nimm ein Stichwort aus der Frage (z.B. „Fach“). Hast du keine Auswahlfelder,
-gib die Frage als Text aus und die Optionen als nummerierte Liste darunter.
-Warte in beiden Fällen auf die Antwort. Für Platzhalter gilt dasselbe wie bei
+nimm ein Stichwort aus der Frage (z.B. „Fach“). Hast du keine Auswahlfelder
+oder hat die Rückfrage mehr Optionen, als die Auswahlfelder zulassen, gib die
+Frage als Text aus und die Optionen als nummerierte Liste darunter. Warte in
+beiden Fällen auf die Antwort. Für Platzhalter gilt dasselbe wie bei
 `text`-Blöcken.
+
+- Bleibt nach dem Einsetzen der Platzhalter nur eine Option übrig, stell die
+  Rückfrage nicht und mach weiter, als hätte der Nutzer diese Option gewählt.
+- Antwortet der Nutzer mit eigenem Text statt mit einer Option (z.B. über ein
+  Feld „Andere“, das das Werkzeug selbst ergänzt), ordne den Text einer Option
+  zu. Passt keine, stell die Rückfrage noch einmal.
 
 ## Formate
 
@@ -280,7 +287,9 @@ format: 1
 Fehlt die Datei, gilt sie als leer. Leg sie dann vor dem ersten Eintrag mit
 dieser Vorlage an, ohne Zeilen unter der Kopfzeile der Tabelle.
 
-## `projekt:gedaechtnis/benutzererfahrung.md`
+## Benutzererfahrung
+
+### `projekt:gedaechtnis/benutzererfahrung.md`
 
 Hält fest, wo der Umgang mit dem Lernhelfer hakt. Der Nutzer gibt die Datei mit
 „Benutzererfahrung teilen“ an die Person weiter, die den Lernhelfer verbessert.
@@ -304,7 +313,7 @@ format: 1
   - `Bedienung`: Der Nutzer versteht einen Ablauf oder eine Nachricht nicht,
     fragt mehrfach nach, macht etwas anders als vorgesehen oder ist
     unzufrieden.
-  - `Fähigkeit`: Keine Fähigkeit passt zur Anfrage, eine Anweisung ist
+  - `Anweisung`: Keine Fähigkeit passt zur Anfrage, eine Anweisung ist
     mehrdeutig oder eine vorgegebene Nachricht passt nicht zur Situation.
   - `Technik`: Ein Werkzeug schlägt fehl oder verhält sich anders, als die
     Fähigkeit annimmt.

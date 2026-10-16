@@ -104,6 +104,25 @@ Halte danach fest:
    Abweichung. Detail: öffentlich oder privat und die Exit-Codes. Protokoll:
    jeder Befehl mit vollständiger Ausgabe und Exit-Code, das Werkzeug der
    GitHub-Anbindung mit Parametern und vollständiger Rückmeldung.
+2. **Grenzen der Auswahlfelder:** Davon hängt die Regel für Rückfragen mit
+   vielen oder nur einer Option ab (`plugin:skills/gemeinsam/grundlagen.md`,
+   Abschnitt „Nachrichten und Rückfragen“). Hast du keine Auswahlfelder, ist
+   der Test `übersprungen`.
+   1. Notiere aus der Beschreibung des Werkzeugs für Auswahlfelder die
+      kleinste und die größte erlaubte Zahl von Optionen und ob es selbst ein
+      Feld für eigenen Text ergänzt.
+   2. Ruf das Werkzeug mit der Frage „Test der Auswahlfelder: Wähl bitte die
+      letzte Option.“ und den fünf Optionen „Eins“ bis „Fünf“ auf, auch wenn
+      die Beschreibung weniger erlaubt. Erwartet: Erlaubt die Beschreibung
+      höchstens vier Optionen, lehnt das Werkzeug den Aufruf ab. Sonst sieht
+      der Nutzer fünf Knöpfe und wählt „Fünf“.
+   3. Ruf es mit derselben Frage und nur der Option „Eins“ auf. Erwartet:
+      Verlangt die Beschreibung mindestens zwei Optionen, lehnt das Werkzeug
+      den Aufruf ab. Sonst sieht der Nutzer einen Knopf.
+
+   `ok`: Beide Aufrufe verhalten sich wie die Beschreibung. `teilweise`: jede
+   Abweichung. Detail: kleinste und größte Zahl, Ergebnis beider Aufrufe.
+   Protokoll: beide Aufrufe mit Parametern und vollständiger Rückmeldung.
 
 ## Aufräumen
 

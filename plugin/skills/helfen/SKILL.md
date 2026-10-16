@@ -39,7 +39,7 @@ Er besteht aus drei Skills:
   den eigenen Skripten, Übungsblättern und Altklausuren des Nutzers.
   „Schwachstellen listen“ zeigt, womit der Nutzer in einem Fach noch
   Schwierigkeiten hat. Die Lernmodi Erlernen, Wiederholen und Üben sind noch
-  nicht ausgearbeitet. Bis dahin hilft Claude frei beim Lernen.
+  nicht ausgearbeitet.
 - Verwalten, nur in einem Claude.ai-Projekt: Projekt einrichten und mit einer
   Datenquelle verbinden, Fächer anlegen, umbenennen und löschen, Dateien
   hochladen und Fächern zuordnen, indizieren, Lernziele aus dem Modulhandbuch
@@ -167,7 +167,7 @@ speichert der Lernhelfer nichts.
         </antwort>
     </eintrag>
     <eintrag>
-<frage>Warum arbeitet Claude beim Lernen immer nur mit einem Fach?</frage>
+        <frage>Warum arbeitet Claude beim Lernen immer nur mit einem Fach?</frage>
         <antwort>
 Jedes Fach steht für sich. Beim Lernen arbeitet Claude immer mit genau einem
 Fach, so bleibt der Aufwand klein und nichts vermischt sich. Nennt der Nutzer

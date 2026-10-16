@@ -41,7 +41,8 @@ angekommen ist.
    - {modulname}
    ```
 
-   Gibt es noch kein Modul, antworte:
+   Gibt es noch kein Modul und ist eine der Dateien kein Modulhandbuch,
+   antworte und beende die Fähigkeit:
 
    ```text
    Es gibt noch keine Fächer. Leg zuerst eins an, z.B. mit „/lernhelfer:verwalten Leg das Fach Mathematik an“, und lade die Dateien danach hoch.
@@ -97,8 +98,14 @@ angekommen ist.
    weil sich die Datenquelle inzwischen geändert hat, oder mit HTTP 413), lösch
    `arbeit:daten/`, klone neu und wiederhol diesen Schritt einmal.
 6. **Prüfen:** `git ls-remote {url}.git HEAD` muss dieselbe ID ausgeben wie
-   `git -C daten rev-parse HEAD`. Stimmt das nicht, antworte mit der
-   Nachricht aus Schritt 3.
+   `git -C daten rev-parse HEAD`. Stimmt das nicht oder lehnt der Server den
+   Push auch beim zweiten Versuch ab, antworte, wobei `{grund}` die
+   Fehlermeldung in wenigen Worten ist und `{ziele}` wie in Schritt 3, und
+   beende die Fähigkeit:
+
+   ```text
+   Das Hochladen hat nicht geklappt ({grund}). Lade die Dateien selbst auf {url} hoch, unter diesen Pfaden: {ziele}. Schreib danach in einem neuen Chat mit dem Modell Haiku „/lernhelfer:verwalten Indiziere“.
+   ```
 7. **Abschluss:** Antworte, wobei `{dateiliste}` eine Zeile pro hochgeladener
    Datei ist (z.B. `- analysis/Blatt 3.pdf`):
 

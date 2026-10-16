@@ -86,9 +86,10 @@ ein Lernender danach suchen würde.
    Ordner `arbeit:` mit
    `pdftoppm -f {seite} -l {seite} -r 150 -png '{datei}' seite`). Bleibt sie
    unsicher, notiere sie für `{unsicher}`.
-5. **Modulhandbuch lesen:** Nur wenn ein Modulhandbuch zu lesen ist. Lies es
-   vollständig und such für jedes Modul den Teil, der dazu passt (Name,
-   Abkürzung oder Modulnummer). Passen mehrere, stell diese Rückfrage, mit
+5. **Modulhandbuch lesen:** Nur wenn ein Modulhandbuch zu lesen ist. Hol es,
+   wie `projekt:daten.xml` es beschreibt, lies es vollständig (eine PDF mit
+   `pdftotext -layout '{datei}' -`) und such für jedes Modul den Teil, der dazu
+   passt (Name, Abkürzung oder Modulnummer). Passen mehrere, stell diese Rückfrage, mit
    einer Option pro passendem Teil:
 
    ```auswahl

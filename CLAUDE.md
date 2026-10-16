@@ -11,24 +11,24 @@ Projektdateien.
 | Thema | Datei |
 |---|---|
 | Installation | `README.md` |
-| Plugin und Marketplace | `.claude-plugin/plugin.json`, `.claude-plugin/marketplace.json` |
-| Text der Projektanweisungen | `skills/verwalten/projektanweisung.md` |
-| Gemeinsam für `lernen` und `verwalten`: Grundregeln, Pfade, Betriebsart, Nachrichten, Formate, Module, Datenquelle (`daten.xml`), Gedächtnis, Benutzererfahrung | `skills/gemeinsam/grundlagen.md` |
-| Lernen: Fähigkeiten, Modul bestimmen, Dateiprüfung, Dateien im Chat, PDF-Dateien, Probleme pflegen | `skills/lernen/SKILL.md` |
-| Lernmodi und Schwachstellen | `skills/lernen/faehigkeiten/` |
-| Verwalten: Fähigkeiten und ihre Verfügbarkeit, Projektstruktur, Dateien der Datenquelle | `skills/verwalten/SKILL.md` |
-| Konventionen für Fähigkeiten | `skills/verwalten/faehigkeiten/entwicklung.md`, „Änderungen machen“, Schritt 2 |
-| Einrichten, Datenquelle anlegen | `skills/verwalten/faehigkeiten/initialisieren.md` |
-| Fächer, Dateien zuordnen, Lernziele | `skills/verwalten/faehigkeiten/modul-bearbeiten.md` |
-| Hochladen, Indizieren | `skills/verwalten/faehigkeiten/hochladen.md`, `skills/verwalten/faehigkeiten/indizieren.md` |
-| Migrationen | `skills/verwalten/faehigkeiten/migrieren.md` |
-| Export | `skills/verwalten/faehigkeiten/entwicklung.md`, „Exportieren“ |
-| Annahmen über die Zielumgebung prüfen | `skills/verwalten/faehigkeiten/testen.md`, Ergebnisse unter „Testläufe“ |
-| Antworten auf Fragen zum Lernhelfer | `skills/helfen/SKILL.md` |
+| Plugin und Marketplace | `plugin/.claude-plugin/plugin.json`, `.claude-plugin/marketplace.json` |
+| Text der Projektanweisungen | `plugin/skills/verwalten/projektanweisung.md` |
+| Gemeinsam für `lernen` und `verwalten`: Grundregeln, Pfade, Betriebsart, Nachrichten, Formate, Module, Datenquelle (`daten.xml`), Gedächtnis, Benutzererfahrung | `plugin/skills/gemeinsam/grundlagen.md` |
+| Lernen: Fähigkeiten, Modul bestimmen, Dateiprüfung, Dateien im Chat, PDF-Dateien, Probleme pflegen | `plugin/skills/lernen/SKILL.md` |
+| Lernmodi und Schwachstellen | `plugin/skills/lernen/faehigkeiten/` |
+| Verwalten: Fähigkeiten und ihre Verfügbarkeit, Projektstruktur, Dateien der Datenquelle | `plugin/skills/verwalten/SKILL.md` |
+| Konventionen für Fähigkeiten | `plugin/skills/verwalten/faehigkeiten/entwicklung.md`, „Änderungen machen“, Schritt 2 |
+| Einrichten, Datenquelle anlegen | `plugin/skills/verwalten/faehigkeiten/initialisieren.md` |
+| Fächer, Dateien zuordnen, Lernziele | `plugin/skills/verwalten/faehigkeiten/modul-bearbeiten.md` |
+| Hochladen, Indizieren | `plugin/skills/verwalten/faehigkeiten/hochladen.md`, `plugin/skills/verwalten/faehigkeiten/indizieren.md` |
+| Migrationen | `plugin/skills/verwalten/faehigkeiten/migrieren.md` |
+| Export | `plugin/skills/verwalten/faehigkeiten/entwicklung.md`, „Exportieren“ |
+| Annahmen über die Zielumgebung prüfen | `plugin/skills/verwalten/faehigkeiten/testen.md`, Ergebnisse unter „Testläufe“ |
+| Antworten auf Fragen zum Lernhelfer | `plugin/skills/helfen/SKILL.md` |
 
-Lies vor einer Änderung `skills/gemeinsam/grundlagen.md`,
-`skills/lernen/SKILL.md`, `skills/verwalten/SKILL.md`, `entwicklung.md` und
-alle Dateien, die die Änderung betrifft, vollständig.
+Lies vor einer Änderung `plugin/skills/gemeinsam/grundlagen.md`,
+`plugin/skills/lernen/SKILL.md`, `plugin/skills/verwalten/SKILL.md`,
+`entwicklung.md` und alle Dateien, die die Änderung betrifft, vollständig.
 
 ## Regeln für dieses Repository
 
@@ -42,9 +42,10 @@ alle Dateien, die die Änderung betrifft, vollständig.
 - Diese Stellen sind bewusst doppelt und müssen übereinstimmen:
   - Repository-URL: `README.md`, `plugin.json` (`homepage`, `repository`),
     `projektanweisung.md` und `helfen/SKILL.md`.
-  - Pfad der Grundlagen (`skills/gemeinsam/grundlagen.md`): Abschnitt
-    „Grundlagen“ in `lernen/SKILL.md` und `verwalten/SKILL.md` (dort auch die
-    Fehlermeldung) und `entwicklung.md` („Vorbereiten“, „Exportieren“).
+  - Pfad der Grundlagen im Plugin (`skills/gemeinsam/grundlagen.md`):
+    Abschnitt „Grundlagen“ in `lernen/SKILL.md` und `verwalten/SKILL.md` (dort
+    auch die Fehlermeldung) und `entwicklung.md` („Vorbereiten“,
+    „Exportieren“).
   - Formatnummern: Tabelle „Formate“ und die Vorlagen in `grundlagen.md`,
     dazu die Vorlagen in `modul-bearbeiten.md` und `initialisieren.md`.
   - Zugriff auf die Datenquelle mit git: Vorlage für `daten.xml` in
@@ -69,8 +70,13 @@ alle Dateien, die die Änderung betrifft, vollständig.
 ## Stand
 
 - Aufbau: Plugin mit drei Skills, kein Lernhelfer-Code mehr im Projekt.
+  Das Plugin liegt in `plugin/` (`marketplace.json` mit
+  `"source": "./plugin"`), damit Claude.ai nur `plugin.json` und `skills/`
+  bereitstellt, nicht `README.md` und `CLAUDE.md`. „Entwicklung“ arbeitet
+  deshalb mit `kopie:` = `arbeit:lernhelfer-entwicklung/plugin/`, die Dateien
+  des Repositorys liegen nur mit angehängtem Archiv eine Ebene darüber.
   Was `lernen` und `verwalten` beide brauchen, steht nur einmal in
-  `skills/gemeinsam/grundlagen.md` (kein Skill, keine `SKILL.md`). Beide
+  `plugin/skills/gemeinsam/grundlagen.md` (kein Skill, keine `SKILL.md`). Beide
   `SKILL.md` lassen die Datei vor allem anderen lesen, `helfen` nicht.
   `lernen` arbeitet mit genau einem Modul, liest `module/`, `daten.xml` und
   `daten:` und schreibt nur `gedaechtnis/{modul}/probleme.md` und
@@ -110,8 +116,12 @@ alle Dateien, die die Änderung betrifft, vollständig.
   `probleme.md`, bis dahin bleibt „Schwachstellen listen“ meist leer. Sie
   enthalten nur „NICHT ANFASSEN“, nicht „noch nicht ausgearbeitet“, `lernen`
   erfährt also nicht, dass es sie noch nicht gibt.
-- Offen: Was passiert, wenn ein Nutzer trotzdem Dateien über die Projektseite
-  hochlädt (dafür gibt es keine Regel mehr).
+- Bewusst ohne Regel: Dateien, die ein Nutzer trotzdem über die Projektseite
+  hochlädt.
+- Rückfragen: Mehr Optionen, als die Auswahlfelder zulassen, gehen als Text
+  mit nummerierter Liste raus, bei nur einer Option entfällt die Rückfrage,
+  eigenen Text ordnet Claude einer Option zu (`grundlagen.md`, „Nachrichten
+  und Rückfragen“).
 
 ## Testläufe
 
@@ -210,6 +220,8 @@ eine PDF lässt sich nicht wieder lokal herstellen.
   geprüft, der Push in einen neuen Zweig eines leeren Repositorys klappte in
   Claude.ai).
 - Wie viel das Lesen großer Modulhandbücher kostet.
+- Grenzen der Auswahlfelder in Claude.ai: kleinste und größte Zahl von
+  Optionen (`testen.md`, Test 2). In Claude Code sind es 2 bis 4.
 
 Nächster Testlauf: „/lernhelfer:verwalten Teste den Lernhelfer“ als erste
 Nachricht in einem neuen Chat, in einem Projekt mit privater Datenquelle.

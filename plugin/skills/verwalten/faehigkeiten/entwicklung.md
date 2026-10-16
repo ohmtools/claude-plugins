@@ -11,8 +11,9 @@ und änderst nur, was die Änderung verlangt.
 ## Pfade in dieser Fähigkeit
 
 Es gelten die Präfixe aus `plugin:skills/gemeinsam/grundlagen.md`, Abschnitt
-„Pfade“. Zusätzlich steht `kopie:` für die Arbeitskopie
-`arbeit:lernhelfer-entwicklung/`. Auch dieses Präfix gehört nicht zum Pfad.
+„Pfade“. Zusätzlich steht `kopie:` für die Arbeitskopie des Plugins
+`arbeit:lernhelfer-entwicklung/plugin/`. Auch dieses Präfix gehört nicht zum
+Pfad.
 
 ## Grundsatz
 
@@ -23,11 +24,13 @@ Es gelten die Präfixe aus `plugin:skills/gemeinsam/grundlagen.md`, Abschnitt
 - `projekt:gedaechtnis/`, `projekt:module/`, `projekt:daten.xml` und `daten:`
   gehören nicht zum Lernhelfer. Ändere dort keine vorhandenen Daten und
   exportiere nichts daraus.
-- `kopie:README.md`, `kopie:CLAUDE.md` und
-  `kopie:.claude-plugin/marketplace.json` gibt es nur, wenn der Nutzer ein
-  Archiv seines Repositorys angehängt hat. Ändere sie nur, wenn er es in
-  diesem Chat wünscht. Prüfe bei `kopie:CLAUDE.md` dann auch, ob die
-  Beschreibung des Stands noch stimmt.
+- `arbeit:lernhelfer-entwicklung/README.md`,
+  `arbeit:lernhelfer-entwicklung/CLAUDE.md` und
+  `arbeit:lernhelfer-entwicklung/.claude-plugin/marketplace.json` gibt es nur,
+  wenn der Nutzer ein Archiv seines Repositorys angehängt hat. Ändere sie nur,
+  wenn er es in diesem Chat wünscht. Prüfe bei
+  `arbeit:lernhelfer-entwicklung/CLAUDE.md` dann auch, ob die Beschreibung des
+  Stands noch stimmt.
 
 ## Vorbereiten
 
@@ -37,8 +40,10 @@ Einmal pro Chat, vor der ersten Änderung oder dem ersten Export.
    `.claude-plugin/plugin.json` und `skills/` liegen.
    - Hat der Nutzer im Chat `lernhelfer.plugin` oder ein Archiv seines
      Repositorys angehängt, entpacke es in den neuen, leeren Ordner
-     `arbeit:lernhelfer-quelle/`. Die Wurzel liegt darin, bei Archiven oft in
-     einem Oberordner.
+     `arbeit:lernhelfer-quelle/`. Die Wurzel liegt darin, bei
+     `lernhelfer.plugin` ganz oben, bei einem Archiv des Repositorys im Ordner
+     `plugin/`, oft unter einem Oberordner. Der Ordner, in dem dieses
+     `plugin/` liegt, ist dann die **Repository-Wurzel**.
    - Sonst ist die Wurzel `plugin:`.
 
    Prüfe danach: In der Wurzel liegen `.claude-plugin/plugin.json`,
@@ -52,10 +57,12 @@ Einmal pro Chat, vor der ersten Änderung oder dem ersten Export.
    ```
 
 2. **Arbeitskopie anlegen:** Leg den neuen, leeren Ordner
-   `arbeit:lernhelfer-entwicklung/` an und kopiere die Wurzel mit allen Pfaden
-   hinein (z.B. `cp -r`). Lass dabei `.git/` und alle anderen Dateien und
-   Ordner weg, deren Name mit einem Punkt beginnt, außer `.claude-plugin/`.
-   Schreib den Inhalt nie ab.
+   `arbeit:lernhelfer-entwicklung/` an. Gibt es eine Repository-Wurzel,
+   kopiere sie mit allen Pfaden hinein, sonst kopiere die Wurzel nach
+   `kopie:` (z.B. mit `cp -r`). Danach liegt das Plugin in beiden Fällen unter
+   `kopie:`. Lass dabei `.git/` und alle anderen Dateien und Ordner weg, deren
+   Name mit einem Punkt beginnt, außer `.claude-plugin/`. Schreib den Inhalt
+   nie ab.
 
 ## Änderungen machen
 
@@ -109,8 +116,8 @@ Einmal pro Chat, vor der ersten Änderung oder dem ersten Export.
      ausnahmslos gelten.
    - Schreib keine Leerzeichen am Zeilenende. Manche Schreibwerkzeuge entfernen
      sie, dann ändert sich eine Datei unbemerkt.
-   - Schreib keine Versionen und keine Quelle in die Dateien der Skills.
-     claude.ai verwaltet das Plugin.
+   - Schreib keine Versionsnummern, Autoren oder Änderungsdaten in die Dateien
+     der Skills. Claude.ai verwaltet das Plugin.
    - Leg jede Fähigkeit nach ihrer Aufgabe ab: in
      `kopie:skills/lernen/faehigkeiten/`, wenn sie mit dem Nutzer an einem
      Fach lernt, in `kopie:skills/verwalten/faehigkeiten/`, wenn sie Fächer,
@@ -205,8 +212,9 @@ aus.
 
 1. **Prüfen:**
    - `kopie:.claude-plugin/plugin.json` ist gültiges JSON
-     (`python3 -m json.tool`), ebenso `kopie:.claude-plugin/marketplace.json`,
-     falls es sie gibt.
+     (`python3 -m json.tool`), ebenso
+     `arbeit:lernhelfer-entwicklung/.claude-plugin/marketplace.json`, falls es
+     sie gibt.
    - Jede `SKILL.md` unter `kopie:skills/` hat im Frontmatter `name` (gleich
      dem Ordnernamen) und `description` und sonst nichts.
    - Keine Datei ist leer, keine Zeile endet auf ein Leerzeichen.
@@ -214,12 +222,12 @@ aus.
    Behebe, was nicht stimmt, bevor du weitermachst.
 2. **Plugin-Datei packen:** Pack aus `kopie:` genau `.claude-plugin/plugin.json`
    und den Ordner `skills/` als `arbeit:lernhelfer.plugin` (im Ordner `kopie:`
-   z.B. `zip -r ../lernhelfer.plugin .claude-plugin/plugin.json skills`). Prüf
+   z.B. `zip -r ../../lernhelfer.plugin .claude-plugin/plugin.json skills`). Prüf
    mit `unzip -l`, dass `.claude-plugin/plugin.json`,
    `skills/gemeinsam/grundlagen.md` und `skills/{skill}/SKILL.md` für alle
    drei Skills im Archiv liegen.
-3. **Repository packen:** Nur wenn unter `kopie:` noch andere Dateien liegen
-   (z.B. `kopie:README.md`): Pack den ganzen Inhalt von `kopie:` als
+3. **Repository packen:** Nur wenn es `arbeit:lernhelfer-entwicklung/README.md`
+   gibt: Pack den ganzen Inhalt von `arbeit:lernhelfer-entwicklung/` als
    `arbeit:lernhelfer-repository.zip`, ohne Oberordner.
 4. **Bereitstellen:** Stell die gepackten Dateien dem Nutzer im Chat zum
    Herunterladen bereit.
@@ -230,7 +238,7 @@ aus.
 
    Zum Ausprobieren: Deaktiviere das installierte Lernhelfer-Plugin und lade die Datei in Claude unter Customize > Plugins > Add > Upload plugin hoch. Die Änderungen gelten ab dem nächsten neuen Chat.
 
-   Für alle anderen: Die Datei ist ein ZIP-Archiv. Ersetze in deinem Repository den Ordner skills/ und die Datei .claude-plugin/plugin.json durch ihren Inhalt, committe und pushe. Wer den Lernhelfer per Link mit automatischem Abgleich installiert hat, bekommt die Änderung dann von selbst.
+   Für alle anderen: Die Datei ist ein ZIP-Archiv. Ersetze in deinem Repository den Ordner plugin/skills/ und die Datei plugin/.claude-plugin/plugin.json durch ihren Inhalt, committe und pushe. Wer den Lernhelfer per Link mit automatischem Abgleich installiert hat, bekommt die Änderung dann von selbst.
    {repository-hinweis}
    {anweisung-hinweis}
    ```

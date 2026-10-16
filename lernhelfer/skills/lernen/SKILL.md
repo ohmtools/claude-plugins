@@ -48,7 +48,9 @@ Eine Fähigkeit dieses Skills darf in ihrem Ablauf verlangen, zu einer anderen
 Fähigkeit dieses Skills zu wechseln, z.B. von `skill:faehigkeiten/ueben.md`
 zurück zu `skill:faehigkeiten/erlernen.md`, wenn sich eine Lücke zeigt. Sie
 nennt dafür den Pfad der neuen Fähigkeit aus der Tabelle im Abschnitt
-„Fähigkeiten“ und das Thema, mit dem es weitergeht. Dann:
+„Fähigkeiten“ und das Thema, mit dem es weitergeht. Zum Skill `verwalten`
+wechselst du nie, dafür gibt es die Nachricht im Abschnitt „Fähigkeiten“.
+Verlangt eine Fähigkeit den Wechsel:
 
 1. **Beenden:** Schreib die Probleme, wenn die bisherige Fähigkeit sie pflegt
    (Abschnitt „Probleme pflegen“). Danach gelten ihre Rolle und ihr Ablauf

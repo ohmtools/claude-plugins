@@ -61,6 +61,9 @@ die Änderung betrifft, vollständig.
     dazu die Vorlagen in `modul-bearbeiten.md` und `initialisieren.md`.
   - Spalten von `probleme.md`: Vorlagen in `grundlagen.md` und
     `modul-bearbeiten.md`.
+  - Wechsel zwischen Fähigkeiten: Konvention in `entwicklung.md`, Abschnitt
+    „Fähigkeit wechseln“ in `lernen/SKILL.md` und Grundregel in
+    `verwalten/SKILL.md`.
   - Zugriff auf die Datenquelle mit git: Vorlage für `daten.xml` in
     `initialisieren.md` und Befehle in `hochladen.md`, dort auch das leere
     Repository (`Not a valid object name HEAD`, dann
@@ -97,10 +100,10 @@ die Änderung betrifft, vollständig.
   `gedaechtnis/benutzererfahrung.md`. `verwalten` darf überall schreiben und
   mit mehreren Modulen arbeiten. Verweise auf den anderen Skill stehen in
   Nachrichten als „/lernhelfer:{skill} {satz}“.
-- Wechsel: Eine Fähigkeit in `lernen` darf zu einer anderen in `lernen`
-  wechseln, z.B. bei einer Lücke zurück zu „Erlernen“ (Abschnitt „Fähigkeit
-  wechseln“ in `lernen/SKILL.md`, Konvention in `entwicklung.md`). Sonst
-  weisen Fähigkeiten nur mit einer Nachricht auf andere hin.
+- Wechsel zu einer anderen Fähigkeit desselben Skills: in `lernen` erlaubt,
+  z.B. bei einer Lücke zurück zu „Erlernen“, in `verwalten` verboten, dort
+  weist eine Fähigkeit nur mit einer Nachricht auf eine andere hin. Zum
+  anderen Skill wechselt keiner.
 - Daten im Projekt: `daten.xml`, pro Modul `module/{modul}/info.md`
   (Beschreibung, Lernziele) und `module/{modul}/index.md` (Abschnitt
   „Dateien“ als einzige Zuordnung, Stichwortverzeichnis mit Dateiseiten),

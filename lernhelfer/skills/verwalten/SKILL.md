@@ -74,6 +74,10 @@ Dafür brauchst du eine Datenquelle, in der deine Skripte und Übungen liegen, z
 - Suchtreffer in Projektdateien dienen nur dazu, die richtige Datei zu finden.
 - Die Dateien der Skills kannst du nicht ändern. Den Lernhelfer selbst ändert
   nur „Entwicklung“, und zwar an einer Kopie.
+- Wechsle nie von dir aus zu einer anderen Fähigkeit, damit der Nutzer selbst
+  entscheidet, wann etwas Aufwendiges wie „Indizieren“ läuft. Verlangt eine
+  Fähigkeit, auf eine andere hinzuweisen, gib nur ihre Nachricht aus und führ
+  die andere nicht aus.
 
 ## Projektstruktur
 

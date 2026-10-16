@@ -94,7 +94,9 @@ Was der Nutzer nicht erklären kann, kann er noch nicht.
 Prüft ohne Hilfestellung, ob Gelerntes noch sitzt.
 
 1. **Ankündigen:** Antworte, wobei `{anzahl}` die Zahl der Fragen ist, die der
-   Nutzer nennt, sonst 10:
+   Nutzer nennt, sonst 10. Geht es um ein Kapitel, ist `{thema}` sein Name mit
+   den Seiten im PDF, z.B. `Kapitel 3 „Ableitungen“ (Seite 15–28)`, damit der
+   Nutzer gleich merkt, wenn es das falsche ist:
 
    ```text
    Ich stelle dir {anzahl} Fragen zu {thema}, eine nach der anderen. Antworte aus dem Gedächtnis, ohne nachzuschauen, und schreib zu jeder Antwort, wie sicher du dir bist, von 1 (geraten) bis 5 (ganz sicher). Mit „Stopp“ hören wir früher auf.
@@ -141,7 +143,8 @@ Prüft ohne Hilfestellung, ob Gelerntes noch sitzt.
 
 Seite für Seite zeigt der Nutzer, dass er alle Konzepte, Stichwörter und
 Fachbegriffe darauf erklären kann. Erst dann kommt die nächste Seite. Die
-Seiten zählen wie im Index ab 1, eine Folie ist eine Seite.
+Seiten zählen wie im Index ab 1. Nennt der Nutzer eine Seite oder Folie, ist
+das eine aufgedruckte Nummer (`skill:SKILL.md`, Abschnitt „PDF-Dateien“).
 
 1. **Datei:** Nimm das Skript des Moduls, also die Datei im Abschnitt „Dateien“
    des Index, deren Beschreibung mit `Skript` beginnt, im **Chat** das
@@ -158,7 +161,7 @@ Seiten zählen wie im Index ab 1, eine Folie ist eine Seite.
    auf die Antwort:
 
    ```text
-   Ab welcher Seite von {datei} machen wir weiter? Schreib „1“, wenn wir vorne anfangen.
+   Ab welcher Seite von {datei} machen wir weiter? Die Nummer, die auf der Folie steht, reicht. Schreib „1“, wenn wir vorne anfangen.
    ```
 
 3. **Seite für Seite:** Für jede Seite ab der Startseite:
@@ -191,12 +194,14 @@ Seiten zählen wie im Index ab 1, eine Folie ist eine Seite.
    ```
 
 5. **Aufhören:** Bei „Für heute aufhören“ oder wenn der Nutzer sonst aufhören
-   will, antworte, wobei `{bis}` die letzte geschaffte Seite ist und
-   `{weiter}` die Seite danach. `{anhang}` ist im **Chat**
-   ` und häng die Datei wieder an`, im **Projekt** leer.
+   will, antworte, wobei `{bis}` die letzte geschaffte Seite ist, `{weiter}`
+   die Seite danach und `{titel}` deren Überschrift. Die Überschrift findet
+   die Seite auch dann wieder, wenn die aufgedruckte Nummer abweicht.
+   `{anhang}` ist im **Chat** ` und häng die Datei wieder an`, im **Projekt**
+   leer.
 
    ```text
-   Wir sind bis Seite {bis} von {datei} gekommen. Damit es nächstes Mal dort weitergeht, schreib „/lernhelfer:lernen Skript {datei} ab Seite {weiter} durchgehen“{anhang}.
+   Wir sind bis Seite {bis} von {datei} gekommen. Damit es nächstes Mal dort weitergeht, schreib „/lernhelfer:lernen Skript {datei} ab Seite {weiter} ‚{titel}‘ durchgehen“{anhang}.
    ```
 
    Am Ende des Skripts antworte stattdessen:

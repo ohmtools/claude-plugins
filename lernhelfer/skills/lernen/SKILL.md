@@ -165,7 +165,8 @@ Module lesen.
    Stichwortverzeichnis die passenden Stellen und lies gezielt diese Seiten
    (Abschnitt „PDF-Dateien“). Nennt der Nutzer ein Kapitel statt eines Themas,
    such seine Seiten im Inhaltsverzeichnis der Datei, das meist auf den ersten
-   Seiten steht. Durchsuch keine ganzen Dateien, das kostet viele Token. Steht
+   Seiten steht. Seine Seitenzahlen sind aufgedruckte Nummern (Abschnitt
+   „PDF-Dateien“). Ein Kapitel reicht bis zur Seite vor dem nächsten. Durchsuch keine ganzen Dateien, das kostet viele Token. Steht
    ein Thema nicht im Index, sag das offen.
 
 ## Dateiprüfung
@@ -213,7 +214,22 @@ Soll ich mir {datei} auch für spätere Chats merken? Schreib „/lernhelfer:ver
 
 - Den Text einer Seite liefert
   `pdftotext -layout -f {seite} -l {seite} '{datei}' -`. Die Seiten zählen wie
-  im Index ab 1.
+  im Index ab 1, so wie ein PDF-Programm sie zählt. Den Text mehrerer Seiten
+  liefert `pdftotext -layout -f {von} -l {bis} '{datei}' -`. Darin endet jede
+  Seite mit einem Seitenvorschub (`\f`), auch eine leere: Seite `{von}` ist
+  der Text vor dem ersten Seitenvorschub, jede weitere der Text bis zum
+  nächsten.
+- **Aufgedruckte Nummern:** Seitenzahlen, die der Nutzer nennt („Folie 12“,
+  „Seite 12“), und die Seitenzahlen eines Inhaltsverzeichnisses sind die
+  Nummern, die auf den Seiten stehen. Sie können von der Seite im PDF
+  abweichen, z.B. wenn die Titelseite keine Nummer trägt. Such die Seite so:
+  1. Steht neben der Zahl eine Überschrift, z.B. im Satz zum Weitermachen
+     („ab Seite 14 ‚Kettenregel‘“), such die Überschrift: zuerst auf der Seite
+     mit dieser Zahl im PDF, dann auf bis zu fünf Seiten davor und danach.
+  2. Sonst lies die Seite mit dieser Zahl im PDF. Steht die Nummer darauf
+     (meist in der Kopf- oder Fußzeile), ist es diese Seite. Sonst such die
+     Nummer auf bis zu fünf Seiten davor und danach.
+  3. Findest du nichts, nimm die Seite mit dieser Zahl im PDF.
 - Formeln, Tabellen und Abbildungen kommen im Text oft fehlerhaft an. Bist du
   bei einer Stelle unsicher, wandle die Seite in ein Bild um
   (`pdftoppm -f {seite} -l {seite} -r 150 -png '{datei}' seite`, im Ordner

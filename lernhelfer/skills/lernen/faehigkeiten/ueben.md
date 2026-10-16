@@ -219,7 +219,10 @@ ausdrücklichen Wunsch heraus.
 4. **Aufgaben:** Entwirf die Aufgaben wie im Abschnitt „Transferaufgaben“,
    beim Umfang „Kurz“ zwei oder drei. Jede Aufgabe bekommt einen kurzen,
    neutralen Titel, der das geprüfte Konzept nicht verrät, und Teilaufgaben
-   mit Punkten.
+   mit Punkten. Plane jede Aufgabe so, dass ihre Angabe auf eine Seite passt,
+   denn im PDF steht jede Aufgabe auf einer eigenen Seite, damit der Nutzer
+   sie am Tablet ohne Scrollen bearbeiten kann. Der Rest der Seite bleibt
+   leer, füll ihn nicht mit weiteren Teilaufgaben auf.
 5. **Lösungen:** Schreib zu jeder Teilaufgabe den vollständigen Lösungsweg mit
    den Denkschritten, nicht nur das Ergebnis, nachgerechnet. Schreib danach zu
    jeder Aufgabe:
@@ -240,12 +243,13 @@ ausdrücklichen Wunsch heraus.
       `\hilfsmittel` (`{hilfsmittel}`).
    3. Ersetze alles zwischen `\begin{questions}` und `\end{questions}` durch
       deine Aufgaben. Die vier Beispielaufgaben dort zeigen, wie es geht:
-      `\aufgabe{Titel}` beginnt eine Aufgabe, `\part[{punkte}]` eine
-      Teilaufgabe, `\begin{solution}` … `\end{solution}` direkt danach ihre
-      Lösung. Dazu gibt es den Kasten `gegeben` für gegebene Größen,
-      Abbildungen mit `tikzpicture`, `axis` (pgfplots) und `circuitikz`, Code
-      mit `lstlisting` und Multiple Choice mit `oneparcheckboxes` und
-      `\CorrectChoice`.
+      `\aufgabe{Titel}` beginnt eine Aufgabe auf einer neuen Seite (die erste
+      unter dem Titelkopf), `\part[{punkte}]` eine Teilaufgabe,
+      `\begin{solution}` … `\end{solution}` direkt danach ihre Lösung. Dazu
+      gibt es den Kasten `gegeben` für gegebene Größen, Abbildungen mit
+      `tikzpicture`, `axis` (pgfplots) und `circuitikz`, Code mit
+      `lstlisting` und Multiple Choice mit `oneparcheckboxes` und
+      `\CorrectChoice`. Setz selbst keine Seitenumbrüche.
    4. Punkte stehen nur an Teilaufgaben, deshalb hat jede Aufgabe mindestens
       eine. Was Schritt 5 nach den Lösungswegen verlangt (Konzept,
       Fehlvorstellung, Bewertungskriterien, Fundstelle, Hinweise), schreibst
@@ -267,8 +271,10 @@ ausdrücklichen Wunsch heraus.
      `arbeit:uebungsblatt/` mit `pdftoppm -r 80 -png uebungsblatt.pdf angabe`
      und `pdftoppm -r 80 -png uebungsblatt-loesung.pdf loesung`):
      Abbildungen und Schaltpläne passen zum Text, nichts ist abgeschnitten
-     oder ragt über den Rand, keine Aufgabe ist ungünstig umgebrochen, und die
-     Angabe verrät keine Lösung.
+     oder ragt über den Rand, jede Aufgabe beginnt auf einer neuen Seite, und
+     die Angabe verrät keine Lösung.
+   - In der Angabe passt jede Aufgabe auf ihre Seite. Reicht eine auf die
+     nächste Seite, kürz sie oder verkleinere ihre Abbildung.
    - Alle Lösungen sind nachgerechnet.
    - Die Punkte, die die erste Seite der Angabe nennt, sind gleich der Dauer
      in Minuten.

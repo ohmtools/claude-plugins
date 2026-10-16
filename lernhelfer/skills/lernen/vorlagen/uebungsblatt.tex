@@ -47,7 +47,6 @@
 \pgfplotsset{compat=1.18}
 \usepackage[european]{circuitikz}
 \usepackage{listings}
-\usepackage{needspace}
 \usepackage[hidelinks]{hyperref}
 \hypersetup{pdftitle={OhmTools Lernhelfer Übungsblatt für \modulname}}
 
@@ -84,8 +83,10 @@
   \end{minipage}}
 \qformat{\aufgabenkopf}
 
-% Neue Aufgabe nur beginnen, wenn auf der Seite noch genug Platz ist
-\newcommand{\aufgabe}[1]{\needspace{12\baselineskip}\titledquestion{#1}}
+% Jede Aufgabe beginnt auf einer neuen Seite, die erste unter dem Titelkopf.
+% So lässt sich jede Aufgabe am Tablet ohne Scrollen bearbeiten, der Rest
+% der Seite bleibt frei.
+\newcommand{\aufgabe}[1]{\ifnum\value{question}>0 \newpage\fi\titledquestion{#1}}
 
 % Punkte bei Teilaufgaben
 \pointpoints{Punkt}{Punkte}

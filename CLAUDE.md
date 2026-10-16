@@ -186,10 +186,12 @@ die Änderung betrifft, vollständig.
   sie mit `pdftotext` auf bis zu fünf Seiten davor und danach. Der Satz zum
   Weitermachen im Skript enthält die Überschrift als Anker
   (`lernen/SKILL.md`, „PDF-Dateien“).
-- Vorlagen: `lernen/vorlagen/` mit `uebungsblatt.tex` und `build.sh`, beide
-  unverändert vom Nutzer übernommen. Der Kopf der Vorlage verweist auf
-  `build.sh`, deshalb kommt es mit, statt die Befehle in `ueben.md` zu
-  wiederholen.
+- Vorlagen: `lernen/vorlagen/` mit `uebungsblatt.tex` und `build.sh`, vom
+  Nutzer übernommen. Einzige Änderung: `\aufgabe` beginnt jede Aufgabe auf
+  einer neuen Seite (die erste unter dem Titelkopf), auch in der Lösung,
+  damit man sie am Tablet ohne Scrollen bearbeitet. `needspace` ist dafür
+  entfallen. Der Kopf der Vorlage verweist auf `build.sh`, deshalb kommt es
+  mit, statt die Befehle in `ueben.md` zu wiederholen.
 - Bewusst ohne Regel: Dateien, die ein Nutzer trotzdem über die Projektseite
   hochlädt.
 - Rückfragen: Mehr Optionen, als die Auswahlfelder zulassen, gehen als Text
@@ -322,7 +324,8 @@ mit diesen Fällen:
 - „Gib mir Aufgabe 2 von Blatt 3 mit anderen Zahlen, aber so, dass es kein
   Maximum gibt“ (neue Werte, vorher nachgerechnet)
 - „Mach mir ein Übungsblatt“ (höchstens zwei Rückfragen, Angabe- und
-  Lösungs-PDF mit nachgerechneten Lösungen)
+  Lösungs-PDF mit nachgerechneten Lösungen, jede Aufgabe auf einer eigenen
+  Seite)
 - Foto einer fehlerhaften Lösung (Bewertung, Fischgräte, Eintrag mit Ursache
   in `probleme.md`)
 

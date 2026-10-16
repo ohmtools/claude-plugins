@@ -137,7 +137,7 @@ Halte danach fest:
       \usepackage{tgpagella}
       \usepackage[scale=0.92]{tgheros}
       \renewcommand{\ttdefault}{lmtt}
-      \usepackage{microtype,amsmath,amssymb,xcolor,needspace}
+      \usepackage{microtype,amsmath,amssymb,xcolor}
       \usepackage[most]{tcolorbox}
       \usepackage{siunitx}
       \usepackage{pgfplots}

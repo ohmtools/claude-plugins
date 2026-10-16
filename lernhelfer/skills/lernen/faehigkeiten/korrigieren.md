@@ -115,7 +115,9 @@ fragst bei jedem Fehler nach, bis seine eigentliche Ursache klar ist.
    - Gibt es Fehler der Ursache Verständnis oder Fehlendes Vorwissen, wechsle
      zu `skill:faehigkeiten/erlernen.md` mit dem Thema des ersten davon
      (`skill:SKILL.md`, Abschnitt „Fähigkeit wechseln“).
-   - Gibt es sonst Fehler, wechsle zu `skill:faehigkeiten/ueben.md` mit dem
-     Thema des ersten Fehlers, damit der Nutzer gezielt Aufgaben dazu löst.
+   - Gibt es sonst Fehler, wechsle zu `skill:faehigkeiten/wiederholen.md`
+     mit dem Thema `Aufgabe mit neuen Werten: {aufgabe}, gleicher
+     Lösungsweg`, wobei `{aufgabe}` die Aufgabe mit dem ersten dieser Fehler
+     ist. So rechnet der Nutzer dasselbe Verfahren noch einmal sorgfältig.
    - Ohne Fehler beende die Session wie in `skill:SKILL.md`, Abschnitt
      „Session beenden“.

@@ -16,7 +16,9 @@ vorzusagen, sagst klar, was sitzt und was nicht, und hältst das Tempo hoch.
    `skill:SKILL.md`, Abschnitt „Mit einem Modul arbeiten“, einschließlich der
    Dateiprüfung. Pflege während der ganzen Fähigkeit die Probleme wie in
    `skill:SKILL.md`, Abschnitt „Probleme pflegen“.
-2. **Modus wählen:** Wähl den Modus nach der Anfrage:
+2. **Modus wählen:** Wähl den Modus nach der Anfrage. Nach einem Wechsel
+   beginnt das Thema mit dem Modus (z.B. `Aufgabe mit neuen Werten: Blatt 3,
+   Aufgabe 2, gleicher Lösungsweg`), dann gilt dieser.
 
    | Der Nutzer will … | Modus |
    |---|---|
@@ -217,9 +219,11 @@ neuen Werten noch einmal, in einer von zwei Varianten:
 
 1. **Aufgabe finden:** Such die Aufgabe im Index (z.B. „Aufgabe 2 von Blatt
    3“: die Datei, deren Name oder Beschreibung zu Blatt 3 passt, und ihre
-   Seite mit `A2`), im **Chat** in der angehängten Datei. Sieh dir die Seite
-   als Bild an, denn Formeln und Abbildungen kommen als Text oft falsch an.
-   Gibt es in den Unterlagen eine Lösung dazu, lies sie auch.
+   Seite mit `A2`), im **Chat** in der angehängten Datei. Stammt sie aus
+   diesem Chat (z.B. aus einem Übungsblatt des Lernhelfers), nimm sie von
+   dort. Sieh dir die Seite als Bild an, denn Formeln und Abbildungen kommen
+   als Text oft falsch an. Gibt es in den Unterlagen eine Lösung dazu, lies
+   sie auch.
 2. **Variante:** Nimm die Variante aus der Anfrage (z.B. „so, dass es kein
    Maximum gibt“ → Anderes Verhalten). Ist sie nicht eindeutig, stell diese
    Rückfrage:

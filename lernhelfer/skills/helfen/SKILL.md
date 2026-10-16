@@ -105,7 +105,9 @@ die Kettenregel“. Claude wählt dann einen dieser Lernmodi:
   Chat in sechs Stufen vom Erinnern bis zum Erschaffen.
 - Korrigieren: Der Nutzer schickt seine Lösung getippt oder als Foto. Claude
   bewertet sie wie ein strenger Prüfer, mit geschätzter Punktzahl, gibt
-  Hinweise statt der Lösung und sucht zu jedem Fehler die Ursache.
+  Hinweise statt der Lösung und sucht zu jedem Fehler die Ursache. Danach geht
+  es bei Verständnisfehlern mit Erlernen weiter, sonst mit derselben Aufgabe
+  und neuen Werten.
 Zeigt sich unterwegs eine Lücke, wechselt Claude zum Erlernen und sagt das
 deutlich an, beim Skript danach zurück zur selben Seite. Im Projekt schlägt
 Claude außerdem Themen vor, die 1, 3 und 7 Tage nach einem Problem wieder dran

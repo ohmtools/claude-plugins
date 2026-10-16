@@ -178,7 +178,11 @@ die Änderung betrifft, vollständig.
     Markdown-Dateien) oder Bloom-Leiter im Chat.
   - Korrigieren: strenger Prüfer, Punkte als Schätzung, Hinweise statt
     Lösung, Fehlerursachen nach Fischgräte mit bis zu fünfmal „Warum?“,
-    danach Wechsel zu Erlernen (Verständnis, Vorwissen) oder Üben (sonst).
+    danach Wechsel zu Erlernen (Verständnis, Vorwissen) oder zu Wiederholen
+    mit derselben Aufgabe und neuen Werten (alle übrigen Ursachen). Üben kam
+    dafür nicht in Frage: Transferaufgaben helfen bei Flüchtigkeit und
+    Zeitdruck wenig und wären nach einer Wiederholen-Aufgabe ein Sprung im
+    Niveau.
   Wechsel innerhalb von `lernen` kündigt eine feste Nachricht an, mit
   optionaler Rückkehr (z.B. vom Skript zu Erlernen und zurück zur selben
   Seite).

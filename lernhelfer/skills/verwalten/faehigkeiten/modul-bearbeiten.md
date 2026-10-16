@@ -121,8 +121,8 @@ Es gibt noch keine Fächer. Wie soll das Fach heißen, zu dem das gehört?
 
      # Probleme: {modulname}
 
-     | Thema | Beschreibung | Verstanden | Historie |
-     |---|---|---|---|
+     | Thema | Beschreibung | Ursache | Verstanden | Historie |
+     |---|---|---|---|---|
      ```
 
 5. **Abschluss:** Hast du in Schritt 3 Dateien übernommen, antworte, wobei

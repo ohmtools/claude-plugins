@@ -272,13 +272,16 @@ format: 1
 
 # Probleme: {modulname}
 
-| Thema | Beschreibung | Verstanden | Historie |
-|---|---|---|---|
-| Kettenregel | Vergisst die innere Ableitung, z.B. bei sin(x²). | - | 2026-10-08, 2026-10-10 |
-| Partielle Integration | Wählt u und v' ungünstig, z.B. bei ∫ x·eˣ dx. | 2026-10-12 | 2026-10-05, 2026-10-09 |
-| Leistungsanpassung | Versteht Konzept hinter Blindstromkompensation nicht | - | 2026-10-09 |
+| Thema | Beschreibung | Ursache | Verstanden | Historie |
+|---|---|---|---|---|
+| Kettenregel | Vergisst die innere Ableitung, z.B. bei sin(x²). | Erkennt nicht, wann eine Funktion verkettet ist. | - | 2026-10-08, 2026-10-10 |
+| Partielle Integration | Wählt u und v' ungünstig, z.B. bei ∫ x·eˣ dx. | Prüft nicht, welcher Faktor durch Ableiten einfacher wird. | 2026-10-12 | 2026-10-05, 2026-10-09 |
+| Leistungsanpassung | Versteht Konzept hinter Blindstromkompensation nicht | - | - | 2026-10-09 |
 ```
 
+- `Ursache`: warum das Problem aus der Beschreibung entsteht, in einem Satz
+  (z.B. fehlendes Vorwissen, eine falsche Vorstellung oder eine
+  Verwechslung). Solange du sie nicht kennst, steht dort `-`.
 - `Verstanden`: das Datum, an dem der Nutzer zuletzt gezeigt hat, dass er das
   Thema verstanden hat, sonst `-`.
 - `Historie`: die Tage, an denen der Nutzer mit dem Thema Probleme hatte,

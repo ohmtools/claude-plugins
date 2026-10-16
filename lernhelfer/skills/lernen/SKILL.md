@@ -42,6 +42,23 @@ wobei `{anfrage}` seine Anfrage in wenigen Worten ist:
 Das erledigt die Verwaltung des Lernhelfers. Schreib dafür „/lernhelfer:verwalten {anfrage}“.
 ```
 
+## Fähigkeit wechseln
+
+Eine Fähigkeit dieses Skills darf in ihrem Ablauf verlangen, zu einer anderen
+Fähigkeit dieses Skills zu wechseln, z.B. von `skill:faehigkeiten/ueben.md`
+zurück zu `skill:faehigkeiten/erlernen.md`, wenn sich eine Lücke zeigt. Sie
+nennt dafür den Pfad der neuen Fähigkeit aus der Tabelle im Abschnitt
+„Fähigkeiten“ und das Thema, mit dem es weitergeht. Dann:
+
+1. **Beenden:** Schreib die Probleme, wenn die bisherige Fähigkeit sie pflegt
+   (Abschnitt „Probleme pflegen“). Danach gelten ihre Rolle und ihr Ablauf
+   nicht mehr.
+2. **Lesen:** Lies die neue Fähigkeit vollständig.
+3. **Weitermachen:** Arbeite nach ihr mit dem genannten Thema weiter. Das
+   Modul bleibt dasselbe, im **Chat** arbeitest du weiter ohne Modul. Frag
+   nicht erneut nach dem Fach. Die Dateiprüfung wiederholst du nicht, sie gilt
+   einmal pro Chat und Modul.
+
 ## Grundregeln
 
 - Aus Dateien in `daten:` liest du gezielt die Seiten, auf die der Index
@@ -178,13 +195,16 @@ entfallen sie.
   nach oder sagt er selbst, dass er es nicht versteht, trag das Problem ein.
   Steht das Thema schon in der Tabelle, setz `Verstanden` auf `-`, häng das
   heutige Datum an `Historie` an, falls es dort fehlt, und ergänze bei Bedarf
-  die Beschreibung. Sonst häng eine Zeile an: Thema, Beschreibung, `-`,
-  heutiges Datum. Beschreib das Problem so konkret, dass eine spätere Sitzung
-  gezielt daran arbeiten kann.
+  die Beschreibung. Sonst häng eine Zeile an: Thema, Beschreibung, Ursache
+  (siehe unten), `-`, heutiges Datum. Beschreib das Problem so konkret, dass
+  eine spätere Sitzung gezielt daran arbeiten kann.
+- **Ursache:** Zeigt sich, warum der Nutzer das Problem hat, trag die Ursache
+  unter `Ursache` ein. Zeigt sich später eine andere, ersetze sie. Bis dahin
+  steht dort `-`.
 - **Verstanden:** Zeigt der Nutzer, dass er ein Thema verstanden hat (z.B.
   passende Aufgaben ohne Hilfe richtig lösen oder es selbst korrekt
   erklären), setz `Verstanden` auf das heutige Datum.
 - **Wann schreiben:** Schreib von selbst, ohne dass der Nutzer darum bittet:
-  am Ende eines Lernblocks, beim Wechsel des Themas und spätestens nach etwa
-  sechs Nachrichten, wenn sich seit dem letzten Schreiben etwas geändert hat.
-  Schreib nicht, wenn sich nichts geändert hat.
+  am Ende eines Lernblocks, beim Wechsel des Themas oder der Fähigkeit und
+  spätestens nach etwa sechs Nachrichten, wenn sich seit dem letzten
+  Schreiben etwas geändert hat. Schreib nicht, wenn sich nichts geändert hat.

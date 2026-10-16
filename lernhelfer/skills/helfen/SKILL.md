@@ -159,8 +159,8 @@ in der Datenquelle. In den Projektdateien liegen nur die Daten des Nutzers:
 - `projekt:module/`: pro Fach eine Beschreibung mit Lernzielen (`info.md`) und
   das Verzeichnis der Unterlagen (`index.md`).
 - `projekt:gedaechtnis/`: pro Fach, womit der Nutzer Schwierigkeiten hat oder
-  hatte (`probleme.md`), dazu `benutzererfahrung.md` mit Notizen, wo der Umgang
-  mit dem Lernhelfer hakt.
+  hatte und woran es liegt (`probleme.md`), dazu `benutzererfahrung.md` mit
+  Notizen, wo der Umgang mit dem Lernhelfer hakt.
 Ein Update des Plugins ändert diese Daten nie. Braucht eine neue Fassung ein
 anderes Format, passt „Daten migrieren“ sie an. In einem Chat ohne Projekt
 speichert der Lernhelfer nichts.
@@ -180,9 +180,10 @@ Claude auch mit allen Fächern auf einmal.
         <frage>Womit habe ich Schwierigkeiten?</frage>
         <antwort>
 Der Nutzer schreibt „/lernhelfer:lernen Schwachstellen listen“ und den Namen
-eines Fachs. Claude zählt die offenen Probleme in diesem Fach auf und gibt eine
-kurze Statistik: wie viele Probleme es insgesamt notiert hat, wie viele
-inzwischen verstanden sind und wie viele an mehreren Tagen ein Problem waren.
+eines Fachs. Claude zählt die offenen Probleme in diesem Fach auf, wenn bekannt
+mit ihrer Ursache, und gibt eine kurze Statistik: wie viele Probleme es
+insgesamt notiert hat, wie viele inzwischen verstanden sind und wie viele an
+mehreren Tagen ein Problem waren.
 Nach diesen älteren Problemen kann der Nutzer danach gezielt fragen. Die
 Probleme notieren die Lernmodi. Solange sie nicht ausgearbeitet sind, bleibt die
 Liste meist leer. In einem Chat ohne Projekt nimmt Claude die Schwachstellen aus

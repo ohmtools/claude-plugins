@@ -40,9 +40,10 @@ steht, und erfinde keine Schwachstellen.
    - Im **Chat** lass „ in {modulname}“ weg.
    - `{probleme}`: eine Zeile `- {thema}: {zusammenfassung}` pro Problem mit
      `-` unter `Verstanden`, in der Reihenfolge der Tabelle. Im **Chat** eine
-     Zeile pro Thema aus Schritt 2. `{zusammenfassung}` fasst die
-     Beschreibung in einem Satz zusammen. Gibt es kein solches Problem, setze
-     diese Zeile ein:
+     Zeile pro Thema aus Schritt 2. `{zusammenfassung}` fasst Beschreibung
+     und Ursache in einem Satz zusammen, nur die Beschreibung, wenn unter
+     `Ursache` `-` steht. Gibt es kein solches Problem, setze diese Zeile
+     ein:
 
      ```text
      Offene Probleme habe ich mir keine notiert.

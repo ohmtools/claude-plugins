@@ -134,13 +134,21 @@ Einmal pro Chat, vor der ersten Änderung oder dem ersten Export.
      Frontmatter ihres Skills die Sätze auf, mit denen der Nutzer sie aufruft.
      Danach entscheidet Claude, wann es den Skill lädt.
    - Jede Fähigkeit steht für sich. Verweise nie auf Schritte oder Abschnitte
-     einer anderen Fähigkeit und führe keine andere Fähigkeit aus. Braucht der
-     Nutzer danach eine andere Fähigkeit, weis ihn mit einer Nachricht darauf
-     hin, was er schreiben soll (Vorbild:
+     einer anderen Fähigkeit und führe keine andere Fähigkeit als Teil deines
+     Ablaufs aus. Braucht der Nutzer danach eine andere Fähigkeit, weis ihn
+     mit einer Nachricht darauf hin, was er schreiben soll (Vorbild:
      `kopie:skills/verwalten/faehigkeiten/modul-bearbeiten.md`, Abschnitt
      „Index veraltet“). Gleiche Abläufe stehen deshalb in mehreren
      Fähigkeiten, z.B. das Auslesen der Lernziele in „Indizieren“ und „Modul
      bearbeiten“. Änderst du einen, änderst du alle Kopien.
+   - Eine Fähigkeit in `lernen` darf zu einer anderen Fähigkeit in `lernen`
+     wechseln, statt den Nutzer auf sie hinzuweisen, damit das Lernen nicht
+     unterbrochen wird (z.B. von „Üben“ zurück zu „Erlernen“, wenn sich eine
+     Lücke zeigt). Sie endet damit. Verlang den Wechsel im Ablauf
+     ausdrücklich, mit dem Pfad der neuen Fähigkeit und dem Thema, und verweis
+     dabei auf den Abschnitt „Fähigkeit wechseln“ in
+     `kopie:skills/lernen/SKILL.md`, nie auf Schritte der neuen Fähigkeit.
+     Fähigkeiten in `verwalten` wechseln nie.
    - Gib jeder Fähigkeit in `kopie:skills/lernen/faehigkeiten/` und
      `kopie:skills/verwalten/faehigkeiten/` eine Rolle, die zu ihrer Aufgabe
      passt, denn mit einer Rolle arbeitet Claude besser (z.B. „Du bist hier

@@ -24,7 +24,7 @@ und die Projektdateien.
 | Plugin und Marketplace | `lernhelfer/.claude-plugin/plugin.json`, `.claude-plugin/marketplace.json` |
 | Text der Projektanweisungen | `lernhelfer/skills/verwalten/projektanweisung.md` |
 | Gemeinsam für `lernen` und `verwalten`: Grundregeln, Pfade, Betriebsart, Nachrichten, Formate, Module, Datenquelle (`daten.xml`), Gedächtnis, Benutzererfahrung | `lernhelfer/skills/gemeinsam/grundlagen.md` |
-| Lernen: Fähigkeiten, Modul bestimmen, Dateiprüfung, Dateien im Chat, PDF-Dateien, Probleme pflegen | `lernhelfer/skills/lernen/SKILL.md` |
+| Lernen: Fähigkeiten, Fähigkeit wechseln, Modul bestimmen, Dateiprüfung, Dateien im Chat, PDF-Dateien, Probleme pflegen | `lernhelfer/skills/lernen/SKILL.md` |
 | Lernmodi und Schwachstellen | `lernhelfer/skills/lernen/faehigkeiten/` |
 | Verwalten: Fähigkeiten und ihre Verfügbarkeit, Projektstruktur, Dateien der Datenquelle | `lernhelfer/skills/verwalten/SKILL.md` |
 | Konventionen für Fähigkeiten | `lernhelfer/skills/verwalten/faehigkeiten/entwicklung.md`, „Änderungen machen“, Schritt 2 |
@@ -59,6 +59,8 @@ die Änderung betrifft, vollständig.
     „Exportieren“).
   - Formatnummern: Tabelle „Formate“ und die Vorlagen in `grundlagen.md`,
     dazu die Vorlagen in `modul-bearbeiten.md` und `initialisieren.md`.
+  - Spalten von `probleme.md`: Vorlagen in `grundlagen.md` und
+    `modul-bearbeiten.md`.
   - Zugriff auf die Datenquelle mit git: Vorlage für `daten.xml` in
     `initialisieren.md` und Befehle in `hochladen.md`, dort auch das leere
     Repository (`Not a valid object name HEAD`, dann
@@ -95,12 +97,19 @@ die Änderung betrifft, vollständig.
   `gedaechtnis/benutzererfahrung.md`. `verwalten` darf überall schreiben und
   mit mehreren Modulen arbeiten. Verweise auf den anderen Skill stehen in
   Nachrichten als „/lernhelfer:{skill} {satz}“.
+- Wechsel: Eine Fähigkeit in `lernen` darf zu einer anderen in `lernen`
+  wechseln, z.B. bei einer Lücke zurück zu „Erlernen“ (Abschnitt „Fähigkeit
+  wechseln“ in `lernen/SKILL.md`, Konvention in `entwicklung.md`). Sonst
+  weisen Fähigkeiten nur mit einer Nachricht auf andere hin.
 - Daten im Projekt: `daten.xml`, pro Modul `module/{modul}/info.md`
   (Beschreibung, Lernziele) und `module/{modul}/index.md` (Abschnitt
   „Dateien“ als einzige Zuordnung, Stichwortverzeichnis mit Dateiseiten),
-  `gedaechtnis/{modul}/probleme.md` (Thema, Beschreibung, Verstanden,
-  Historie) und `gedaechtnis/benutzererfahrung.md`. Alle Formate sind 1, es
-  gibt noch keine Migration.
+  `gedaechtnis/{modul}/probleme.md` (Thema, Beschreibung, Ursache,
+  Verstanden, Historie) und `gedaechtnis/benutzererfahrung.md`. Alle Formate
+  sind 1, es gibt noch keine Migration. Die Spalte `Ursache` (für die
+  Fehlerursache, Fischgräte) kam auf Wunsch des Nutzers ohne neue Formatnummer
+  dazu. Ältere `probleme.md` aus „Modul bearbeiten“ haben noch die Kopfzeile
+  ohne `Ursache`, aber keine Zeilen, weil die Lernmodi noch nichts eintragen.
 - Datenquelle (`daten:`): freiwillig, zurzeit nur ein GitHub-Repository,
   öffentlich oder privat. `daten.xml` beschreibt den Zugriff in Worten
   (`<art>`, `<identifizieren>`), damit später andere Arten dazukommen

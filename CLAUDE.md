@@ -1,34 +1,45 @@
-# Lernhelfer – Hinweise für Claude Code
+# claude-plugins – Hinweise für Claude Code
 
-Lernhelfer ist ein Plugin für Claude.ai mit den Skills `lernen`, `verwalten`
-und `helfen`. Ihre Markdown-Anweisungen („Fähigkeiten“) schreibst du für eine
-**andere** Claude-Instanz in Claude.ai (Browser und Mobil-App). Sie kennt
-weder dieses Repository noch diese Datei, nur das Plugin und die
-Projektdateien.
+Dieses Repository ist der Marketplace `ohmtools` mit Plugins für Claude.ai, die
+bei Hochschule und Ausbildung helfen. Jedes Plugin liegt in einem eigenen
+Ordner, den Claude.ai als Ganzes bereitstellt (`source` in
+`.claude-plugin/marketplace.json`). `README.md` und diese Datei liegen deshalb
+außerhalb dieser Ordner. Das README dokumentiert zuerst das allgemeine Setup,
+danach jedes Plugin in einem eigenen Abschnitt. Ein neues Plugin bekommt einen
+eigenen Ordner, einen Eintrag in `marketplace.json` und einen Abschnitt im
+README. Zurzeit gibt es nur den Lernhelfer, um den es im Rest dieser Datei
+geht.
+
+Lernhelfer (`lernhelfer/`) ist ein Plugin für Claude.ai mit den Skills
+`lernen`, `verwalten` und `helfen`. Ihre Markdown-Anweisungen („Fähigkeiten“)
+schreibst du für eine **andere** Claude-Instanz in Claude.ai (Browser und
+Mobil-App). Sie kennt weder dieses Repository noch diese Datei, nur das Plugin
+und die Projektdateien.
 
 ## Wegweiser
 
 | Thema | Datei |
 |---|---|
-| Installation | `README.md` |
-| Plugin und Marketplace | `plugin/.claude-plugin/plugin.json`, `.claude-plugin/marketplace.json` |
-| Text der Projektanweisungen | `plugin/skills/verwalten/projektanweisung.md` |
-| Gemeinsam für `lernen` und `verwalten`: Grundregeln, Pfade, Betriebsart, Nachrichten, Formate, Module, Datenquelle (`daten.xml`), Gedächtnis, Benutzererfahrung | `plugin/skills/gemeinsam/grundlagen.md` |
-| Lernen: Fähigkeiten, Modul bestimmen, Dateiprüfung, Dateien im Chat, PDF-Dateien, Probleme pflegen | `plugin/skills/lernen/SKILL.md` |
-| Lernmodi und Schwachstellen | `plugin/skills/lernen/faehigkeiten/` |
-| Verwalten: Fähigkeiten und ihre Verfügbarkeit, Projektstruktur, Dateien der Datenquelle | `plugin/skills/verwalten/SKILL.md` |
-| Konventionen für Fähigkeiten | `plugin/skills/verwalten/faehigkeiten/entwicklung.md`, „Änderungen machen“, Schritt 2 |
-| Einrichten, Datenquelle anlegen | `plugin/skills/verwalten/faehigkeiten/initialisieren.md` |
-| Fächer, Dateien zuordnen, Lernziele | `plugin/skills/verwalten/faehigkeiten/modul-bearbeiten.md` |
-| Hochladen, Indizieren | `plugin/skills/verwalten/faehigkeiten/hochladen.md`, `plugin/skills/verwalten/faehigkeiten/indizieren.md` |
-| Migrationen | `plugin/skills/verwalten/faehigkeiten/migrieren.md` |
-| Export | `plugin/skills/verwalten/faehigkeiten/entwicklung.md`, „Exportieren“ |
-| Annahmen über die Zielumgebung prüfen | `plugin/skills/verwalten/faehigkeiten/testen.md`, Ergebnisse unter „Testläufe“ |
-| Antworten auf Fragen zum Lernhelfer | `plugin/skills/helfen/SKILL.md` |
+| Installation | `README.md`, Abschnitte „Setup“ und „Lernhelfer“ |
+| Plugin und Marketplace | `lernhelfer/.claude-plugin/plugin.json`, `.claude-plugin/marketplace.json` |
+| Text der Projektanweisungen | `lernhelfer/skills/verwalten/projektanweisung.md` |
+| Gemeinsam für `lernen` und `verwalten`: Grundregeln, Pfade, Betriebsart, Nachrichten, Formate, Module, Datenquelle (`daten.xml`), Gedächtnis, Benutzererfahrung | `lernhelfer/skills/gemeinsam/grundlagen.md` |
+| Lernen: Fähigkeiten, Modul bestimmen, Dateiprüfung, Dateien im Chat, PDF-Dateien, Probleme pflegen | `lernhelfer/skills/lernen/SKILL.md` |
+| Lernmodi und Schwachstellen | `lernhelfer/skills/lernen/faehigkeiten/` |
+| Verwalten: Fähigkeiten und ihre Verfügbarkeit, Projektstruktur, Dateien der Datenquelle | `lernhelfer/skills/verwalten/SKILL.md` |
+| Konventionen für Fähigkeiten | `lernhelfer/skills/verwalten/faehigkeiten/entwicklung.md`, „Änderungen machen“, Schritt 2 |
+| Einrichten, Datenquelle anlegen | `lernhelfer/skills/verwalten/faehigkeiten/initialisieren.md` |
+| Fächer, Dateien zuordnen, Lernziele | `lernhelfer/skills/verwalten/faehigkeiten/modul-bearbeiten.md` |
+| Hochladen, Indizieren | `lernhelfer/skills/verwalten/faehigkeiten/hochladen.md`, `lernhelfer/skills/verwalten/faehigkeiten/indizieren.md` |
+| Migrationen | `lernhelfer/skills/verwalten/faehigkeiten/migrieren.md` |
+| Export | `lernhelfer/skills/verwalten/faehigkeiten/entwicklung.md`, „Exportieren“ |
+| Annahmen über die Zielumgebung prüfen | `lernhelfer/skills/verwalten/faehigkeiten/testen.md`, Ergebnisse unter „Testläufe“ |
+| Antworten auf Fragen zum Lernhelfer | `lernhelfer/skills/helfen/SKILL.md` |
 
-Lies vor einer Änderung `plugin/skills/gemeinsam/grundlagen.md`,
-`plugin/skills/lernen/SKILL.md`, `plugin/skills/verwalten/SKILL.md`,
-`entwicklung.md` und alle Dateien, die die Änderung betrifft, vollständig.
+Lies vor einer Änderung `lernhelfer/skills/gemeinsam/grundlagen.md`,
+`lernhelfer/skills/lernen/SKILL.md`,
+`lernhelfer/skills/verwalten/SKILL.md`, `entwicklung.md` und alle Dateien, die
+die Änderung betrifft, vollständig.
 
 ## Regeln für dieses Repository
 
@@ -70,14 +81,15 @@ Lies vor einer Änderung `plugin/skills/gemeinsam/grundlagen.md`,
 ## Stand
 
 - Aufbau: Plugin mit drei Skills, kein Lernhelfer-Code mehr im Projekt.
-  Das Plugin liegt in `plugin/` (`marketplace.json` mit
-  `"source": "./plugin"`), damit Claude.ai nur `plugin.json` und `skills/`
-  bereitstellt, nicht `README.md` und `CLAUDE.md`. „Entwicklung“ arbeitet
-  deshalb mit `kopie:` = `arbeit:lernhelfer-entwicklung/plugin/`, die Dateien
-  des Repositorys liegen nur mit angehängtem Archiv eine Ebene darüber.
+  Das Plugin liegt in `lernhelfer/` (`marketplace.json` mit
+  `"source": "./lernhelfer"`), damit Claude.ai nur `plugin.json` und
+  `skills/` bereitstellt, nicht `README.md` und `CLAUDE.md`. „Entwicklung“
+  arbeitet deshalb mit `kopie:` = `arbeit:lernhelfer-entwicklung/lernhelfer/`,
+  die Dateien des Repositorys liegen nur mit angehängtem Archiv eine Ebene
+  darüber.
   Was `lernen` und `verwalten` beide brauchen, steht nur einmal in
-  `plugin/skills/gemeinsam/grundlagen.md` (kein Skill, keine `SKILL.md`). Beide
-  `SKILL.md` lassen die Datei vor allem anderen lesen, `helfen` nicht.
+  `lernhelfer/skills/gemeinsam/grundlagen.md` (kein Skill, keine `SKILL.md`).
+  Beide `SKILL.md` lassen die Datei vor allem anderen lesen, `helfen` nicht.
   `lernen` arbeitet mit genau einem Modul, liest `module/`, `daten.xml` und
   `daten:` und schreibt nur `gedaechtnis/{modul}/probleme.md` und
   `gedaechtnis/benutzererfahrung.md`. `verwalten` darf überall schreiben und

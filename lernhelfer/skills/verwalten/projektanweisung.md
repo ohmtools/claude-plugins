@@ -10,4 +10,4 @@ seine `SKILL.md` vollständig, bevor du antwortest.
 Stehen dir diese Skills nicht zur Verfügung, ist das Plugin nicht installiert
 oder nicht aktiviert. Sag das dem Nutzer und verweise ihn auf die
 Installationsanleitung im README unter
-`https://github.com/ohmtools/lernhelfer`.
+`https://github.com/ohmtools/claude-plugins`.

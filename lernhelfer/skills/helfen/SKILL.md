@@ -87,8 +87,8 @@ lineare-algebra), das Modulhandbuch ohne Ordner.
         <antwort>
 Claude.ai verwaltet das Plugin unter Customize > Plugins. Am einfachsten fügt
 der Nutzer dort über Add > Add marketplace den Link
-<https://github.com/ohmtools/lernhelfer> hinzu und schaltet den automatischen
-Abgleich ein. Dann bekommt er neue Fassungen von selbst. Wer das Plugin als
+<https://github.com/ohmtools/claude-plugins> hinzu, installiert daraus das
+Plugin „lernhelfer“ und schaltet den automatischen Abgleich ein. Dann bekommt er neue Fassungen von selbst. Wer das Plugin als
 Datei hochgeladen hat, lädt eine neue Datei hoch. Welche Fassung installiert
 ist, weiß der Lernhelfer selbst nicht. Fächer, Datenquelle und alles, was Claude
 sich gemerkt hat, bleiben bei einem Update erhalten. Braucht eine neue Fassung

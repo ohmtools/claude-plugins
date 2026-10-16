@@ -12,8 +12,8 @@ und änderst nur, was die Änderung verlangt.
 
 Es gelten die Präfixe aus `plugin:skills/gemeinsam/grundlagen.md`, Abschnitt
 „Pfade“. Zusätzlich steht `kopie:` für die Arbeitskopie des Plugins
-`arbeit:lernhelfer-entwicklung/plugin/`. Auch dieses Präfix gehört nicht zum
-Pfad.
+`arbeit:lernhelfer-entwicklung/lernhelfer/`. Auch dieses Präfix gehört nicht
+zum Pfad.
 
 ## Grundsatz
 
@@ -42,8 +42,8 @@ Einmal pro Chat, vor der ersten Änderung oder dem ersten Export.
      Repositorys angehängt, entpacke es in den neuen, leeren Ordner
      `arbeit:lernhelfer-quelle/`. Die Wurzel liegt darin, bei
      `lernhelfer.plugin` ganz oben, bei einem Archiv des Repositorys im Ordner
-     `plugin/`, oft unter einem Oberordner. Der Ordner, in dem dieses
-     `plugin/` liegt, ist dann die **Repository-Wurzel**.
+     `lernhelfer/`, oft unter einem Oberordner. Der Ordner, in dem dieses
+     `lernhelfer/` liegt, ist dann die **Repository-Wurzel**.
    - Sonst ist die Wurzel `plugin:`.
 
    Prüfe danach: In der Wurzel liegen `.claude-plugin/plugin.json`,
@@ -238,7 +238,7 @@ aus.
 
    Zum Ausprobieren: Deaktiviere das installierte Lernhelfer-Plugin und lade die Datei in Claude unter Customize > Plugins > Add > Upload plugin hoch. Die Änderungen gelten ab dem nächsten neuen Chat.
 
-   Für alle anderen: Die Datei ist ein ZIP-Archiv. Ersetze in deinem Repository den Ordner plugin/skills/ und die Datei plugin/.claude-plugin/plugin.json durch ihren Inhalt, committe und pushe. Wer den Lernhelfer per Link mit automatischem Abgleich installiert hat, bekommt die Änderung dann von selbst.
+   Für alle anderen: Die Datei ist ein ZIP-Archiv. Ersetze in deinem Repository den Ordner lernhelfer/skills/ und die Datei lernhelfer/.claude-plugin/plugin.json durch ihren Inhalt, committe und pushe. Wer den Lernhelfer per Link mit automatischem Abgleich installiert hat, bekommt die Änderung dann von selbst.
    {repository-hinweis}
    {anweisung-hinweis}
    ```

@@ -24,8 +24,9 @@ und die Projektdateien.
 | Plugin und Marketplace | `lernhelfer/.claude-plugin/plugin.json`, `.claude-plugin/marketplace.json` |
 | Text der Projektanweisungen | `lernhelfer/skills/verwalten/projektanweisung.md` |
 | Gemeinsam für `lernen` und `verwalten`: Grundregeln, Pfade, Betriebsart, Nachrichten, Formate, Module, Datenquelle (`daten.xml`), Gedächtnis, Benutzererfahrung | `lernhelfer/skills/gemeinsam/grundlagen.md` |
-| Lernen: Fähigkeiten, Fähigkeit wechseln, Modul bestimmen, Dateiprüfung, Dateien im Chat, PDF-Dateien, Probleme pflegen | `lernhelfer/skills/lernen/SKILL.md` |
-| Lernmodi und Schwachstellen | `lernhelfer/skills/lernen/faehigkeiten/` |
+| Lernen: Fähigkeiten, Fähigkeit wechseln, Modul bestimmen, Dateiprüfung, Dateien im Chat, PDF-Dateien, Probleme pflegen, gemeinsame Regeln der Lernmodi (Unterlagen, Belege, Nachrechnen, Leitplanken, fällige Themen, Session beenden) | `lernhelfer/skills/lernen/SKILL.md` |
+| Lernmodi (Erlernen, Wiederholen, Üben, Korrigieren) und Schwachstellen | `lernhelfer/skills/lernen/faehigkeiten/` |
+| Vorlagen für Ausgaben (Übungsblatt in LaTeX mit `build.sh`) | `lernhelfer/skills/lernen/vorlagen/`, Konvention in `entwicklung.md` |
 | Verwalten: Fähigkeiten und ihre Verfügbarkeit, Projektstruktur, Dateien der Datenquelle | `lernhelfer/skills/verwalten/SKILL.md` |
 | Konventionen für Fähigkeiten | `lernhelfer/skills/verwalten/faehigkeiten/entwicklung.md`, „Änderungen machen“, Schritt 2 |
 | Einrichten, Datenquelle anlegen | `lernhelfer/skills/verwalten/faehigkeiten/initialisieren.md` |
@@ -73,9 +74,20 @@ die Änderung betrifft, vollständig.
   - GitHub-Anbindung nur für den Zugriff, nicht für den Klon: `initialisieren.md`
     (Schritt 3, Punkt 4, und Vorlage für `{zugriff}`), `hochladen.md`,
     Schritt 3, und `testen.md`, Test 1.
-  - Beschreibung und Lernziele aus dem Modulhandbuch auslesen:
-    `indizieren.md`, Schritt 5, und `modul-bearbeiten.md`, „Lernziele
-    übernehmen“, Schritte 3 und 4.
+  - Beschreibung, Lernziele und Angaben zur Prüfung aus dem Modulhandbuch
+    auslesen: `indizieren.md`, Schritt 5, und `modul-bearbeiten.md`,
+    „Lernziele übernehmen“, Schritte 3 und 4.
+  - Aufbau von `info.md` (Abschnitte Beschreibung, Lernziele, Prüfung):
+    Vorlagen in `grundlagen.md` und `modul-bearbeiten.md`. `ueben.md`
+    („Übungsblatt“, Schritt 1) liest `Dauer` und `Hilfsmittel` daraus.
+  - Pakete der Übungsblatt-Vorlage: Kopf von
+    `lernen/vorlagen/uebungsblatt.tex` und Testdokument in `testen.md`,
+    Test 3. Das Testdokument liest die Vorlage nicht selbst, weil ein Skill
+    keine Dateien eines anderen Skills liest.
+  - SymPy, NumPy und SciPy nachinstallieren mit `pip install`:
+    `lernen/SKILL.md` („Nachrechnen“) und `testen.md`, Test 4.
+  - Darstellung als HTML-Datei ohne Dateien aus dem Internet: `erlernen.md`,
+    Schritt 3, und `testen.md`, Test 5.
   - Erkennen des Modulhandbuchs am Dateinamen („Modulhandbuch“ oder
     „Lehrplan“): `verwalten/SKILL.md` („Dateien der Datenquelle“), die
     Abschlussnachricht in `initialisieren.md`, `modul-bearbeiten.md` und
@@ -105,14 +117,22 @@ die Änderung betrifft, vollständig.
   weist eine Fähigkeit nur mit einer Nachricht auf eine andere hin. Zum
   anderen Skill wechselt keiner.
 - Daten im Projekt: `daten.xml`, pro Modul `module/{modul}/info.md`
-  (Beschreibung, Lernziele) und `module/{modul}/index.md` (Abschnitt
+  (Beschreibung, Lernziele, Prüfung) und `module/{modul}/index.md` (Abschnitt
   „Dateien“ als einzige Zuordnung, Stichwortverzeichnis mit Dateiseiten),
   `gedaechtnis/{modul}/probleme.md` (Thema, Beschreibung, Ursache,
   Verstanden, Historie) und `gedaechtnis/benutzererfahrung.md`. Alle Formate
-  sind 1, es gibt noch keine Migration. Die Spalte `Ursache` (für die
-  Fehlerursache, Fischgräte) kam auf Wunsch des Nutzers ohne neue Formatnummer
-  dazu. Ältere `probleme.md` aus „Modul bearbeiten“ haben noch die Kopfzeile
-  ohne `Ursache`, aber keine Zeilen, weil die Lernmodi noch nichts eintragen.
+  sind 1, es gibt noch keine Migration. Zwei Erweiterungen kamen auf Wunsch
+  des Nutzers ohne neue Formatnummer dazu, weil eine Migration nichts füllen
+  könnte:
+  - die Spalte `Ursache` in `probleme.md` (Fehlerursache, Fischgräte, gefüllt
+    von „Korrigieren“). Ältere `probleme.md` aus „Modul bearbeiten“ haben die
+    Kopfzeile ohne `Ursache`, aber keine Zeilen, weil es die Lernmodi noch
+    nicht gab. Vor dem ersten Eintrag ersetzen die Lernmodi die Kopfzeile
+    (`grundlagen.md`, „Gedächtnis“).
+  - der Abschnitt „Prüfung“ in `info.md` (Form, Dauer, Hilfsmittel aus dem
+    Modulhandbuch, für den Kopf des Übungsblatts). Fehlt er, gilt
+    „Keine Angaben.“ Gefüllt wird er beim nächsten „Lernziele übernehmen“
+    oder Indizieren eines geänderten Modulhandbuchs.
 - Datenquelle (`daten:`): freiwillig, zurzeit nur ein GitHub-Repository,
   öffentlich oder privat. `daten.xml` beschreibt den Zugriff in Worten
   (`<art>`, `<identifizieren>`), damit später andere Arten dazukommen
@@ -135,11 +155,37 @@ die Änderung betrifft, vollständig.
   Schrägstrich geschrieben, gelesen und gelöscht (`/daten.xml`, Regel in
   `grundlagen.md`, „Pfade“). Alternative wäre, `daten.xml` in einen Ordner zu
   legen. Das bräuchte eine Migration.
-- Lernmodi (`erlernen.md`, `wiederholen.md`, `ueben.md`) sind Platzhalter, an
-  denen der Nutzer arbeitet. Nicht anfassen. Erst sie pflegen
-  `probleme.md`, bis dahin bleibt „Schwachstellen listen“ meist leer. Sie
-  enthalten nur „NICHT ANFASSEN“, nicht „noch nicht ausgearbeitet“, `lernen`
-  erfährt also nicht, dass es sie noch nicht gibt.
+- Lernmodi: Erlernen, Wiederholen, Üben und Korrigieren, fachlich aus dem
+  „AI Study Playbook“ des Nutzers übernommen (Claude in Claude.ai kennt es
+  nicht, alles Nötige steht im Plugin). Gemeinsame Regeln stehen in
+  `lernen/SKILL.md`, Abschnitt „Lernmodi“: Unterlagen anfordern, Belege
+  (Unterlagen, dann Websuche, sonst „nicht belegt“), Nachrechnen mit SymPy,
+  NumPy und SciPy, Leitplanken (Hinweise statt Lösungen, Arbeit nicht
+  umschreiben, ehrlich statt gefällig), fällige Themen 1, 3 und 7 Tage nach
+  dem letzten Problem (nur aus `Historie` und `Verstanden`) und eine
+  Abrufaufgabe ohne KI am Ende jeder Session.
+  - Erlernen: sokratischer Tutor, bei räumlichen oder strukturellen Themen
+    eine HTML-Darstellung, die der Nutzer danach ohne Vorlage nachzeichnet.
+  - Wiederholen (AFB I und II, höchstens naher Transfer): Spiegeltest,
+    Abfragen mit Sicherheit 1 bis 5, Skript Seite für Seite in Etappen,
+    bestehende Aufgabe mit neuen Werten (gleicher Lösungsweg oder anderes
+    Verhalten, vorher nachgerechnet). Den Fortschritt im Skript speichert der
+    Lernhelfer bewusst nicht. Am Ende einer Etappe nennt er den Satz zum
+    Weitermachen.
+  - Üben (AFB II und III, Schwerpunkt ferner Transfer): Transferaufgaben nach
+    dem Transfer-Prompt des Playbooks, als Übungsblatt (zwei PDFs aus
+    `vorlagen/uebungsblatt.tex` mit `build.sh`, ohne LaTeX zwei
+    Markdown-Dateien) oder Bloom-Leiter im Chat.
+  - Korrigieren: strenger Prüfer, Punkte als Schätzung, Hinweise statt
+    Lösung, Fehlerursachen nach Fischgräte mit bis zu fünfmal „Warum?“,
+    danach Wechsel zu Erlernen (Verständnis, Vorwissen) oder Üben (sonst).
+  Wechsel innerhalb von `lernen` kündigt eine feste Nachricht an, mit
+  optionaler Rückkehr (z.B. vom Skript zu Erlernen und zurück zur selben
+  Seite).
+- Vorlagen: `lernen/vorlagen/` mit `uebungsblatt.tex` und `build.sh`, beide
+  unverändert vom Nutzer übernommen. Der Kopf der Vorlage verweist auf
+  `build.sh`, deshalb kommt es mit, statt die Befehle in `ueben.md` zu
+  wiederholen.
 - Bewusst ohne Regel: Dateien, die ein Nutzer trotzdem über die Projektseite
   hochlädt.
 - Rückfragen: Mehr Optionen, als die Auswahlfelder zulassen, gehen als Text
@@ -245,11 +291,36 @@ eine PDF lässt sich nicht wieder lokal herstellen.
   Claude.ai).
 - Wie viel das Lesen großer Modulhandbücher kostet.
 - Grenzen der Auswahlfelder in Claude.ai: kleinste und größte Zahl von
-  Optionen (`testen.md`, Test 2). In Claude Code sind es 2 bis 4.
+  Optionen (`testen.md`, Test 2). In Claude Code sind es 2 bis 4. Ob
+  mehrere Rückfragen in einem Aufruf gehen, steht in der Beschreibung des
+  Werkzeugs.
+- `pdflatex` mit den Paketen der Übungsblatt-Vorlage, darunter `lmodern` für
+  die Schrift des Codes (`testen.md`, Test 3). Lokal geprüft (TeX Live 2023):
+  Die Vorlage wird ohne Fehler übersetzt, `build.sh` braucht etwa 10 s. Fehlt
+  `lmodern`, endet `pdflatex` trotzdem mit 0, warnt nur vor
+  `Font shape T1/lmtt… undefined` und setzt den Code in einer Serifenschrift.
+- SymPy, NumPy und SciPy und ob `pip install` klappt (`testen.md`, Test 4).
+- Ob eine bereitgestellte HTML-Datei im Chat angezeigt wird und ihre Knöpfe
+  funktionieren, im Browser und in der App (`testen.md`, Test 5).
+- Ob Fotos aus der App als JPEG oder PNG ankommen und lesbar sind
+  (`testen.md`, Test 6).
+- Ob es eine Websuche gibt (Belege, zweiter Weg). Ohne sie schreibt Claude
+  „nicht belegt“ (Vorbereitung in `testen.md`).
 
 Nächster Testlauf: „/lernhelfer:verwalten Teste den Lernhelfer“ als erste
-Nachricht in einem neuen Chat, in einem Projekt mit privater Datenquelle.
-Danach die Lernmodi.
+Nachricht in einem neuen Chat, in einem Projekt mit privater Datenquelle
+(Tests 1 bis 6). Danach die Lernmodi, je im Projekt und im Chat ohne Projekt,
+mit diesen Fällen:
+- „Ich erkläre dir jetzt die Kettenregel“ (Spiegeltest)
+- „Frag mich zu Kapitel 3 ab“ (Abfragen)
+- „Lass uns das Skript durchgehen“ (Seite für Seite, bei einer Lücke
+  angekündigter Wechsel zu Erlernen und zurück zur selben Seite)
+- „Gib mir Aufgabe 2 von Blatt 3 mit anderen Zahlen, aber so, dass es kein
+  Maximum gibt“ (neue Werte, vorher nachgerechnet)
+- „Mach mir ein Übungsblatt“ (höchstens zwei Rückfragen, Angabe- und
+  Lösungs-PDF mit nachgerechneten Lösungen)
+- Foto einer fehlerhaften Lösung (Bewertung, Fischgräte, Eintrag mit Ursache
+  in `probleme.md`)
 
 ## Arbeitsweise
 

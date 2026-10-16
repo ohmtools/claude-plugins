@@ -88,7 +88,9 @@ nimm ein Stichwort aus der Frage (z.B. „Fach“). Hast du keine Auswahlfelder
 oder hat die Rückfrage mehr Optionen, als die Auswahlfelder zulassen, gib die
 Frage als Text aus und die Optionen als nummerierte Liste darunter. Warte in
 beiden Fällen auf die Antwort. Für Platzhalter gilt dasselbe wie bei
-`text`-Blöcken.
+`text`-Blöcken. Folgen mehrere `auswahl`-Blöcke ohne Schritt dazwischen
+aufeinander und erlaubt dein Werkzeug mehrere Fragen in einem Aufruf, stell
+sie zusammen.
 
 - Bleibt nach dem Einsetzen der Platzhalter nur eine Option übrig, stell die
   Rückfrage nicht und mach weiter, als hätte der Nutzer diese Option gewählt.
@@ -149,9 +151,10 @@ Nutzer ihn schreibt, enthält die erste Überschrift jeder Datei des Moduls.
 
 ### `projekt:module/{modul}/info.md`
 
-Beschreibt das Modul kurz (1 - 2 Sätze) und nennt seine Lernziele. Die
-Beschreibung hilft, das richtige Modul für eine Anfrage zu finden. Beides stammt
-aus dem Modulhandbuch oder vom Nutzer.
+Beschreibt das Modul kurz (1 - 2 Sätze) und nennt seine Lernziele und die
+Prüfung. Die Beschreibung hilft, das richtige Modul für eine Anfrage zu finden.
+Beschreibung und Lernziele stammen aus dem Modulhandbuch oder vom Nutzer, die
+Angaben zur Prüfung aus dem Modulhandbuch.
 
 ```markdown
 ---
@@ -168,10 +171,19 @@ format: 1
 
 - {lernziel}
 - {lernziel}
+
+## Prüfung
+
+- Form: Klausur
+- Dauer: 90 Minuten
+- Hilfsmittel: nicht programmierbarer Taschenrechner, 1 Formelblatt (A4)
 ```
 
 Ohne Beschreibung steht unter „Beschreibung“ nur `Keine Beschreibung.`, ohne
-Lernziele unter „Lernziele“ nur `Keine Lernziele.`
+Lernziele unter „Lernziele“ nur `Keine Lernziele.` Unter „Prüfung“ steht jede
+Angabe, die das Modulhandbuch nennt, eine Zeile pro Angabe. Nennt es keine,
+steht dort nur `Keine Angaben.` Ältere Dateien haben den Abschnitt noch nicht.
+Fehlt er, gilt dasselbe wie bei `Keine Angaben.`
 
 ### `projekt:module/{modul}/index.md`
 
@@ -288,7 +300,10 @@ format: 1
   aufsteigend, jeder Tag einmal.
 
 Fehlt die Datei, gilt sie als leer. Leg sie dann vor dem ersten Eintrag mit
-dieser Vorlage an, ohne Zeilen unter der Kopfzeile der Tabelle.
+dieser Vorlage an, ohne Zeilen unter der Kopfzeile der Tabelle. Ältere Dateien
+haben noch keine Spalte `Ursache`, aber auch keine Zeilen. Ersetze dann vor
+dem ersten Eintrag Kopf- und Trennzeile der Tabelle durch die aus dieser
+Vorlage.
 
 ## Benutzererfahrung
 

@@ -64,9 +64,9 @@ Halte danach fest:
 - Modell, Datum und die Antwort auf die Rückfrage.
 - Die Betriebsart (`plugin:skills/gemeinsam/grundlagen.md`, Abschnitt
   „Betriebsart“) und ob es `projekt:daten.xml` gibt.
-- Die Werkzeuge für Projektdateien, Rückfragen, Dateien im Chat, die Shell und
-  die GitHub-Anbindung mit genauem Namen und ihren Parametern. Alle übrigen
-  Werkzeuge nur als Anzahl.
+- Die Werkzeuge für Projektdateien, Rückfragen, Dateien im Chat, die Shell,
+  die Websuche und die GitHub-Anbindung mit genauem Namen und ihren
+  Parametern. Alle übrigen Werkzeuge nur als Anzahl.
 - Arbeitsumgebung: Ausgabe von `uname -a`, `pwd` und `df -h .`.
 
 ## Tests
@@ -123,6 +123,126 @@ Halte danach fest:
    `ok`: Beide Aufrufe verhalten sich wie die Beschreibung. `teilweise`: jede
    Abweichung. Detail: kleinste und größte Zahl, Ergebnis beider Aufrufe.
    Protokoll: beide Aufrufe mit Parametern und vollständiger Rückmeldung.
+3. **LaTeX:** Davon hängt ab, dass „Üben“ im Skill `lernen` Übungsblätter als
+   PDF erzeugt. Das Testdokument lädt dieselben Pakete wie die Vorlage für
+   Übungsblätter.
+   1. Leg den Ordner `arbeit:lernhelfer-test/` an und schreib darin
+      `lernhelfer-test.tex` mit diesem Inhalt:
+
+      ```latex
+      \documentclass[11pt,a4paper]{exam}
+      \usepackage[T1]{fontenc}
+      \usepackage[ngerman]{babel}
+      \usepackage[sc]{mathpazo}
+      \usepackage{tgpagella}
+      \usepackage[scale=0.92]{tgheros}
+      \renewcommand{\ttdefault}{lmtt}
+      \usepackage{microtype,amsmath,amssymb,xcolor,needspace}
+      \usepackage[most]{tcolorbox}
+      \usepackage{siunitx}
+      \usepackage{pgfplots}
+      \pgfplotsset{compat=1.18}
+      \usepackage[european]{circuitikz}
+      \usepackage{listings}
+      \lstset{basicstyle=\ttfamily}
+      \usepackage[hidelinks]{hyperref}
+      \begin{document}
+      \begin{tcolorbox}Größe: \qty{12}{\volt}, $\int_0^1 x\,\mathrm{d}x$\end{tcolorbox}
+      \begin{lstlisting}[language=Python]
+      def f(n): return n
+      \end{lstlisting}
+      \begin{circuitikz}\draw (0,0) to[R, l=$R_1$] (2,0);\end{circuitikz}
+      \begin{tikzpicture}\begin{axis}[width=5cm]\addplot {x^2};\end{axis}\end{tikzpicture}
+      \end{document}
+      ```
+
+   2. Führ im Ordner `arbeit:lernhelfer-test/` aus:
+
+      ```bash
+      pdflatex --version | head -1
+      pdflatex -interaction=nonstopmode -halt-on-error lernhelfer-test.tex > /dev/null; echo "exit=$?"
+      grep -A2 '^!' lernhelfer-test.log
+      grep 'Font shape .* undefined' lernhelfer-test.log
+      pdffonts lernhelfer-test.pdf
+      pdftoppm -r 80 -png lernhelfer-test.pdf seite
+      ```
+
+      Erwartet: `exit=0`, keine Zeile mit `!` und keine Warnung
+      `Font shape … undefined`. `pdffonts` nennt eine Schrift mit `LMMono`
+      im Namen. Fehlt das Paket lmodern, setzt LaTeX den Code ohne
+      Fehlermeldung in einer Serifenschrift. Dann fehlt `LMMono`, und das Log
+      warnt vor `T1/lmtt`.
+   3. Sieh dir das Bild der Seite an. Erwartet: ein Kasten mit „Größe: 12 V“
+      und einem Integral, die Codezeile in Schreibmaschinenschrift (alle
+      Zeichen gleich breit), ein Widerstand mit „R1“ und eine Parabel.
+
+   `ok`: alles wie erwartet. `teilweise`: Das Dokument wird übersetzt, aber
+   etwas anderes weicht ab, z.B. die Schrift des Codes. `fehlgeschlagen`:
+   `pdflatex` fehlt oder bricht mit einem Fehler ab. Detail: Version, Exit-Code
+   und jede fehlende Datei (`File … not found`). Protokoll: alle Befehle mit
+   Ausgabe, die Schriften aus `pdffonts` und was das Bild zeigt.
+4. **Rechnen mit Python:** Davon hängt ab, dass die Lernmodi Ergebnisse mit
+   SymPy, NumPy und SciPy nachrechnen (Skill `lernen`, Abschnitt
+   „Nachrechnen“).
+   1. Führ aus:
+
+      ```bash
+      python3 -c "import sympy, numpy, scipy; print(sympy.__version__, numpy.__version__, scipy.__version__)"; echo "exit=$?"
+      python3 -c "import sympy as sp; x = sp.symbols('x'); print(sp.diff(sp.sin(x**2), x))"
+      ```
+
+      Erwartet: drei Versionsnummern, `exit=0` und `2*x*cos(x**2)`.
+   2. Nur wenn ein Paket fehlt (`ModuleNotFoundError`): Führ
+      `pip install sympy numpy scipy; echo "exit=$?"` aus und wiederhol
+      Punkt 1.
+
+   `ok`: Punkt 1 klappt ohne Installation. `teilweise`: Er klappt erst nach
+   `pip install`. `fehlgeschlagen`: Er klappt auch danach nicht. Detail:
+   Versionen oder fehlende Pakete. Protokoll: alle Befehle mit Ausgabe.
+5. **Darstellung im Chat:** Davon hängt ab, dass „Erlernen“ im Skill `lernen`
+   Darstellungen als HTML-Datei zeigt.
+   1. Schreib `arbeit:lernhelfer-test.html` mit diesem Inhalt und stell die
+      Datei mit deinem Werkzeug zum Bereitstellen von Dateien bereit:
+
+      ```html
+      <!doctype html>
+      <html lang="de"><meta charset="utf-8"><title>Lernhelfer-Test</title>
+      <svg width="200" height="120"><circle id="k" cx="100" cy="60" r="40" fill="steelblue"/></svg>
+      <p><button onclick="document.getElementById('k').setAttribute('fill','orange')">Färben</button></p>
+      </html>
+      ```
+
+   2. Stell diese Rückfrage:
+
+      ```auswahl
+      Test der Darstellung: Ich habe dir lernhelfer-test.html bereitgestellt. Was siehst du, wenn du sie öffnest und auf „Färben“ tippst?
+      - Der Kreis wird orange
+      - Kreis da, Knopf ohne Wirkung
+      - Ich kann sie nicht öffnen
+      ```
+
+   `ok`: „Der Kreis wird orange“. `teilweise`: jede andere Antwort. Detail: die
+   Antwort und die Oberfläche aus der Vorbereitung. Protokoll: Werkzeug mit
+   Parametern und Rückmeldung, die Antwort des Nutzers und ob die Datei im Chat
+   selbst oder erst nach dem Herunterladen zu sehen war, falls er das sagt.
+6. **Fotos im Chat:** Davon hängt ab, dass „Korrigieren“ im Skill `lernen`
+   Fotos handschriftlicher Lösungen lesen kann. Stell diese Rückfrage:
+
+   ```auswahl
+   Test der Fotos: Häng mir in deiner nächsten Nachricht ein Foto an, am besten direkt aus der Kamera und von etwas Handschriftlichem. Machst du mit?
+   - Ich schicke ein Foto
+   - Test überspringen
+   ```
+
+   Bei „Test überspringen“ ist der Test `übersprungen`. Sonst such die Datei
+   wie in `plugin:skills/gemeinsam/grundlagen.md`, Abschnitt „Pfade“, führ
+   `file '{datei}'` aus und sieh sie dir mit deinem Werkzeug zum Lesen von
+   Dateien an. Erwartet: JPEG oder PNG, und du kannst die Handschrift lesen.
+   `ok`: alles wie erwartet. `teilweise`: ein anderes Format (z.B. HEIC) oder
+   unleserlich. `fehlgeschlagen`: Du findest die Datei nicht oder kannst sie
+   nicht ansehen. Detail: Format und Lesbarkeit. Protokoll: Pfad, Ausgabe von
+   `file`, wie du sie angesehen hast und was du lesen konntest, ohne den Inhalt
+   wiederzugeben.
 
 ## Aufräumen
 

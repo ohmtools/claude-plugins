@@ -142,9 +142,12 @@ Einmal pro Chat, vor der ersten Änderung oder dem ersten Export.
      - In `lernen` erlaubt, damit das Lernen nicht unterbrochen wird (z.B. von
        „Üben“ zurück zu „Erlernen“, wenn sich eine Lücke zeigt). Die
        Fähigkeit endet damit. Verlang den Wechsel im Ablauf ausdrücklich, mit
-       dem Pfad der neuen Fähigkeit und dem Thema, und verweis dabei auf den
-       Abschnitt „Fähigkeit wechseln“ in `kopie:skills/lernen/SKILL.md`, nie
-       auf Schritte der neuen Fähigkeit.
+       dem Pfad der neuen Fähigkeit, dem Thema und, wenn es danach in der
+       bisherigen Fähigkeit weitergehen soll, der Stelle für die Rückkehr.
+       Verweis dabei auf den Abschnitt „Fähigkeit wechseln“ in
+       `kopie:skills/lernen/SKILL.md`, nie auf Schritte der neuen Fähigkeit.
+       Dort steht auch die Nachricht, mit der jeder Wechsel angekündigt
+       wird.
      - In `verwalten` verboten, damit der Nutzer selbst entscheidet, wann
        etwas Aufwendiges wie „Indizieren“ läuft (Grundregel in
        `kopie:skills/verwalten/SKILL.md`). Braucht der Nutzer danach eine
@@ -160,6 +163,22 @@ Einmal pro Chat, vor der ersten Änderung oder dem ersten Export.
      `helfen` bekommt keine Rolle. Dass eine Rolle nur für ihre Fähigkeit gilt,
      steht in `kopie:skills/gemeinsam/grundlagen.md`. Wiederhol es nicht in
      den Fähigkeiten.
+   - Erlernen, Wiederholen, Üben und Korrigieren sind Lernmodi. Was mehrere
+     Lernmodi brauchen (z.B. Belege, Nachrechnen, Leitplanken), steht einmal
+     im Abschnitt „Lernmodi“ von `kopie:skills/lernen/SKILL.md`, was nur einer
+     braucht, nur in seiner Fähigkeit. Ein neuer Lernmodus kommt in die
+     Aufzählung unter der Tabelle „Fähigkeiten“.
+   - Vorlagen, aus denen Fähigkeiten Ausgaben erzeugen (z.B. ein Übungsblatt
+     als PDF), liegen im Ordner `vorlagen/` des Skills, z.B.
+     `kopie:skills/lernen/vorlagen/uebungsblatt.tex`, und heißen in
+     Fähigkeiten `skill:vorlagen/{datei}`. Eine Vorlage ist eine fertige,
+     lauffähige Datei mit Beispielinhalt. Was davon die Fähigkeit ersetzt,
+     steht in der Fähigkeit, nicht in der Vorlage. Hilfsdateien wie ein
+     Build-Skript liegen daneben. Weil `skill:` schreibgeschützt ist, kopiert
+     die Fähigkeit die Vorlage samt Hilfsdateien zuerst in einen eigenen
+     Ordner unter `arbeit:` und füllt und übersetzt sie nur dort. Braucht eine
+     Vorlage Programme oder Pakete, die kein Testlauf bestätigt hat, nimm
+     dafür einen Test auf.
    - Jede Fähigkeit in `lernen` arbeitet mit genau einem Modul. Sie liest nur
      dessen Dateien, `projekt:daten.xml` und `daten:` und schreibt nur
      `projekt:gedaechtnis/{modul}/probleme.md` und

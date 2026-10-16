@@ -35,11 +35,14 @@ benutzt und wie man ihn installiert und aktualisiert.
         <frage>Was kann der Lernhelfer?</frage>
         <antwort>
 Er besteht aus drei Skills:
-- Lernen: Claude erklärt Themen, wiederholt Gelerntes und übt mit Aufgaben, mit
-  den eigenen Skripten, Übungsblättern und Altklausuren des Nutzers.
-  „Schwachstellen listen“ zeigt, womit der Nutzer in einem Fach noch
-  Schwierigkeiten hat. Die Lernmodi Erlernen, Wiederholen und Üben sind noch
-  nicht ausgearbeitet.
+- Lernen, mit den eigenen Skripten, Übungsblättern und Altklausuren des
+  Nutzers: Erlernen (Claude führt als Tutor mit Fragen zum Verständnis, bei
+  Abläufen oder Schaltungen mit einer Darstellung), Wiederholen (abfragen,
+  selbst erklären, das Skript Seite für Seite durchgehen, eine bekannte Aufgabe
+  mit neuen Werten), Üben (Übungsblatt als PDF mit Lösung oder Bloom-Leiter im
+  Chat) und Korrigieren (eine eigene Lösung bewerten lassen, getippt oder als
+  Foto). „Schwachstellen listen“ zeigt, womit der Nutzer in einem Fach noch
+  Schwierigkeiten hat.
 - Verwalten, nur in einem Claude.ai-Projekt: Projekt einrichten und mit einer
   Datenquelle verbinden, Fächer anlegen, umbenennen und löschen, Dateien
   hochladen und Fächern zuordnen, indizieren, Lernziele aus dem Modulhandbuch
@@ -83,6 +86,48 @@ lineare-algebra), das Modulhandbuch ohne Ordner.
         </antwort>
     </eintrag>
     <eintrag>
+        <frage>Wie lerne ich mit dem Lernhelfer?</frage>
+        <antwort>
+Der Nutzer schreibt einfach, was er will, z.B. „/lernhelfer:lernen Erklär mir
+die Kettenregel“. Claude wählt dann einen dieser Lernmodi:
+- Erlernen, für neuen Stoff: Claude stellt Leitfragen, eine nach der anderen,
+  statt die Antwort zu verraten. Bei Abläufen, Systemen oder Schaltungen gibt
+  es eine Darstellung, die der Nutzer danach aus dem Gedächtnis nachzeichnet.
+- Wiederholen, für Gelerntes: „Frag mich zu Kapitel 3 ab“ (Fragen aus dem
+  Gedächtnis, mit Angabe, wie sicher man ist), „Ich erkläre dir jetzt …“
+  (Claude markiert, was falsch, vage oder lückenhaft ist), „Lass uns das
+  Skript durchgehen“ (Seite für Seite, in Etappen) oder „Gib mir Aufgabe 2 von
+  Blatt 3 mit anderen Zahlen“, auch so, dass sich das Ergebnis grundlegend
+  ändert.
+- Üben, für die Prüfung: „Mach mir ein Übungsblatt“ liefert neue Aufgaben, die
+  Verständnis statt Auswendiglernen prüfen, als zwei PDFs: Angabe und Lösung.
+  Claude fragt dafür höchstens nach Stoff und Länge. Die Bloom-Leiter führt im
+  Chat in sechs Stufen vom Erinnern bis zum Erschaffen.
+- Korrigieren: Der Nutzer schickt seine Lösung getippt oder als Foto. Claude
+  bewertet sie wie ein strenger Prüfer, mit geschätzter Punktzahl, gibt
+  Hinweise statt der Lösung und sucht zu jedem Fehler die Ursache.
+Zeigt sich unterwegs eine Lücke, wechselt Claude zum Erlernen und sagt das
+deutlich an, beim Skript danach zurück zur selben Seite. Im Projekt schlägt
+Claude außerdem Themen vor, die 1, 3 und 7 Tage nach einem Problem wieder dran
+sind. Jede Lernsession endet mit einer kleinen Aufgabe, die der Nutzer ohne
+KI löst.
+        </antwort>
+    </eintrag>
+    <eintrag>
+        <frage>Warum bekomme ich Hinweise statt Lösungen?</frage>
+        <antwort>
+Gelernt wird durch eigenes Denken. Wer sich Lösungen geben lässt, löst beim
+Üben mehr Aufgaben, kann es in der Prüfung aber schlechter. Deshalb antwortet
+Claude beim Lernen mit Fragen und Hinweisen, erst vagen, dann konkreten, lässt
+die Arbeit des Nutzers stehen und bewertet ehrlich statt gefällig. Eine
+vollständige Lösung zeigt Claude, wenn der Nutzer seine eigene abgegeben hat
+oder ausdrücklich danach fragt. Fachliche Aussagen stützt Claude auf eine
+Seite in den Unterlagen, sonst auf eine Quelle aus dem Web, und sagt sonst,
+dass eine Aussage nicht belegt ist. Rechenergebnisse rechnet Claude mit Code
+nach, bevor sie in eine Lösung kommen.
+        </antwort>
+    </eintrag>
+    <eintrag>
         <frage>Wie installiere und aktualisiere ich den Lernhelfer?</frage>
         <antwort>
 Claude.ai verwaltet das Plugin unter Customize > Plugins. Am einfachsten fügt
@@ -123,11 +168,14 @@ indiziert werden, bevor Claude beim Lernen damit arbeitet.
 Nur im Projekt mit Datenquelle. Das Modulhandbuch (an der Schule: Lehrplan)
 liegt ohne Ordner in der Datenquelle, sein Dateiname muss „Modulhandbuch“ oder
 „Lehrplan“ enthalten. Legt der Nutzer ein Fach an, sucht Claude darin den Teil
-zu diesem Fach und übernimmt eine kurze Beschreibung und die Lernziele wörtlich.
+zu diesem Fach und übernimmt eine kurze Beschreibung, die Lernziele wörtlich
+und die Angaben zur Prüfung (Form, Dauer, Hilfsmittel). Die Dauer und die
+Hilfsmittel stehen dann auf Übungsblättern in Prüfungslänge.
 Weil Claude dafür das ganze Handbuch liest, fragt es vorher, ob der Nutzer das
 lieber in einem neuen Chat mit Haiku erledigt, um sein Nutzungslimit zu schonen.
 Ist das Handbuch neu oder geändert, aktualisiert „Indizieren“ Beschreibung und
-Lernziele aller Fächer. Für ein einzelnes Fach schreibt der Nutzer
+Lernziele aller Fächer, dazu die Angaben zur Prüfung. Für ein einzelnes Fach
+schreibt der Nutzer
 „/lernhelfer:verwalten Übernimm die Lernziele für Mathematik“. Das Handbuch
 selbst gehört zu keinem Fach.
         </antwort>
@@ -156,8 +204,8 @@ Der Lernhelfer selbst steckt im Plugin, nicht im Projekt. Die Unterlagen liegen
 in der Datenquelle. In den Projektdateien liegen nur die Daten des Nutzers:
 - `projekt:daten.xml`: wo die Datenquelle ist und welchen Stand ihre Dateien
   beim letzten Indizieren hatten.
-- `projekt:module/`: pro Fach eine Beschreibung mit Lernzielen (`info.md`) und
-  das Verzeichnis der Unterlagen (`index.md`).
+- `projekt:module/`: pro Fach eine Beschreibung mit Lernzielen und Angaben zur
+  Prüfung (`info.md`) und das Verzeichnis der Unterlagen (`index.md`).
 - `projekt:gedaechtnis/`: pro Fach, womit der Nutzer Schwierigkeiten hat oder
   hatte und woran es liegt (`probleme.md`), dazu `benutzererfahrung.md` mit
   Notizen, wo der Umgang mit dem Lernhelfer hakt.
@@ -185,9 +233,9 @@ mit ihrer Ursache, und gibt eine kurze Statistik: wie viele Probleme es
 insgesamt notiert hat, wie viele inzwischen verstanden sind und wie viele an
 mehreren Tagen ein Problem waren.
 Nach diesen älteren Problemen kann der Nutzer danach gezielt fragen. Die
-Probleme notieren die Lernmodi. Solange sie nicht ausgearbeitet sind, bleibt die
-Liste meist leer. In einem Chat ohne Projekt nimmt Claude die Schwachstellen aus
-dem bisherigen Chat.
+Probleme notieren die Lernmodi von selbst, beim Korrigieren auch ihre Ursache.
+In einem Chat ohne Projekt nimmt Claude die Schwachstellen aus dem bisherigen
+Chat.
         </antwort>
     </eintrag>
     <eintrag>

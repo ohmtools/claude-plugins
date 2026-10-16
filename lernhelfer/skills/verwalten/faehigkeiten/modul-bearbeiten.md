@@ -1,10 +1,11 @@
 # Fähigkeit: Modul bearbeiten
 
-Legt Module an, benennt sie um und löscht sie, übernimmt Beschreibung und
-Lernziele aus dem Modulhandbuch, ordnet Modulen Dateien der Datenquelle zu,
-nimmt sie heraus und beschreibt, was zu einem Modul gehört. Ein Modul ist ein
-Fach. Aufbau der Dateien: `plugin:skills/gemeinsam/grundlagen.md`, Abschnitte
-„Module“, „Datenquelle“ und „Gedächtnis“.
+Legt Module an, benennt sie um und löscht sie, übernimmt Beschreibung,
+Lernziele und Angaben zur Prüfung aus dem Modulhandbuch, ordnet Modulen
+Dateien der Datenquelle zu, nimmt sie heraus und beschreibt, was zu einem
+Modul gehört. Ein Modul ist ein Fach. Aufbau der Dateien:
+`plugin:skills/gemeinsam/grundlagen.md`, Abschnitte „Module“, „Datenquelle“
+und „Gedächtnis“.
 
 Du bist hier ein ordentlicher Verwalter der Lernunterlagen. Du ordnest
 sorgfältig zu, verlierst keine Datei, löschst nichts ohne Rückfrage und hältst
@@ -52,11 +53,11 @@ Es gibt noch keine Fächer. Wie soll das Fach heißen, zu dem das gehört?
 
 1. **Ordnername:** Bestimme `{modul}` aus dem Namen nach den Pfadregeln. Gibt
    es den Ordner schon, arbeite mit dem vorhandenen Modul weiter.
-2. **Beschreibung und Lernziele:** Gibt es eine Datenquelle mit Modulhandbuch,
-   ermittle sie wie im Abschnitt „Lernziele übernehmen“, Schritte 1 bis 4. Hat
-   der Nutzer dort „Später mit Haiku“ gewählt, setz `Keine Beschreibung.` und
-   `Keine Lernziele.` ein. Hast du sonst keine Beschreibung, antworte und warte
-   auf die Antwort:
+2. **Beschreibung, Lernziele und Prüfung:** Gibt es eine Datenquelle mit
+   Modulhandbuch, ermittle sie wie im Abschnitt „Lernziele übernehmen“,
+   Schritte 1 bis 4. Hat der Nutzer dort „Später mit Haiku“ gewählt, setz
+   `Keine Beschreibung.`, `Keine Lernziele.` und `Keine Angaben.` ein. Hast du
+   sonst keine Beschreibung, antworte und warte auf die Antwort:
 
    ```text
    Beschreib mir {modulname} in ein, zwei Sätzen: Worum geht es darin? Daran erkenne ich später, welche Fragen zu diesem Fach gehören. Schreib „weiter“, wenn du das überspringen willst.
@@ -64,7 +65,8 @@ Es gibt noch keine Fächer. Wie soll das Fach heißen, zu dem das gehört?
 
    Die Beschreibung ist dann die Antwort des Nutzers, bei „weiter“
    `Keine Beschreibung.` Ohne übernommene Lernziele steht dort
-   `Keine Lernziele.`
+   `Keine Lernziele.`, ohne übernommene Angaben zur Prüfung
+   `Keine Angaben.`
 3. **Dateien übernehmen:** Gibt es eine Datenquelle, hol ihre Liste, wie
    `projekt:daten.xml` es beschreibt. Jede Datei unter `daten:{modul}/`, die
    in keinem Abschnitt „Dateien“ eines Index steht, gehört ab jetzt zu diesem
@@ -88,9 +90,17 @@ Es gibt noch keine Fächer. Wie soll das Fach heißen, zu dem das gehört?
      ## Lernziele
 
      - {lernziel}
+
+     ## Prüfung
+
+     - Form: {form}
+     - Dauer: {dauer}
+     - Hilfsmittel: {hilfsmittel}
      ```
 
-     Ohne Lernziele steht unter „Lernziele“ nur `Keine Lernziele.`
+     Ohne Lernziele steht unter „Lernziele“ nur `Keine Lernziele.` Unter
+     „Prüfung“ steht eine Zeile pro Angabe, die du übernommen hast, ohne
+     Angaben nur `Keine Angaben.`
    - `projekt:module/{modul}/index.md`, mit einer Zeile pro Datei aus
      Schritt 3 unter „Dateien“:
 
@@ -150,11 +160,12 @@ Es gibt noch keine Fächer. Wie soll das Fach heißen, zu dem das gehört?
 
 ## Lernziele übernehmen
 
-Übernimmt Beschreibung und Lernziele eines Moduls aus dem Modulhandbuch
-(`skill:SKILL.md`, Abschnitt „Dateien der Datenquelle“). Das passiert beim
-Anlegen eines Moduls und wenn der Nutzer es für ein vorhandenes Modul verlangt
-(z.B. „Übernimm die Lernziele für Analysis“). Beide ersetzen dann den
-bisherigen Inhalt von `projekt:module/{modul}/info.md` unter der Überschrift.
+Übernimmt Beschreibung, Lernziele und Angaben zur Prüfung eines Moduls aus
+dem Modulhandbuch (`skill:SKILL.md`, Abschnitt „Dateien der Datenquelle“). Das
+passiert beim Anlegen eines Moduls und wenn der Nutzer es für ein vorhandenes
+Modul verlangt (z.B. „Übernimm die Lernziele für Analysis“). Sie ersetzen dann
+den bisherigen Inhalt von `projekt:module/{modul}/info.md` unter der
+Überschrift.
 
 1. **Modulhandbuch finden:** Such es in der Liste der Datenquelle, die du in
    dieser Anfrage schon geholt hast, sonst hol sie, wie `projekt:daten.xml` es
@@ -206,14 +217,18 @@ bisherigen Inhalt von `projekt:module/{modul}/info.md` unter der Überschrift.
      Aus Fließtext wird jeder Satz ein Punkt. Zwischenüberschriften lässt du
      weg. Konntest du eine Stelle nicht sicher lesen, häng an den Punkt
      `(unsicher)` an.
-5. **Schreiben:** Schreib `projekt:module/{modul}/info.md` mit Beschreibung
-   und Lernzielen (Vorlage im Abschnitt „Neues Modul anlegen“). Beim Anlegen
-   eines Moduls schreibst du sie dort in Schritt 4.
+   - **Prüfung:** Prüfungsform (`Form`), Dauer (`Dauer`) und erlaubte
+     Hilfsmittel (`Hilfsmittel`), so wie sie dort stehen, z.B.
+     `Dauer: 90 Minuten`. Was dort nicht steht, lässt du weg.
+5. **Schreiben:** Schreib `projekt:module/{modul}/info.md` mit Beschreibung,
+   Lernzielen und Prüfung (Vorlage im Abschnitt „Neues Modul anlegen“). Beim
+   Anlegen eines Moduls schreibst du sie dort in Schritt 4.
 6. **Abschluss:** Hast du etwas übernommen, antworte, wobei `{anzahl}` die Zahl
-   der Lernziele ist:
+   der Lernziele ist und `{pruefung}` `die Angaben zur Prüfung`, wenn du
+   welche übernommen hast, sonst `keine Angaben zur Prüfung`:
 
    ```text
-   Aus {handbuch} habe ich die Beschreibung und {anzahl} Lernziele für {modulname} übernommen.
+   Aus {handbuch} habe ich für {modulname} die Beschreibung, {anzahl} Lernziele und {pruefung} übernommen.
    ```
 
    Hat der Nutzer „Später mit Haiku“ gewählt, antworte:

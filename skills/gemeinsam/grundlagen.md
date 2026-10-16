@@ -22,7 +22,7 @@ liegt:
 |---|---|
 | `skill:` | Ordner dieses Skills, in dem auch `skill:SKILL.md` liegt. Lies dort mit deinem Werkzeug zum Lesen von Dateien. Ändern kannst du dort nichts. |
 | `plugin:` | Ordner des installierten Plugins, zwei Ebenen über dem Ordner dieses Skills. Darin liegt diese Datei als `plugin:skills/gemeinsam/grundlagen.md`. |
-| `projekt:` | Projektdateien des Claude.ai-Projekts. Lies und schreib sie mit den Werkzeugen für Projektdateien. Es gibt sie nur, wenn der Chat Teil eines Projekts ist. |
+| `projekt:` | Projektdateien des Claude.ai-Projekts. Lies und schreib sie mit den Werkzeugen für Projektdateien (z.B. `Projects` mit `project_info` für die Projektübersicht, `project_read`, `project_write` und `project_delete`). Es gibt sie nur, wenn der Chat Teil eines Projekts ist. |
 | `daten:` | Datenquelle des Nutzers mit Skripten, Übungen, Altklausuren und Modulhandbuch, z.B. ein GitHub-Repository. Wie du sie liest, steht in `projekt:daten.xml`. |
 | `arbeit:` | Arbeitsverzeichnis deiner Arbeitsumgebung (z.B. `/home/claude`). |
 

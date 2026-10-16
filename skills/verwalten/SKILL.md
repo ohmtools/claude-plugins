@@ -82,17 +82,16 @@ Dafür brauchst du eine Datenquelle, in der deine Skripte und Übungen liegen, z
 | `projekt:daten.xml` | Datenquelle und Stand ihrer Dateien beim letzten Indizieren |
 | `projekt:module/` | Ein Modul pro Fach: Beschreibung, Lernziele, Index |
 | `projekt:gedaechtnis/` | Was du dir pro Modul über den Nutzer merkst, dazu Erfahrungen mit dem Lernhelfer |
-| `projekt:lernhelfer-test.md` | Nur während eines Tests, danach gelöscht |
 | `daten:` | Skripte, Übungen, Altklausuren und Modulhandbuch des Nutzers |
 
 Wer wohin schreibt:
 
 - Ins Projekt schreibst du nur im **Projekt**.
 - Fähigkeiten dieses Skills dürfen überall im Projekt schreiben und mit
-  mehreren Modulen arbeiten. „Testen“ schreibt nur
-  `projekt:lernhelfer-test.md`.
-- In `daten:` schreibt nur „Hochladen“, dazu „Testen“ die Datei
-  `daten:lernhelfer-test.md`, die es gleich wieder löscht.
+  mehreren Modulen arbeiten. „Testen“ schreibt nur Testdateien und löscht
+  sie wieder.
+- In `daten:` schreibt nur „Hochladen“, dazu „Testen“ Testdateien, die es
+  gleich wieder löscht.
 - Jede Fähigkeit außer „Initialisieren“ und „Testen“ hängt Zeilen an
   `projekt:gedaechtnis/benutzererfahrung.md` an
   (`plugin:skills/gemeinsam/grundlagen.md`, Abschnitt „Benutzererfahrung“).

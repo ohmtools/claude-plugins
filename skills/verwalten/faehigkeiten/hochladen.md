@@ -90,9 +90,11 @@ angekommen ist.
 
    `mkdir`, `cp` und `git add` wiederholst du für jede Datei, `{anhang}` ist ihr
    Pfad in deiner Arbeitsumgebung. Für das Modulhandbuch entfällt `mkdir`.
-   Meldungen wie `push negotiation failed` beim Push sind harmlos. Ob er
-   geklappt hat, zeigen sein Exit-Code und Schritt 6. Lehnt der Server den
-   Push ab, weil sich die Datenquelle inzwischen geändert hat, lösch
+   Verlangt deine Arbeitsumgebung Zeilen für Commit-Nachrichten (z.B.
+   `Co-Authored-By`), häng sie mit weiteren `-m` an. Meldungen wie
+   `push negotiation failed` beim Push sind harmlos. Ob er geklappt hat,
+   zeigen sein Exit-Code und Schritt 6. Lehnt der Server den Push ab (z.B.
+   weil sich die Datenquelle inzwischen geändert hat, oder mit HTTP 413), lösch
    `arbeit:daten/`, klone neu und wiederhol diesen Schritt einmal.
 6. **Prüfen:** `git ls-remote {url}.git HEAD` muss dieselbe ID ausgeben wie
    `git -C daten rev-parse HEAD`. Stimmt das nicht, antworte mit der

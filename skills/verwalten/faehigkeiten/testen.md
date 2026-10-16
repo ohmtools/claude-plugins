@@ -10,8 +10,9 @@ weiter.
 
 ## Grundsatz
 
-- Im Projekt schreibst du nur `projekt:lernhelfer-test.md`, in der Datenquelle
-  nur `daten:lernhelfer-test.md`. Beide löschst du wieder. Alles andere fasst
+- Schreib im Projekt und in der Datenquelle nur, wo ein Test es verlangt, nur
+  Dateien mit `lernhelfer-test` im Namen, und lösch sie wieder. Bevor du in
+  die Datenquelle schreibst, frag den Nutzer um Erlaubnis. Alles andere fasst
   du nicht an.
 - Schlägt ein Test fehl, notiere das und mach mit dem nächsten weiter. Brich
   nicht ab.
@@ -63,92 +64,54 @@ Halte danach fest:
 - Modell, Datum und die Antwort auf die Rückfrage.
 - Die Betriebsart (`plugin:skills/gemeinsam/grundlagen.md`, Abschnitt
   „Betriebsart“) und ob es `projekt:daten.xml` gibt.
-- Alle Werkzeuge, die dir zur Verfügung stehen, mit genauem Namen. Bei den
-  Werkzeugen für Projektdateien und bei der GitHub-Anbindung zusätzlich ihre
-  Parameter.
+- Die Werkzeuge für Projektdateien, Rückfragen, Dateien im Chat, die Shell und
+  die GitHub-Anbindung mit genauem Namen und ihren Parametern. Alle übrigen
+  Werkzeuge nur als Anzahl.
 - Arbeitsumgebung: Ausgabe von `uname -a`, `pwd` und `df -h .`.
 
 ## Tests
 
-1. **Datei ohne Ordner im Projekt:** Davon hängt `projekt:daten.xml` ab
-   (`plugin:skills/gemeinsam/grundlagen.md`, Abschnitt „Pfade“). Führ mit den
-   Werkzeugen für Projektdateien nacheinander aus:
-   1. Schreib `/lernhelfer-test.md` mit dem Inhalt `Lernhelfer-Test 1`.
-   2. Ruf die Projektübersicht auf. Erwartet: ein Eintrag
-      `/lernhelfer-test.md`, keiner unter `claude/`.
-   3. Lies `/lernhelfer-test.md`. Erwartet: `Lernhelfer-Test 1`.
-   4. Lies `lernhelfer-test.md` ohne Schrägstrich. Erwartet: Die Datei wird
-      nicht gefunden.
-   5. Schreib `/lernhelfer-test.md` noch einmal, mit dem Inhalt
-      `Lernhelfer-Test 2`. Erwartet: Die Rückmeldung meldet, dass die Datei
-      ersetzt wurde.
-   6. Ruf die Projektübersicht auf und lies `/lernhelfer-test.md`. Erwartet:
-      genau ein Eintrag `/lernhelfer-test.md`, Inhalt `Lernhelfer-Test 2`.
-
-   `ok`: alles wie erwartet. `teilweise`: Schreiben, Lesen und Ersetzen mit
-   Schrägstrich klappen, aber Punkt 2 oder 4 weicht ab. `fehlgeschlagen`:
-   Lesen mit Schrägstrich klappt nicht, oder Punkt 5 legt eine zweite Datei
-   an. Detail: was abweicht. Protokoll: bei jedem Punkt Werkzeug mit allen
-   Parametern und vollständiger Rückmeldung, aus der Projektübersicht nur die
-   Einträge mit `lernhelfer-test.md`, wörtlich.
-2. **Hochladen in den Hauptzweig:** Nur wenn es `projekt:daten.xml` gibt,
-   sonst `übersprungen`. Davon hängt „Hochladen“ ab
-   (`skill:faehigkeiten/hochladen.md`). Geprüft ist bisher nur ein Push in
-   einen neuen Zweig. Stell diese Rückfrage:
-
-   ```auswahl
-   Für den nächsten Test lege ich in deiner Datenquelle die Datei lernhelfer-test.md an und lösche sie gleich danach wieder. In der Versionsgeschichte bleiben dabei zwei kleine Commits stehen, deine übrigen Dateien bleiben unberührt. Einverstanden?
-   - Einverstanden
-   - Überspringen
-   ```
-
-   Bei „Überspringen“: `übersprungen`. Bei „Einverstanden“, wobei `{url}` aus
-   `projekt:daten.xml` stammt:
-   1. Hol dir über die GitHub-Anbindung deiner Arbeitsumgebung (z.B. ein
-      Werkzeug `add_repo`) Schreibzugriff auf `{url}`. Aus ihrer Antwort zählt
-      nur, ob du Zugriff hast. Klone nicht nach ihrer Anleitung.
-   2. Klone die Datenquelle, wie `projekt:daten.xml` es beschreibt, und hol
-      die Liste ihrer Dateien. Meldet `ls-tree` `Not a valid object name HEAD`,
-      ist die Datenquelle leer. Führ dann
-      `git -C daten symbolic-ref HEAD refs/heads/main` aus.
-   3. Führ im Ordner `arbeit:` aus und notiere nach jedem Befehl den Exit-Code:
+1. **Zugriff ohne Freischaltung:** Nur wenn es `projekt:daten.xml` gibt, sonst
+   `übersprungen`. Davon hängt ab, dass „Initialisieren“ einen falschen Link
+   und ein privates Repository nicht für ein leeres öffentliches hält
+   (`skill:faehigkeiten/initialisieren.md`, Schritt 3). Hast du in diesem Chat
+   schon die GitHub-Anbindung benutzt, ist der Test `übersprungen`, Detail
+   „GitHub-Anbindung schon benutzt, in einem neuen Chat wiederholen“. Sonst
+   führ ihn vor jedem anderen Zugriff auf die Datenquelle aus. `{url}` stammt
+   aus `projekt:daten.xml`, `{besitzer}` ist der Teil nach `https://github.com/`
+   bis zum nächsten `/`.
+   1. Führ im Ordner `arbeit:` aus:
 
       ```bash
-      git -C daten reset -q
-      printf 'Lernhelfer-Test %s\n' "$(date -u +%FT%TZ)" > daten/lernhelfer-test.md
-      git -C daten add -- lernhelfer-test.md
-      git -C daten -c user.name="Lernhelfer" -c user.email="lernhelfer@example.invalid" commit -q -m "Lernhelfer: Test"
-      git -C daten push origin HEAD
-      git ls-remote {url}.git HEAD
-      git -C daten rev-parse HEAD
-      git -C daten rm -q -- lernhelfer-test.md
-      git -C daten -c user.name="Lernhelfer" -c user.email="lernhelfer@example.invalid" commit -q -m "Lernhelfer: Test entfernt"
-      git -C daten push origin HEAD
-      git ls-remote {url}.git
-      git -C daten rev-parse HEAD
-      git -C daten -c core.quotepath=off ls-tree -r --name-only HEAD
+      GIT_TERMINAL_PROMPT=0 git ls-remote https://github.com/{besitzer}/lernhelfer-test-gibt-es-nicht.git HEAD; echo "exit=$?"
+      GIT_TERMINAL_PROMPT=0 git ls-remote {url}.git HEAD; echo "exit=$?"
       ```
 
-   `ok`: Beide Pushes enden mit Exit-Code 0, jedes `ls-remote` zeigt für
-   `HEAD` dieselbe ID wie das `rev-parse` danach, und `lernhelfer-test.md`
-   fehlt am Ende in der Liste von `ls-tree`. War die Datenquelle leer, zeigt
-   das zweite `ls-remote` außerdem `refs/heads/main`. `teilweise`: Anlegen
-   klappt, Entfernen nicht. `fehlgeschlagen`: Es gibt keine GitHub-Anbindung
-   oder der erste Push klappt nicht. Dann kann „Hochladen“ nicht selbst
-   hochladen. Detail: ob die Datenquelle leer war, Name der GitHub-Anbindung
-   und wo es hakt. Protokoll: Werkzeug mit Parametern und vollständiger
-   Rückmeldung, alle Befehle mit Ausgabe und Exit-Code, Warnungen von git
-   wörtlich, Zahl der Dateien vor und nach dem Test.
+      Erwartet: Der erste Befehl endet mit einem Exit-Code ungleich 0. Der
+      zweite endet bei einem öffentlichen Repository mit 0, bei einem privaten
+      (`<art>` beginnt mit „Privates GitHub-Repository“) mit einem Exit-Code
+      ungleich 0.
+   2. Nur bei einem privaten Repository: Hol dir über die GitHub-Anbindung
+      deiner Arbeitsumgebung (z.B. ein Werkzeug `add_repo`) Lesezugriff auf
+      `{url}`. Aus ihrer Antwort zählt nur, ob du Zugriff hast. Klone nicht
+      nach ihrer Anleitung. Wiederhol danach den zweiten Befehl. Erwartet:
+      Exit-Code 0.
+
+   `ok`: alles wie erwartet. `fehlgeschlagen`: Ein Befehl, der laut Erwartung
+   mit einem Exit-Code ungleich 0 enden soll, endet mit 0. Dann hält
+   „Initialisieren“ einen falschen Link oder ein privates Repository ohne
+   Zugriff für ein leeres öffentliches Repository. `teilweise`: jede andere
+   Abweichung. Detail: öffentlich oder privat und die Exit-Codes. Protokoll:
+   jeder Befehl mit vollständiger Ausgabe und Exit-Code, das Werkzeug der
+   GitHub-Anbindung mit Parametern und vollständiger Rückmeldung.
 
 ## Aufräumen
 
-Lösch `/lernhelfer-test.md` aus dem Projekt und prüf in der Projektübersicht,
-dass weder `/lernhelfer-test.md` noch `claude/lernhelfer-test.md` übrig ist.
-Liegt `daten:lernhelfer-test.md` nach Test 2 noch in der Datenquelle, führ die
-Befehle ab `git -C daten rm` einmal aus. Bleibt etwas übrig, nenne es in
-`{reste}`, eine Datei der Datenquelle mit `{url}` und der ID aus dem letzten
-`rev-parse`. Protokoll: jeden Löschversuch mit Werkzeug oder Befehl und
-Rückmeldung.
+Lösch jede Datei, die ein Test im Projekt oder in der Datenquelle angelegt hat,
+und prüf, dass nichts davon übrig ist. Bleibt etwas übrig, nenne es in
+`{reste}`, eine Datei der Datenquelle mit `{url}`. Protokoll: jeden
+Löschversuch mit Werkzeug oder Befehl und Rückmeldung. Hat kein Test etwas
+angelegt, notiere nur das.
 
 ## Ergebnis
 
@@ -158,10 +121,10 @@ antworte mit derselben Nachricht. Kürze sie nicht, auch wenn sie lang wird.
 
 - `{modell}` und `{oberflaeche}`: Modell und Antwort aus der Vorbereitung.
 - `{zeilen}`: eine Tabellenzeile pro Test in der Reihenfolge oben, z.B.
-  `| 1 Datei ohne Ordner | ok | Lesen nur mit Schrägstrich, Ersetzen ok |`.
+  `| 1 Zugriff ohne Freischaltung | ok | privat, Exit-Codes 128, 128, 0 |`.
 - `{umgebung}`: was du in der Vorbereitung notiert hast, als Liste.
 - `{protokoll}`: ein Abschnitt `### {name}` für die Vorbereitung, jeden Test
-  (z.B. `### 2 Hochladen in den Hauptzweig`) und das Aufräumen. Darin die
+  (z.B. `### 1 Zugriff ohne Freischaltung`) und das Aufräumen. Darin die
   Punkte aus dem Abschnitt „Protokoll“ als Liste. Lass Punkte ohne Inhalt weg.
   Für übersprungene Tests nur der Grund.
 - `{vorschlaege}`: eine nummerierte Liste konkreter Änderungen am

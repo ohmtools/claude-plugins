@@ -155,7 +155,7 @@ Einmal pro Chat, vor der ersten Änderung oder dem ersten Export.
      tut eine Fähigkeit beides nicht.
    - Auf `daten:` greifen Fähigkeiten nur so zu, wie es `projekt:daten.xml`
      beschreibt. Schreiben in `daten:` darf nur „Hochladen“, dazu „Testen“
-     seine Testdatei. Eine neue Art von Datenquelle bekommt Vorlagen für
+     seine Testdateien. Eine neue Art von Datenquelle bekommt Vorlagen für
      `<art>` und `<identifizieren>` in
      `kopie:skills/verwalten/faehigkeiten/initialisieren.md`.
    - Jede Fähigkeit in `lernen` und `verwalten` außer „Initialisieren“ und

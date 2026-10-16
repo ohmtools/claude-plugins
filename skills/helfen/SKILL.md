@@ -216,9 +216,9 @@ Plugin-Datei, die er zum Ausprobieren hochlädt und in sein Repository überträ
         <antwort>
 Der Nutzer schreibt „/lernhelfer:verwalten Teste den Lernhelfer“ in einem
 eingerichteten Projekt. Claude prüft dann, ob die Umgebung kann, was der
-Lernhelfer braucht und was frühere Tests noch nicht bestätigt haben. Dafür
-legt es kurz eine Testdatei im Projekt an und, mit Erlaubnis des Nutzers, eine
-in der Datenquelle, und löscht beide wieder. Am Ende gibt Claude eine
+Lernhelfer braucht und was frühere Tests noch nicht bestätigt haben.
+Testdateien löscht es danach wieder, und bevor es in die Datenquelle schreibt,
+fragt es um Erlaubnis. Am Ende gibt Claude eine
 Ergebnistabelle aus, dazu ein ausführliches Protokoll und Vorschläge zur
 Verbesserung, auch als Datei zum Herunterladen. Das Ergebnis ist für die
 Weiterentwicklung gedacht.

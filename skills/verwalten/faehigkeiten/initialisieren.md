@@ -102,7 +102,7 @@ Bei „Ich habe ein Repository“:
    ```xml
    <daten format="1">
      <quelle>
-       <art>{zugriff} Klone es einmal pro Chat ohne Dateiinhalte in den Ordner arbeit:daten/, im Ordner arbeit: mit `git clone --depth 1 --filter=blob:none --no-checkout {url}.git daten`, auch wenn die GitHub-Anbindung einen anderen Befehl oder Ordner nennt. Die Liste aller Dateien gibt `git -C daten -c core.quotepath=off ls-tree -r HEAD`. Meldet ls-tree `Not a valid object name HEAD`, ist das Repository noch leer und hat keine Dateien. Eine Datei holst du mit `git -C daten checkout HEAD -- '{pfad}'`, danach liegt sie unter arbeit:daten/{pfad}.</art>
+       <art>{zugriff} Klone es einmal pro Chat ohne Dateiinhalte in den Ordner arbeit:daten/, im Ordner arbeit: mit `git clone --depth 1 --filter=blob:none --no-checkout {url}.git daten`, auch wenn die GitHub-Anbindung einen anderen Befehl oder Ordner nennt. Die Liste aller Dateien gibt `git -C daten -c core.quotepath=off ls-tree -r HEAD`. Gibt ls-tree nichts aus oder meldet es `Not a valid object name HEAD` (Repository ohne Commit), hat das Repository noch keine Dateien. Eine Datei holst du mit `git -C daten checkout HEAD -- '{pfad}'`, danach liegt sie unter arbeit:daten/{pfad}.</art>
        <url>{url}</url>
        <identifizieren>Git-Objekt-ID der Datei im Hauptzweig: das dritte Feld ihrer Zeile in der Ausgabe von ls-tree, z.B. 3b18e512dba79e4c8300dd08aeb37f8e728b8dad in „100644 blob 3b18e512dba79e4c8300dd08aeb37f8e728b8dad analysis/skript.pdf“. Sie ändert sich, sobald sich der Inhalt der Datei ändert.</identifizieren>
      </quelle>

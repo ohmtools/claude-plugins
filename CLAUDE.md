@@ -48,12 +48,14 @@ alle Dateien, die die Änderung betrifft, vollständig.
   - Formatnummern: Tabelle „Formate“ und die Vorlagen in `grundlagen.md`,
     dazu die Vorlagen in `modul-bearbeiten.md` und `initialisieren.md`.
   - Zugriff auf die Datenquelle mit git: Vorlage für `daten.xml` in
-    `initialisieren.md`, Befehle in `hochladen.md` und `testen.md`, Test 2,
-    dort auch das leere Repository (`Not a valid object name HEAD`, dann
+    `initialisieren.md` und Befehle in `hochladen.md`, dort auch das leere
+    Repository (`Not a valid object name HEAD`, dann
     `symbolic-ref HEAD refs/heads/main`).
+  - Zugriff am Exit-Code von `ls-remote` erkennen: `initialisieren.md`,
+    Schritt 3, und `testen.md`, Test 1.
   - GitHub-Anbindung nur für den Zugriff, nicht für den Klon: `initialisieren.md`
     (Schritt 3, Punkt 4, und Vorlage für `{zugriff}`), `hochladen.md`,
-    Schritt 3, und `testen.md`, Test 2.
+    Schritt 3, und `testen.md`, Test 1.
   - Beschreibung und Lernziele aus dem Modulhandbuch auslesen:
     `indizieren.md`, Schritt 5, und `modul-bearbeiten.md`, „Lernziele
     übernehmen“, Schritte 3 und 4.
@@ -100,7 +102,7 @@ alle Dateien, die die Änderung betrifft, vollständig.
   aus dem Klon ohne Dateiinhalte, ohne Verlust anderer Dateien, auch in ein
   leeres Repository nach `git symbolic-ref HEAD refs/heads/main`.
 - Dateien in der Wurzel des Projekts (zurzeit nur `daten.xml`) werden mit
-  Schrägstrich geschrieben und gelesen (`/daten.xml`, Regel in
+  Schrägstrich geschrieben, gelesen und gelöscht (`/daten.xml`, Regel in
   `grundlagen.md`, „Pfade“). Alternative wäre, `daten.xml` in einen Ordner zu
   legen. Das bräuchte eine Migration.
 - Lernmodi (`erlernen.md`, `wiederholen.md`, `ueben.md`) sind Platzhalter, an
@@ -113,19 +115,20 @@ alle Dateien, die die Änderung betrifft, vollständig.
 
 ## Testläufe
 
-Letzter Lauf: 2026-10-16 mit dem Plugin in Claude.ai (Oberfläche nicht
-festgehalten), je einmal mit Haiku 5.5 und Opus 5.5, in einem Projekt mit
-privater Datenquelle, die anfangs leer war. Davor 2026-10-10 ohne Plugin,
-Version 0.11.2 und 0.14.0, im Browser und in der iPad-App.
+Mit dem Plugin am 2026-10-16: erst im Browser je einmal mit Haiku 5.5 und
+Opus 5.5 (alle damaligen Tests), dann in der iPad-App mit Opus 5.5 (Dateien
+ohne Ordner, Hochladen in den Hauptzweig), in einem Projekt mit privater
+Datenquelle. Davor 2026-10-10 ohne Plugin, Version 0.11.2 und 0.14.0, im
+Browser und in der iPad-App.
 
 ### Bestätigt
 
-- Plugin: Claude.ai stellt den ganzen Plugin-Ordner unter
-  `/mnt/skills/plugin-files/lernhelfer/` bereit, auch `README.md` und
-  `CLAUDE.md`. Die Rückmeldung des Werkzeugs `Skill` beginnt mit „Base
-  directory for this skill: …/skills/{skill}“, daraus ergeben sich `skill:`
-  und `plugin:`, und `../gemeinsam/grundlagen.md` wird gefunden. Installiert
-  über `marketplace.json` mit `"source": "./"`.
+- Plugin: läuft im Browser und in der iPad-App. Claude.ai stellt den ganzen
+  Plugin-Ordner unter `/mnt/skills/plugin-files/lernhelfer/` bereit, auch
+  `README.md` und `CLAUDE.md`. Die Rückmeldung des Werkzeugs `Skill` beginnt
+  mit „Base directory for this skill: …/skills/{skill}“, daraus ergeben sich
+  `skill:` und `plugin:`, und `../gemeinsam/grundlagen.md` wird gefunden.
+  Installiert über `marketplace.json` mit `"source": "./"`.
 - Werkzeuge: `curl`, `git` 2.43, `zip`, `unzip`, `file`, `sha256sum`,
   `python3` 3.13, `pdftoppm`, `pdftotext` und `pdfinfo` (poppler 24.02),
   `pypdf`, `pdfplumber`, `pypdfium2`. PyMuPDF fehlt. `gh` ist vorinstalliert.
@@ -137,45 +140,59 @@ Version 0.11.2 und 0.14.0, im Browser und in der iPad-App.
   inline. `project_info` liefert `instructions` (die Projektanweisung),
   `docs` (eigene Dokumente) und `files` (Uploads der Projektseite), je mit
   `path` und `created_at`, neueste zuerst, ohne Ordner, dazu
-  `knowledge_size`. Pfade mit Ordner bleiben, wie geschrieben.
-- Dateien ohne Ordner (beobachtet beim Einrichten): `project_write` legt
-  `daten.xml` unter `claude/daten.xml` ab, `project_read` findet `daten.xml`
-  ohne Schrägstrich nicht. `/daten.xml` klappt beim Schreiben und Lesen und
-  steht so in der Übersicht.
+  `knowledge_size`. Pfade mit Ordner bleiben, wie geschrieben. Ersetzen mit
+  `project_write` behält `doc_uuid` und `created_at` (über die Projektseite
+  ändert sich `created_at`).
+- Dateien ohne Ordner: Laut Beschreibung von `project_write` landet ein Pfad
+  ohne `/` unter `claude/`. Mit Schrägstrich (`/daten.xml`) klappen
+  Schreiben, Lesen, Ersetzen (`replaced: true`, kein zweiter Eintrag) und
+  Löschen, und die Übersicht zeigt die Datei so. Lesen ohne Schrägstrich
+  scheitert mit `No doc or file at "…". Available: …` und allen Pfaden.
 - Chat: Angehängte Dateien liegen byte-genau unter
   `/root/.claude/uploads/{sitzung}/{8 Hex-Zeichen}-{name}`. `find /` findet
   dabei auch eigene Dateien in `/home/claude`. `SendUserFile` stellt Dateien
   bereit, `AskUserQuestion` zeigt Knöpfe (Überschrift `header` höchstens 12
   Zeichen, ergänzt selbst „Other“). Eine PDF-Seite als Bild klappt mit
   `pdftoppm` und `Read`.
-- GitHub: `add_repo` (`owner`, `repo`, `access` read/push) gibt git über den
-  Proxy Zugriff. Ihre Antwort verlangt einen Klon nach `/home/claude/{repo}`
-  und den Aufruf von `register_repo_root`. Beides ist unnötig, das Werkzeug
-  fehlte sogar. Der Klon nach `arbeit:daten/` mit
-  `--depth 1 --filter=blob:none --no-checkout` klappt, ebenso `ls-tree`,
-  `checkout` einer Datei (`hash-object` gleich der ID aus `ls-tree`) und ein
-  Push in einen neuen Zweig. `git push --delete` lehnt der Proxy mit HTTP 403
-  ab. Jeder Push meldet `push negotiation failed`, teils auch
-  `fatal: expected 'acknowledgments'`, endet aber mit Exit-Code 0.
+- GitHub: `mcp__claude-code-remote__add_repo` (`owner`, `repo`, `access`
+  read/push) gibt git über den Proxy Zugriff, pro Chat. Ihre Antwort verlangt
+  einen Klon nach `/home/claude/{repo}` und den Aufruf von
+  `register_repo_root`. Beides ist unnötig, das Werkzeug fehlte sogar. Sie
+  warnt außerdem vor mehr als zwei gleichzeitigen git-Zugriffen (HTTP 429) und
+  vor Pushes aus einem veralteten flachen Klon (HTTP 413). Der Klon nach
+  `arbeit:daten/` mit `--depth 1 --filter=blob:none --no-checkout` klappt,
+  ebenso `ls-tree`, `checkout` einer Datei (`hash-object` gleich der ID aus
+  `ls-tree`), Push in einen neuen Zweig und Push in den Hauptzweig mit
+  `git push origin HEAD` (Hinzufügen und Entfernen einer Datei, `ls-remote`
+  gleich `rev-parse`). `git push --delete` lehnt der Proxy mit HTTP 403 ab.
+  Pushes melden manchmal `push negotiation failed` oder
+  `fatal: expected 'acknowledgments'`, enden aber mit Exit-Code 0.
   `api.github.com` und Archive über `github.com` liefern HTTP 403.
 - Leeres Repository: `ls-remote` gibt nichts aus, endet aber mit Exit-Code 0.
   `ls-tree -r HEAD` meldet `Not a valid object name HEAD`. Der erste
-  gepushte Zweig wird Standardzweig. So wurde in diesem Lauf `lernhelfer-test`
-  der Standardzweig der Datenquelle, deshalb sah der zweite Lauf nur ihn.
+  gepushte Zweig wird Standardzweig. Ein Commit mit leerem Baum gibt bei
+  `ls-tree` nichts aus (Exit-Code 0), dort braucht ein Push kein
+  `symbolic-ref`.
+- Die Arbeitsumgebung kann Zeilen für Commit-Nachrichten vorschreiben
+  (`Co-Authored-By`, `Claude-Session`). „Hochladen“ hängt sie an.
 - Indizieren: Haiku und Opus fanden alle erwarteten Einträge mit Dateiseiten,
   auch hinter einer leeren Seite (`pdftotext` gibt für sie ein `\f` aus).
   `pdftotext` macht aus `'` ein `’`. Haiku nahm „Ableitung“ und
   „Ableitungen“ nebeneinander auf.
 - Das Werkzeug `Write` entfernt Leerzeichen am Zeilenende.
 
-Folgen des Laufs vom 2026-10-16: „Test“ heißt jetzt „Testen“ und prüft nur
-noch Ungeprüftes, der Test-Zweig entfällt. Dazu kamen die Regel für Dateien
-ohne Ordner und die neue Suche nach Anhängen in `grundlagen.md`, die
-Überschrift für Auswahlfelder, das leere Repository in `initialisieren.md`
-(Exit-Code, Vorlage `<art>`) und `hochladen.md` (`main`), die
-GitHub-Anbindung nur für den Zugriff und genauere Regeln in
-`indizieren.md`, Schritt 4. `projektanweisung.md` liegt nicht mehr in
-`faehigkeiten/`.
+Folgen der Läufe vom 2026-10-16: „Test“ heißt „Testen“ und prüft nur
+Ungeprüftes. Dazu kamen:
+- in `grundlagen.md`: die Regel für Dateien ohne Ordner, die neue Suche nach
+  Anhängen, der Name des Werkzeugs `Projects` und die Überschrift für
+  Auswahlfelder;
+- in `initialisieren.md` und `hochladen.md`: der Zugriff am Exit-Code, das
+  leere Repository (Vorlage `<art>`, `main` beim ersten Push) und die
+  GitHub-Anbindung nur für den Zugriff;
+- in `hochladen.md`: neu klonen, wenn ein Push abgelehnt wird, auch bei
+  HTTP 413, und die Zeilen für Commit-Nachrichten;
+- in `indizieren.md`, Schritt 4, genauere Regeln.
+`projektanweisung.md` liegt nicht mehr in `faehigkeiten/`.
 
 Grund für die Datenquelle: Von Uploads über die Projektseite liefert
 `project_read` nur extrahierten Text, leere Seiten fehlen darin spurlos, und
@@ -183,13 +200,20 @@ eine PDF lässt sich nicht wieder lokal herstellen.
 
 ### Ungeprüft
 
-- Push in den Hauptzweig, auch in ein leeres Repository (`testen.md`, Test 2).
-- Dateien ohne Ordner ersetzen und löschen (`testen.md`, Test 1).
-- Das Plugin in der Mobil-App. `testen.md` fragt nach der Oberfläche.
+- Ob `ls-remote` bei einem falschen Link und bei einem privaten Repository
+  ohne Freischaltung mit einem Fehler endet. Sonst hält „Initialisieren“
+  beides für ein leeres öffentliches Repository (`testen.md`, Test 1).
+- Push großer Dateien (die Antwort von `add_repo` nennt HTTP 413). Zeigt sich
+  beim ersten Hochladen eines echten Skripts, „Hochladen“ nennt dann die
+  Zielpfade zum Hochladen von Hand.
+- Push in ein Repository ganz ohne Commit nach `symbolic-ref` (nur lokal
+  geprüft, der Push in einen neuen Zweig eines leeren Repositorys klappte in
+  Claude.ai).
 - Wie viel das Lesen großer Modulhandbücher kostet.
 
-Nächster Testlauf: „/lernhelfer:verwalten Teste den Lernhelfer“ in der
-Mobil-App, in einem Projekt mit Datenquelle. Danach die Lernmodi.
+Nächster Testlauf: „/lernhelfer:verwalten Teste den Lernhelfer“ als erste
+Nachricht in einem neuen Chat, in einem Projekt mit privater Datenquelle.
+Danach die Lernmodi.
 
 ## Arbeitsweise
 

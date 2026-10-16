@@ -215,16 +215,13 @@ Plugin-Datei, die er zum Ausprobieren hochlädt und in sein Repository überträ
         <frage>Funktioniert der Lernhelfer bei mir?</frage>
         <antwort>
 Der Nutzer schreibt „/lernhelfer:verwalten Teste den Lernhelfer“ in einem
-eingerichteten Projekt. Claude prüft dann, was die Umgebung kann: Dateien des
-Plugins, Schreiben ins Projekt, Projektübersicht, PDF-Seiten als Bild,
-Herunterladen, Auswahlfelder, Lesen und Schreiben der Datenquelle und im Chat
-angehängte Dateien. Dazu bittet es den Nutzer, eine Testdatei herunterzuladen
-und im Chat anzuhängen. Zum Schreiben legt es mit seiner Erlaubnis kurz einen
-Testzweig in der Datenquelle an und löscht ihn gleich wieder. Am Ende gibt
-Claude eine Ergebnistabelle aus, dazu ein ausführliches Protokoll und Vorschläge
-zur Verbesserung. Das Ergebnis ist für die Weiterentwicklung gedacht.
-„/lernhelfer:verwalten Teste das Indizieren“ in einem Chat mit Haiku prüft nur,
-ob Haiku zuverlässig indiziert.
+eingerichteten Projekt. Claude prüft dann, ob die Umgebung kann, was der
+Lernhelfer braucht und was frühere Tests noch nicht bestätigt haben. Dafür
+legt es kurz eine Testdatei im Projekt an und, mit Erlaubnis des Nutzers, eine
+in der Datenquelle, und löscht beide wieder. Am Ende gibt Claude eine
+Ergebnistabelle aus, dazu ein ausführliches Protokoll und Vorschläge zur
+Verbesserung, auch als Datei zum Herunterladen. Das Ergebnis ist für die
+Weiterentwicklung gedacht.
         </antwort>
     </eintrag>
 </faq>

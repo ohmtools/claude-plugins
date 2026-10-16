@@ -66,16 +66,21 @@ ein Lernender danach suchen würde.
 4. **Dateien lesen:** Hol jede zu lesende Datei, die kein Modulhandbuch ist,
    wie `projekt:daten.xml` es beschreibt, und lies sie vollständig. Eine PDF
    liest du mit `pdftotext -layout '{datei}' -`. Darin endet jede Seite mit
-   einem Seitenvorschub (`\f`), auch eine leere: Seite n ist der Text vor dem
-   n-ten Seitenvorschub. Notiere:
+   einem Seitenvorschub (`\f`), auch eine leere: Seite 1 ist der Text vor dem
+   ersten Seitenvorschub, Seite n der Text zwischen dem (n−1)-ten und dem
+   n-ten. Notiere:
    - **Beschreibung:** Art und Inhalt in einer Zeile (z.B.
      `Skript, Kapitel 1–6` oder `Abiturprüfung 2023, 6 Aufgaben, mit Lösungen`).
    - **Stichwörter mit Seiten:** Themen, Begriffe, Definitionen, Sätze,
-     Formeln und Verfahren, nach denen jemand suchen würde. Ordne jede Aufgabe
-     den Stichwörtern zu, die man zu ihrer Lösung braucht, auch wenn die
-     Aufgabe sie nicht nennt (z.B. „Leite sin(x²) ab“ → Kettenregel), und häng
-     ihre Nummer an die Seite (`3 A1`). Nimm für denselben Begriff in allen
-     Dateien dasselbe Stichwort.
+     Formeln und Verfahren, nach denen jemand suchen würde, auch die Themen
+     von Kapiteln. Ordne jede Aufgabe allen Stichwörtern zu, die man zu ihrer
+     Lösung braucht, auch wenn die Aufgabe sie nicht nennt, und dem Thema, zu
+     dem sie gehört (z.B. „Leite sin(x²) ab“ → Kettenregel und Ableitungen).
+     Häng ihre Nummer an die Seite (`3 A1`). Nimm für jeden Begriff genau ein
+     Stichwort, in allen Dateien dasselbe (nicht „Ableitung“ und
+     „Ableitungen“ nebeneinander). Schreib Stichwörter so, wie man sie tippt,
+     mit geraden Apostrophen und Anführungszeichen (`L'Hospital`, nicht
+     `L’Hospital`), auch wenn der Text typografische Zeichen enthält.
 
    Bist du bei einer Stelle unsicher, sieh dir die Seite als Bild an (im
    Ordner `arbeit:` mit

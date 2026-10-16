@@ -49,9 +49,11 @@ angekommen ist.
 
 3. **Schreibzugriff holen:** Hol dir über die GitHub-Anbindung deiner
    Arbeitsumgebung (z.B. ein Werkzeug `add_repo`) Schreibzugriff auf `{url}` aus
-   `projekt:daten.xml` und folge ihrer Anleitung. Klappt das nicht, antworte,
-   wobei `{grund}` die Fehlermeldung in wenigen Worten ist und `{ziele}` die
-   Zielpfade ohne Präfix durch Kommas getrennt sind, und beende die Fähigkeit:
+   `projekt:daten.xml`. Aus ihrer Antwort zählt nur, ob du Zugriff hast.
+   Klone nicht nach ihrer Anleitung, das folgt in Schritt 4. Klappt das nicht,
+   antworte, wobei `{grund}` die Fehlermeldung in wenigen Worten ist und
+   `{ziele}` die Zielpfade ohne Präfix durch Kommas getrennt sind, und beende
+   die Fähigkeit:
 
    ```text
    Ich habe keinen Schreibzugriff auf deine Datenquelle ({grund}). Lade die Dateien selbst auf {url} hoch, unter diesen Pfaden: {ziele}. Schreib danach in einem neuen Chat mit dem Modell Haiku „/lernhelfer:verwalten Indiziere“.
@@ -59,7 +61,11 @@ angekommen ist.
 
 4. **Klonen:** Gibt es `arbeit:daten/` in diesem Chat noch nicht, klone die
    Datenquelle, wie `projekt:daten.xml` es beschreibt. Hol die Liste ihrer
-   Dateien. Gibt es ein Ziel schon, stell diese Rückfrage:
+   Dateien. Meldet `ls-tree` dabei `Not a valid object name HEAD`, ist die
+   Datenquelle noch leer. Führ dann im Ordner `arbeit:`
+   `git -C daten symbolic-ref HEAD refs/heads/main` aus, damit dein erster
+   Push den Hauptzweig `main` anlegt. Gibt es ein Ziel schon, stell diese
+   Rückfrage:
 
    ```auswahl
    In deiner Datenquelle gibt es {ziel} schon. Soll ich die Datei durch die neue Fassung ersetzen?
@@ -83,9 +89,11 @@ angekommen ist.
    ```
 
    `mkdir`, `cp` und `git add` wiederholst du für jede Datei, `{anhang}` ist ihr
-   Pfad in deiner Arbeitsumgebung. Für das Modulhandbuch entfällt `mkdir`. Lehnt
-   der Server den Push ab, weil sich die Datenquelle inzwischen geändert hat,
-   lösch `arbeit:daten/`, klone neu und wiederhol diesen Schritt einmal.
+   Pfad in deiner Arbeitsumgebung. Für das Modulhandbuch entfällt `mkdir`.
+   Meldungen wie `push negotiation failed` beim Push sind harmlos. Ob er
+   geklappt hat, zeigen sein Exit-Code und Schritt 6. Lehnt der Server den
+   Push ab, weil sich die Datenquelle inzwischen geändert hat, lösch
+   `arbeit:daten/`, klone neu und wiederhol diesen Schritt einmal.
 6. **Prüfen:** `git ls-remote {url}.git HEAD` muss dieselbe ID ausgeben wie
    `git -C daten rev-parse HEAD`. Stimmt das nicht, antworte mit der
    Nachricht aus Schritt 3.

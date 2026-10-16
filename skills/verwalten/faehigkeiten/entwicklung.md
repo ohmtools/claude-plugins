@@ -154,11 +154,12 @@ Einmal pro Chat, vor der ersten Änderung oder dem ersten Export.
      ausdrücklich, Probleme zu pflegen wie dort beschrieben. Ohne diese Angabe
      tut eine Fähigkeit beides nicht.
    - Auf `daten:` greifen Fähigkeiten nur so zu, wie es `projekt:daten.xml`
-     beschreibt. Schreiben in `daten:` darf nur „Hochladen“. Eine neue Art von
-     Datenquelle bekommt Vorlagen für `<art>` und `<identifizieren>` in
+     beschreibt. Schreiben in `daten:` darf nur „Hochladen“, dazu „Testen“
+     seine Testdatei. Eine neue Art von Datenquelle bekommt Vorlagen für
+     `<art>` und `<identifizieren>` in
      `kopie:skills/verwalten/faehigkeiten/initialisieren.md`.
    - Jede Fähigkeit in `lernen` und `verwalten` außer „Initialisieren“ und
-     „Test“ pflegt `projekt:gedaechtnis/benutzererfahrung.md`. Das regelt der
+     „Testen“ pflegt `projekt:gedaechtnis/benutzererfahrung.md`. Das regelt der
      Abschnitt „Benutzererfahrung“ in `kopie:skills/gemeinsam/grundlagen.md`.
      Wiederhol es nicht in den Fähigkeiten und schreib keiner Fähigkeit vor,
      die Datei nicht zu ändern. Eine Fähigkeit, die sonst nichts schreibt, darf
@@ -183,6 +184,12 @@ Einmal pro Chat, vor der ersten Änderung oder dem ersten Export.
    - Keine Fähigkeit startet „Indizieren“ von selbst, weil es viel vom
      Nutzungslimit verbrauchen kann. Ist ein Index veraltet, weist sie mit einer
      Nachricht darauf hin.
+   - „Testen“ (`kopie:skills/verwalten/faehigkeiten/testen.md`) prüft nur
+     Annahmen über die Umgebung, die noch kein Testlauf bestätigt hat, damit
+     ein Testlauf kurz bleibt. Verlässt sich eine Änderung auf etwas
+     Ungeprüftes (z.B. ein Werkzeug, einen Befehl oder ein Verhalten der
+     Oberfläche), nimm dafür einen Test auf. Hat ein Testlauf eine Annahme
+     bestätigt, nimm ihren Test heraus.
 3. Schreib alle Dateien einer Änderung gemeinsam, wenn sie fertig ist, nicht
    Datei für Datei zwischen den Nachrichten.
 4. Antworte:
@@ -236,7 +243,7 @@ aus.
    ```
 
    `{anweisung-hinweis}`: Hast du
-   `kopie:skills/verwalten/faehigkeiten/projektanweisung.md` geändert, setze
+   `kopie:skills/verwalten/projektanweisung.md` geändert, setze
    diese Zeile ein, sonst lass den Platzhalter samt Zeile weg:
 
    ```text

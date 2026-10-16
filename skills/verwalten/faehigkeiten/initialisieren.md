@@ -66,12 +66,14 @@ Bei „Ich habe ein Repository“:
    `https://github.com/{besitzer}/{repository}`, ohne `.git` und ohne weitere
    Pfadteile.
 3. **Öffentlich?** Führ im Ordner `arbeit:`
-   `GIT_TERMINAL_PROMPT=0 git ls-remote {url}.git HEAD` aus. Gibt der Befehl
-   eine Zeile aus, ist das Repository öffentlich.
+   `GIT_TERMINAL_PROMPT=0 git ls-remote {url}.git HEAD` aus. Endet der Befehl
+   mit Exit-Code 0, ist das Repository öffentlich. Gibt er dabei nichts aus,
+   ist es nur noch leer.
 4. **Privat?** Sonst hol dir Lesezugriff über die GitHub-Anbindung deiner
-   Arbeitsumgebung (z.B. ein Werkzeug `add_repo`) und folge ihrer Anleitung.
-   Wiederhol danach den Befehl aus Punkt 3. Gibt er eine Zeile aus, ist das
-   Repository privat.
+   Arbeitsumgebung (z.B. ein Werkzeug `add_repo`). Aus ihrer Antwort zählt
+   nur, ob du Zugriff hast. Klone nicht nach ihrer Anleitung, das machen die
+   Fähigkeiten später selbst. Wiederhol danach den Befehl aus Punkt 3. Endet
+   er jetzt mit Exit-Code 0, ist das Repository privat.
 5. **Kein Zugriff:** Klappt beides nicht, stell diese Rückfrage, wobei `{grund}`
    die Fehlermeldung in wenigen Worten ist:
 
@@ -94,13 +96,13 @@ Bei „Ich habe ein Repository“:
    bei einem privaten:
 
    ```text
-   Privates GitHub-Repository. Hol dir vor dem ersten Zugriff in diesem Chat Lesezugriff über die GitHub-Anbindung deiner Arbeitsumgebung (z.B. ein Werkzeug add_repo) und folge ihrer Anleitung.
+   Privates GitHub-Repository. Hol dir vor dem ersten Zugriff in diesem Chat Lesezugriff über die GitHub-Anbindung deiner Arbeitsumgebung (z.B. ein Werkzeug add_repo). Aus ihrer Antwort zählt nur, ob du Zugriff hast.
    ```
 
    ```xml
    <daten format="1">
      <quelle>
-       <art>{zugriff} Klone es einmal pro Chat ohne Dateiinhalte in den Ordner arbeit:daten/, im Ordner arbeit: mit `git clone --depth 1 --filter=blob:none --no-checkout {url}.git daten`. Die Liste aller Dateien gibt `git -C daten -c core.quotepath=off ls-tree -r HEAD`. Eine Datei holst du mit `git -C daten checkout HEAD -- '{pfad}'`, danach liegt sie unter arbeit:daten/{pfad}.</art>
+       <art>{zugriff} Klone es einmal pro Chat ohne Dateiinhalte in den Ordner arbeit:daten/, im Ordner arbeit: mit `git clone --depth 1 --filter=blob:none --no-checkout {url}.git daten`, auch wenn die GitHub-Anbindung einen anderen Befehl oder Ordner nennt. Die Liste aller Dateien gibt `git -C daten -c core.quotepath=off ls-tree -r HEAD`. Meldet ls-tree `Not a valid object name HEAD`, ist das Repository noch leer und hat keine Dateien. Eine Datei holst du mit `git -C daten checkout HEAD -- '{pfad}'`, danach liegt sie unter arbeit:daten/{pfad}.</art>
        <url>{url}</url>
        <identifizieren>Git-Objekt-ID der Datei im Hauptzweig: das dritte Feld ihrer Zeile in der Ausgabe von ls-tree, z.B. 3b18e512dba79e4c8300dd08aeb37f8e728b8dad in „100644 blob 3b18e512dba79e4c8300dd08aeb37f8e728b8dad analysis/skript.pdf“. Sie ändert sich, sobald sich der Inhalt der Datei ändert.</identifizieren>
      </quelle>
@@ -114,7 +116,7 @@ Bei „Ich habe ein Repository“:
 
 ## 4. Projektanweisung prüfen
 
-Lies `skill:faehigkeiten/projektanweisung.md` vollständig. Vergleiche ihren
+Lies `skill:projektanweisung.md` vollständig. Vergleiche ihren
 Inhalt mit der Projektanweisung, die dir in diesem Chat vorliegt. Liegt dir
 keine vor, gelten sie als verschieden.
 
@@ -159,7 +161,7 @@ Du arbeitest ohne Datenquelle. Ich merke mir trotzdem deine Fächer und Schwieri
 ```
 
 **Projektanweisungen:** `{anweisung}` ist der Inhalt von
-`skill:faehigkeiten/projektanweisung.md`, exakt und unverändert. Sind die
+`skill:projektanweisung.md`, exakt und unverändert. Sind die
 Projektanweisungen verschieden:
 
 ````text

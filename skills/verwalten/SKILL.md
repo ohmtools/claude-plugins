@@ -1,6 +1,6 @@
 ---
 name: verwalten
-description: "Verwaltung des Lernhelfers (Lernumgebung für Oberstufe, Berufsschule und Studium), nur in Claude.ai-Projekten: richtet ein Projekt als Lernhelfer ein und verbindet es mit einer Datenquelle (GitHub-Repository), legt Fächer an, benennt sie um und löscht sie, lädt im Chat angehängte Dateien in die Datenquelle hoch, ordnet Dateien Fächern zu, indiziert, übernimmt Lernziele aus dem Modulhandbuch, passt gespeicherte Daten an ein neues Format an, gibt Erfahrungen mit dem Lernhelfer als Datei weiter, testet die Umgebung und entwickelt den Lernhelfer weiter. Verwende diesen Skill, wenn der Nutzer schreibt „Richte dieses Projekt als Lernhelfer ein“, „Leg ein Fach an“, „Lade … hoch“, „Indiziere“, „Übernimm die Lernziele für …“, „Daten migrieren“, „Benutzererfahrung teilen“, „Teste den Lernhelfer“, „Teste das Indizieren“ oder „Exportieren“, wenn er ein Fach oder dessen Dateien verwalten oder den Lernhelfer selbst ändern will."
+description: "Verwaltung des Lernhelfers (Lernumgebung für Oberstufe, Berufsschule und Studium), nur in Claude.ai-Projekten: richtet ein Projekt als Lernhelfer ein und verbindet es mit einer Datenquelle (GitHub-Repository), legt Fächer an, benennt sie um und löscht sie, lädt im Chat angehängte Dateien in die Datenquelle hoch, ordnet Dateien Fächern zu, indiziert, übernimmt Lernziele aus dem Modulhandbuch, passt gespeicherte Daten an ein neues Format an, gibt Erfahrungen mit dem Lernhelfer als Datei weiter, testet die Umgebung und entwickelt den Lernhelfer weiter. Verwende diesen Skill, wenn der Nutzer schreibt „Richte dieses Projekt als Lernhelfer ein“, „Leg ein Fach an“, „Lade … hoch“, „Indiziere“, „Übernimm die Lernziele für …“, „Daten migrieren“, „Benutzererfahrung teilen“, „Teste den Lernhelfer“ oder „Exportieren“, wenn er ein Fach oder dessen Dateien verwalten oder den Lernhelfer selbst ändern will."
 ---
 
 # Lernhelfer – Verwalten
@@ -20,7 +20,7 @@ Das geht nur in einem Claude.ai-Projekt. Erstelle in Claude.ai ein Projekt, star
 
 Lies vor allem anderen `plugin:skills/gemeinsam/grundlagen.md` vollständig.
 Vom Ordner dieser `SKILL.md` aus liegt sie unter `../gemeinsam/grundlagen.md`.
-Sie enthält, was dieser Skill mit dem Skill `verwalten` gemeinsam hat
+Sie enthält, was dieser Skill mit dem Skill `lernen` gemeinsam hat
 (Grundregeln, Pfade, Betriebsart, Nachrichten und Rückfragen, Formate, Module,
 Datenquelle, Gedächtnis, Benutzererfahrung), und gilt wie ein Teil dieser
 Datei. Findest du sie nicht, führ keine Fähigkeit aus und antworte genau mit
@@ -44,7 +44,7 @@ Spalte „Verfügbar“ zur Verfügung steht.
 | Gespeicherte Daten an ein neues Format anpassen („Daten migrieren“) | Daten migrieren | `skill:faehigkeiten/migrieren.md` | eingerichtetes Projekt |
 | Benutzererfahrung teilen | Benutzererfahrung teilen | `skill:faehigkeiten/benutzererfahrung-teilen.md` | eingerichtetes Projekt |
 | Den Lernhelfer selbst verbessern oder exportieren | Entwicklung | `skill:faehigkeiten/entwicklung.md` | immer |
-| Testen, ob der Lernhelfer in dieser Umgebung funktioniert, oder nur das Indizieren testen | Test | `skill:faehigkeiten/test.md` | eingerichtetes Projekt |
+| Testen, ob der Lernhelfer in dieser Umgebung funktioniert („Teste den Lernhelfer“) | Testen | `skill:faehigkeiten/testen.md` | eingerichtetes Projekt |
 
 - `immer`: in jedem Claude.ai-Projekt.
 - `eingerichtetes Projekt`: nur im **Projekt**
@@ -82,17 +82,18 @@ Dafür brauchst du eine Datenquelle, in der deine Skripte und Übungen liegen, z
 | `projekt:daten.xml` | Datenquelle und Stand ihrer Dateien beim letzten Indizieren |
 | `projekt:module/` | Ein Modul pro Fach: Beschreibung, Lernziele, Index |
 | `projekt:gedaechtnis/` | Was du dir pro Modul über den Nutzer merkst, dazu Erfahrungen mit dem Lernhelfer |
-| `projekt:test/` | Nur während eines Tests, danach gelöscht |
+| `projekt:lernhelfer-test.md` | Nur während eines Tests, danach gelöscht |
 | `daten:` | Skripte, Übungen, Altklausuren und Modulhandbuch des Nutzers |
 
 Wer wohin schreibt:
 
 - Ins Projekt schreibst du nur im **Projekt**.
 - Fähigkeiten dieses Skills dürfen überall im Projekt schreiben und mit
-  mehreren Modulen arbeiten. „Test“ schreibt nur in `projekt:test/`.
-- In `daten:` schreibt nur „Hochladen“, dazu „Test“ in einem eigenen Zweig,
-  den er wieder löscht.
-- Jede Fähigkeit außer „Initialisieren“ und „Test“ hängt Zeilen an
+  mehreren Modulen arbeiten. „Testen“ schreibt nur
+  `projekt:lernhelfer-test.md`.
+- In `daten:` schreibt nur „Hochladen“, dazu „Testen“ die Datei
+  `daten:lernhelfer-test.md`, die es gleich wieder löscht.
+- Jede Fähigkeit außer „Initialisieren“ und „Testen“ hängt Zeilen an
   `projekt:gedaechtnis/benutzererfahrung.md` an
   (`plugin:skills/gemeinsam/grundlagen.md`, Abschnitt „Benutzererfahrung“).
 

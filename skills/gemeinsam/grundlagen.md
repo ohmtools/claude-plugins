@@ -35,11 +35,18 @@ liegt:
   ß → ss).
 - Schreib neue Dateien immer mit vollständigem Pfad (z.B.
   `projekt:module/mathematik/index.md`), nie nur mit Dateinamen.
+- Liegt eine Datei in `projekt:` in keinem Ordner (z.B. `projekt:daten.xml`),
+  setz beim Schreiben, Lesen und Löschen einen Schrägstrich vor ihren Namen
+  (`/daten.xml`). So steht sie auch in der Projektübersicht. Ohne Schrägstrich
+  legt das Werkzeug sie im Ordner `claude/` ab und findet sie beim Lesen
+  nicht. Pfade mit Ordner schreibst du ohne Schrägstrich am Anfang.
 - Im Chat angehängte Dateien liegen in deiner Arbeitsumgebung, meist unter
-  `/root/.claude/uploads/` mit einem Präfix aus acht Hex-Zeichen und
+  `/root/.claude/uploads/{sitzung}/` mit einem Präfix aus acht Hex-Zeichen und
   Bindestrich vor dem Originalnamen (z.B. `7a57d930-Blatt 3.pdf`). Such sie
-  z.B. mit `find / -xdev -name '*{name}' 2>/dev/null`, wobei `{name}` der
-  Originalname ist.
+  mit `find /root/.claude/uploads -name '*{name}' 2>/dev/null`, wobei `{name}`
+  der Originalname ist. Findest du dort nichts, such mit
+  `find / -xdev -name '*{name}' 2>/dev/null` und lass Treffer in `arbeit:`
+  weg, die stammen von dir.
 
 ## Betriebsart
 
@@ -76,9 +83,11 @@ Rückfragen mit festen Antworten stehen als `auswahl`-Block:
 
 Stell sie mit den Auswahlfeldern mit Rückfrage (Knöpfe, die der Nutzer antippt,
 statt eine Antwort zu tippen). Übernimm Frage und Optionen wörtlich und in
-dieser Reihenfolge. Hast du keine Auswahlfelder, gib die Frage als Text aus und
-die Optionen als nummerierte Liste darunter. Warte in beiden Fällen auf die
-Antwort. Für Platzhalter gilt dasselbe wie bei `text`-Blöcken.
+dieser Reihenfolge. Verlangt das Werkzeug zusätzlich eine kurze Überschrift,
+nimm ein Stichwort aus der Frage (z.B. „Fach“). Hast du keine Auswahlfelder,
+gib die Frage als Text aus und die Optionen als nummerierte Liste darunter.
+Warte in beiden Fällen auf die Antwort. Für Platzhalter gilt dasselbe wie bei
+`text`-Blöcken.
 
 ## Formate
 
@@ -276,7 +285,7 @@ dieser Vorlage an, ohne Zeilen unter der Kopfzeile der Tabelle.
 Hält fest, wo der Umgang mit dem Lernhelfer hakt. Der Nutzer gibt die Datei mit
 „Benutzererfahrung teilen“ an die Person weiter, die den Lernhelfer verbessert.
 „Initialisieren“ legt sie an, und an ihr erkennst du ein eingerichtetes Projekt
-(Abschnitt „Betriebsart“). Jede Fähigkeit außer „Initialisieren“ und „Test“
+(Abschnitt „Betriebsart“). Jede Fähigkeit außer „Initialisieren“ und „Testen“
 pflegt sie im **Projekt**, solange du nach ihr arbeitest. Aufbau:
 
 ```markdown

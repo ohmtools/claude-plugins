@@ -135,7 +135,9 @@ Einmal pro Chat, vor der ersten Änderung oder dem ersten Export.
      **Chat** anders ist (Abschnitt „Betriebsart“ in
      `kopie:skills/gemeinsam/grundlagen.md`). Nimm in die Beschreibung im
      Frontmatter ihres Skills die Sätze auf, mit denen der Nutzer sie aufruft.
-     Danach entscheidet Claude, wann es den Skill lädt.
+     Danach entscheidet Claude, wann es den Skill lädt. Die Beschreibung hat
+     höchstens 1024 Zeichen, sonst speichert Claude.ai sie gekürzt. Kürze
+     lieber die Aufzählung davor als diese Sätze.
    - Jede Fähigkeit steht für sich. Verweise nie auf Schritte oder Abschnitte
      einer anderen Fähigkeit und führe keine andere Fähigkeit als Teil deines
      Ablaufs aus. Gleiche Abläufe stehen deshalb in mehreren Fähigkeiten, z.B.
@@ -282,7 +284,8 @@ aus.
      `arbeit:lernhelfer-entwicklung/.claude-plugin/marketplace.json`, falls es
      sie gibt.
    - Jede `SKILL.md` unter `kopie:skills/` hat im Frontmatter `name` (gleich
-     dem Ordnernamen) und `description` und sonst nichts.
+     dem Ordnernamen) und `description` mit höchstens 1024 Zeichen und sonst
+     nichts.
    - Keine Datei ist leer, keine Zeile endet auf ein Leerzeichen.
 
    Behebe, was nicht stimmt, bevor du weitermachst.

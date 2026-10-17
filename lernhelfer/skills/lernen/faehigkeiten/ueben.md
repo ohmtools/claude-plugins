@@ -168,6 +168,12 @@ welches Verfahren passt. Es kommt immer als zwei PDFs: die Angabe und die
 Lösung mit vollständigem Lösungsweg. Den LaTeX-Quelltext gibst du nur auf
 ausdrücklichen Wunsch heraus.
 
+Du arbeitest in zwei Phasen: Erst entwirfst du Aufgaben und Lösungen und
+schreibst sie als Entwurf auf (Schritte 1 bis 6), dann setzt du den Entwurf
+mit der Vorlage als PDF (ab Schritt 7). Lies vor dem fertigen Entwurf nichts
+aus `skill:vorlagen/`, denn beim Entwerfen zählt nur die Qualität der
+Aufgaben, und die vielen Regeln der Vorlage würden davon ablenken.
+
 1. **Kopfdaten:** Bestimm diese Angaben:
    - `{modulname}`, im **Chat** das Fach aus der Anfrage oder den Unterlagen.
    - `{pruefungsdauer}`: `Dauer` im Abschnitt „Prüfung“ von
@@ -237,7 +243,12 @@ ausdrücklichen Wunsch heraus.
    mit Punkten. Plane jede Aufgabe so, dass ihre Angabe auf eine Seite passt,
    denn im PDF steht jede Aufgabe auf einer eigenen Seite, damit der Nutzer
    sie am Tablet ohne Scrollen bearbeiten kann. Der Rest der Seite bleibt
-   leer, füll ihn nicht mit weiteren Teilaufgaben auf.
+   leer, füll ihn nicht mit weiteren Teilaufgaben auf. Das PDF kann außer
+   Text und Formeln Schaltpläne, Funktionsgraphen, leere Koordinatensysteme
+   zum Einzeichnen, Zeitdiagramme, KV-Diagramme, Zustandsautomaten, Graphen,
+   Blockdiagramme, Registerbelegungen, Tabellen, Code und freie Zeichnungen
+   (z.B. Zeigerdiagramme) zeigen, dazu Multiple Choice, Richtig/Falsch und
+   Zuordnungen. Felder oder Linien zum Hineinschreiben gibt es nicht.
 5. **Lösungen:** Schreib zu jeder Teilaufgabe den vollständigen Lösungsweg mit
    den Denkschritten, nicht nur das Ergebnis, nachgerechnet. Schreib danach zu
    jeder Aufgabe:
@@ -248,71 +259,131 @@ ausdrücklichen Wunsch heraus.
    - die Fundstelle
    - zwei Hinweise für den Fall, dass man hängt: erst einen vagen, dann einen
      konkreten
-6. **LaTeX schreiben:** Die Vorlage `skill:vorlagen/uebungsblatt.tex` erzeugt
-   beide PDFs aus einer Datei. Unter `skill:` kannst du nichts ändern.
-   1. Lösch `arbeit:uebungsblatt/`, falls es den Ordner aus diesem Chat schon
-      gibt, leg ihn neu an und kopiere `skill:vorlagen/uebungsblatt.tex` und
-      `skill:vorlagen/build.sh` hinein.
-   2. Ändere in der Kopie `arbeit:uebungsblatt/uebungsblatt.tex` unter
-      „KOPFDATEN“ `\modulname` (`{modulname}`), `\dauer` (`{dauer}`) und
-      `\hilfsmittel` (`{hilfsmittel}`).
-   3. Ersetze alles zwischen `\begin{questions}` und `\end{questions}` durch
-      deine Aufgaben. Die vier Beispielaufgaben dort zeigen, wie es geht:
-      `\aufgabe{Titel}` beginnt eine Aufgabe auf einer neuen Seite (die erste
-      unter dem Titelkopf), `\part[{punkte}]` eine Teilaufgabe,
-      `\begin{solution}` … `\end{solution}` direkt danach ihre Lösung. Dazu
-      gibt es den Kasten `gegeben` für gegebene Größen, Abbildungen mit
-      `tikzpicture`, `axis` (pgfplots) und `circuitikz`, Code mit
-      `lstlisting` und Multiple Choice mit `oneparcheckboxes` und
-      `\CorrectChoice`. Setz selbst keine Seitenumbrüche.
-   4. Punkte stehen nur an Teilaufgaben, deshalb hat jede Aufgabe mindestens
-      eine. Was Schritt 5 nach den Lösungswegen verlangt (Konzept,
-      Fehlvorstellung, Bewertungskriterien, Fundstelle, Hinweise), schreibst
-      du in ein eigenes `solution` nach `\end{parts}`. Alles, was eine Lösung
-      verrät, auch in Abbildungen, steht in einem `solution` oder zwischen
-      `\ifprintanswers` und `\fi`. Alles andere in der Vorlage bleibt
-      unverändert.
-7. **Übersetzen:** Führ im Ordner `arbeit:uebungsblatt/`
-   `sh build.sh; echo "exit=$?"` aus. Es erzeugt `uebungsblatt.pdf` (Angabe)
-   und `uebungsblatt-loesung.pdf` (Lösung) und kann eine Minute dauern.
-   Endet es nicht mit `exit=0`, zeigt
+6. **Entwurf:** Lösch `arbeit:uebungsblatt/`, falls es den Ordner aus diesem
+   Chat schon gibt, und leg ihn neu an. Schreib alle Aufgaben mit ihren
+   Lösungen aus den Schritten 4 und 5 in `arbeit:uebungsblatt/entwurf.md`,
+   so vollständig, dass du danach am Inhalt nichts mehr entscheiden musst.
+   Formeln stehen in LaTeX-Schreibweise zwischen `$`. Beschreib jede
+   Abbildung so genau, dass du sie danach zeichnen kannst. Hinter jedem
+   Bewertungskriterium stehen seine Punkte, Endergebnisse sind fett. Auch
+   bei Multiple Choice, Richtig/Falsch und Zuordnungen steht die Lösung
+   unter `Lösung:`. Beispiel:
+
+   ```markdown
+   ## Aufgabe 1: Regentonne
+
+   Eine Regentonne wird über einen dünnen Schlauch aus einem Behälter mit
+   konstantem Druck befüllt.
+
+   Abbildung: Behälter links, dünner Schlauch unten nach rechts zur Tonne,
+   Füllhöhe $h$ der Tonne als Maßpfeil.
+
+   a) (3 P) Was entspricht hier dem Widerstand $R$, was der Kapazität $C$
+      und was der Quellspannung?
+
+      Lösung: Der Schlauch bremst den Zufluss wie $R$ den Strom (1 P). Die
+      Tonne speichert Wasser wie $C$ Ladung (1 P). Der Druck des Behälters
+      treibt den Zufluss wie die Quellspannung den Strom (1 P).
+
+   b) (4 P) Wie ändert sich die Füllzeit, wenn die Tonne die doppelte
+      Grundfläche hat?
+
+      Lösung: Für dieselbe Füllhöhe braucht sie doppelt so viel Wasser, ihre
+      „Kapazität“ verdoppelt sich (2 P). Damit verdoppelt sich die
+      Zeitkonstante: **doppelte Füllzeit** (2 P).
+
+   Zur Aufgabe: prüft die Zeitkonstante $\tau = RC$ in einem fremden
+   Kontext, das Skript rechnet nur mit Schaltungen. Verlockend falsch:
+   „gleich lang, der Druck bleibt ja gleich“, Fehlvorstellung: Die Füllzeit
+   hänge nur vom Antrieb ab, nicht vom Speicher. Fundstelle:
+   (skript.pdf, S. 45)
+
+   Hinweise: vage: Was speichert die Tonne, und wovon hängt ab, wie viel?
+   Konkret: Vergleiche die Grundfläche mit $C$ in $\tau = RC$.
+   ```
+
+7. **LaTeX schreiben:** Erst jetzt setzt du den Entwurf mit der Vorlage
+   `skill:vorlagen/uebungsblatt.tex` und ihrer Klasse
+   `skill:vorlagen/uebungsblatt.cls`. Aus einer Datei entstehen beide PDFs:
+   In der Angabe sind die Lösungen ausgeblendet und belegen keinen Platz, in
+   der Lösung sind sie sichtbar. Unter `skill:` kannst du nichts ändern.
+   1. Führ `command -v pdflatex; echo "exit=$?"` aus. Endet es nicht mit
+      `exit=0`, fehlt LaTeX. Arbeite dann nach dem Abschnitt „Ohne LaTeX“
+      weiter, ohne die Vorlage zu lesen.
+   2. Lies `skill:vorlagen/ANLEITUNG.md` vollständig, falls du sie in diesem
+      Chat noch nicht gelesen hast. Sie beschreibt alle Befehle der Klasse,
+      und nur diese verwendest du. Ist dir ein Befehl unklar, lies in
+      `skill:vorlagen/beispiel.tex` nur die Aufgabe, die ihn benutzt.
+   3. Kopiere `skill:vorlagen/uebungsblatt.cls`,
+      `skill:vorlagen/uebungsblatt.tex` und `skill:vorlagen/build.sh` nach
+      `arbeit:uebungsblatt/`.
+   4. Ändere in der Kopie `arbeit:uebungsblatt/uebungsblatt.tex` vor
+      `\begin{document}` `\fach` (`{modulname}`), `\bearbeitungszeit`
+      (`{dauer}`) und `\hilfsmittel` (`{hilfsmittel}`). Lösch die Zeile mit
+      `\blatt`, und behalte von den Zeilen mit `\hinweis` nur die, die zu
+      deinen Aufgaben passen. Sonst änderst du vor `\begin{document}` nichts.
+   5. Ersetze alles zwischen `\begin{document}` und `\end{document}` durch
+      die Aufgaben aus `arbeit:uebungsblatt/entwurf.md`, jede in einer
+      Umgebung `aufgabe`. Übertrag Texte, Lösungen und Punkte unverändert, du
+      wählst nur die passenden Befehle und zeichnest die Abbildungen nach
+      ihrer Beschreibung. Setz selbst keine Seitenumbrüche, auch kein
+      `\neueseite`, denn jede Aufgabe beginnt von selbst auf einer neuen
+      Seite und soll auf sie passen.
+   6. Jede `Lösung:` des Entwurfs kommt in eine `loesung` direkt nach ihrer
+      Teilaufgabe. Jedes Bewertungskriterium endet dort mit `\teilpunkt`,
+      jedes fette Endergebnis steht in `\ergebnis`. „Zur Aufgabe“ und
+      „Hinweise“ kommen in zwei eigene `loesung` am Ende der Aufgabe,
+      `\begin{loesung}[Zur Aufgabe]` und `\begin{loesung}[Hinweise]`. Alles,
+      was eine Lösung verrät, auch in Abbildungen, steht in einer `loesung`,
+      in `\nurloesung` oder in den Lösungsmarkierungen der Antwortformate
+      (`\antwort*`, `\aussage[r]`, `\aussage[f]`, `\paar[k]`).
+   7. `arbeit:uebungsblatt/uebungsblatt.cls` und
+      `arbeit:uebungsblatt/build.sh` bleiben unverändert.
+8. **Übersetzen:** Führ im Ordner `arbeit:uebungsblatt/`
+   `sh build.sh; echo "exit=$?"` aus. Es erzeugt aus `uebungsblatt.tex` die
+   Angabe `uebungsblatt.pdf` und die Lösung `uebungsblatt-loesung.pdf` und
+   kann eine Minute dauern. Endet es nicht mit `exit=0`, zeigt
    `grep -A3 '^!' uebungsblatt.log uebungsblatt-loesung.log` die Fehler.
-   Behebe sie in deinem Teil und übersetze neu. Meldet es `pdflatex: not found`
-   oder `File … not found`, fehlt LaTeX oder ein Paket der Vorlage. Arbeite
-   dann nach dem Abschnitt „Ohne LaTeX“ weiter.
-8. **Prüfen:** Prüf vor dem Bereitstellen:
+   Behebe sie in deinem Teil und übersetze neu. Meldet es `File … not found`,
+   fehlt ein Paket der Vorlage. Arbeite dann nach dem Abschnitt „Ohne LaTeX“
+   weiter. Endet es mit `exit=0`, zeigt
+   `grep -A1 'Class uebungsblatt Warning: Aufgabe' uebungsblatt.log`
+   Aufgaben, deren Punkte nicht stimmen. Behebe auch diese.
+9. **Prüfen:** Prüf vor dem Bereitstellen:
    - Beide PDFs sind ohne Fehler übersetzt.
    - Du hast jede Seite beider PDFs als Bild angesehen (im Ordner
      `arbeit:uebungsblatt/` mit `pdftoppm -r 80 -png uebungsblatt.pdf angabe`
      und `pdftoppm -r 80 -png uebungsblatt-loesung.pdf loesung`):
      Abbildungen und Schaltpläne passen zum Text, nichts ist abgeschnitten
-     oder ragt über den Rand, jede Aufgabe beginnt auf einer neuen Seite, und
-     die Angabe verrät keine Lösung.
+     oder ragt über den Rand, das Deckblatt nennt alle Aufgaben und zeigt
+     nirgends `??`, jede Aufgabe beginnt auf einer neuen Seite, und die
+     Angabe verrät keine Lösung.
    - In der Angabe passt jede Aufgabe auf ihre Seite. Reicht eine auf die
      nächste Seite, kürz sie oder verkleinere ihre Abbildung.
-   - Alle Lösungen sind nachgerechnet.
-   - Die Punkte, die die erste Seite der Angabe nennt, sind gleich der Dauer
-     in Minuten.
+   - Alle Lösungen sind nachgerechnet, und die Teilpunkte jeder Teilaufgabe
+     ergeben zusammen ihre Punkte.
+   - Die Gesamtpunkte auf dem Deckblatt der Angabe sind gleich der Dauer in
+     Minuten.
 
    Stimmt etwas nicht, korrigier es, übersetze neu und prüf noch einmal.
-9. **Bereitstellen:** Stell beide PDFs mit deinem Werkzeug zum Bereitstellen
-   von Dateien bereit und antworte, wobei `{punkte}` die Punktesumme ist.
-   `{ohne-latex}` gibt es nur im Abschnitt „Ohne LaTeX“, sonst lass den
-   Platzhalter samt Zeile weg.
+10. **Bereitstellen:** Stell beide PDFs mit deinem Werkzeug zum Bereitstellen
+    von Dateien bereit und antworte, wobei `{punkte}` die Punktesumme ist.
+    `{ohne-latex}` gibt es nur im Abschnitt „Ohne LaTeX“, sonst lass den
+    Platzhalter samt Zeile weg.
 
-   ```text
-   Dein Übungsblatt ist fertig: {anzahl} Aufgaben, {dauer}, {punkte} Punkte.
-   {ohne-latex}
+    ```text
+    Dein Übungsblatt ist fertig: {anzahl} Aufgaben, {dauer}, {punkte} Punkte.
+    {ohne-latex}
 
-   - {angabe}: die Angabe
-   - {loesung}: die Lösung mit Lösungsweg, Bewertungskriterien und Hinweisen
+    - {angabe}: die Angabe
+    - {loesung}: die Lösung mit Lösungsweg, Bewertungskriterien und Hinweisen
 
-   Bearbeite das Blatt wie eine Prüfung: mit Zeitlimit, nur mit den angegebenen Hilfsmitteln und ohne mich. Öffne die Lösung erst danach. Hängst du fest, frag mich lieber nach einem Hinweis, als in die Lösung zu schauen. Deine fertige Lösung schick mir getippt oder als Foto, dann korrigiere ich sie. Hebst du beide Dateien auf, geht das auch später in einem neuen Chat.
-   ```
+    Bearbeite das Blatt wie eine Prüfung: mit Zeitlimit, nur mit den angegebenen Hilfsmitteln und ohne mich. Öffne die Lösung erst danach. Hängst du fest, frag mich lieber nach einem Hinweis, als in die Lösung zu schauen. Deine fertige Lösung schick mir getippt oder als Foto, dann korrigiere ich sie. Hebst du beide Dateien auf, geht das auch später in einem neuen Chat.
+    ```
 
-   `{angabe}` und `{loesung}` sind die Dateinamen, hier `uebungsblatt.pdf`
-   und `uebungsblatt-loesung.pdf`.
-10. **Danach:** Fragt der Nutzer zu einer Aufgabe, hilf mit den Hinweisen aus
+    `{angabe}` und `{loesung}` sind die Dateinamen, hier `uebungsblatt.pdf`
+    und `uebungsblatt-loesung.pdf`.
+11. **Danach:** Fragt der Nutzer zu einer Aufgabe, hilf mit den Hinweisen aus
     Schritt 5 (`skill:SKILL.md`, Abschnitt „Leitplanken“). Schickt er seine
     Lösung, wechsle zu `skill:faehigkeiten/korrigieren.md` mit dem
     Übungsblatt als Thema (`skill:SKILL.md`, Abschnitt „Fähigkeit
@@ -320,14 +391,13 @@ ausdrücklichen Wunsch heraus.
 
 ## Ohne LaTeX
 
-Schreib das Übungsblatt als zwei Markdown-Dateien in `arbeit:uebungsblatt/`:
-`uebungsblatt.md` mit der Angabe und `uebungsblatt-loesung.md` mit der Angabe
-und allen Lösungen aus Schritt 5. Formeln stehen in LaTeX-Schreibweise
-zwischen `$`. Nimm keine Aufgabe, die eine Zeichnung braucht, oder beschreib
-die Zeichnung in Worten. Prüf Lösungen und Punkte wie in Schritt 8, ohne die
-Bilder. Mach dann mit Schritt 9 weiter, mit diesen Dateinamen und dieser
-Zeile für `{ohne-latex}`, wobei `{grund}` die Fehlermeldung in wenigen Worten
-ist:
+Mach aus `arbeit:uebungsblatt/entwurf.md` zwei Markdown-Dateien in
+`arbeit:uebungsblatt/`: `uebungsblatt.md` mit der Angabe, also dem Entwurf
+ohne `Lösung:`, „Zur Aufgabe“ und „Hinweise“, und `uebungsblatt-loesung.md`
+mit dem ganzen Entwurf. Abbildungen bleiben als Beschreibung in Worten
+stehen. Prüf Lösungen und Punkte wie in Schritt 9, ohne die Bilder. Mach dann
+mit Schritt 10 weiter, mit diesen Dateinamen und dieser Zeile für
+`{ohne-latex}`, wobei `{grund}` die Fehlermeldung in wenigen Worten ist:
 
 ```text
 Hier kann ich gerade keine PDFs erzeugen ({grund}), deshalb bekommst du es als Textdateien.
@@ -354,15 +424,15 @@ ablegen. Davor steht ein Kopf, dahinter eine Schlusszeile:
 % themen: Kettenregel, Partielle Integration
 % quelle: 3b18e512dba79e4c8300dd08aeb37f8e728b8dad analysis/skript.pdf
 % quelle: 7c4a8d09ca3762af61e59520943dc26494f8941b analysis/Blatt 3.pdf
-% ==========================================================================
-%  OhmTools Lernhelfer – Vorlage für Übungsblätter im Klausurstil
+% =====================================================================
+%  uebungsblatt.tex – leeres Grundgerüst für ein neues Übungsblatt
 …
 \end{document}
 % Ende des Lernhelfer-Vorrats
 ```
 
 - `dauer`, `aufgaben` und `punkte`: wie `{dauer}`, `{anzahl}` und `{punkte}`
-  in Schritt 9 des Abschnitts „Übungsblatt“.
+  in Schritt 10 des Abschnitts „Übungsblatt“.
 - `themen`: die Schwachstellen und fälligen Themen, die das Blatt abdeckt.
 - `quelle`: eine Zeile pro Datei aus `daten:`, aus der du für das Blatt
   gelesen hast, mit ihrer Identifikation in der Datenquelle beim Erstellen und
@@ -389,9 +459,10 @@ die automatische Anweisung beim nächsten Lauf.
 ### Speichern
 
 Nur die automatische Anweisung speichert Blätter, eins pro Modul, und erst,
-wenn das Blatt Schritt 8 („Prüfen“) bestanden hat. So kommt nie ein halbes
+wenn das Blatt Schritt 9 („Prüfen“) bestanden hat. So kommt nie ein halbes
 Blatt in den Vorrat (`plugin:skills/gemeinsam/grundlagen.md`, Abschnitt
-„Abbruch“).
+„Abbruch“). Ein Blatt, das eigene Dateien einbindet (z.B. mit `\bild` oder
+`\codedatei`), speicherst du nicht, denn der Vorrat hält nur den Quelltext.
 
 1. Schreib den Kopf mit dem heutigen Datum unter `erstellt` nach
    `arbeit:uebungsblatt/kopf.tex`. Führ dann im Ordner `arbeit:uebungsblatt/`
@@ -412,21 +483,21 @@ Blatt in den Vorrat (`plugin:skills/gemeinsam/grundlagen.md`, Abschnitt
 
 1. Lies `projekt:vorrat/{modul}/uebungsblatt.tex`.
 2. Lösch `arbeit:uebungsblatt/`, falls es den Ordner aus diesem Chat schon
-   gibt, leg ihn neu an und kopiere `skill:vorlagen/build.sh` hinein. Liefert
-   dein Werkzeug die gelesene Datei als Datei, kopiere sie nach
-   `arbeit:uebungsblatt/uebungsblatt.tex`, sonst schreib ihren Inhalt dorthin,
-   Zeichen für Zeichen unverändert. Setz darin `\modulname` auf
-   `{modulname}`, denn das Fach kann inzwischen anders heißen.
-3. Übersetze wie in Schritt 7. Endet es nicht mit `exit=0`, benutze das Blatt
+   gibt, leg ihn neu an und kopiere `skill:vorlagen/uebungsblatt.cls` und
+   `skill:vorlagen/build.sh` hinein. Liefert dein Werkzeug die gelesene Datei
+   als Datei, kopiere sie nach `arbeit:uebungsblatt/uebungsblatt.tex`, sonst
+   schreib ihren Inhalt dorthin, Zeichen für Zeichen unverändert. Setz darin
+   `\fach` auf `{modulname}`, denn das Fach kann inzwischen anders heißen.
+3. Übersetze wie in Schritt 8. Endet es nicht mit `exit=0`, benutze das Blatt
    nicht und mach mit den übrigen Rückfragen in Schritt 2 weiter wie ohne
    Vorrat. Lösch es dann aus dem Vorrat, außer die Meldung ist
    `pdflatex: not found`, denn dann fehlt nur hier LaTeX.
-4. Schritt 8 entfällt, das Blatt wurde vor dem Speichern geprüft.
+4. Schritt 9 entfällt, das Blatt wurde vor dem Speichern geprüft.
 5. Lösch `projekt:vorrat/{modul}/uebungsblatt.tex`, bevor du die PDFs
    bereitstellst. So bekommt der Nutzer kein Blatt zweimal, auch wenn der Chat
    danach endet.
-6. Mach mit Schritt 9 weiter, mit `{dauer}`, `{anzahl}` und `{punkte}` aus
-   `dauer`, `aufgaben` und `punkte` im Kopf, und danach mit Schritt 10.
+6. Mach mit Schritt 10 weiter, mit `{dauer}`, `{anzahl}` und `{punkte}` aus
+   `dauer`, `aufgaben` und `punkte` im Kopf, und danach mit Schritt 11.
 
 ## Bloom-Leiter
 

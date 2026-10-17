@@ -26,7 +26,7 @@ und die Projektdateien.
 | Gemeinsam für `lernen` und `verwalten`: Grundregeln, Pfade, Betriebsart, Nachrichten, Abbruch (nur fertige Dateien ins Projekt), Formate, Module, Datenquelle (`daten.xml`), Gedächtnis, Benutzererfahrung | `lernhelfer/skills/gemeinsam/grundlagen.md` |
 | Lernen: Fähigkeiten, Fähigkeit wechseln, Modul bestimmen, Dateiprüfung, Dateien im Chat, PDF-Dateien, Probleme pflegen, gemeinsame Regeln der Lernmodi (Unterlagen, Belege, Nachrechnen, Leitplanken, fällige Themen, Session beenden) | `lernhelfer/skills/lernen/SKILL.md` |
 | Lernmodi (Erlernen, Wiederholen, Üben, Korrigieren) und Schwachstellen | `lernhelfer/skills/lernen/faehigkeiten/` |
-| Vorlagen für Ausgaben (Übungsblatt in LaTeX mit `build.sh`) | `lernhelfer/skills/lernen/vorlagen/`, Konvention in `entwicklung.md` |
+| Vorlagen für Ausgaben (Übungsblatt: LaTeX-Klasse mit Anleitung und `build.sh`) | `lernhelfer/skills/lernen/vorlagen/`, Konvention in `entwicklung.md` |
 | Verwalten: Fähigkeiten und ihre Verfügbarkeit, Projektstruktur, Dateien der Datenquelle, automatische Anweisungen einrichten | `lernhelfer/skills/verwalten/SKILL.md` |
 | Automatische Anweisungen (geplante Anweisungen in Claude.ai): Prompts, Einrichten, Ausschalten | `lernhelfer/skills/verwalten/geplant/`, `lernhelfer/skills/verwalten/faehigkeiten/automatische-anweisungen.md` |
 | Vorrat an Übungsblättern (`projekt:vorrat/`) | `lernhelfer/skills/lernen/faehigkeiten/ueben.md`, „Vorrat“, und `lernhelfer/skills/verwalten/geplant/2-uebungsblaetter-vorbereiten.md` |
@@ -82,10 +82,16 @@ die Änderung betrifft, vollständig.
   - Aufbau von `info.md` (Abschnitte Beschreibung, Lernziele, Prüfung):
     Vorlagen in `grundlagen.md` und `modul-bearbeiten.md`. `ueben.md`
     („Übungsblatt“, Schritt 1) liest `Dauer` und `Hilfsmittel` daraus.
-  - Pakete der Übungsblatt-Vorlage: Kopf von
-    `lernen/vorlagen/uebungsblatt.tex` und Testdokument in `testen.md`,
+  - Pakete und Schriften der Übungsblatt-Vorlage: Abschnitte 1 und 2 von
+    `lernen/vorlagen/uebungsblatt.cls` und Testdokument in `testen.md`,
     Test 3. Das Testdokument liest die Vorlage nicht selbst, weil ein Skill
     keine Dateien eines anderen Skills liest.
+  - Dateien und Übersetzen der Übungsblatt-Vorlage: Kopf von
+    `uebungsblatt.cls`, `uebungsblatt.tex` und `beispiel.tex`,
+    `ANLEITUNG.md` (Kapitel 1, 3 und 11), `build.sh` und `ueben.md`
+    („Übungsblatt“, Schritte 7 und 8).
+  - Darstellungen der Übungsblatt-Vorlage: `ueben.md` („Übungsblatt“,
+    Schritt 4) und `ANLEITUNG.md`, Kapitel 12.
   - SymPy, NumPy und SciPy nachinstallieren mit `pip install`:
     `lernen/SKILL.md` („Nachrechnen“) und `testen.md`, Test 4.
   - Darstellung als HTML-Datei ohne Dateien aus dem Internet: `erlernen.md`,
@@ -191,9 +197,10 @@ die Änderung betrifft, vollständig.
     Lernhelfer bewusst nicht. Am Ende einer Etappe nennt er den Satz zum
     Weitermachen.
   - Üben (AFB II und III, Schwerpunkt ferner Transfer): Transferaufgaben nach
-    dem Transfer-Prompt des Playbooks, als Übungsblatt (zwei PDFs aus
-    `vorlagen/uebungsblatt.tex` mit `build.sh`, ohne LaTeX zwei
-    Markdown-Dateien) oder Bloom-Leiter im Chat.
+    dem Transfer-Prompt des Playbooks, als Übungsblatt (erst ein Entwurf in
+    Markdown, dann zwei PDFs aus `vorlagen/uebungsblatt.tex` mit der Klasse
+    `uebungsblatt.cls` und `build.sh`, ohne LaTeX zwei Markdown-Dateien) oder
+    Bloom-Leiter im Chat.
   - Korrigieren: strenger Prüfer, Punkte als Schätzung, Hinweise statt
     Lösung, Fehlerursachen nach Fischgräte mit bis zu fünfmal „Warum?“,
     danach Wechsel zu Erlernen (Verständnis, Vorwissen) oder zu Wiederholen
@@ -210,12 +217,33 @@ die Änderung betrifft, vollständig.
   sie mit `pdftotext` auf bis zu fünf Seiten davor und danach. Der Satz zum
   Weitermachen im Skript enthält die Überschrift als Anker
   (`lernen/SKILL.md`, „PDF-Dateien“).
-- Vorlagen: `lernen/vorlagen/` mit `uebungsblatt.tex` und `build.sh`, vom
-  Nutzer übernommen. Einzige Änderung: `\aufgabe` beginnt jede Aufgabe auf
-  einer neuen Seite (die erste unter dem Titelkopf), auch in der Lösung,
-  damit man sie am Tablet ohne Scrollen bearbeitet. `needspace` ist dafür
-  entfallen. Der Kopf der Vorlage verweist auf `build.sh`, deshalb kommt es
-  mit, statt die Befehle in `ueben.md` zu wiederholen.
+- Vorlagen: `lernen/vorlagen/` mit der Übungsblatt-Vorlage des Nutzers vom
+  2026-10-16, die es vor allem fürs Design gibt: Klasse `uebungsblatt.cls`
+  (Deckblatt mit Punkten und Aufgabenliste, jede Aufgabe auf einer eigenen
+  Seite, jede Seite vertikal zentriert, damit man am Tablet, z.B. in
+  GoodNotes, ohne Scrollen arbeitet, Schrift IBM Plex, sonst Helvetica),
+  `ANLEITUNG.md` mit allen Befehlen für KI-Modelle, `beispiel.tex` mit
+  `material/` als Beispiel für jeden Befehl. Aufgaben und Lösungen stehen in
+  einer Datei: `build.sh [name]` erzeugt daraus `{name}.pdf` ohne und
+  `{name}-loesung.pdf` mit Lösungen (Klassenoption `loesung` über
+  `-jobname` und `\PassOptionsToClass`, je zwei Durchläufe `pdflatex`,
+  latexmk ist ungeprüft). Ausgeblendete Lösungen (`verbatim`-`comment`)
+  belegen keinen Platz: Lokal sind die Angaben von `beispiel.tex` und eines
+  Probeblatts pixelgleich mit denselben Dateien ohne `loesung` und
+  `\nurloesung`. Geändert gegenüber dem Original: `vorlage.tex` heißt
+  `uebungsblatt.tex`, die Hilfsdateien `vorlage-loesung.tex` und
+  `beispiel-loesung.tex` sind entfallen, die Versionsangabe der Klasse ist
+  entfernt (Konvention), Kopf von Klasse, Vorlage und Beispiel und die
+  Kapitel 1, 3 und 11 der Anleitung beschreiben `build.sh`. Die
+  mitgelieferten PDFs sind nicht im Plugin.
+- Übungsblatt in zwei Phasen (Wunsch des Nutzers, damit die Qualität der
+  Aufgaben nicht unter vielen geladenen Regeln leidet): `ueben.md` lässt
+  erst Aufgaben und Lösungen als `arbeit:uebungsblatt/entwurf.md` schreiben
+  (Markdown, Punkte pro Kriterium, Abbildungen in Worten) und liest die
+  Anleitung erst danach, zum Setzen in LaTeX. Was das PDF darstellen kann,
+  steht deshalb kurz in `ueben.md`, Schritt 4. Ohne LaTeX (`command -v
+  pdflatex` vor dem Lesen der Anleitung) werden aus dem Entwurf die zwei
+  Markdown-Dateien.
 - Bewusst ohne Regel: Dateien, die ein Nutzer trotzdem über die Projektseite
   hochlädt.
 - Automatische Anweisungen: geplante Anweisungen des Claude.ai-Projekts,
@@ -235,7 +263,9 @@ die Änderung betrifft, vollständig.
   Werkzeug nennt Claude die Einstellungen zum Anlegen von Hand.
 - Vorrat: pro Modul höchstens ein Übungsblatt, 45 Minuten, Schwachstellen und
   fällige Themen (so hat es der Nutzer entschieden), als LaTeX-Quelltext,
-  weil PDFs nicht in die Projektdateien passen. Kopf mit `format`, Themen und
+  weil PDFs nicht in die Projektdateien passen, deshalb ohne eigene Dateien
+  (`\bild`, `\codedatei`). Beim Benutzen kommen `uebungsblatt.cls` und
+  `build.sh` aus der Vorlage dazu. Kopf mit `format`, Themen und
   `quelle` (Identifikation und Pfad jeder gelesenen Datei), Schlusszeile
   `% Ende des Lernhelfer-Vorrats`. Üben bietet ein gültiges Blatt als erste
   Rückfrage an, übersetzt es, löscht es und stellt es dann bereit. Ungültige
@@ -354,11 +384,15 @@ eine PDF lässt sich nicht wieder lokal herstellen.
   Optionen (`testen.md`, Test 2). In Claude Code sind es 2 bis 4. Ob
   mehrere Rückfragen in einem Aufruf gehen, steht in der Beschreibung des
   Werkzeugs.
-- `pdflatex` mit den Paketen der Übungsblatt-Vorlage, darunter `lmodern` für
-  die Schrift des Codes (`testen.md`, Test 3). Lokal geprüft (TeX Live 2023):
-  Die Vorlage wird ohne Fehler übersetzt, `build.sh` braucht etwa 10 s. Fehlt
-  `lmodern`, endet `pdflatex` trotzdem mit 0, warnt nur vor
-  `Font shape T1/lmtt… undefined` und setzt den Code in einer Serifenschrift.
+- `pdflatex` mit den Paketen der Übungsblatt-Vorlage und die Schrift IBM
+  Plex (`testen.md`, Test 3). Lokal geprüft (TeX Live 2023 aus Ubuntu 24.04):
+  Vorlage, Beispiel und Testdokument werden ohne Fehler übersetzt, zwei
+  Durchläufe reichen (keine Warnung zum erneuten Übersetzen), `build.sh`
+  braucht für die leere Vorlage etwa 5 s, das Beispiel mit 18 und 23 Seiten
+  etwa 17 s. Ohne `texlive-fonts-extra` fehlt Plex, dann setzt die Klasse
+  ohne Fehler Helvetica (`NimbusSanL`) und Courier (`NimbusMonL`). So sind
+  die PDFs des Nutzers entstanden. Mit Plex nennt `pdffonts` `plxSans` und
+  `plxMono`.
 - SymPy, NumPy und SciPy und ob `pip install` klappt (`testen.md`, Test 4).
 - Ob eine bereitgestellte HTML-Datei im Chat angezeigt wird und ihre Knöpfe
   funktionieren, im Browser und in der App (`testen.md`, Test 5).
@@ -395,8 +429,9 @@ Fällen:
 - „Gib mir Aufgabe 2 von Blatt 3 mit anderen Zahlen, aber so, dass es kein
   Maximum gibt“ (neue Werte, vorher nachgerechnet)
 - „Mach mir ein Übungsblatt“ (höchstens zwei Rückfragen, Angabe- und
-  Lösungs-PDF mit nachgerechneten Lösungen, jede Aufgabe auf einer eigenen
-  Seite)
+  Lösungs-PDF mit nachgerechneten Lösungen, Entwurf vor dem Lesen von
+  `ANLEITUNG.md`, Deckblatt ohne `??`, jede Aufgabe auf einer eigenen Seite,
+  nur Befehle aus `ANLEITUNG.md`)
 - Foto einer fehlerhaften Lösung (Bewertung, Fischgräte, Eintrag mit Ursache
   in `probleme.md`)
 

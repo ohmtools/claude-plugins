@@ -14,7 +14,7 @@
       "name": "zeiteisen",
       "source": {
         "source": "git-subdir",
-        "url": "ohmtools/zeiteisen",
+        "url": "https://github.com/ohmtools/zeiteisen",
         "path": "skill/zeiteisen-generator"
       },
       "description": "Dateien für die Stundenplan-App Zeiteisen (TH Nürnberg): Claude liest Stundenpläne, Abkürzungslisten, Modulhandbücher, Studienpläne, Semestertermine und Standorte aus und macht daraus Dateien, die du in Zeiteisen lädst.",

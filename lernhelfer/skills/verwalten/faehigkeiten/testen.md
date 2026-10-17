@@ -11,9 +11,9 @@ weiter.
 ## Grundsatz
 
 - Schreib im Projekt und in der Datenquelle nur, wo ein Test es verlangt, nur
-  Dateien mit `lernhelfer-test` im Namen, und lösch sie wieder. Bevor du in
-  die Datenquelle schreibst, frag den Nutzer um Erlaubnis. Alles andere fasst
-  du nicht an.
+  Dateien mit `lernhelfer-test` im Namen, und lösch sie wieder. Dasselbe gilt
+  für geplante Anweisungen. Bevor du in die Datenquelle schreibst, frag den
+  Nutzer um Erlaubnis. Alles andere fasst du nicht an.
 - Schlägt ein Test fehl, notiere das und mach mit dem nächsten weiter. Brich
   nicht ab.
 - Ergebnis pro Test: `ok`, `teilweise`, `fehlgeschlagen` oder `übersprungen`,
@@ -21,6 +21,28 @@ weiter.
 - Das Protokoll ist der wichtigste Teil des Ergebnisses. Wer den Lernhelfer
   weiterentwickelt, sieht diesen Chat nicht und kann nur aus dem Protokoll
   nachvollziehen, was passiert ist. Schreib lieber zu viel als zu wenig.
+
+## Als automatische Anweisung
+
+Lautet die Anfrage „Teste den Lernhelfer als automatische Anweisung“, läuft
+dieser Chat als geplante Anweisung aus Test 7, und niemand liest mit. Führ dann
+nur diese Schritte aus, ohne Rückfrage, statt der übrigen Abschnitte:
+
+1. Halte fest: dein Modell, Datum und Uhrzeit, ob du Werkzeuge für
+   Projektdateien hast und wie viele Dateien die Projektübersicht nennt, die
+   erste Zeile der Rückmeldung des Werkzeugs `Skill` und die Ausgabe von
+   `pdflatex --version | head -1; echo "exit=$?"`.
+2. Nur wenn es `projekt:daten.xml` gibt: Hol die Liste der Dateien der
+   Datenquelle, wie `projekt:daten.xml` es beschreibt. Notiere, ob das klappt,
+   mit Befehlen, Exit-Codes und Fehlermeldungen wörtlich, und nur die Zahl der
+   Dateien. Bei einem privaten Repository notiere auch die vollständige
+   Rückmeldung der GitHub-Anbindung und ob sie eine Bestätigung verlangt hat.
+3. Schreib alles als Liste nach `projekt:lernhelfer-test-geplant.md`.
+4. Antworte:
+
+   ```text
+   Test der automatischen Anweisungen fertig. Das Ergebnis liegt in lernhelfer-test-geplant.md.
+   ```
 
 ## Protokoll
 
@@ -65,8 +87,8 @@ Halte danach fest:
 - Die Betriebsart (`plugin:skills/gemeinsam/grundlagen.md`, Abschnitt
   „Betriebsart“) und ob es `projekt:daten.xml` gibt.
 - Die Werkzeuge für Projektdateien, Rückfragen, Dateien im Chat, die Shell,
-  die Websuche und die GitHub-Anbindung mit genauem Namen und ihren
-  Parametern. Alle übrigen Werkzeuge nur als Anzahl.
+  die Websuche, die GitHub-Anbindung und geplante Anweisungen mit genauem
+  Namen und ihren Parametern. Alle übrigen Werkzeuge nur als Anzahl.
 - Arbeitsumgebung: Ausgabe von `uname -a`, `pwd` und `df -h .`.
 
 ## Tests
@@ -243,11 +265,89 @@ Halte danach fest:
    nicht ansehen. Detail: Format und Lesbarkeit. Protokoll: Pfad, Ausgabe von
    `file`, wie du sie angesehen hast und was du lesen konntest, ohne den Inhalt
    wiederzugeben.
+7. **Automatische Anweisungen:** Davon hängt ab, dass „Initialisieren“ und
+   „Automatische Anweisungen“ geplante Anweisungen anlegen und dass diese ohne
+   den Nutzer laufen (`skill:SKILL.md`, Abschnitt „Automatische
+   Anweisungen“). Hast du kein Werkzeug für geplante Anweisungen, ist der Test
+   `fehlgeschlagen`, Detail „kein Werkzeug“.
+   1. Notiere aus der Beschreibung des Werkzeugs: ob es Anweisungen einmal pro
+      Woche zu einer Uhrzeit in einer Zeitzone anlegt, ob jeder Lauf ein neuer
+      Chat in diesem Projekt sein kann, ob sich das Modell setzen lässt, welche
+      Benachrichtigungen es gibt (push, email, slack), ob es Anweisungen
+      auflisten und löschen kann und ob die Liste das Projekt nennt.
+   2. Leg eine Anweisung an, die einmal etwa drei Minuten nach jetzt läuft:
+      Name `Lernhelfer-Test`, in einem neuen Chat in diesem Projekt, Modell
+      Haiku, Benachrichtigung push, mit diesem Prompt:
+
+      ```text
+      /lernhelfer:verwalten Teste den Lernhelfer als automatische Anweisung
+      ```
+
+      Kann das Werkzeug keine einmalige Anweisung, nimm eine wöchentliche zur
+      nächsten möglichen Zeit.
+   3. Stell diese Rückfrage, wobei `{uhrzeit}` ihre Zeit ist:
+
+      ```auswahl
+      Test der automatischen Anweisungen: Ich habe eine für {uhrzeit} angelegt. Sie läuft in einem neuen Chat in diesem Projekt. Sag mir Bescheid, sobald du den Chat oder eine Benachrichtigung siehst, spätestens nach zehn Minuten.
+      - Gelaufen, mit Benachrichtigung
+      - Gelaufen, ohne Benachrichtigung
+      - Nichts passiert
+      ```
+
+   4. Lies `projekt:lernhelfer-test-geplant.md`, hol die Liste der geplanten
+      Anweisungen und lösch `Lernhelfer-Test`.
+
+   `ok`: Sie ist mit Benachrichtigung gelaufen, und laut
+   `projekt:lernhelfer-test-geplant.md` lief sie mit Haiku, hatte Werkzeuge für
+   Projektdateien, den Skill, `pdflatex` und, falls es `projekt:daten.xml`
+   gibt, Zugriff auf die Datenquelle ohne Bestätigung. `teilweise`: Sie ist
+   gelaufen, aber etwas davon fehlt. `fehlgeschlagen`: Sie ließ sich nicht
+   anlegen oder ist nicht gelaufen. Detail: Werkzeug und was fehlte.
+   Protokoll: das Werkzeug mit allen Parametern und Rückmeldungen, die Antwort
+   des Nutzers und den Inhalt von `projekt:lernhelfer-test-geplant.md`
+   vollständig.
+8. **LaTeX-Quelltext in den Projektdateien:** Davon hängt der Vorrat an
+   Übungsblättern ab (Skill `lernen`, Fähigkeit „Üben“, Abschnitt „Vorrat“),
+   den „Üben“ mit Angabe des Pfads statt des Inhalts schreibt
+   (`plugin:skills/gemeinsam/grundlagen.md`, Abschnitt „Abbruch“).
+   1. Führ im Ordner `arbeit:` aus:
+
+      ```bash
+      mkdir -p lernhelfer-test
+      python3 - <<'EOF'
+      zeilen = ['% Lernhelfer-Test: Umlaute äöüß, Prozent %, Backslash \\ und {Klammern}']
+      zeilen += [f'\\section{{Abschnitt {i}}} $\\int_0^1 x\\,\\mathrm{{d}}x$ = 0,5 äöü' for i in range(1, 401)]
+      zeilen += ['\\end{document}', '% Ende des Lernhelfer-Vorrats']
+      with open('lernhelfer-test/lernhelfer-test.tex', 'w', encoding='utf-8') as f:
+          f.write('\n'.join(zeilen) + '\n')
+      EOF
+      wc -lc lernhelfer-test/lernhelfer-test.tex
+      sha256sum lernhelfer-test/lernhelfer-test.tex
+      ```
+
+      Erwartet: 403 Zeilen, etwa 25 KB.
+   2. Schreib die Datei mit dem Werkzeug für Projektdateien und Angabe ihres
+      Pfads (z.B. `local_path` bei `project_write`) nach
+      `projekt:lernhelfer-test/lernhelfer-test.tex`.
+   3. Lies sie mit dem Werkzeug wieder. Liefert es eine Datei, vergleiche sie
+      mit `sha256sum`. Liefert es den Inhalt im Chat, prüf darin die erste
+      Zeile, die Zeilen mit `Abschnitt 200` und `Abschnitt 400` und die
+      letzten beiden Zeilen Zeichen für Zeichen.
+   4. Lösch sie mit dem Werkzeug wieder und prüf in der Projektübersicht, dass
+      sie fehlt.
+
+   `ok`: Die Datei kommt unverändert zurück und lässt sich löschen.
+   `teilweise`: Sie kommt verändert oder gekürzt zurück, oder Schreiben mit
+   Pfad klappt nicht, nur mit Inhalt. `fehlgeschlagen`: Sie lässt sich nicht
+   schreiben oder nicht löschen. Detail: wie das Werkzeug sie liefert (Datei
+   oder Inhalt) und was abweicht. Protokoll: alle Aufrufe mit Parametern und
+   Rückmeldungen, ohne den Inhalt der Datei.
 
 ## Aufräumen
 
 Lösch jede Datei, die ein Test im Projekt oder in der Datenquelle angelegt hat,
-und prüf, dass nichts davon übrig ist. Bleibt etwas übrig, nenne es in
+und jede geplante Anweisung, die ein Test angelegt hat, und prüf, dass nichts
+davon übrig ist. Bleibt etwas übrig, nenne es in
 `{reste}`, eine Datei der Datenquelle mit `{url}`. Protokoll: jeden
 Löschversuch mit Werkzeug oder Befehl und Rückmeldung. Hat kein Test etwas
 angelegt, notiere nur das.

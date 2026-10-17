@@ -178,6 +178,21 @@ ausdrücklichen Wunsch heraus.
      `projekt:module/{modul}/info.md`, sonst aus einer Altklausur, sonst
      `keine Angabe`.
 2. **Rückfragen:** Frag nur, was sich nicht aus der Anfrage ergibt.
+   - Vorrat: Nur im **Projekt**. Gibt es für das Modul ein gültiges Blatt im
+     Vorrat (Abschnitt „Vorrat“) und verlangt die Anfrage nichts, das nicht
+     dazu passt (z.B. bestimmte Themen oder eine andere Länge), stell zuerst
+     diese Rückfrage, wobei `{vorrat-dauer}` und `{themen}` aus seinem Kopf
+     stammen:
+
+     ```auswahl
+     Ich habe für {modulname} schon ein Übungsblatt vorbereitet: {vorrat-dauer} zu {themen}. Es ist sofort fertig und schont dein Nutzungslimit. Willst du es?
+     - Das vorbereitete Blatt
+     - Ein neues Übungsblatt
+     ```
+
+     Bei „Das vorbereitete Blatt“ arbeite nach dem Abschnitt „Vorrat“,
+     „Benutzen“, weiter. Bei „Ein neues Übungsblatt“ stell die übrigen
+     Rückfragen.
    - Stoff:
 
      ```auswahl
@@ -317,6 +332,101 @@ ist:
 ```text
 Hier kann ich gerade keine PDFs erzeugen ({grund}), deshalb bekommst du es als Textdateien.
 ```
+
+## Vorrat
+
+Im **Projekt** kann es pro Modul ein vorbereitetes Übungsblatt geben:
+`projekt:vorrat/{modul}/uebungsblatt.tex`, etwa 45 Minuten zu den
+Schwachstellen und fälligen Themen. Die automatische Anweisung „Übungsblätter
+vorbereiten“, die der Nutzer einrichten kann, legt es einmal pro Woche an,
+wenn übrige Nutzung sonst verfallen würde. Der Nutzer bekommt es dann sofort,
+und es kostet kaum Token. Gespeichert ist nur der LaTeX-Quelltext aus dem
+Abschnitt „Übungsblatt“, denn PDFs lassen sich nicht in den Projektdateien
+ablegen. Davor steht ein Kopf, dahinter eine Schlusszeile:
+
+```latex
+% Lernhelfer-Vorrat
+% format: 1
+% erstellt: 2026-10-22
+% dauer: 45 Minuten
+% aufgaben: 3
+% punkte: 45
+% themen: Kettenregel, Partielle Integration
+% quelle: 3b18e512dba79e4c8300dd08aeb37f8e728b8dad analysis/skript.pdf
+% quelle: 7c4a8d09ca3762af61e59520943dc26494f8941b analysis/Blatt 3.pdf
+% ==========================================================================
+%  OhmTools Lernhelfer – Vorlage für Übungsblätter im Klausurstil
+…
+\end{document}
+% Ende des Lernhelfer-Vorrats
+```
+
+- `dauer`, `aufgaben` und `punkte`: wie `{dauer}`, `{anzahl}` und `{punkte}`
+  in Schritt 9 des Abschnitts „Übungsblatt“.
+- `themen`: die Schwachstellen und fälligen Themen, die das Blatt abdeckt.
+- `quelle`: eine Zeile pro Datei aus `daten:`, aus der du für das Blatt
+  gelesen hast, mit ihrer Identifikation in der Datenquelle beim Erstellen und
+  ihrem Pfad ohne Präfix.
+- Die Schlusszeile kommt als Letztes dazu. Fehlt sie, ist die Datei
+  unvollständig.
+
+### Gültig
+
+Ein Blatt ist gültig, wenn alles zutrifft. Prüf das mit der Liste der
+Datenquelle aus der Dateiprüfung (`skill:SKILL.md`, Abschnitt „Dateiprüfung“),
+ohne Dateien aus `daten:` zu öffnen:
+
+1. Die letzte Zeile ist `% Ende des Lernhelfer-Vorrats`.
+2. Der Kopf beginnt mit `% Lernhelfer-Vorrat` und `% format: 1` und hat alle
+   Zeilen aus dem Beispiel, `quelle` mindestens einmal.
+3. Jede Datei unter `quelle` steht im Abschnitt „Dateien“ von
+   `projekt:module/{modul}/index.md` und hat in der Datenquelle dieselbe
+   Identifikation wie im Kopf.
+
+Ein ungültiges Blatt benutzt du nicht und löschst es auch nicht. Das übernimmt
+die automatische Anweisung beim nächsten Lauf.
+
+### Speichern
+
+Nur die automatische Anweisung speichert Blätter, eins pro Modul, und erst,
+wenn das Blatt Schritt 8 („Prüfen“) bestanden hat. So kommt nie ein halbes
+Blatt in den Vorrat (`plugin:skills/gemeinsam/grundlagen.md`, Abschnitt
+„Abbruch“).
+
+1. Schreib den Kopf mit dem heutigen Datum unter `erstellt` nach
+   `arbeit:uebungsblatt/kopf.tex`. Führ dann im Ordner `arbeit:uebungsblatt/`
+   aus:
+
+   ```bash
+   cat kopf.tex uebungsblatt.tex > vorrat.tex
+   echo '% Ende des Lernhelfer-Vorrats' >> vorrat.tex
+   tail -n 2 vorrat.tex
+   ```
+
+2. Prüf, dass `tail` `\end{document}` und die Schlusszeile ausgibt.
+3. Schreib sie mit einem einzigen Aufruf nach
+   `projekt:vorrat/{modul}/uebungsblatt.tex`, mit Angabe ihres Pfads statt
+   ihres Inhalts (z.B. `local_path` bei `project_write`).
+
+### Benutzen
+
+1. Lies `projekt:vorrat/{modul}/uebungsblatt.tex`.
+2. Lösch `arbeit:uebungsblatt/`, falls es den Ordner aus diesem Chat schon
+   gibt, leg ihn neu an und kopiere `skill:vorlagen/build.sh` hinein. Liefert
+   dein Werkzeug die gelesene Datei als Datei, kopiere sie nach
+   `arbeit:uebungsblatt/uebungsblatt.tex`, sonst schreib ihren Inhalt dorthin,
+   Zeichen für Zeichen unverändert. Setz darin `\modulname` auf
+   `{modulname}`, denn das Fach kann inzwischen anders heißen.
+3. Übersetze wie in Schritt 7. Endet es nicht mit `exit=0`, benutze das Blatt
+   nicht und mach mit den übrigen Rückfragen in Schritt 2 weiter wie ohne
+   Vorrat. Lösch es dann aus dem Vorrat, außer die Meldung ist
+   `pdflatex: not found`, denn dann fehlt nur hier LaTeX.
+4. Schritt 8 entfällt, das Blatt wurde vor dem Speichern geprüft.
+5. Lösch `projekt:vorrat/{modul}/uebungsblatt.tex`, bevor du die PDFs
+   bereitstellst. So bekommt der Nutzer kein Blatt zweimal, auch wenn der Chat
+   danach endet.
+6. Mach mit Schritt 9 weiter, mit `{dauer}`, `{anzahl}` und `{punkte}` aus
+   `dauer`, `aufgaben` und `punkte` im Kopf, und danach mit Schritt 10.
 
 ## Bloom-Leiter
 

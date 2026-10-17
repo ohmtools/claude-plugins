@@ -1,6 +1,6 @@
 ---
 name: verwalten
-description: "Verwaltung des Lernhelfers (Lernumgebung für Oberstufe, Berufsschule und Studium), nur in Claude.ai-Projekten: richtet ein Projekt als Lernhelfer ein und verbindet es mit einer Datenquelle (GitHub-Repository), legt Fächer an, benennt sie um und löscht sie, lädt im Chat angehängte Dateien in die Datenquelle hoch, ordnet Dateien Fächern zu, indiziert, übernimmt Lernziele aus dem Modulhandbuch, passt gespeicherte Daten an ein neues Format an, gibt Erfahrungen mit dem Lernhelfer als Datei weiter, testet die Umgebung und entwickelt den Lernhelfer weiter. Verwende diesen Skill, wenn der Nutzer schreibt „Richte dieses Projekt als Lernhelfer ein“, „Leg ein Fach an“, „Lade … hoch“, „Indiziere“, „Übernimm die Lernziele für …“, „Daten migrieren“, „Benutzererfahrung teilen“, „Teste den Lernhelfer“ oder „Exportieren“, wenn er ein Fach oder dessen Dateien verwalten oder den Lernhelfer selbst ändern will."
+description: "Verwaltung des Lernhelfers (Lernumgebung für Oberstufe, Berufsschule und Studium), nur in Claude.ai-Projekten: richtet ein Projekt als Lernhelfer ein und verbindet es mit einer Datenquelle (GitHub-Repository), legt Fächer an, benennt sie um und löscht sie, lädt im Chat angehängte Dateien in die Datenquelle hoch, ordnet Dateien Fächern zu, indiziert, übernimmt Lernziele aus dem Modulhandbuch, passt gespeicherte Daten an ein neues Format an, richtet automatische Anweisungen ein, die einmal pro Woche kurz vor dem Reset des Wochenlimits indizieren und Übungsblätter vorbereiten, gibt Erfahrungen mit dem Lernhelfer als Datei weiter, testet die Umgebung und entwickelt den Lernhelfer weiter. Verwende diesen Skill, wenn der Nutzer schreibt „Richte dieses Projekt als Lernhelfer ein“, „Leg ein Fach an“, „Lade … hoch“, „Indiziere“, „Übernimm die Lernziele für …“, „Richte die automatischen Anweisungen ein“, „Daten migrieren“, „Benutzererfahrung teilen“, „Teste den Lernhelfer“ oder „Exportieren“, wenn er ein Fach oder dessen Dateien verwalten oder den Lernhelfer selbst ändern will."
 ---
 
 # Lernhelfer – Verwalten
@@ -41,6 +41,7 @@ Spalte „Verfügbar“ zur Verfügung steht.
 | Fach anlegen, umbenennen oder löschen, Lernziele aus dem Modulhandbuch übernehmen, Dateien einem Fach zuordnen, ersetzen oder herausnehmen, fragen, welche Fächer es gibt, was zu einem Fach gehört oder welche Dateien zu keinem Fach gehören | Modul bearbeiten | `skill:faehigkeiten/modul-bearbeiten.md` | eingerichtetes Projekt |
 | Im Chat angehängte Dateien in die Datenquelle hochladen („Lade … hoch“) | Hochladen | `skill:faehigkeiten/hochladen.md` | Datenquelle |
 | Neue und geänderte Dateien der Datenquelle indizieren („Indiziere“) | Indizieren | `skill:faehigkeiten/indizieren.md` | Datenquelle |
+| Automatische Anweisungen einrichten, ihre Zeit ändern, sie ausschalten oder anzeigen („Richte die automatischen Anweisungen ein“) | Automatische Anweisungen | `skill:faehigkeiten/automatische-anweisungen.md` | Datenquelle |
 | Gespeicherte Daten an ein neues Format anpassen („Daten migrieren“) | Daten migrieren | `skill:faehigkeiten/migrieren.md` | eingerichtetes Projekt |
 | Benutzererfahrung teilen | Benutzererfahrung teilen | `skill:faehigkeiten/benutzererfahrung-teilen.md` | eingerichtetes Projekt |
 | Den Lernhelfer selbst verbessern oder exportieren | Entwicklung | `skill:faehigkeiten/entwicklung.md` | immer |
@@ -86,6 +87,7 @@ Dafür brauchst du eine Datenquelle, in der deine Skripte und Übungen liegen, z
 | `projekt:daten.xml` | Datenquelle und Stand ihrer Dateien beim letzten Indizieren |
 | `projekt:module/` | Ein Modul pro Fach: Beschreibung, Lernziele, Index |
 | `projekt:gedaechtnis/` | Was du dir pro Modul über den Nutzer merkst, dazu Erfahrungen mit dem Lernhelfer |
+| `projekt:vorrat/` | Pro Modul höchstens ein vorbereitetes Übungsblatt als LaTeX-Quelltext. Der Skill `lernen` legt es in einer automatischen Anweisung an und löscht es, wenn er es benutzt. |
 | `daten:` | Skripte, Übungen, Altklausuren und Modulhandbuch des Nutzers |
 
 Wer wohin schreibt:
@@ -119,3 +121,123 @@ Wer wohin schreibt:
   Prüfung in `projekt:module/{modul}/info.md`.
 - Nicht zugeordnet ist jede übrige Datei der Datenquelle, die in keinem
   Abschnitt „Dateien“ eines Index steht.
+
+## Automatische Anweisungen
+
+Automatische Anweisungen sind geplante Anweisungen des Claude.ai-Projekts. Jede
+läuft einmal pro Woche ohne den Nutzer, jedes Mal in einem neuen Chat in diesem
+Projekt, und erledigt etwas Aufwendiges wie „Indizieren“. Am besten laufen sie
+kurz vor dem Reset seines Wochenlimits, dann verbrauchen sie Nutzung, die sonst
+verfallen würde. Jede Datei in `skill:geplant/` wird eine automatische
+Anweisung:
+
+```markdown
+---
+name: Indizieren
+modell: Haiku
+benachrichtigung: push
+---
+
+/lernhelfer:verwalten Indiziere
+
+Das ist eine automatische Anweisung, die der Nutzer eingerichtet hat. …
+```
+
+- `name`: Name der Anweisung. Sie heißt `Lernhelfer: {name}`.
+- `modell`: die Reihe des Modells, z.B. `Haiku` oder `Opus`. Nimm die neueste
+  Fassung dieser Reihe, die du kennst.
+- `benachrichtigung`: wie der Nutzer nach einem Lauf benachrichtigt wird:
+  `push`, `email` oder `slack`, mehrere durch Kommas getrennt, oder `keine`.
+- Alles nach dem Frontmatter ist der Prompt. Übernimm ihn wörtlich, ohne die
+  Leerzeilen am Anfang und am Ende.
+
+Verlangt eine Fähigkeit, die automatischen Anweisungen einzurichten:
+
+1. **Reset erfragen:** Hat der Nutzer in dieser Anfrage schon Wochentag und
+   Uhrzeit für die Anweisungen genannt, ist das `{zeitpunkt}`. Mach dann mit
+   Schritt 3 weiter. Sonst antworte und warte auf die Antwort:
+
+   ```text
+   Wann wird dein Wochenlimit zurückgesetzt? Du siehst es in Claude unter Settings > Usage, z.B. „Donnerstag 9:00“.
+   ```
+
+2. **Zeit wählen:** `{empfehlung}` liegt zwei Stunden vor dem Reset, mit
+   Wochentag und Uhrzeit (z.B. bei „Donnerstag 9:00“ `Donnerstag 7:00`, bei
+   „Montag 1:00“ `Sonntag 23:00`). `{anweisungen}` sind die Werte von `name`
+   aller Dateien in `skill:geplant/`, je mit dem Modell in Klammern, z.B.
+   `Indizieren (mit Haiku) und Übungsblätter vorbereiten (mit Opus)`. Stell
+   diese Rückfrage:
+
+   ```auswahl
+   Ich richte {anweisungen} ein, jede läuft einmal pro Woche. Ich empfehle {empfehlung}, zwei Stunden vor dem Reset. Dann reicht die Zeit für alle, und es verfällt keine Nutzung. Wann sollen sie laufen?
+   - {empfehlung}
+   - Zu einer anderen Zeit
+   ```
+
+   Bei „Zu einer anderen Zeit“ antworte und warte auf die Antwort:
+
+   ```text
+   Wann sollen sie laufen? Nenn mir Wochentag und Uhrzeit.
+   ```
+
+   `{zeitpunkt}` ist die gewählte Zeit. Alle Zeiten gelten in der Zeitzone
+   `Europe/Berlin`, außer der Nutzer nennt eine andere.
+3. **Anlegen:** Geh die Dateien in `skill:geplant/` nach ihrem Namen
+   aufsteigend durch. Die erste läuft zum `{zeitpunkt}`, jede weitere 30
+   Minuten nach der vorigen, denn spätere bauen auf früheren auf (z.B.
+   Übungsblätter auf einem aktuellen Index).
+   1. **Alte merken:** Kann dein Werkzeug für geplante Anweisungen sie
+      auflisten, merk dir jede Anweisung dieses Projekts, deren Name mit
+      `Lernhelfer:` beginnt. Kannst du bei einer nicht erkennen, ob sie zu
+      diesem Projekt gehört, lass sie weg und notiere sie für
+      `{abweichungen}`.
+   2. **Neue anlegen:** Leg für jede Datei eine Anweisung an: Name
+      `Lernhelfer: {name}`, einmal pro Woche zu ihrer Zeit, jedes Mal in einem
+      neuen Chat in diesem Projekt, mit Modell und Benachrichtigung aus dem
+      Frontmatter und dem Prompt. Kann dein Werkzeug sie auflisten, prüf, dass
+      jede da ist.
+   3. **Alte löschen:** Lösch erst danach die Anweisungen aus Punkt 1, damit
+      keine doppelt läuft. In dieser Reihenfolge bleiben nach einem Abbruch
+      höchstens alte und neue nebeneinander, nie gar keine.
+
+   Notiere für `{abweichungen}` jede Einstellung, die du nicht so setzen
+   konntest (z.B. eine Benachrichtigung über Slack), mit dem, was jetzt gilt.
+4. **Ohne Werkzeug:** Hast du kein Werkzeug für geplante Anweisungen oder
+   schlägt das Anlegen auch beim zweiten Versuch fehl, lösch keine Anweisung.
+   Die Nachricht zum Ergebnis ist dann diese:
+
+   ````text
+   Die automatischen Anweisungen kann ich hier nicht selbst anlegen. Leg sie auf der Projektseite als geplante Anweisungen an, jede einmal pro Woche, und lösch dort vorher alte, deren Name mit „Lernhelfer:“ beginnt:
+
+   {anleitung}
+   ````
+
+   `{anleitung}`: für jede Datei in `skill:geplant/` dieser Block, wobei
+   `{zeit}` ihre Zeit aus Schritt 3 ist und `{prompt}` ihr Prompt:
+
+   ````text
+   **Lernhelfer: {name}**: jeden {zeit}, Modell {modell}, Benachrichtigung {benachrichtigung}. Kopiere diese Anweisung vollständig:
+
+   ```text
+   {prompt}
+   ```
+   ````
+
+5. **Ergebnis:** Sonst ist die Nachricht zum Ergebnis diese, wobei `{liste}`
+   die Anweisungen mit ihrer Zeit sind, z.B.
+   `Indizieren jeden Donnerstag um 7:00, Übungsblätter vorbereiten jeden Donnerstag um 7:30`:
+
+   ```text
+   Die automatischen Anweisungen sind eingerichtet: {liste}. Ändern oder ausschalten kannst du sie jederzeit, z.B. mit „/lernhelfer:verwalten Schalte die automatischen Anweisungen aus“.
+   {abweichungen}
+   ```
+
+   `{abweichungen}`: Hast du etwas notiert, setze diese Zeile ein, wobei
+   `{punkte}` die Notizen durch Semikolons getrennt sind, sonst lass den
+   Platzhalter samt Zeile weg:
+
+   ```text
+   Nicht alles ließ sich so einrichten: {punkte}.
+   ```
+
+   Die Fähigkeit nennt, wo sie die Nachricht zum Ergebnis ausgibt.

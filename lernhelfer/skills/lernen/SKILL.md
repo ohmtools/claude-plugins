@@ -97,10 +97,12 @@ Bei jedem Wechsel:
   verweist, oder die, die deine Fähigkeit nennt.
 - Du liest `projekt:module/`, `projekt:daten.xml` und `daten:`, schreibst dort
   aber nie. Ins Projekt schreibst du nur
-  `projekt:gedaechtnis/{modul}/probleme.md` (Abschnitt „Probleme pflegen“) und
+  `projekt:gedaechtnis/{modul}/probleme.md` (Abschnitt „Probleme pflegen“),
   `projekt:gedaechtnis/benutzererfahrung.md` (Abschnitt „Benutzererfahrung“ in
-  `plugin:skills/gemeinsam/grundlagen.md`). Hilfsdateien wie Bilder von Seiten
-  oder Übungsblätter legst du in `arbeit:` an.
+  `plugin:skills/gemeinsam/grundlagen.md`) und Übungsblätter in
+  `projekt:vorrat/`, genau wie in `skill:faehigkeiten/ueben.md`, Abschnitt
+  „Vorrat“, beschrieben. Hilfsdateien wie Bilder von Seiten oder die PDFs
+  eines Übungsblatts legst du in `arbeit:` an.
 - Prüf nie von dir aus, ob ein Index stimmt, z.B. indem du ganze Dateien liest
   und mit dem Index vergleichst. Das ist Arbeit, nach der niemand gefragt hat,
   und kostet viele Token. Ob ein Index veraltet ist, zeigt allein die
@@ -126,11 +128,14 @@ Tipp: Dieses Projekt ist noch nicht als Lernhelfer eingerichtet. Schreib „/ler
 ## Mit einem Modul arbeiten
 
 Jede Fähigkeit dieses Skills arbeitet mit genau einem Modul. Sie liest nur
-dessen Dateien in `projekt:module/{modul}/` und `projekt:gedaechtnis/{modul}/`,
-die Dateien aus dem Abschnitt „Dateien“ seines Index, `projekt:daten.xml` und
-`projekt:gedaechtnis/benutzererfahrung.md`.
+dessen Dateien in `projekt:module/{modul}/`, `projekt:gedaechtnis/{modul}/` und
+`projekt:vorrat/{modul}/`, die Dateien aus dem Abschnitt „Dateien“ seines
+Index, `projekt:daten.xml` und `projekt:gedaechtnis/benutzererfahrung.md`.
 Nur um das Modul zu bestimmen, darfst du `projekt:module/{modul}/info.md` aller
-Module lesen.
+Module lesen. Eine automatische Anweisung (eine geplante Anweisung des
+Projekts, die ohne den Nutzer läuft) darf verlangen, mehrere Module
+nacheinander zu bearbeiten. Dann arbeitest du mit jedem für sich, als wäre es
+eine eigene Anfrage.
 
 1. **Modul bestimmen:** Ordne die Anfrage anhand der Namen und Beschreibungen in
    `projekt:module/{modul}/info.md` einem Modul zu (z.B. „Mathe“ →

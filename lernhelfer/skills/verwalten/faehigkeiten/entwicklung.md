@@ -21,9 +21,9 @@ zum Pfad.
   Arbeitskopie unter `kopie:`. Sie besteht nur in diesem Chat. Die Änderungen
   wirken erst, wenn der Nutzer die exportierte Plugin-Datei installiert oder
   in sein Repository überträgt.
-- `projekt:gedaechtnis/`, `projekt:module/`, `projekt:daten.xml` und `daten:`
-  gehören nicht zum Lernhelfer. Ändere dort keine vorhandenen Daten und
-  exportiere nichts daraus.
+- `projekt:gedaechtnis/`, `projekt:module/`, `projekt:vorrat/`,
+  `projekt:daten.xml` und `daten:` gehören nicht zum Lernhelfer. Ändere dort
+  keine vorhandenen Daten und exportiere nichts daraus.
 - `arbeit:lernhelfer-entwicklung/README.md`,
   `arbeit:lernhelfer-entwicklung/CLAUDE.md` und
   `arbeit:lernhelfer-entwicklung/.claude-plugin/marketplace.json` gibt es nur,
@@ -182,9 +182,13 @@ Einmal pro Chat, vor der ersten Änderung oder dem ersten Export.
    - Jede Fähigkeit in `lernen` arbeitet mit genau einem Modul. Sie liest nur
      dessen Dateien, `projekt:daten.xml` und `daten:` und schreibt nur
      `projekt:gedaechtnis/{modul}/probleme.md` und
-     `projekt:gedaechtnis/benutzererfahrung.md`. Bau dort keine Abläufe über
-     mehrere Module, auch keine Übersichten oder Vergleiche. Fähigkeiten in
-     `verwalten` dürfen mit mehreren Modulen arbeiten.
+     `projekt:gedaechtnis/benutzererfahrung.md`, dazu „Üben“ den Vorrat in
+     `projekt:vorrat/{modul}/` (Abschnitt „Vorrat“ in
+     `kopie:skills/lernen/faehigkeiten/ueben.md`). Bau dort keine Abläufe über
+     mehrere Module, auch keine Übersichten oder Vergleiche. Nur eine
+     automatische Anweisung darf verlangen, mehrere Module nacheinander zu
+     bearbeiten, jedes für sich. Fähigkeiten in `verwalten` dürfen mit
+     mehreren Modulen arbeiten.
    - Liest eine Fähigkeit in `lernen` Dateien aus `daten:`, verlangt sie in
      ihrem Ablauf ausdrücklich die Dateiprüfung aus
      `kopie:skills/lernen/SKILL.md`. Lernt sie mit dem Nutzer, verlangt sie
@@ -220,7 +224,30 @@ Einmal pro Chat, vor der ersten Änderung oder dem ersten Export.
      indiziert werden muss. Lösch nie eine vorhandene Migration.
    - Keine Fähigkeit startet „Indizieren“ von selbst, weil es viel vom
      Nutzungslimit verbrauchen kann. Ist ein Index veraltet, weist sie mit einer
-     Nachricht darauf hin.
+     Nachricht darauf hin. Das Gleiche gilt für alles andere Aufwendige. Von
+     selbst läuft es nur als automatische Anweisung, die der Nutzer
+     eingerichtet hat.
+   - Jede Fähigkeit schreibt ins Projekt, wie es der Abschnitt „Abbruch“ in
+     `kopie:skills/gemeinsam/grundlagen.md` verlangt, denn ein Chat kann nach
+     jedem Schritt am Nutzungslimit enden. Schreibt sie mehrere Dateien, die
+     voneinander abhängen, nennt sie die Reihenfolge ausdrücklich (Vorbild:
+     `kopie:skills/verwalten/faehigkeiten/indizieren.md`, Schritt 4).
+   - Jede Datei in `kopie:skills/verwalten/geplant/` wird beim Einrichten eine
+     automatische Anweisung (Aufbau und Ablauf in
+     `kopie:skills/verwalten/SKILL.md`, Abschnitt „Automatische Anweisungen“).
+     Ihr Dateiname beginnt mit einer Nummer, die die Reihenfolge festlegt
+     (z.B. `1-indizieren.md`). Ihr Prompt kommt wörtlich in Claude.ai und
+     ändert sich mit einem Update nicht von selbst. Er beginnt mit dem Satz,
+     der den Skill aufruft (z.B. „/lernhelfer:verwalten Indiziere“), sagt,
+     dass niemand mitliest und keine Rückfragen kommen, und verweist auf den
+     Abschnitt „Abbruch“. Auf Fähigkeiten, Abschnitte und Schritte verweist er
+     nur mit ihrem Namen, nie mit einer Nummer. Benennst du etwas um, auf das
+     ein Prompt verweist, pass den Prompt an.
+   - Ändert sich der Aufbau der Blätter im Vorrat
+     (`kopie:skills/lernen/faehigkeiten/ueben.md`, Abschnitt „Vorrat“),
+     erhöhe dort die Nummer in `% format:`. Ältere Blätter gelten dann als
+     ungültig, und die automatische Anweisung löscht sie. Eine Migration
+     braucht es dafür nicht, denn der Vorrat ist nur ein Zwischenspeicher.
    - „Testen“ (`kopie:skills/verwalten/faehigkeiten/testen.md`) prüft nur
      Annahmen über die Umgebung, die noch kein Testlauf bestätigt hat, damit
      ein Testlauf kurz bleibt. Verlässt sich eine Änderung auf etwas
@@ -271,6 +298,7 @@ aus.
    Für alle anderen: Die Datei ist ein ZIP-Archiv. Ersetze in deinem Repository den Ordner lernhelfer/skills/ und die Datei lernhelfer/.claude-plugin/plugin.json durch ihren Inhalt, committe und pushe. Wer den Lernhelfer per Link mit automatischem Abgleich installiert hat, bekommt die Änderung dann von selbst.
    {repository-hinweis}
    {anweisung-hinweis}
+   {automatik-hinweis}
    ```
 
    `{repository-hinweis}`: Hast du `arbeit:lernhelfer-repository.zip` gepackt,
@@ -286,4 +314,12 @@ aus.
 
    ```text
    Die Projektanweisungen haben sich geändert. Schreib nach dem Update in jedem Lernhelfer-Projekt „/lernhelfer:verwalten Richte dieses Projekt als Lernhelfer ein“, dann bekommst du den neuen Text.
+   ```
+
+   `{automatik-hinweis}`: Hast du eine Datei in
+   `kopie:skills/verwalten/geplant/` geändert, ergänzt oder entfernt, setze
+   diese Zeile ein, sonst lass den Platzhalter samt Zeile weg:
+
+   ```text
+   Die automatischen Anweisungen haben sich geändert. Schreib nach dem Update in jedem Lernhelfer-Projekt, in dem sie laufen, „/lernhelfer:verwalten Richte die automatischen Anweisungen ein“, dann bekommen sie den neuen Text.
    ```

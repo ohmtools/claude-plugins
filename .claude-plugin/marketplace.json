@@ -9,6 +9,26 @@
       "name": "lernhelfer",
       "source": "./lernhelfer",
       "description": "Lernumgebung für Oberstufe, Berufsschule und Studium: Claude erklärt, übt und fragt ab, mit deinen eigenen Skripten und Übungen. Am besten in einem Claude.ai-Projekt, wo sich Claude Fächer und Schwierigkeiten merkt; auch in einzelnen Chats nutzbar."
+    },
+    {
+      "name": "zeiteisen",
+      "source": {
+        "source": "git-subdir",
+        "url": "ohmtools/zeiteisen",
+        "path": "skill/zeiteisen-generator"
+      },
+      "description": "Dateien für die Stundenplan-App Zeiteisen (TH Nürnberg): Claude liest Stundenpläne, Abkürzungslisten, Modulhandbücher, Studienpläne, Semestertermine und Standorte aus und macht daraus Dateien, die du in Zeiteisen lädst.",
+      "author": {
+        "name": "tobilinz"
+      },
+      "homepage": "https://github.com/ohmtools/zeiteisen",
+      "repository": "https://github.com/ohmtools/zeiteisen",
+      "license": "BSD-3-Clause",
+      "keywords": [
+        "stundenplan",
+        "studium",
+        "zeiteisen"
+      ]
     }
   ]
 }

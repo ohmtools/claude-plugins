@@ -12,6 +12,7 @@ daraus die Plugins, die du brauchst:
 | Plugin | Wofür |
 |---|---|
 | [lernhelfer](#lernhelfer) | Lernen mit deinen eigenen Skripten, Übungen und Altklausuren |
+| [zeiteisen](#zeiteisen) | Dateien für die Stundenplan-App Zeiteisen |
 
 ## Lernhelfer
 
@@ -37,10 +38,22 @@ Ohne Projekt hilft der Lernhelfer auch, merkt sich dann aber nichts.
 
 Frag Claude, z.B. `/lernhelfer:helfen Was kannst du?`.
 
+## Zeiteisen
+
+Der Skill zur Stundenplan-App
+[Zeiteisen](https://github.com/ohmtools/zeiteisen) der TH Nürnberg: Claude
+macht aus Stundenplänen, Abkürzungslisten, Modulhandbüchern, Studienplänen,
+Semesterterminen und Standorten Dateien, die du in Zeiteisen lädst.
+
+Installiere aus dem Marketplace das Plugin „zeiteisen“ und häng z.B. einen
+Stundenplan als PDF an. Hast du den Skill vorher als ZIP aus der App
+hochgeladen, lösch ihn in Claude.ai, sonst gibt es ihn doppelt.
+
 ## Aufbau des Repositorys
 
 Jedes Plugin liegt in einem eigenen Ordner. Claude.ai installiert nur diesen
-Ordner.
+Ordner. Zeiteisen liegt im Repository der App unter
+`skill/zeiteisen-generator/`, `marketplace.json` verweist dorthin.
 
 ```text
 .claude-plugin/marketplace.json   Marketplace mit allen Plugins

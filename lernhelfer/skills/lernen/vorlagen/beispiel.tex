@@ -1,0 +1,736 @@
+% =====================================================================
+%  beispiel.tex – Übungsblatt, das ALLE Funktionen von uebungsblatt.cls zeigt
+%
+%  Aufgabenblatt und Lösungsvorschlag:  sh build.sh beispiel
+%  (erzeugt beispiel.pdf ohne und beispiel-loesung.pdf mit Lösungen)
+% =====================================================================
+\documentclass{uebungsblatt}
+% Klassenoptionen (hier nicht genutzt):
+%   \documentclass[ohnedeckblatt]{uebungsblatt}   – ohne Deckblatt
+%   \documentclass[aufgabenoben]{uebungsblatt}    – Aufgaben oben statt mittig
+%   \documentclass[loesung]{uebungsblatt}         – Lösungsvorschlag erzeugen
+
+% ---- Angaben für Deckblatt, Kopf- und Fußzeile ------------------------
+\fach{Elektro- und Informationstechnik}
+\blatt{07}
+\untertitel{Gemischte Prüfungsaufgaben – Funktionsübersicht der Vorlage}
+\kopfzusatz{Prüfungsvorbereitung}
+\bearbeitungszeit{120 min}
+\hilfsmittel{Formelsammlung, nicht programmierbarer Taschenrechner}
+\hinweis{Rechenweg vollständig und nachvollziehbar angeben}
+\hinweis{Ergebnisse immer mit Einheit angeben}
+\hinweis{Skizzen direkt in die vorgegebenen Abbildungen einzeichnen}
+% \akzentfarbe{0F7B6C}   % andere Akzentfarbe (HTML-Hexwert ohne #)
+
+\begin{document}
+
+% =====================================================================
+% Aufgabe 1: gegeben/gesucht, nebeneinander, schaltung, hinweisbox
+%            Lösung: loesung-Box am Ende, \teilpunkt, \ergebnis,
+%                    \nurloesung (Zählpfeile direkt im Schaltbild)
+% =====================================================================
+\begin{aufgabe}{Gleichstromnetzwerk}
+Das abgebildete Netzwerk wird von einer idealen Spannungsquelle gespeist.
+
+\begin{gegeben}
+  \wert{U_0 = \qty{12}{V}}
+  \wert{R_1 = \qty{100}{\ohm}}
+  \wert{R_2 = \qty{200}{\ohm}}
+  \wert{R_3 = \qty{300}{\ohm}}
+  \gesucht{R_\mathrm{ges},\; I_1,\; U_2,\; I_2}
+\end{gegeben}
+
+\begin{nebeneinander}[0.52]
+  \begin{teilaufgaben}
+    \teil{3} Berechnen Sie den Gesamtwiderstand $R_\mathrm{ges}$.
+    \teil{2} Bestimmen Sie den Strom $I_1$.
+    \teil{3} Berechnen Sie $U_2$ und den Teilstrom $I_2$.
+    \teil{2} Zeichnen Sie die Zählpfeile von $U_1$ und $U_2$ in das
+             Schaltbild ein.
+  \end{teilaufgaben}
+\spalte
+  \begin{schaltung}{Gleichstromnetzwerk}
+    \draw (0,0) to[V, l=$U_0$] (0,3)
+          to[R, l=$R_1$, i>^=$I_1$] (2.5,3) -- (4,3);
+    \draw (2.5,3) to[R, l_=$R_2$, i>_=$I_2$, *-*] (2.5,0);
+    \draw (4,3) to[R, l=$R_3$] (4,0);
+    \draw (0,0) -- (4,0);
+    % nur im Lösungsblatt sichtbar:
+    \nurloesung{
+      \draw[->, loesung] (0.55,3.75) -- node[above] {$U_1$} (1.95,3.75);
+      \draw[->, loesung] (3.05,2.3) -- node[right] {$U_2$} (3.05,0.7);
+    }
+  \end{schaltung}
+\end{nebeneinander}
+
+\begin{hinweisbox}[Stromteilerregel]
+  Für zwei parallele Widerstände gilt
+  $I_2 = I_1 \cdot \dfrac{R_3}{R_2 + R_3}$.
+\end{hinweisbox}
+
+\begin{loesung}
+\textbf{a)} $R_2$ und $R_3$ liegen parallel, $R_1$ in Reihe dazu.
+\[ R_{23} = \frac{R_2 R_3}{R_2 + R_3} = \frac{\qty{200}{\ohm}\cdot\qty{300}{\ohm}}{\qty{500}{\ohm}} = \qty{120}{\ohm} \teilpunkt{2} \]
+\[ R_\mathrm{ges} = R_1 + R_{23} = \ergebnis{\qty{220}{\ohm}} \teilpunkt{1} \]
+\textbf{b)} $I_1 = U_0 / R_\mathrm{ges} = \qty{12}{V} / \qty{220}{\ohm}
+  = \ergebnis{\qty{54.5}{mA}}$ \teilpunkt{2}
+
+\textbf{c)} $U_2 = I_1 \cdot R_{23} = \ergebnis{\qty{6.55}{V}}$ \teilpunkt{2}
+$I_2 = U_2 / R_2 = \ergebnis{\qty{32.7}{mA}}$ (Kontrolle mit
+  Stromteilerregel: $I_1 \cdot 3/5$) \teilpunkt{1}
+
+\textbf{d)} Verbraucher-Zählpfeilsystem: Spannungspfeile in Richtung der
+Strompfeile, siehe Abb.~1. \teilpunkt{2}
+\end{loesung}
+\end{aufgabe}
+
+% =====================================================================
+% Aufgabe 2: Wechselstrom, \kx, \jj, diagramm mit logarithmischer Achse
+%            Lösung: je Teilaufgabe eine loesung-Box
+% =====================================================================
+\begin{aufgabe}{RC-Tiefpass}
+Ein RC-Tiefpass mit $R = \qty{1}{k\ohm}$ und $C = \qty{100}{nF}$ wird mit
+einer sinusförmigen Spannung $\kx{U}_1$ gespeist.
+
+\begin{schaltung}{RC-Tiefpass}
+  \draw (0,2) to[R, l=$R$, o-*] (3,2) to[short, -o] (5,2);
+  \draw (3,2) to[C, l_=$C$, *-*] (3,0);
+  \draw (0,0) to[short, o-] (3,0) to[short, -o] (5,0);
+  \draw (0,2) to[open, v^>=$\kx{U}_1$] (0,0);
+  \draw (5,2) to[open, v>=$\kx{U}_2$] (5,0);
+\end{schaltung}
+
+\begin{teilaufgaben}
+  \teil{3} Leiten Sie die Übertragungsfunktion
+           $\kx{H}(\jj\omega) = \kx{U}_2 / \kx{U}_1$ her.
+    \begin{loesung}
+      Spannungsteiler aus $R$ und $\kx{Z}_C = 1/(\jj\omega C)$:
+      \[ \kx{H}(\jj\omega) = \frac{1/(\jj\omega C)}{R + 1/(\jj\omega C)}
+         = \ergebnis{\frac{1}{1 + \jj\omega RC}} \teilpunkt{3} \]
+    \end{loesung}
+  \teil{2} Berechnen Sie die Grenzfrequenz $f_\mathrm{g}$.
+    \begin{loesung}
+      \[ f_\mathrm{g} = \frac{1}{2\pi RC}
+         = \frac{1}{2\pi\cdot\qty{1}{k\ohm}\cdot\qty{100}{nF}}
+         = \ergebnis{\qty{1.59}{kHz}} \teilpunkt{2} \]
+    \end{loesung}
+  \teil{2} Lesen Sie aus Abb.~\ref{abb:bode} die Dämpfung bei
+           $f = \qty{10}{kHz}$ ab und vergleichen Sie mit der Rechnung.
+    \begin{loesung}
+      Abgelesen etwa $\qty{-16}{dB}$. \teilpunkt{1}
+      Rechnung: $|\kx{H}| = 1/\sqrt{1 + (f/f_\mathrm{g})^2} = 0{,}157
+      \;\Rightarrow\; 20\log_{10}|\kx{H}| = \ergebnis{\qty{-16.1}{dB}}$ \teilpunkt{1}
+    \end{loesung}
+\end{teilaufgaben}
+
+\begin{diagramm}[xmode=log, xmin=10, xmax=100000, ymin=-40, ymax=5,
+                 domain=10:100000, samples=120,
+                 xlabel={$f$ in \unit{Hz}}, ylabel={$|\kx{H}|$ in \unit{dB}}]
+                {Amplitudengang des RC-Tiefpasses\label{abb:bode}}
+  \addplot {-10*log10(1+(x/1591.5)^2)};
+\end{diagramm}
+\end{aufgabe}
+
+% =====================================================================
+% Aufgabe 3: tabelle, kvdiagramm, Logikschaltung (schaltung)
+% =====================================================================
+\begin{aufgabe}{Schaltnetze}
+Die Funktion $Y$ ist durch die Wahrheitstabelle gegeben, die Funktion $f$
+durch das KV-Diagramm (X: beliebiger Wert).
+
+\begin{nebeneinander}[0.45]
+  \begin{tabelle}{ccc@{\hspace{8mm}}c}{Wahrheitstabelle von $Y$}
+    $A$ & $B$ & $C$ & $Y$ \\ \trennlinie
+    0 & 0 & 0 & 1 \\
+    0 & 0 & 1 & 0 \\
+    0 & 1 & 0 & 1 \\
+    0 & 1 & 1 & 0 \\
+    1 & 0 & 0 & 1 \\
+    1 & 0 & 1 & 0 \\
+    1 & 1 & 0 & 1 \\
+    1 & 1 & 1 & 1 \\
+  \end{tabelle}
+\spalte
+  \begin{abbildung}{KV-Diagramm von $f$}
+    \kvdiagramm[dontcare={6}, indizes]{A,B,C,D}{0,2,5,7,8,10,13,15}
+  \end{abbildung}
+\end{nebeneinander}
+
+\begin{teilaufgaben}
+  \teil{2} Geben Sie die disjunktive Normalform von $Y$ an.
+    \begin{loesung}
+      \[ Y = \overline{A}\,\overline{B}\,\overline{C} + \overline{A}B\overline{C}
+           + A\overline{B}\,\overline{C} + AB\overline{C} + ABC \teilpunkt{2} \]
+    \end{loesung}
+  \teil{3} Bestimmen Sie die minimale DNF von $f$ aus dem KV-Diagramm.
+    \begin{loesung}
+      Block aus den vier Ecken (0, 2, 8, 10): $\overline{B}\,\overline{D}$ \teilpunkt{1}
+      Block in der Mitte (5, 7, 13, 15): $BD$; das X (6) wird nicht benötigt. \teilpunkt{1}
+      \[ f = \ergebnis{\overline{B}\,\overline{D} + BD} \teilpunkt{1} \]
+    \end{loesung}
+  \teil{3} Zeigen Sie, dass die Schaltung in Abb.~\ref{abb:logik} die
+           Funktion $Y$ realisiert.
+    \begin{loesung}
+      Die Schaltung liefert $Y = AB + \overline{C}$. \teilpunkt{1}
+      Aus der DNF: alle Terme mit $\overline{C}$ ergeben zusammen
+      $\overline{C}$, es bleibt $ABC$; mit $AB\overline{C}$ zusammengefasst
+      folgt $\overline{C} + AB$. Beide Ausdrücke sind gleich. \teilpunkt{2}
+    \end{loesung}
+\end{teilaufgaben}
+
+\begin{schaltung}{Realisierung von $Y$\label{abb:logik}}
+  \draw (0,0) node[and port] (u1) {};
+  \draw (0,-2) node[not port] (n1) {};
+  \draw (2.6,-1) node[or port] (o1) {};
+  \draw (u1.out) -- ++(0.4,0) |- (o1.in 1);
+  \draw (n1.out) -- ++(0.4,0) |- (o1.in 2);
+  \draw (u1.in 1) -- ++(-0.5,0) node[left] {$A$};
+  \draw (u1.in 2) -- ++(-0.5,0) node[left] {$B$};
+  \draw (n1.in) -- ++(-0.5,0) node[left] {$C$};
+  \draw (o1.out) -- ++(0.5,0) node[right] {$Y$};
+\end{schaltung}
+\end{aufgabe}
+
+% =====================================================================
+% Aufgabe 4: zeitdiagramm; Lösung: vervollständigte Kopie in der Box
+% =====================================================================
+\begin{aufgabe}{D-Flipflop}
+Ein positiv flankengesteuertes D-Flipflop wird mit den abgebildeten Signalen
+angesteuert. Zu Beginn gilt $Q = 0$.
+
+\begin{zeitdiagramm}{Eingangssignale des D-Flipflops}
+  CLK & L 8{C} \\
+  D   & 2L 4H 2L 1H \\
+  Q   & L 8S \\
+\end{zeitdiagramm}
+
+\begin{teilaufgaben}
+  \teil{3} Zeichnen Sie den Verlauf von $Q$ in das Zeitdiagramm ein.
+    \begin{loesung}
+      $Q$ übernimmt bei jeder steigenden Taktflanke den Wert von $D$.
+      \begin{zeitdiagramm}{Vollständiges Zeitdiagramm}
+        CLK & L 8{C} \\
+        D   & 2L 4H 2L 1H \\
+        Q   & [loesung] 3L 4H 2L \\
+      \end{zeitdiagramm}
+    \end{loesung}
+  \teil{2} Worin unterscheidet sich ein D-Latch von einem D-Flipflop?
+    \begin{loesung}
+      Das D-Latch ist \emph{pegelgesteuert}: Solange der Takt aktiv ist,
+      folgt $Q$ dem Eingang $D$ (transparent). \teilpunkt{1}
+      Das D-Flipflop ist \emph{flankengesteuert}: $D$ wird nur im Moment
+      der Taktflanke übernommen. \teilpunkt{1}
+    \end{loesung}
+\end{teilaufgaben}
+\end{aufgabe}
+
+% =====================================================================
+% Aufgabe 5: register, codeblock (asm), codedatei (c), \basis
+% =====================================================================
+\begin{aufgabe}{Mikrocontroller}
+Ein ATmega328P soll eine LED an Pin \codetext{PB5} blinken lassen.
+Das Steuerregister des Timers 0 ist wie folgt aufgebaut:
+
+\begin{abbildung}{Register TCCR0B}
+  \register{TCCR0B}{FOC0A,FOC0B,--,--,WGM02,CS02,CS01,CS00}
+\end{abbildung}
+
+\begin{codeblock}[blink.asm]{asm}
+; PB5 als Ausgang konfigurieren
+    ldi   r16, (1<<5)
+    out   DDRB, r16
+loop:
+    sbi   PINB, 5         ; LED umschalten
+    rcall warte           ; Unterprogramm: ca. 250 ms
+    rjmp  loop
+\end{codeblock}
+
+\codedatei[blink.c]{c}{material/blink.c}
+
+\begin{teilaufgaben}
+  \teil{2} In \codetext{TCCR0B} steht der Wert \basis{00000101}{2}.
+           Geben Sie ihn hexadezimal an und bestimmen Sie den Vorteiler.
+    \begin{loesung}
+      \basis{00000101}{2} $=$ \ergebnis{\mathrm{0x05}} \teilpunkt{1}
+      $\mathrm{CS02\,CS01\,CS00} = 101 \Rightarrow$ Vorteiler \ergebnis{1024} \teilpunkt{1}
+    \end{loesung}
+  \teil{2} Warum schaltet \code{sbi PINB, 5} den Ausgang um?
+    \begin{loesung}
+      Beim ATmega328P schaltet das Schreiben einer 1 in das
+      \codetext{PINx}-Register das zugehörige \codetext{PORTx}-Bit um. \teilpunkt{2}
+    \end{loesung}
+  \teil{2} Was bewirkt die Zeile \code{PORTB ^= (1 << LED_PIN);} im C-Programm?
+    \begin{loesung}
+      Exklusiv-ODER mit der Maske \codetext{0b00100000} invertiert nur Bit 5:
+      die LED wird umgeschaltet, alle anderen Bits bleiben erhalten. \teilpunkt{2}
+    \end{loesung}
+\end{teilaufgaben}
+\end{aufgabe}
+
+% =====================================================================
+% Aufgabe 6: codeblock (x86), antworten (Einfachauswahl, \antwort*)
+% =====================================================================
+\begin{aufgabe}{Rechnerarchitektur}
+Gegeben ist der folgende Ausschnitt eines x86-Programms.
+
+\begin{codeblock}{x86}
+        mov   eax, 5
+        mov   ecx, 3
+schleife:
+        add   eax, ecx
+        dec   ecx
+        jnz   schleife
+\end{codeblock}
+
+\begin{teilaufgaben}
+  \teil{2} Welchen Wert enthält \codetext{eax} nach Ende der Schleife?
+    \begin{antworten}[spalten=4, typ=einfach]
+      \antwort{8}
+      \antwort*{11}
+      \antwort{14}
+      \antwort{6}
+    \end{antworten}
+    \begin{loesung}
+      $5 + 3 + 2 + 1 = 11$
+    \end{loesung}
+  \teil{2} Wie oft wird der Sprungbefehl \code{jnz} ausgeführt?
+    \begin{loesung}
+      \ergebnis{3}-mal (für \codetext{ecx} $= 2, 1, 0$); davon wird zweimal
+      gesprungen. \teilpunkt{2}
+    \end{loesung}
+\end{teilaufgaben}
+\end{aufgabe}
+
+% =====================================================================
+% Aufgabe 7: codeblock (python, cpp), \code, \neueseite,
+%            Codeblock innerhalb einer Lösung
+% =====================================================================
+\begin{aufgabe}{Programmierung}
+Die Funktion \code{mittelwert} berechnet das arithmetische Mittel einer Liste.
+
+\begin{codeblock}[mittelwert.py]{python}
+def mittelwert(werte):
+    """Arithmetisches Mittel einer Liste von Messwerten."""
+    summe = 0
+    for w in werte:
+        summe += w
+    return summe / len(werte)
+
+messung = [3.2, 3.4, 3.1, 3.5]
+print(f"U = {mittelwert(messung):.2f} V")
+\end{codeblock}
+
+\begin{teilaufgaben}
+  \teil{2} Welche Ausgabe erzeugt das Programm?
+    \begin{loesung}
+      \codetext{U = 3.30 V} \teilpunkt{2}
+    \end{loesung}
+  \teil{2} Was passiert beim Aufruf \code{mittelwert([])}? Schlagen Sie
+           eine Korrektur vor.
+    \begin{loesung}
+      Division durch \code{len(werte) == 0}: \codetext{ZeroDivisionError}. \teilpunkt{1}
+      \begin{codeblock}[Korrektur]{python}
+def mittelwert(werte):
+    if not werte:
+        raise ValueError("Liste ist leer")
+    return sum(werte) / len(werte)
+      \end{codeblock}
+      \teilpunkt{1}
+    \end{loesung}
+\end{teilaufgaben}
+
+\neueseite
+Das folgende C++-Programm lässt sich nicht übersetzen.
+
+\begin{codeblock}[widerstand.cpp]{cpp}
+class Widerstand {
+public:
+    explicit Widerstand(double r) : r_(r) {}
+    double strom(double u) const { return u / r_; }
+private:
+    double r_;
+};
+
+int main() {
+    Widerstand r1(470.0);
+    std::cout << r1.strom(5.0) << std::endl;   // Strom in A
+    return 0;
+}
+\end{codeblock}
+
+\begin{teilaufgaben}[resume]
+  \teil{1} Welche Zeile fehlt, damit das Programm übersetzt werden kann?
+    \begin{loesung}
+      \code{#include <iostream>} am Dateianfang. \teilpunkt{1}
+    \end{loesung}
+  \teil{2} Was bedeutet das Schlüsselwort \code{const} hinter \code{strom(double u)}?
+    \begin{loesung}
+      Die Methode verändert das Objekt nicht (keine Schreibzugriffe auf
+      Attribute) \teilpunkt{1}
+      und darf deshalb auch für konstante Objekte aufgerufen werden. \teilpunkt{1}
+    \end{loesung}
+\end{teilaufgaben}
+\end{aufgabe}
+
+% =====================================================================
+% Aufgabe 8: codeblock (verilog, vhdl)
+% =====================================================================
+\begin{aufgabe}{Hardwarebeschreibung}
+\begin{codeblock}[zaehler.v]{verilog}
+module zaehler (
+    input  wire       clk,
+    input  wire       rst,     // synchroner Reset
+    input  wire       en,
+    output reg  [3:0] q
+);
+    always @(posedge clk) begin
+        if (rst)
+            q <= 4'b0000;
+        else if (en)
+            q <= q + 1'b1;
+    end
+endmodule
+\end{codeblock}
+
+\begin{codeblock}[dff_en.vhd]{vhdl}
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity dff_en is
+    port ( clk, en, d : in  std_logic;
+           q          : out std_logic );
+end entity;
+
+architecture rtl of dff_en is
+begin
+    process (clk)
+    begin
+        if rising_edge(clk) then
+            if en = '1' then
+                q <= d;
+            end if;
+        end if;
+    end process;
+end architecture;
+\end{codeblock}
+
+\begin{teilaufgaben}
+  \teil{2} Welchen Wert hat \codetext{q} im Verilog-Modul nach 18 Takten mit
+           \codetext{en = 1}, wenn zu Beginn \codetext{q = 0} gilt?
+    \begin{loesung}
+      4-Bit-Zähler läuft nach 16 Takten über: $18 \bmod 16 = 2$, also
+      \ergebnis{q = \basis{0010}{2}} \teilpunkt{2}
+    \end{loesung}
+  \teil{2} Beschreiben Sie das Verhalten der VHDL-Entity in einem Satz.
+    \begin{loesung}
+      D-Flipflop mit Enable: Bei jeder steigenden Taktflanke übernimmt
+      \codetext{q} den Wert von \codetext{d}, aber nur wenn
+      \codetext{en = '1'} ist; sonst bleibt \codetext{q} erhalten. \teilpunkt{2}
+    \end{loesung}
+\end{teilaufgaben}
+\end{aufgabe}
+
+% =====================================================================
+% Aufgabe 9: automat; Lösung mit Tabelle (ohne Nummer in der Lösung)
+% =====================================================================
+\begin{aufgabe}{Zustandsautomat}
+Der abgebildete Moore-Automat erhält an seinem Eingang $x$ eine Bitfolge.
+Die Ausgabe $y$ ist hinter dem Schrägstrich im Zustand angegeben.
+
+\begin{automat}{Moore-Automat}
+  \node[state, initial]           (s0) {$S_0/0$};
+  \node[state, right=of s0]       (s1) {$S_1/0$};
+  \node[state, accepting, right=of s1] (s2) {$S_2/1$};
+  \path (s0) edge[loop above]     node {0} (s0)
+             edge[bend left]      node {1} (s1)
+        (s1) edge[bend left]      node {0} (s0)
+             edge                 node {1} (s2)
+        (s2) edge[loop above]     node {1} (s2)
+             edge[bend left=50]   node {0} (s0);
+\end{automat}
+
+\begin{teilaufgaben}
+  \teil{2} Welche Eingangsfolge erkennt der Automat?
+    \begin{loesung}
+      Zwei (oder mehr) aufeinanderfolgende Einsen: $y = 1$, solange die
+      letzten beiden Eingangsbits \basis{11}{2} waren. \teilpunkt{2}
+    \end{loesung}
+  \teil{3} Geben Sie die Zustandsfolge und die Ausgabe für die Eingabe
+           \basis{0110111}{2} an.
+    \begin{loesung}
+      \begin{tabelle}{l@{\hspace{6mm}}ccccccc}{Zustandsfolge}
+        $x$       & 0 & 1 & 1 & 0 & 1 & 1 & 1 \\ \trennlinie
+        Zustand   & $S_0$ & $S_1$ & $S_2$ & $S_0$ & $S_1$ & $S_2$ & $S_2$ \\
+        $y$       & 0 & 0 & 1 & 0 & 0 & 1 & 1 \\
+      \end{tabelle}
+      \teilpunkt{3}
+    \end{loesung}
+\end{teilaufgaben}
+\end{aufgabe}
+
+% =====================================================================
+% Aufgabe 10: diagramm, koordinatensystem, \ee, \dd;
+%             Lösungskurve per \nurloesung direkt im Koordinatensystem
+% =====================================================================
+\begin{aufgabe}{Analysis}
+Gegeben ist die Funktion $f(x) = x\,\ee^{-x}$ für $x \geq 0$.
+
+\begin{diagramm}[domain=0:6, samples=100, xmin=0, xmax=6, ymin=0, ymax=0.45,
+                 xlabel={$x$}, ylabel={$f(x)$}, height=0.36\linewidth]
+                {Graph von $f$}
+  \addplot {x*exp(-x)};
+\end{diagramm}
+
+\begin{teilaufgaben}
+  \teil{2} Bestimmen Sie $f'(x)$ und die Extremstelle von $f$.
+    \begin{loesung}
+      Produktregel: $f'(x) = \ee^{-x} - x\,\ee^{-x} = \ergebnis{(1 - x)\,\ee^{-x}}$ \teilpunkt{1}
+      $f'(x) = 0 \Rightarrow x = 1$; Maximum $f(1) = \ee^{-1} \approx 0{,}368$ \teilpunkt{1}
+    \end{loesung}
+  \teil{3} Berechnen Sie $\displaystyle\int_0^{\infty} x\,\ee^{-x} \dd x$.
+    \begin{loesung}
+      Partielle Integration mit $u = x$, $v' = \ee^{-x}$:
+      \begin{align*}
+        \int_0^{\infty} x\,\ee^{-x} \dd x
+          &= \bigl[-x\,\ee^{-x}\bigr]_0^{\infty} + \int_0^{\infty} \ee^{-x} \dd x \teilpunkt{2}\\
+          &= 0 + \bigl[-\ee^{-x}\bigr]_0^{\infty} = \ergebnis{1} \teilpunkt{1}
+      \end{align*}
+    \end{loesung}
+  \teil{2} Skizzieren Sie $f'(x)$ in das Koordinatensystem.
+    \begin{loesung}
+      Nullstelle bei $x = 1$, Minimum bei $x = 2$ mit
+      $f'(2) = -\ee^{-2} \approx -0{,}135$, für $x \to \infty$ gegen 0
+      (Kurve im Koordinatensystem). \teilpunkt{2}
+    \end{loesung}
+\end{teilaufgaben}
+
+\begin{koordinatensystem}[xmin=0, xmax=6, ymin=-0.4, ymax=1.2,
+                          xtick={0,...,6}, ytick={-0.4,0,...,1.2},
+                          xlabel={$x$}, ylabel={$f'(x)$},
+                          height=0.36\linewidth]{}
+  \nurloesung{\addplot[loesung, domain=0:6, samples=100] {(1-x)*exp(-x)};}
+\end{koordinatensystem}
+\end{aufgabe}
+
+% =====================================================================
+% Aufgabe 11: blockdiagramm, \laplace, codeblock (matlab)
+% =====================================================================
+\begin{aufgabe}{Regelkreis}
+Ein P-Regler mit der Verstärkung $K = 4$ regelt die Strecke
+$G(s) = \dfrac{2}{s + 1}$.
+
+\begin{blockdiagramm}{Standardregelkreis}
+  \node[coordinate]          (w) {};
+  \node[summe, right=of w]   (s) {};
+  \node[block, right=of s]   (k) {$K$};
+  \node[block, right=of k]   (g) {$G(s)$};
+  \node[coordinate, right=20mm of g] (y) {};
+  \draw (w) -- node[above] {$W(s)$} (s);
+  \draw (s) -- node[above] {$E(s)$} (k);
+  \draw (k) -- node[above] {$U(s)$} (g);
+  \draw (g) -- node[verzweigung, pos=0.35] (v) {} node[above, pos=0.75] {$Y(s)$} (y);
+  \draw (v) -- ++(0,-14mm) -| node[pos=0.95, right] {$-$} (s);
+\end{blockdiagramm}
+
+\begin{codeblock}[regelkreis.m]{matlab}
+s = tf('s');
+G = 2/(s + 1);          % Regelstrecke
+K = 4;                  % P-Regler
+T = feedback(K*G, 1);   % geschlossener Regelkreis
+step(T); grid on
+\end{codeblock}
+
+\begin{teilaufgaben}
+  \teil{3} Bestimmen Sie die Führungsübertragungsfunktion $T(s) = Y(s)/W(s)$.
+  \teil{2} Berechnen Sie die bleibende Regelabweichung für $w(t) = \sigma(t)$,
+           also $W(s) = \laplace{\sigma(t)} = 1/s$.
+  \teil{1} Geben Sie $y(t) = \laplaceinv{T(s)\cdot\frac{1}{s}}$ an.
+\end{teilaufgaben}
+
+\begin{loesung}[Lösung mit Bewertungsschema]
+\textbf{a)}
+\[ T(s) = \frac{K G(s)}{1 + K G(s)} = \frac{\frac{8}{s+1}}{1 + \frac{8}{s+1}}
+   = \ergebnis{\frac{8}{s + 9}} \teilpunkt{3} \]
+\textbf{b)} Endwertsatz: $y_\infty = \lim_{s\to 0} s\,T(s)\,\tfrac{1}{s} = T(0) = 8/9$
+\teilpunkt{1}
+$e_\infty = 1 - y_\infty = \ergebnis{1/9 \approx 0{,}111}$ \teilpunkt{1}
+
+\textbf{c)} $y(t) = \laplaceinv{\dfrac{8}{s(s+9)}}
+  = \ergebnis{\tfrac{8}{9}\bigl(1 - \ee^{-9t}\bigr)\,\sigma(t)}$ \teilpunkt{1}
+\end{loesung}
+\end{aufgabe}
+
+% =====================================================================
+% Aufgabe 12: bild
+% =====================================================================
+\begin{aufgabe}{Messtechnik}
+Mit einem Oszilloskop wird die folgende Spannung gemessen.
+
+\bild[0.62]{material/oszi.png}{Oszilloskopbild der Messspannung}
+
+\begin{teilaufgaben}
+  \teil{2} Bestimmen Sie Periodendauer und Frequenz des Signals.
+    \begin{loesung}
+      Eine Periode umfasst 5 Kästchen: $T = 5 \cdot \qty{0.2}{ms} =
+      \ergebnis{\qty{1}{ms}}$, $f = 1/T = \ergebnis{\qty{1}{kHz}}$ \teilpunkt{2}
+    \end{loesung}
+  \teil{1} Lesen Sie die Amplitude $\hat{u}$ ab.
+    \begin{loesung}
+      $2{,}5$ Kästchen: $\hat{u} = \ergebnis{\qty{2.5}{V}}$ \teilpunkt{1}
+    \end{loesung}
+  \teil{1} Berechnen Sie den Effektivwert $U_\mathrm{eff}$.
+    \begin{loesung}
+      $U_\mathrm{eff} = \hat{u}/\sqrt{2} = \ergebnis{\qty{1.77}{V}}$ \teilpunkt{1}
+    \end{loesung}
+\end{teilaufgaben}
+\end{aufgabe}
+
+% =====================================================================
+% Aufgabe 13: zeichnung (freie TikZ-Zeichnung)
+% =====================================================================
+\begin{aufgabe}{Plattenkondensator}
+Ein luftgefüllter Plattenkondensator ($A = \qty{100}{cm^2}$,
+$d = \qty{1}{mm}$, $\varepsilon_0 = \qty{8.854e-12}{F/m}$) liegt an
+$U = \qty{230}{V}$.
+
+\begin{zeichnung}{Aufbau des Plattenkondensators}
+  \fill[ubtinte] (0,0) rectangle (0.15,3);
+  \fill[ubtinte] (3,0) rectangle (3.15,3);
+  \foreach \y in {0.4,0.85,...,2.7}
+    \draw[->, akzent] (0.3,\y) -- (2.85,\y);
+  \node[above] at (0.075,3) {$+Q$};
+  \node[above] at (3.075,3) {$-Q$};
+  \draw[hilfslinie] (0.15,0) -- (0.15,-0.6) (3,0) -- (3,-0.6);
+  \draw[<->] (0.15,-0.45) -- node[below] {$d$} (3,-0.45);
+  \node[akzent] at (1.575,3.25) {$\vec{E}$};
+\end{zeichnung}
+
+\begin{teilaufgaben}
+  \teil{2} Berechnen Sie die Kapazität $C$.
+  \teil{2} Bestimmen Sie die Feldstärke $E$ zwischen den Platten.
+  \teil{2} Wie groß ist die gespeicherte Energie $W$?
+\end{teilaufgaben}
+
+\begin{loesung}
+Mit $A = \qty{1e-2}{m^2}$ und $d = \qty{1e-3}{m}$:
+\begin{align*}
+  C &= \varepsilon_0 \frac{A}{d}
+     = \qty{8.854e-12}{F/m}\cdot\frac{\qty{1e-2}{m^2}}{\qty{1e-3}{m}}
+     = \ergebnis{\qty{88.5}{pF}} \teilpunkt{2}\\
+  E &= \frac{U}{d} = \frac{\qty{230}{V}}{\qty{1}{mm}}
+     = \ergebnis{\qty{230}{kV/m}} \teilpunkt{2}\\
+  W &= \tfrac{1}{2} C U^2 = \tfrac{1}{2}\cdot\qty{88.5}{pF}\cdot(\qty{230}{V})^2
+     = \ergebnis{\qty{2.34}{\micro J}} \teilpunkt{2}
+\end{align*}
+\end{loesung}
+\end{aufgabe}
+
+% =====================================================================
+% Aufgabe 14: knotengraph, codeblock (text); Lösungsweg per \nurloesung
+% =====================================================================
+\begin{aufgabe}{Kürzeste Wege}
+Im abgebildeten Netzwerk sollen die kürzesten Wege vom Startknoten $A$
+(markiert) aus bestimmt werden.
+
+\begin{knotengraph}{Gewichteter Graph}
+  \node[knoten, markiert]              (A) {A};
+  \node[knoten, right=of A]            (B) {B};
+  \node[knoten, below=of A]            (C) {C};
+  \node[knoten, right=of C]            (D) {D};
+  \node[knoten, right=of B, yshift=-11mm] (E) {E};
+  \nurloesung{\draw[loesung, line width=3pt, opacity=0.35]
+                (A) -- (C) -- (B) -- (D) -- (E);}
+  \draw (A) -- node[gewicht] {4}  (B);
+  \draw (A) -- node[gewicht] {2}  (C);
+  \draw (C) -- node[gewicht] {1}  (B);
+  \draw (C) -- node[gewicht] {8}  (D);
+  \draw (B) -- node[gewicht] {5}  (D);
+  \draw (B) -- node[gewicht] {10} (E);
+  \draw (D) -- node[gewicht] {2}  (E);
+\end{knotengraph}
+
+\begin{codeblock}[Dijkstra (Pseudocode)]{text}
+für alle Knoten v:  dist[v] ← ∞
+dist[A] ← 0;  Q ← alle Knoten
+solange Q nicht leer:
+    u ← Knoten aus Q mit kleinstem dist[u];  entferne u aus Q
+    für alle Nachbarn v von u:
+        wenn dist[u] + w(u, v) < dist[v]:  dist[v] ← dist[u] + w(u, v)
+\end{codeblock}
+
+\begin{teilaufgaben}
+  \teil{4} Führen Sie den Algorithmus aus und geben Sie \codetext{dist} für
+           alle Knoten an.
+    \begin{loesung}
+      \begin{tabelle}{l@{\hspace{8mm}}ccccc}{Ablauf (Werte nach dem Entfernen von $u$)}
+        entfernt $u$ & $A$ & $B$ & $C$ & $D$ & $E$ \\ \trennlinie
+        $A$ & 0 & 4 & 2 & $\infty$ & $\infty$ \\
+        $C$ & 0 & 3 & 2 & 10 & $\infty$ \\
+        $B$ & 0 & 3 & 2 & 8 & 13 \\
+        $D$ & 0 & 3 & 2 & 8 & 10 \\
+        $E$ & 0 & 3 & 2 & 8 & 10 \\
+      \end{tabelle}
+      Ergebnis: \ergebnis{A{:}\,0,\ B{:}\,3,\ C{:}\,2,\ D{:}\,8,\ E{:}\,10} \teilpunkt{4}
+    \end{loesung}
+  \teil{1} Markieren Sie den kürzesten Weg von $A$ nach $E$ im Graphen.
+    \begin{loesung}
+      $A \to C \to B \to D \to E$ mit Länge 10 (im Graphen markiert). \teilpunkt{1}
+    \end{loesung}
+\end{teilaufgaben}
+\end{aufgabe}
+
+% =====================================================================
+% Aufgabe 15: zuordnung mit Lösung \paar[k], feste Punktzahl über [..]
+% =====================================================================
+\begin{aufgabe}[5]{Kommunikationsnetze}
+Ordnen Sie jeder Schicht des OSI-Modells durch eine Verbindungslinie ein
+typisches Protokoll bzw. Verfahren zu. \punkte{1} je richtiger Zuordnung.
+
+\begin{zuordnung}[OSI-Schicht][Protokoll / Verfahren]
+  \paar[5]{Bitübertragungsschicht}{TCP}
+  \paar[3]{Sicherungsschicht}{HTTP}
+  \paar[4]{Vermittlungsschicht}{Ethernet (MAC)}
+  \paar[1]{Transportschicht}{IP}
+  \paar[2]{Anwendungsschicht}{Manchester-Kodierung}
+\end{zuordnung}
+\end{aufgabe}
+
+% =====================================================================
+% Aufgabe 16: ankreuzen mit \aussage[r]/[f], antworten mit \antwort*
+% =====================================================================
+\begin{aufgabe}{Verständnisfragen}
+Kreuzen Sie an, ob die Aussage richtig oder falsch ist (je 1 P).
+
+\begin{ankreuzen}[1]
+  \aussage[r]{Eine ideale Diode hat in Durchlassrichtung den Widerstand $\qty{0}{\ohm}$.}
+  \aussage[f]{Verdoppelt man den Plattenabstand eines Plattenkondensators,
+              verdoppelt sich seine Kapazität.}
+  \aussage[r]{Die Zahl \basis{1011}{2} entspricht der Dezimalzahl 11.}
+  \aussage[r]{Eine $n$-Bit-Zahl im Zweierkomplement hat den Wertebereich
+              $-2^{n-1}$ bis $2^{n-1}-1$.}
+\end{ankreuzen}
+
+\begin{teilaufgaben}
+  \teil{2} Welche Bauelemente sind aktive Bauelemente?
+           (Mehrfachauswahl, jedes \kaestchen\ kann zutreffen)
+    \begin{antworten}[spalten=2]
+      \antwort*{Bipolartransistor}
+      \antwort{Kondensator}
+      \antwort*{Operationsverstärker}
+      \antwort{Ohmscher Widerstand}
+    \end{antworten}
+  \teil{1} Welche Anweisung setzt Bit 3 in \codetext{PORTB}, ohne die
+           übrigen Bits zu verändern?
+    \begin{antworten}[typ=einfach]
+      \antwort*{\codetext{PORTB |= (1 << 3);}}
+      \antwort{\codetext{PORTB \&= (1 << 3);}}
+      \antwort{\codetext{PORTB = 3;}}
+    \end{antworten}
+\end{teilaufgaben}
+
+\begin{loesung}[Begründung]
+Zu b): Bei doppeltem Abstand halbiert sich die Kapazität, da $C \sim 1/d$.
+\end{loesung}
+\end{aufgabe}
+
+\end{document}

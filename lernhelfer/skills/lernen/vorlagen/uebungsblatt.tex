@@ -1,382 +1,56 @@
-% ==========================================================================
-%  OhmTools Lernhelfer – Vorlage für Übungsblätter im Klausurstil
-%  ------------------------------------------------------------------------
-%  Zwei Versionen aus EINER Datei:
+% =====================================================================
+%  uebungsblatt.tex – leeres Grundgerüst für ein neues Übungsblatt
+%  Anleitung: ANLEITUNG.md   ·   Alle Bausteine im Einsatz: beispiel.tex
 %
-%   Angabenblatt:    pdflatex uebungsblatt.tex          (3x ausführen)
-%   Lösungsversion:  pdflatex -jobname=uebungsblatt-loesung "\def\mitloesung{}\input{uebungsblatt.tex}"
-%                    (ebenfalls 3x ausführen)   – oder einfach: sh build.sh
-%
-%  Alternativ unten die Zeile  % \printanswers  einkommentieren.
-%
-%  Benötigt: TeX Live mit exam, circuitikz, pgfplots, siunitx, tcolorbox,
-%            listings, tex-gyre (Pagella/Heros), lmodern (Code-Schrift),
-%            babel-german, hyperref
-% ==========================================================================
-\documentclass[11pt,a4paper,addpoints]{exam}
+%  Aufgabenblatt und Lösungsvorschlag:  sh build.sh
+%  (erzeugt uebungsblatt.pdf ohne und uebungsblatt-loesung.pdf mit Lösungen)
+% =====================================================================
+\documentclass{uebungsblatt}
+% Optionen: \documentclass[ohnedeckblatt]{uebungsblatt}
+%           \documentclass[aufgabenoben]{uebungsblatt}
 
-% --- Lösungen ein/aus ----------------------------------------------------
-% \printanswers
-\ifdefined\mitloesung\printanswers\fi
-
-% ==========================================================================
-%  KOPFDATEN – hier anpassen
-% ==========================================================================
-\newcommand{\modulname}{Ingenieurgrundlagen}
-\newcommand{\dauer}{90 Minuten}
-\newcommand{\hilfsmittel}{nicht programmierbarer Taschenrechner, 1 Formelblatt (A4)}
-
-% ==========================================================================
-%  PAKETE
-% ==========================================================================
-\usepackage[T1]{fontenc}
-\usepackage[ngerman]{babel}
-\usepackage[sc]{mathpazo}            % Mathe-Schrift passend zu Palatino
-\usepackage{tgpagella}               % Fließtext: TeX Gyre Pagella
-\usepackage[scale=0.92]{tgheros}     % Überschriften: TeX Gyre Heros
-\renewcommand{\ttdefault}{lmtt}      % Code: Latin Modern Mono
-\usepackage{microtype}
-\usepackage{amsmath,amssymb}
-\usepackage{xcolor}
-\usepackage[most]{tcolorbox}
-\usepackage{siunitx}
-\sisetup{locale=DE, per-mode=symbol}
-\usepackage{tikz}
-\usetikzlibrary{arrows.meta,calc}
-\usepackage{pgfplots}
-\pgfplotsset{compat=1.18}
-\usepackage[european]{circuitikz}
-\usepackage{listings}
-\usepackage[hidelinks]{hyperref}
-\hypersetup{pdftitle={OhmTools Lernhelfer Übungsblatt für \modulname}}
-
-% --- Farben ---------------------------------------------------------------
-\definecolor{akzent}{HTML}{1F4E79}   % Hauptfarbe (dunkelblau)
-\definecolor{akzenthell}{HTML}{E8EEF5}
-\definecolor{grau}{HTML}{6B7280}
-\definecolor{loesung}{HTML}{1B7F3B}
-\definecolor{GridColor}{HTML}{C9D3DE}
-
-% ==========================================================================
-%  LAYOUT DER EXAM-KLASSE
-% ==========================================================================
-\extrawidth{0.4in}
-\extraheadheight{-0.1in}
-\extrafootheight{0.1in}
-
-% Kopf- und Fußzeilen
-\pagestyle{headandfoot}
-\firstpageheader{}{}{}
-\runningheader{\sffamily\small\color{grau}OhmTools Lernhelfer}
-              {\ifprintanswers\sffamily\small\bfseries\color{loesung}LÖSUNG\fi}
-              {\sffamily\small\color{grau}Übungsblatt \modulname}
-\runningheadrule
-\footer{}{\sffamily\small\color{grau}Seite \thepage\ von \numpages}{}
-
-% Aufgabenkopf: „Aufgabe 1  Titel ............ 12 Punkte“
-\newcommand{\aufgabenkopf}{%
-  \begin{minipage}{\textwidth}
-    \vspace{3mm}
-    {\sffamily\bfseries\large\color{akzent}Aufgabe \thequestion\quad\thequestiontitle}%
-    \hfill{\sffamily\small\color{grau}\totalpoints\ \points}\par\vspace{1mm}
-    {\color{akzent}\rule{\textwidth}{0.8pt}}\rule[-3mm]{0pt}{0pt}
-  \end{minipage}}
-\qformat{\aufgabenkopf}
-
-% Jede Aufgabe beginnt auf einer neuen Seite, die erste unter dem Titelkopf.
-% So lässt sich jede Aufgabe am Tablet ohne Scrollen bearbeiten, der Rest
-% der Seite bleibt frei.
-\newcommand{\aufgabe}[1]{\ifnum\value{question}>0 \newpage\fi\titledquestion{#1}}
-
-% Punkte bei Teilaufgaben
-\pointpoints{Punkt}{Punkte}
-\pointname{\,P.}
-\pointformat{\textcolor{grau}{\sffamily\footnotesize[\thepoints]}}
-\renewcommand{\partlabel}{\textbf{\thepartno)}}
-\renewcommand{\partshook}{\setlength{\itemsep}{4pt}}
-
-% Lösungen (erscheinen nur in der Lösungsversion)
-\shadedsolutions
-\definecolor{SolutionColor}{HTML}{EDF7F0}
-\renewcommand{\solutiontitle}{\noindent\textbf{\sffamily\color{loesung}Lösung:}\enspace}
-
-% Multiple Choice
-\checkboxchar{$\square$}
-\checkedchar{$\blacksquare$}
-\CorrectChoiceEmphasis{\bfseries\color{loesung}}
-
-% Code-Darstellung
-\lstset{
-  basicstyle=\ttfamily\small,
-  columns=flexible, keepspaces=true,
-  keywordstyle=\color{akzent}\bfseries,
-  commentstyle=\color{grau}\itshape,
-  stringstyle=\color{loesung},
-  numbers=left, numberstyle=\tiny\color{grau}, numbersep=8pt,
-  frame=leftline, rulecolor=\color{akzent}, framerule=1.2pt,
-  xleftmargin=2.5em, aboveskip=6pt, belowskip=6pt,
-  showstringspaces=false, tabsize=4,
-  backgroundcolor=\color{akzenthell!60},
-}
-
-% Kasten für „Gegeben“
-\newtcolorbox{gegeben}{enhanced, colback=akzenthell, colframe=akzenthell,
-  boxrule=0pt, arc=2pt, left=3mm, right=3mm, top=1.5mm, bottom=1.5mm,
-  fontupper=\small}
+% ---- Angaben zum Blatt (nur \fach ist Pflicht) -----------------------
+\fach{Fach}
+\blatt{01}
+\bearbeitungszeit{60 min}
+\hilfsmittel{Formelsammlung, nicht programmierbarer Taschenrechner}
+\hinweis{Rechenweg vollständig und nachvollziehbar angeben}
+\hinweis{Ergebnisse immer mit Einheit angeben}
 
 \begin{document}
 
-% ==========================================================================
-%  TITELKOPF
-% ==========================================================================
-\begin{tcolorbox}[enhanced, colback=akzent, colframe=akzent, coltext=white,
-    arc=3pt, boxrule=0pt, left=6mm, right=6mm, top=4mm, bottom=4mm]
-  {\sffamily\small OhmTools Lernhelfer\par}
-  \vspace{2mm}
-  {\sffamily\bfseries\LARGE Übungsblatt für \modulname\par}
-  \ifprintanswers
-    \vspace{2mm}
-    {\sffamily\small\hfill\colorbox{white}{\sffamily\bfseries\color{loesung}\,LÖSUNGSVERSION\,}\par}
-  \fi
-\end{tcolorbox}
-
-\vspace{1mm}
-\noindent{\sffamily\small
-  {\color{grau}Bearbeitungszeit:}~\dauer\hfill
-  {\color{grau}Hilfsmittel:}~\hilfsmittel\hfill
-  {\color{grau}Punkte:}~\numpoints\par}
-\vspace{2mm}
-
-% ==========================================================================
-%  AUFGABEN
-% ==========================================================================
-\begin{questions}
-
-% --------------------------------------------------------------------------
-%  Aufgabe 1 – Mathematik
-% --------------------------------------------------------------------------
-\aufgabe{Kurvendiskussion}
-Gegeben ist die Funktion
-\[
-  f(x) = x^3 - 6x^2 + 9x, \qquad x \in \mathbb{R}.
-\]
-
-\begin{parts}
-\part[2] Bestimmen Sie die Nullstellen von $f$.
-\begin{solution}
-  $f(x) = x\,(x^2 - 6x + 9) = x\,(x-3)^2$.
-  Nullstellen: $x_1 = 0$ (einfach), $x_2 = 3$ (doppelt).
-\end{solution}
-
-\part[4] Berechnen Sie die Extrempunkte und geben Sie jeweils deren Art an.
-\begin{solution}
-  $f'(x) = 3x^2 - 12x + 9 = 3\,(x-1)(x-3) \overset{!}{=} 0
-   \;\Rightarrow\; x = 1$ oder $x = 3$.\\
-  $f''(x) = 6x - 12$: \quad $f''(1) = -6 < 0 \Rightarrow$ Hochpunkt $H(1\,|\,4)$,
-  \quad $f''(3) = 6 > 0 \Rightarrow$ Tiefpunkt $T(3\,|\,0)$.
-\end{solution}
-
-\part[2] Bestimmen Sie den Wendepunkt.
-\begin{solution}
-  $f''(x) = 0 \Rightarrow x = 2$, \ $f'''(2) = 6 \neq 0$.
-  Wendepunkt $W(2\,|\,2)$.
-\end{solution}
-
-\part[3] Berechnen Sie den Inhalt der Fläche, die der Graph von $f$ im Intervall
-$[0;\,3]$ mit der $x$-Achse einschließt.
-\begin{solution}
-  Da $f(x) = x(x-3)^2 \ge 0$ auf $[0;3]$:
-  \[
-    A = \int_0^3 f(x)\,\mathrm{d}x
-      = \Big[\tfrac{x^4}{4} - 2x^3 + \tfrac{9}{2}x^2\Big]_0^3
-      = \tfrac{81}{4} - 54 + \tfrac{81}{2} = \tfrac{27}{4} = 6{,}75 \text{ FE}.
-  \]
-\end{solution}
-
-\part[2] Skizzieren Sie den Graphen von $f$ im folgenden Koordinatensystem
-und markieren Sie die berechneten Punkte.
-
-\begin{center}
-\begin{tikzpicture}
-  \begin{axis}[
-      width=10cm, height=5.5cm,
-      axis lines=middle, xmin=-0.6, xmax=4.6, ymin=-1.6, ymax=5.6,
-      xtick={-0.5,0,...,4.5}, ytick={-1,...,5},
-      xticklabels={,0,,1,,2,,3,,4,},
-      grid=both, grid style={GridColor, line width=0.2pt},
-      minor tick num=1, minor grid style={GridColor!50},
-      xlabel={$x$}, ylabel={$y$},
-      tick label style={font=\footnotesize},
-      clip=true]
-    \ifprintanswers
-      \addplot[akzent, very thick, domain=-0.3:4.25, samples=120] {x^3 - 6*x^2 + 9*x};
-      \addplot[only marks, mark=*, mark size=2pt, loesung]
-        coordinates {(0,0) (3,0) (1,4) (2,2)};
-      \node[loesung, above right, font=\footnotesize] at (axis cs:1,4) {$H$};
-      \node[loesung, above right, font=\footnotesize] at (axis cs:2,2) {$W$};
-      \node[loesung, below right, font=\footnotesize] at (axis cs:3,0) {$T$};
-    \fi
-  \end{axis}
-\end{tikzpicture}
-\end{center}
-\end{parts}
-
-% --------------------------------------------------------------------------
-%  Aufgabe 2 – Elektrotechnik
-% --------------------------------------------------------------------------
-\aufgabe{Gleichstromnetzwerk}
-Gegeben ist die folgende Schaltung.
-
-\begin{center}
-\begin{circuitikz}[line width=0.7pt]
-  \draw (0,0) to[V, v<=$U_0$] (0,3)
-        to[R, l=$R_1$, i>^=$I$] (3.5,3)
-        to[short, -, i>^=$I_3$] (6.5,3)
-        to[R, l_=$R_3$, v^=$U_P$] (6.5,0)
-        -- (0,0);
-  \draw (3.5,3) to[R, l=$R_2$, i>_=$I_2$] (3.5,0);
-  \fill (3.5,3) circle (2pt) (3.5,0) circle (2pt);
-\end{circuitikz}
-\end{center}
+% ---- Aufgabe 1 --------------------------------------------------------
+\begin{aufgabe}{Titel der Aufgabe}
+Angabe der Aufgabe.
 
 \begin{gegeben}
-  \textbf{Gegeben:}\quad
-  $U_0 = \qty{12}{\volt}$, \quad
-  $R_1 = \qty{100}{\ohm}$, \quad
-  $R_2 = \qty{300}{\ohm}$, \quad
-  $R_3 = \qty{150}{\ohm}$
+  \wert{U = \qty{5}{V}}
+  \wert{R = \qty{1}{k\ohm}}
+  \gesucht{I}
 \end{gegeben}
 
-\begin{parts}
-\part[3] Berechnen Sie den Gesamtwiderstand $R_\text{ges}$ der Schaltung.
-\begin{solution}
-  $R_{23} = \dfrac{R_2 R_3}{R_2 + R_3} = \dfrac{300 \cdot 150}{450}\,\unit{\ohm} = \qty{100}{\ohm}$,
-  \quad $R_\text{ges} = R_1 + R_{23} = \qty{200}{\ohm}$.
-\end{solution}
+\begin{teilaufgaben}
+  \teil{2} Erste Teilaufgabe.
+    \begin{loesung}
+      Lösungsweg mit Ergebnis $I = \ergebnis{\qty{5}{mA}}$. \teilpunkt{2}
+    \end{loesung}
+  \teil{3} Zweite Teilaufgabe.
+    \begin{loesung}
+      Lösungsweg. \teilpunkt{3}
+    \end{loesung}
+\end{teilaufgaben}
+\end{aufgabe}
 
-\part[2] Berechnen Sie den Gesamtstrom $I$.
-\begin{solution}
-  $I = \dfrac{U_0}{R_\text{ges}} = \dfrac{\qty{12}{\volt}}{\qty{200}{\ohm}} = \qty{60}{\milli\ampere}$.
-\end{solution}
+% ---- Aufgabe 2 --------------------------------------------------------
+\begin{aufgabe}{Titel der Aufgabe}
+Angabe der Aufgabe.
 
-\part[4] Bestimmen Sie die Spannung $U_P$ an der Parallelschaltung sowie die
-Teilströme $I_2$ und $I_3$.
-\begin{solution}
-  $U_P = I \cdot R_{23} = \qty{60}{\milli\ampere} \cdot \qty{100}{\ohm} = \qty{6}{\volt}$.\\
-  $I_2 = U_P / R_2 = \qty{20}{\milli\ampere}$, \quad
-  $I_3 = U_P / R_3 = \qty{40}{\milli\ampere}$
-  \quad (Probe: $I_2 + I_3 = I$ \checkmark).
-\end{solution}
-
-\part[2] Welche Leistung wird im Widerstand $R_1$ umgesetzt?
-\begin{solution}
-  $P_1 = I^2 R_1 = (\qty{0,06}{\ampere})^2 \cdot \qty{100}{\ohm} = \qty{0,36}{\watt}$.
-\end{solution}
-\end{parts}
-
-% --------------------------------------------------------------------------
-%  Aufgabe 3 – Physik
-% --------------------------------------------------------------------------
-\aufgabe{Schräger Wurf}
-Ein Ball wird vom Boden aus mit der Anfangsgeschwindigkeit $v_0$ unter dem Winkel
-$\alpha$ gegen die Horizontale abgeworfen. Der Luftwiderstand wird vernachlässigt.
-
-\begin{center}
-\begin{tikzpicture}[>=Stealth]
-  \draw[->, grau] (-0.3,0) -- (9.8,0) node[below] {$x$};
-  \draw[->, grau] (0,-0.3) -- (0,3.4) node[left] {$y$};
-  \draw[akzent, very thick] (0,0) parabola bend (4.5,2.6) (9,0);
-  \draw[->, very thick] (0,0) -- (49:1.9) node[above left] {$\vec v_0$};
-  \draw (1,0) arc (0:49:1);
-  \node at (24:1.3) {$\alpha$};
-  \draw[<->, dashed, grau] (4.5,0) -- node[right, black] {$h_\text{max}$} (4.5,2.6);
-  \draw[<->] (0,-0.6) -- node[fill=white, inner sep=2pt] {$w$} (9,-0.6);
-  \fill[akzent] (4.5,2.6) circle (2pt);
-  \node[grau, font=\footnotesize, anchor=north east] at (9.8,3.4) {Skizze nicht maßstäblich};
-\end{tikzpicture}
-\end{center}
-
-\begin{gegeben}
-  \textbf{Gegeben:}\quad
-  $v_0 = \qty{20}{\metre\per\second}$, \quad
-  $\alpha = \ang{30}$, \quad
-  $g = \qty{9,81}{\metre\per\second\squared}$
-\end{gegeben}
-
-\begin{parts}
-\part[2] Nach welcher Zeit $t_s$ erreicht der Ball seine maximale Höhe?
-\begin{solution}
-  Am Scheitel gilt $v_y = 0$:\quad
-  $t_s = \dfrac{v_0 \sin\alpha}{g} = \dfrac{\qty{10}{\metre\per\second}}{\qty{9,81}{\metre\per\second\squared}} \approx \qty{1,02}{\second}$.
-\end{solution}
-
-\part[3] Berechnen Sie die maximale Höhe $h_\text{max}$.
-\begin{solution}
-  $h_\text{max} = \dfrac{v_0^2 \sin^2\alpha}{2g}
-   = \dfrac{(\qty{10}{\metre\per\second})^2}{2 \cdot \qty{9,81}{\metre\per\second\squared}}
-   \approx \qty{5,10}{\metre}$.
-\end{solution}
-
-\part[3] Berechnen Sie die Wurfweite $w$.
-\begin{solution}
-  $w = \dfrac{v_0^2 \sin(2\alpha)}{g}
-   = \dfrac{\qty{400}{\metre\squared\per\second\squared} \cdot \sin\ang{60}}{\qty{9,81}{\metre\per\second\squared}}
-   \approx \qty{35,3}{\metre}$.
-\end{solution}
-
-\part[2] Unter welchem Abwurfwinkel wird die Wurfweite maximal? Begründen Sie kurz.
-\begin{solution}
-  $w \sim \sin(2\alpha)$ wird maximal für $2\alpha = \ang{90}$, also $\alpha = \ang{45}$.
-\end{solution}
-\end{parts}
-
-% --------------------------------------------------------------------------
-%  Aufgabe 4 – Informatik
-% --------------------------------------------------------------------------
-\aufgabe{Rekursion und Zahlensysteme}
-Betrachten Sie die folgende Python-Funktion:
-
-\begin{lstlisting}[language=Python]
-def f(n):
-    if n <= 1:
-        return n
-    return f(n - 1) + f(n - 2)
-\end{lstlisting}
-
-\begin{parts}
-\part[2] Welchen Wert liefert \lstinline{f(6)}? Geben Sie die Zwischenwerte an.
-\begin{solution}
-  $f(0..6) = 0,\,1,\,1,\,2,\,3,\,5,\,8$, \ also \lstinline{f(6)} $= 8$.
-\end{solution}
-
-\part[1] Was berechnet die Funktion allgemein?
-\begin{solution}
-  Die $n$-te Fibonacci-Zahl.
-\end{solution}
-
-\part[3] Geben Sie die Laufzeitkomplexität in $\mathcal{O}$-Notation an und
-begründen Sie. Wie lässt sich die Laufzeit verbessern?
-\begin{solution}
-  $\mathcal{O}(2^n)$: Jeder Aufruf erzeugt bis zu zwei weitere Aufrufe, der
-  Rekursionsbaum hat die Tiefe $n$, und Teilergebnisse werden mehrfach berechnet.
-  Mit Memoisation oder einer iterativen Lösung sinkt die Laufzeit auf $\mathcal{O}(n)$.
-\end{solution}
-
-\part[1] Welche Datenstruktur arbeitet nach dem LIFO-Prinzip? Kreuzen Sie an.
-\par\smallskip
-\begin{oneparcheckboxes}
-  \choice Warteschlange (Queue)
-  \CorrectChoice Stapel (Stack)
-  \choice Heap
-  \choice Hashtabelle
-\end{oneparcheckboxes}
-
-\part[2] Wandeln Sie die Dezimalzahl $45$ in das Binär- und das Hexadezimalsystem um.
-\begin{solution}
-  $45 = 32 + 8 + 4 + 1 = 101101_2$, \quad $0010\,1101_2 = 2\mathrm{D}_{16}$.
-\end{solution}
-\end{parts}
-
-\end{questions}
+\begin{teilaufgaben}
+  \teil{4} Teilaufgabe.
+    \begin{loesung}
+      Lösungsweg. \teilpunkt{4}
+    \end{loesung}
+\end{teilaufgaben}
+\end{aufgabe}
 
 \end{document}

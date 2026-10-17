@@ -303,8 +303,9 @@ Aufgaben, und die vielen Regeln der Vorlage würden davon ablenken.
    ```
 
 7. **LaTeX schreiben:** Erst jetzt setzt du den Entwurf mit der Vorlage
-   `skill:vorlagen/uebungsblatt.tex` und ihrer Klasse
-   `skill:vorlagen/uebungsblatt.cls`. Aus einer Datei entstehen beide PDFs:
+   `skill:vorlagen/uebungsblatt.tex`, ihrer Klasse
+   `skill:vorlagen/uebungsblatt.cls` und deren Farben
+   `skill:vorlagen/ohmtools-colors.sty`. Aus einer Datei entstehen beide PDFs:
    In der Angabe sind die Lösungen ausgeblendet und belegen keinen Platz, in
    der Lösung sind sie sichtbar. Unter `skill:` kannst du nichts ändern.
    1. Führ `command -v pdflatex; echo "exit=$?"` aus. Endet es nicht mit
@@ -315,8 +316,8 @@ Aufgaben, und die vielen Regeln der Vorlage würden davon ablenken.
       und nur diese verwendest du. Ist dir ein Befehl unklar, lies in
       `skill:vorlagen/beispiel.tex` nur die Aufgabe, die ihn benutzt.
    3. Kopiere `skill:vorlagen/uebungsblatt.cls`,
-      `skill:vorlagen/uebungsblatt.tex` und `skill:vorlagen/build.sh` nach
-      `arbeit:uebungsblatt/`.
+      `skill:vorlagen/ohmtools-colors.sty`, `skill:vorlagen/uebungsblatt.tex`
+      und `skill:vorlagen/build.sh` nach `arbeit:uebungsblatt/`.
    4. Ändere in der Kopie `arbeit:uebungsblatt/uebungsblatt.tex` vor
       `\begin{document}` `\fach` (`{modulname}`), `\bearbeitungszeit`
       (`{dauer}`) und `\hilfsmittel` (`{hilfsmittel}`). Lösch die Zeile mit
@@ -337,7 +338,8 @@ Aufgaben, und die vielen Regeln der Vorlage würden davon ablenken.
       was eine Lösung verrät, auch in Abbildungen, steht in einer `loesung`,
       in `\nurloesung` oder in den Lösungsmarkierungen der Antwortformate
       (`\antwort*`, `\aussage[r]`, `\aussage[f]`, `\paar[k]`).
-   7. `arbeit:uebungsblatt/uebungsblatt.cls` und
+   7. `arbeit:uebungsblatt/uebungsblatt.cls`,
+      `arbeit:uebungsblatt/ohmtools-colors.sty` und
       `arbeit:uebungsblatt/build.sh` bleiben unverändert.
 8. **Übersetzen:** Führ im Ordner `arbeit:uebungsblatt/`
    `sh build.sh; echo "exit=$?"` aus. Es erzeugt aus `uebungsblatt.tex` die
@@ -484,10 +486,11 @@ Blatt in den Vorrat (`plugin:skills/gemeinsam/grundlagen.md`, Abschnitt
 
 1. Lies `projekt:vorrat/{modul}/uebungsblatt.tex`.
 2. Lösch `arbeit:uebungsblatt/`, falls es den Ordner aus diesem Chat schon
-   gibt, leg ihn neu an und kopiere `skill:vorlagen/uebungsblatt.cls` und
-   `skill:vorlagen/build.sh` hinein. Liefert dein Werkzeug die gelesene Datei
-   als Datei, kopiere sie nach `arbeit:uebungsblatt/uebungsblatt.tex`, sonst
-   schreib ihren Inhalt dorthin, Zeichen für Zeichen unverändert. Setz darin
+   gibt, leg ihn neu an und kopiere `skill:vorlagen/uebungsblatt.cls`,
+   `skill:vorlagen/ohmtools-colors.sty` und `skill:vorlagen/build.sh` hinein.
+   Liefert dein Werkzeug die gelesene Datei als Datei, kopiere sie nach
+   `arbeit:uebungsblatt/uebungsblatt.tex`, sonst schreib ihren Inhalt
+   dorthin, Zeichen für Zeichen unverändert. Setz darin
    `\fach` auf `{modulname}`, denn das Fach kann inzwischen anders heißen.
 3. Übersetze wie in Schritt 8. Endet es nicht mit `exit=0`, benutze das Blatt
    nicht und mach mit den übrigen Rückfragen in Schritt 2 weiter wie ohne

@@ -33,6 +33,7 @@ den Befehlen („Primitiven“) aus dieser Anleitung.
 | Datei | Zweck |
 |---|---|
 | `uebungsblatt.cls` | Die Vorlage (Klasse). Muss im selben Ordner wie das Blatt liegen. Nicht verändern. |
+| `ohmtools-colors.sty` | Die Farben des ohmtools-Designs, von der Klasse geladen. Muss ebenfalls im selben Ordner liegen. Nicht verändern. |
 | `uebungsblatt.tex` | Leeres Grundgerüst zum Kopieren. |
 | `build.sh` | Übersetzt ein Blatt zu zwei PDFs: Aufgabenblatt und Lösungsvorschlag (Kapitel 11). |
 | `beispiel.tex` | Vollständiges Beispiel mit Lösungen, das **jeden** Baustein benutzt. Bei Unklarheiten dort nachsehen. |
@@ -53,10 +54,15 @@ automatisch. Steht auf dem Deckblatt „??“, einfach noch einmal kompilieren.
 
 Benötigte Pakete (in TeX Live enthalten): tikz, circuitikz, pgfplots,
 tikz-timing, siunitx, listings, tcolorbox, enumitem, fancyhdr, lastpage,
-booktabs, mathastext, microtype. Schrift: IBM Plex (Paket `plex`); fehlt es,
-setzt die Klasse automatisch Helvetica und für Code TX-Typewriter oder Courier.
-Die Warnung „IBM Plex Sans nicht gefunden“ ist dann kein Fehler. Fehlen die
-deutschen Trennmuster, trennt die Klasse keine Wörter.
+booktabs, mathastext, microtype. Schrift: Inter (Paket `inter`, in TeX Live
+in texlive-fonts-extra); fehlt es, setzt die Klasse automatisch Helvetica. Code
+steht in TX-Typewriter oder Courier. Die Warnung „Inter nicht gefunden“ ist
+dann kein Fehler. Fehlen die deutschen Trennmuster, trennt die Klasse keine
+Wörter.
+
+Das Aussehen folgt dem ohmtools-Design: Rot ist die einzige Akzentfarbe (auch
+für alle Lösungen), sonst Schwarz und Grau, keine Großbuchstaben, Linien statt
+Kästen, eckige Ecken.
 
 ---
 
@@ -166,7 +172,6 @@ Alle Angaben stehen **vor** `\begin{document}`. Nur `\fach` ist Pflicht.
 | `\bearbeitungszeit{90 min}` | optional | Deckblatt |
 | `\hilfsmittel{Text}` | optional, erscheint als erster Hinweis | Deckblatt |
 | `\hinweis{Text}` | beliebig oft, je ein Punkt in der Hinweisliste | Deckblatt |
-| `\akzentfarbe{0F7B6C}` | Akzentfarbe als HTML-Hex ohne `#` (Standard `2450B8`, Blau) | überall |
 
 ---
 
@@ -237,10 +242,11 @@ richtiger Zuordnung“. Zählt **nicht** zur Summe (nur Anzeige).
 \end{gegeben}
 ```
 
-* Graue Box mit der Überschrift GEGEBEN; die Werte fließen nebeneinander.
+* Abschnitt zwischen zwei Linien mit der Überschrift „Gegeben“; die Werte
+  fließen nebeneinander.
 * Das Argument von `\wert` und `\gesucht` ist **automatisch Mathematik**:
   **keine** `$…$` hineinschreiben. Text in Mathe mit `\text{..}`.
-* `\gesucht` ist optional und steht am Ende der Box.
+* `\gesucht` ist optional und steht am Ende von `gegeben`.
 
 ### `hinweisbox` – Hinweis, Formel, Definition
 
@@ -311,7 +317,7 @@ PNG, JPG, PDF.
 
 ```latex
 \begin{zeichnung}{Aufbau des Plattenkondensators}
-  \fill[ubtinte] (0,0) rectangle (0.15,3);
+  \fill[ohmForeground] (0,0) rectangle (0.15,3);
   \draw[->, akzent] (0.3,1.5) -- (2.8,1.5);
   \draw[<->] (0.15,-0.4) -- node[below] {$d$} (3,-0.4);
 \end{zeichnung}
@@ -324,8 +330,8 @@ TikZ-Syntax. Einheit: 1 = 1 cm. Pfeilspitzen sind voreingestellt.
 
 | Stil | Verwendung |
 |---|---|
-| `akzent` | Linie/Text in Akzentfarbe, z. B. Feldlinien: `\draw[->, akzent] …` |
-| `markiert` | hervorgehobener Knoten/Block (Akzentrahmen, leichte Füllung) |
+| `akzent` | Linie/Text in der Akzentfarbe Rot, z. B. Feldlinien: `\draw[->, akzent] …` |
+| `markiert` | hervorgehobener Knoten/Block (roter Rahmen, leichte Füllung) |
 | `hilfslinie` | dünne gestrichelte graue Hilfslinie (Maßlinien, Projektionen) |
 | `block` | Rechteck für Blockdiagramme |
 | `summe` | Summationsstelle (Kreis) |
@@ -333,8 +339,9 @@ TikZ-Syntax. Einheit: 1 = 1 cm. Pfeilspitzen sind voreingestellt.
 | `knoten` | Kreisknoten für Graphen |
 | `gewicht` | Kantengewicht (kleine Schrift, weißer Hintergrund) |
 
-Farbnamen, falls ausnahmsweise nötig (z. B. Füllung): `ubtinte` (Schwarz),
-`ubgrau`, `ubakzent`, `ubteal`, `uborange`. Keine anderen Farben.
+Farbnamen, falls ausnahmsweise nötig (z. B. Füllung): `ohmForeground`
+(Schwarz), `ohmMutedForeground` (Grau), `ohmPrimary` (Rot), `ohmBorder`
+(helles Grau für Linien). Keine anderen Farben und nie Farbwerte.
 
 ### `schaltung` – Schaltbilder (circuitikz)
 
@@ -383,7 +390,8 @@ Farbnamen, falls ausnahmsweise nötig (z. B. Füllung): `ubtinte` (Schwarz),
   legend pos, height, width`.
 * Logarithmische Achsen (Bode-Diagramm): `xmode=log` (bzw. `ymode=log`).
 * Achsenbeschriftung mit Einheit: `xlabel={$f$ in \unit{Hz}}`.
-* Mehrere Kurven bekommen automatisch unterschiedliche Farben; Legende mit
+* Mehrere Kurven bekommen automatisch unterschiedliche Rottöne und
+  Stricharten (durchgezogen, gestrichelt, gepunktet); Legende mit
   `\legend{$U_1$, $U_2$}`.
 * pgfplots-Funktionen: `sin(deg(x))` (Winkel in Grad!), `exp(x)`, `ln(x)`,
   `log10(x)`, `sqrt(x)`, `abs(x)`, `x^2`.
@@ -714,10 +722,9 @@ Ausgeblendete Lösungen nehmen **keinen Platz** ein: Das Aufgabenblatt sieht
 Pixel für Pixel genauso aus, als stünden sie nicht in der Datei.
 
 Im Lösungsvorschlag ändert sich automatisch: Kopf- und Fußzeile tragen
-„Lösung“, das Deckblatt zeigt die Marke LÖSUNGSVORSCHLAG und den
+„Lösung“, das Deckblatt zeigt die Marke „Lösungsvorschlag“ und den
 Untertitel „Lösungsvorschlag zu Übungsblatt …“, alle Seiten bleiben
-vertikal zentriert, alle Lösungselemente erscheinen in
-der Lösungsfarbe (Grün).
+vertikal zentriert, alle Lösungselemente erscheinen in Rot.
 
 ### `loesung` – die Lösungsbox
 
@@ -733,8 +740,8 @@ der Lösungsfarbe (Grün).
 \end{teilaufgaben}
 ```
 
-* Grüne Box mit der Überschrift LÖSUNG. Im Aufgabenblatt komplett
-  unsichtbar (auch kein Leerraum).
+* Abschnitt mit einer roten Linie links und der Überschrift „Lösung“. Im
+  Aufgabenblatt komplett unsichtbar (auch kein Leerraum).
 * Optionale Überschrift: `\begin{loesung}[Lösung mit Bewertungsschema]`,
   `[Lösungsweg]`, `[Typische Fehler]`, `[Begründung]`.
 * **Platzierung:** direkt hinter dem Text einer Teilaufgabe (innerhalb von

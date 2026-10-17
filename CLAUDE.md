@@ -26,7 +26,7 @@ und die Projektdateien.
 | Gemeinsam für `lernen` und `verwalten`: Grundregeln, Pfade, Betriebsart, Nachrichten, Abbruch (nur fertige Dateien ins Projekt), Formate, Module, Datenquelle (`daten.xml`), Gedächtnis, Benutzererfahrung | `lernhelfer/skills/gemeinsam/grundlagen.md` |
 | Lernen: Fähigkeiten, Fähigkeit wechseln, Modul bestimmen, Dateiprüfung, Dateien im Chat, PDF-Dateien, Probleme pflegen, gemeinsame Regeln der Lernmodi (Unterlagen, Belege, Nachrechnen, Leitplanken, fällige Themen, Session beenden) | `lernhelfer/skills/lernen/SKILL.md` |
 | Lernmodi (Erlernen, Wiederholen, Üben, Korrigieren) und Schwachstellen | `lernhelfer/skills/lernen/faehigkeiten/` |
-| Vorlagen für Ausgaben (Übungsblatt: LaTeX-Klasse mit Anleitung und `build.sh`) | `lernhelfer/skills/lernen/vorlagen/`, Konvention in `entwicklung.md` |
+| Vorlagen für Ausgaben (Übungsblatt: LaTeX-Klasse mit Farben, Anleitung und `build.sh`) | `lernhelfer/skills/lernen/vorlagen/`, Konvention in `entwicklung.md` |
 | Verwalten: Fähigkeiten und ihre Verfügbarkeit, Projektstruktur, Dateien der Datenquelle, automatische Anweisungen einrichten | `lernhelfer/skills/verwalten/SKILL.md` |
 | Automatische Anweisungen (geplante Anweisungen in Claude.ai): Prompts, Name mit Projekt, Einrichten, Ausschalten | `lernhelfer/skills/verwalten/geplant/`, `lernhelfer/skills/verwalten/faehigkeiten/automatische-anweisungen.md` |
 | Vorrat an Übungsblättern (`projekt:vorrat/`) | `lernhelfer/skills/lernen/faehigkeiten/ueben.md`, „Vorrat“, und `lernhelfer/skills/verwalten/geplant/2-uebungsblaetter-vorbereiten.md` |
@@ -47,6 +47,13 @@ die Änderung betrifft, vollständig.
 ## Regeln für dieses Repository
 
 - Die Konventionen in `entwicklung.md` gelten auch für dich.
+- Die Übungsblatt-Vorlage folgt dem ohmtools-Design:
+  https://github.com/ohmtools/design, Regeln in dessen DESIGN.md (Abschnitt
+  „Documents“: Inter, sonst die serifenlose Schrift des Werkzeugs, Rot als
+  einzige Akzentfarbe, keine Großbuchstaben, Linien statt Kästen, eckige
+  Ecken). Farben nur über dessen Tokens. Vor jeder sichtbaren Änderung
+  DESIGN.md lesen; eine Regel, die sich ändern soll, wird zuerst dort
+  geändert, für alle Apps.
 - Neue Konventionen für Fähigkeiten gehören nach `entwicklung.md`, nicht
   hierher, weil die Entwicklungsinstanz im Projekt nur das Plugin kennt.
 - Prüf nach jeder Änderung mit `claude plugin validate .`. Zwei Meldungen
@@ -96,7 +103,11 @@ die Änderung betrifft, vollständig.
   - Dateien und Übersetzen der Übungsblatt-Vorlage: Kopf von
     `uebungsblatt.cls`, `uebungsblatt.tex` und `beispiel.tex`,
     `ANLEITUNG.md` (Kapitel 1, 3 und 11), `build.sh` und `ueben.md`
-    („Übungsblatt“, Schritte 7 und 8).
+    („Übungsblatt“, Schritte 7 und 8, und „Vorrat“, „Benutzen“, Schritt 2).
+  - Farben der Übungsblatt-Vorlage: `lernen/vorlagen/ohmtools-colors.sty` ist
+    eine unveränderte Kopie von `dist/ohmtools-colors.sty` aus
+    `ohmtools/design`; nach einer Änderung dort neu kopieren. Die Farbnamen
+    für Dokumente stehen in `ANLEITUNG.md`, Kapitel 7, und `entwicklung.md`.
   - Darstellungen der Übungsblatt-Vorlage: `ueben.md` („Übungsblatt“,
     Schritt 4) und `ANLEITUNG.md`, Kapitel 12.
   - Erkennen des Modulhandbuchs am Dateinamen („Modulhandbuch“ oder
@@ -208,7 +219,8 @@ die Änderung betrifft, vollständig.
   - Üben (AFB II und III, Schwerpunkt ferner Transfer): Transferaufgaben nach
     dem Transfer-Prompt des Playbooks, als Übungsblatt (erst ein Entwurf in
     Markdown, dann zwei PDFs aus `vorlagen/uebungsblatt.tex` mit der Klasse
-    `uebungsblatt.cls` und `build.sh`, ohne LaTeX zwei Markdown-Dateien) oder
+    `uebungsblatt.cls`, ihren Farben `ohmtools-colors.sty` und `build.sh`,
+    ohne LaTeX zwei Markdown-Dateien) oder
     Bloom-Leiter im Chat.
   - Korrigieren: strenger Prüfer, Punkte als Schätzung, Hinweise statt
     Lösung, Fehlerursachen nach Fischgräte mit bis zu fünfmal „Warum?“,
@@ -230,11 +242,10 @@ die Änderung betrifft, vollständig.
   2026-10-16, die es vor allem fürs Design gibt: Klasse `uebungsblatt.cls`
   (Deckblatt mit Punkten und Aufgabenliste, jede Aufgabe auf einer eigenen
   Seite, jede Seite vertikal zentriert, damit man am Tablet, z.B. in
-  GoodNotes, ohne Scrollen arbeitet, Schrift IBM Plex, sonst Helvetica und
-  für Code TX-Typewriter, ohne deutsche Trennmuster keine Silbentrennung im
-  Blocksatz, so hat es der Nutzer am 2026-10-17 entschieden),
-  `ANLEITUNG.md` mit allen Befehlen für KI-Modelle, `beispiel.tex` mit
-  `material/` als Beispiel für jeden Befehl. Aufgaben und Lösungen stehen in
+  GoodNotes, ohne Scrollen arbeitet, ohne deutsche Trennmuster keine
+  Silbentrennung im Blocksatz, so hat es der Nutzer am 2026-10-17
+  entschieden), `ANLEITUNG.md` mit allen Befehlen für KI-Modelle,
+  `beispiel.tex` mit `material/` als Beispiel für jeden Befehl. Aufgaben und Lösungen stehen in
   einer Datei: `build.sh [name]` erzeugt daraus `{name}.pdf` ohne und
   `{name}-loesung.pdf` mit Lösungen (Klassenoption `loesung` über
   `-jobname` und `\PassOptionsToClass`, je zwei Durchläufe `pdflatex`,
@@ -248,7 +259,15 @@ die Änderung betrifft, vollständig.
   Kapitel 1, 3 und 11 der Anleitung beschreiben `build.sh`, und die Klasse
   prüft `t1txtt.fd` statt `t1xtt.fd` (Tippfehler, dadurch immer Courier) und
   trennt ohne `\l@ngerman` nicht. Die mitgelieferten PDFs sind nicht im
-  Plugin.
+  Plugin. Seit dem 2026-10-17 folgt die Vorlage dem ohmtools-Design (Wunsch
+  des Nutzers): Schrift Inter (Paket `inter` mit `ly1`, beide in
+  texlive-fonts-extra, halbfett, proportionale Ziffern, µ aus LGR, weil
+  Inters TS1 kein `\textmu` hat), sonst Helvetica, Code in TX-Typewriter,
+  Farben aus `ohmtools-colors.sty`, Rot als einzige Akzentfarbe auch für
+  Lösungen (vorher Grün), Diagrammkurven in Rottönen mit eigener Strichart,
+  `gegeben`, `hinweisbox` und Code zwischen zwei Linien, Lösungen mit einer
+  roten Linie links statt Kästen, keine Großbuchstaben und Sperrungen, eckige
+  Ecken. `\akzentfarbe` und die Farbnamen `ub…` sind entfallen.
 - Übungsblatt in zwei Phasen (Wunsch des Nutzers, damit die Qualität der
   Aufgaben nicht unter vielen geladenen Regeln leidet): `ueben.md` lässt
   erst Aufgaben und Lösungen als `arbeit:uebungsblatt/entwurf.md` schreiben
@@ -288,9 +307,10 @@ die Änderung betrifft, vollständig.
 - Vorrat: pro Modul höchstens ein Übungsblatt, 45 Minuten, Schwachstellen und
   fällige Themen (so hat es der Nutzer entschieden), als LaTeX-Quelltext,
   weil PDFs nicht in die Projektdateien passen, deshalb ohne eigene Dateien
-  (`\bild`, `\codedatei`). Beim Benutzen kommen `uebungsblatt.cls` und
-  `build.sh` aus der Vorlage dazu. Kopf mit `format`, Themen und
-  `quelle` (Identifikation und Pfad jeder gelesenen Datei), Schlusszeile
+  (`\bild`, `\codedatei`). Beim Benutzen kommen `uebungsblatt.cls`,
+  `ohmtools-colors.sty` und `build.sh` aus der Vorlage dazu. Kopf mit
+  `format`, Themen und `quelle` (Identifikation und Pfad jeder gelesenen
+  Datei), Schlusszeile
   `% Ende des Lernhelfer-Vorrats`. Üben bietet ein gültiges Blatt als erste
   Rückfrage an, übersetzt es, löscht es und stellt es dann bereit. Ungültige
   löscht erst der nächste Lauf. Ein geänderter Kopf erhöht `% format:` statt
@@ -348,9 +368,11 @@ Plugin, Version 0.11.2 und 0.14.0, im Browser und in der iPad-App.
   den Paketen der Vorlage wurde ohne Fehler übersetzt (`NimbusSanL`,
   `NimbusMonL`). Lokal mit denselben Paketen aus Ubuntu 24.04 geprüft: Mit
   `t1txtt.fd` setzt die Klasse Code in TX-Typewriter (`t1xtt`), ohne
-  Trennmuster trennt sie nicht, das Beispiel hat weiter 18 und 23 Seiten ohne
-  Overfull-Box, `build.sh` braucht dafür etwa 16 s, für die leere Vorlage
-  etwa 5 s. Mit Plex nennt `pdffonts` `plxSans` und `plxMono`.
+  Trennmuster trennt sie nicht, das Beispiel hat (seit dem ohmtools-Design)
+  18 und 22 Seiten ohne Overfull-Box, `build.sh` braucht dafür etwa 20 s.
+  Mit Inter aus texlive-fonts-extra nennt `pdffonts` `Inter-Regular`,
+  `Inter-SemiBold` und `Inter-Italic` und keine Type-3-Schrift, ebenfalls
+  18 und 22 Seiten.
 - Projektdateien: Werkzeug `Projects` mit `method` `project_info`,
   `project_read`, `project_search`, `project_write` (`content` oder
   `local_path`, nur aus `/home/claude`, ersetzt ganze Dateien, meldet

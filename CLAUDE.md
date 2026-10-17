@@ -6,9 +6,21 @@ Ordner, den Claude.ai als Ganzes bereitstellt (`source` in
 `.claude-plugin/marketplace.json`). `README.md` und diese Datei liegen deshalb
 außerhalb dieser Ordner. Das README dokumentiert zuerst das allgemeine Setup,
 danach jedes Plugin in einem eigenen Abschnitt. Ein neues Plugin bekommt einen
-eigenen Ordner, einen Eintrag in `marketplace.json` und einen Abschnitt im
-README. Zurzeit gibt es nur den Lernhelfer, um den es im Rest dieser Datei
-geht.
+eigenen Ordner (liegt es in einem anderen Repository, eine Quelle
+`git-subdir`), einen Eintrag in `marketplace.json` und einen Abschnitt im
+README. Zurzeit gibt es zwei Plugins:
+
+- Zeiteisen: der Skill `zeiteisen-generator` der Stundenplan-App, aus
+  `ohmtools/zeiteisen`, Ordner `skill/zeiteisen-generator/`, als Quelle
+  `git-subdir` ohne `ref`, also immer vom Hauptzweig (so hat es der Nutzer am
+  2026-10-17 statt eines Submodules entschieden). Hier stehen nur der Eintrag
+  in `marketplace.json`, der ohne `plugin.json` im Ordner das Manifest ist,
+  und der Abschnitt im README. Änderungen am Skill gehören nach zeiteisen.
+  Die vier `schema.json` erzeugt dort `npm run skill`, sie sind dafür
+  committet (ohmtools/zeiteisen#1). Mit Claude Code lokal geprüft: Die
+  Installation lädt nur den Ordner samt Schemas und findet einen Skill.
+  Ungeprüft ist, ob Claude.ai Quellen `git-subdir` abgleicht.
+- Lernhelfer, um den es im Rest dieser Datei geht.
 
 Lernhelfer (`lernhelfer/`) ist ein Plugin für Claude.ai mit den Skills
 `lernen`, `verwalten` und `helfen`. Ihre Markdown-Anweisungen („Fähigkeiten“)
@@ -56,11 +68,12 @@ die Änderung betrifft, vollständig.
   geändert, für alle Apps.
 - Neue Konventionen für Fähigkeiten gehören nach `entwicklung.md`, nicht
   hierher, weil die Entwicklungsinstanz im Projekt nur das Plugin kennt.
-- Prüf nach jeder Änderung mit `claude plugin validate .`. Zwei Meldungen
-  sind gewollt: die Warnung zur fehlenden `version` in `plugin.json` (sonst
-  kämen Commits erst nach einer neuen Version an, Regel in `entwicklung.md`)
-  und der Hinweis auf eine Installationszeile für Claude Code im README (der
-  Lernhelfer ist für Claude.ai gebaut).
+- Prüf nach jeder Änderung mit `claude plugin validate .`. Gewollt sind die
+  Warnung zur fehlenden `version` in `plugin.json` (sonst kämen Commits erst
+  nach einer neuen Version an, Regel in `entwicklung.md`) und, falls er kommt,
+  der Hinweis auf eine Installationszeile für Claude Code im README (der
+  Lernhelfer ist für Claude.ai gebaut; seit dem Eintrag für Zeiteisen fehlt
+  er).
 - Trag die Ergebnisse jedes Testlaufs unter „Testläufe“ ein, pass die
   Fähigkeiten an und nimm bestätigte Tests aus `testen.md` heraus
   (Konvention in `entwicklung.md`).
@@ -69,6 +82,9 @@ die Änderung betrifft, vollständig.
     `projektanweisung.md` und `helfen/SKILL.md`.
   - Lizenz BSD-3-Clause: `LICENSE`, `plugin.json` (`license`) und Abschnitt
     „Lizenz“ im README.
+  - Pfad des Zeiteisen-Skills `skill/zeiteisen-generator`: `marketplace.json`,
+    Abschnitt „Aufbau des Repositorys“ im README und in ohmtools/zeiteisen
+    `CLAUDE.md` und `scripts/NOTES.md`.
   - Pfad der Grundlagen im Plugin (`skills/gemeinsam/grundlagen.md`):
     Abschnitt „Grundlagen“ in `lernen/SKILL.md` und `verwalten/SKILL.md` (dort
     auch die Fehlermeldung) und `entwicklung.md` („Vorbereiten“,

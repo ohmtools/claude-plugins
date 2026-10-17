@@ -14,12 +14,20 @@ README. Zurzeit gibt es zwei Plugins:
   `ohmtools/zeiteisen`, Ordner `skill/zeiteisen-generator/`, als Quelle
   `git-subdir` ohne `ref`, also immer vom Hauptzweig (so hat es der Nutzer am
   2026-10-17 statt eines Submodules entschieden). Hier stehen nur der Eintrag
-  in `marketplace.json`, der ohne `plugin.json` im Ordner das Manifest ist,
-  und der Abschnitt im README. Änderungen am Skill gehören nach zeiteisen.
+  in `marketplace.json` (Name, Quelle, Beschreibung) und der Abschnitt im
+  README. Das Manifest liegt in zeiteisen unter
+  `skill/zeiteisen-generator/.claude-plugin/plugin.json`, mit
+  `"skills": ["./"]`, weil die `SKILL.md` direkt im Ordner liegt. Ohne
+  `plugin.json` lehnte Claude.ai das Plugin ab („requires
+  .claude-plugin/plugin.json or a top-level SKILL.md declaring plugin
+  components“), obwohl Claude Code den Skill fand. `"strict": false` im
+  Eintrag hätte es laut Fehlermeldung auch gelöst, der Nutzer wollte es am 2026-10-17 nicht.
+  Änderungen am Skill gehören nach zeiteisen.
   Die vier `schema.json` erzeugt dort `npm run skill`, sie sind dafür
   committet (ohmtools/zeiteisen#1). Mit Claude Code lokal geprüft: Die
-  Installation lädt nur den Ordner samt Schemas und findet einen Skill.
-  Ungeprüft ist, ob Claude.ai Quellen `git-subdir` abgleicht.
+  Installation lädt nur den Ordner samt Schemas und findet einen Skill
+  (`zeiteisen-generator`, auch mit `plugin.json`).
+  Ungeprüft ist, ob Claude.ai das Plugin mit `plugin.json` annimmt.
 - Lernhelfer, um den es im Rest dieser Datei geht.
 
 Lernhelfer (`lernhelfer/`) ist ein Plugin für Claude.ai mit den Skills
@@ -82,6 +90,8 @@ die Änderung betrifft, vollständig.
     `projektanweisung.md` und `helfen/SKILL.md`.
   - Lizenz BSD-3-Clause: `LICENSE`, `plugin.json` (`license`) und Abschnitt
     „Lizenz“ im README.
+  - Beschreibung des Plugins Zeiteisen: `marketplace.json` und in
+    ohmtools/zeiteisen `skill/zeiteisen-generator/.claude-plugin/plugin.json`.
   - Pfad des Zeiteisen-Skills `skill/zeiteisen-generator`: `marketplace.json`,
     Abschnitt „Aufbau des Repositorys“ im README und in ohmtools/zeiteisen
     `CLAUDE.md` und `scripts/NOTES.md`.

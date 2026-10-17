@@ -15,7 +15,9 @@ ein Lernender danach suchen würde.
 ## Grundsatz
 
 - Indizieren kann viel vom Nutzungslimit verbrauchen. Indiziere nur, wenn der
-  Nutzer es ausdrücklich verlangt (z.B. „Indiziere“).
+  Nutzer es ausdrücklich verlangt (z.B. „Indiziere“), auch über eine
+  automatische Anweisung, die er eingerichtet hat (`skill:SKILL.md`, Abschnitt
+  „Automatische Anweisungen“).
 - Du indizierst immer alle Module. Nennt der Nutzer ein Fach („Indiziere
   Mathematik“), indizierst du trotzdem alle.
 - Lies nur Dateien, die neu sind oder deren Identifikation sich geändert hat,
@@ -24,6 +26,12 @@ ein Lernender danach suchen würde.
   komplett neu“) oder alle („Indiziere alles neu“).
 - Arbeite, bis alle zu lesenden Dateien erledigt sind. Unterbrich nur für eine
   Rückfrage aus dieser Fähigkeit.
+- Schreib nach jeder Datei, nicht erst am Ende, und immer zuerst den Index,
+  zuletzt `projekt:daten.xml` (`plugin:skills/gemeinsam/grundlagen.md`,
+  Abschnitt „Abbruch“). Eine Datei gilt erst als indiziert, wenn ihre
+  Identifikation in `projekt:daten.xml` steht. Endet der Chat vorher, z.B. am
+  Nutzungslimit, hält die Dateiprüfung ihre Einträge für veraltet, und der
+  nächste Durchlauf liest sie noch einmal.
 
 ## Ablauf
 
@@ -48,28 +56,29 @@ ein Lernender danach suchen würde.
    Eine neue oder geänderte Datei gehört zu jedem Modul, in dessen Abschnitt
    „Dateien“ sie steht. Gehört eine neue Datei, die kein Modulhandbuch ist, zu
    keinem Modul und liegt sie im Ordner eines Moduls (`daten:{modul}/…`),
-   gehört sie zu diesem Modul. Trag sie dort in „Dateien“ mit `-` als
-   Beschreibung ein.
+   gehört sie zu diesem Modul. Ihre Zeile in „Dateien“ trägst du in Schritt 4
+   ein.
 
    Zu lesen ist jede neue oder geänderte Datei, die zu mindestens einem Modul
    gehört, und jedes neue oder geänderte Modulhandbuch. Gibt es nichts zu
    lesen und keine entfernte Datei, antworte mit dieser Nachricht und beende
-   die Fähigkeit (`{unzugeordnet}` wie in Schritt 7):
+   die Fähigkeit (`{unzugeordnet}` wie in Schritt 6):
 
    ```text
    Alles ist schon indiziert, es gibt nichts Neues.
    {unzugeordnet}
    ```
 
-3. **Alte Einträge entfernen:** Entferne in jedem Index die Zeilen im
-   Stichwortverzeichnis zu entfernten Dateien und zu Dateien, die du liest,
-   und aus „Dateien“ die Zeilen entfernter Dateien.
-4. **Dateien lesen:** Hol jede zu lesende Datei, die kein Modulhandbuch ist,
-   wie `projekt:daten.xml` es beschreibt, und lies sie vollständig. Eine PDF
-   liest du mit `pdftotext -layout '{datei}' -`. Darin endet jede Seite mit
-   einem Seitenvorschub (`\f`), auch eine leere: Seite 1 ist der Text vor dem
-   ersten Seitenvorschub, Seite n der Text zwischen dem (n−1)-ten und dem
-   n-ten. Notiere:
+3. **Entfernte Dateien:** Gibt es entfernte Dateien, entferne in jedem Index
+   ihre Zeilen aus „Dateien“ und aus dem Stichwortverzeichnis und schreib jeden
+   geänderten Index. Entferne danach ihre `<datei>` aus `projekt:daten.xml` und
+   schreib sie.
+4. **Dateien lesen:** Arbeite die zu lesenden Dateien, die kein Modulhandbuch
+   sind, nacheinander ab. Hol jede, wie `projekt:daten.xml` es beschreibt, und
+   lies sie vollständig. Eine PDF liest du mit `pdftotext -layout '{datei}' -`.
+   Darin endet jede Seite mit einem Seitenvorschub (`\f`), auch eine leere:
+   Seite 1 ist der Text vor dem ersten Seitenvorschub, Seite n der Text
+   zwischen dem (n−1)-ten und dem n-ten. Notiere:
    - **Beschreibung:** Art und Inhalt in einer Zeile (z.B.
      `Skript, Kapitel 1–6` oder `Abiturprüfung 2023, 6 Aufgaben, mit Lösungen`).
    - **Stichwörter mit Seiten:** Themen, Begriffe, Definitionen, Sätze,
@@ -87,6 +96,17 @@ ein Lernender danach suchen würde.
    Ordner `arbeit:` mit
    `pdftoppm -f {seite} -l {seite} -r 150 -png '{datei}' seite`). Bleibt sie
    unsicher, notiere sie für `{unsicher}`.
+
+   Schreib danach, bevor du die nächste Datei holst:
+   1. jeden Index, zu dem die Datei gehört: Entferne ihre bisherigen Zeilen im
+      Stichwortverzeichnis, trag die neuen ein, eine Zeile pro Stichwort,
+      alphabetisch nach Stichwort, und setz in „Dateien“ ihre Beschreibung
+      ein. Hast du sie in Schritt 2 neu zugeordnet, füg ihre Zeile in
+      „Dateien“ ein. Gehört die Datei zu mehreren Modulen, bekommt jeder
+      ihrer Indexe dieselben Einträge.
+   2. danach `projekt:daten.xml`: Setze ihre aktuelle Identifikation in
+      `<dateien>` ein, eine neue Datei bekommt eine neue `<datei>`. Alles
+      andere bleibt.
 5. **Modulhandbuch lesen:** Nur wenn ein Modulhandbuch zu lesen ist. Hol es,
    wie `projekt:daten.xml` es beschreibt, lies es vollständig (eine PDF mit
    `pdftotext -layout '{datei}' -`) und such für jedes Modul den Teil, der dazu
@@ -113,21 +133,11 @@ ein Lernender danach suchen würde.
 
    Passt kein Teil oder wählt der Nutzer „Keines davon“, bleibt
    `projekt:module/{modul}/info.md` dieses Moduls unverändert.
-6. **Schreiben:** Schreib alle geänderten Dateien zusammen:
-   - jeden geänderten Index: in „Dateien“ die Beschreibung jeder gelesenen
-     Datei, im Stichwortverzeichnis die neuen Einträge, eine Zeile pro
-     Stichwort und Datei, alphabetisch nach Stichwort. Gehört eine Datei zu
-     mehreren Modulen, bekommt jeder ihrer Indexe dieselben Einträge.
-   - `projekt:module/{modul}/info.md` jedes Moduls, für das du in Schritt 5
-     etwas übernommen hast.
-   - `projekt:daten.xml`: Setze für jede gelesene Datei die aktuelle
-     Identifikation in `<dateien>` ein, neue bekommen eine neue `<datei>`.
-     Entferne die `<datei>` jeder entfernten Datei. Alles andere bleibt.
 
-   Wird bei vielen großen Dateien der Kontext knapp, schreib alles für die
-   bereits gelesenen Dateien und mach dann weiter. So setzt ein späterer
-   Durchlauf an der richtigen Stelle fort.
-7. **Abschluss:** Antworte:
+   Schreib danach zuerst `projekt:module/{modul}/info.md` jedes Moduls, für das
+   du etwas übernommen hast, dann in `projekt:daten.xml` die aktuelle
+   Identifikation des Modulhandbuchs wie in Schritt 4.
+6. **Abschluss:** Antworte:
 
    ```text
    Die Indexe sind aktuell ({aenderungen}).

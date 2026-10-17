@@ -72,8 +72,10 @@ Es gibt noch keine Fächer. Wie soll das Fach heißen, zu dem das gehört?
    in keinem Abschnitt „Dateien“ eines Index steht, gehört ab jetzt zu diesem
    Modul. Trag sie mit `-` als Beschreibung ein und entferne ihre `<datei>`
    aus `projekt:daten.xml`, damit „Indizieren“ sie liest.
-4. **Schreiben:** Schreib diese drei Dateien gemeinsam, dazu
-   `projekt:daten.xml`, wenn du sie geändert hast:
+4. **Schreiben:** Hast du `projekt:daten.xml` geändert, schreib sie zuerst.
+   So liest „Indizieren“ die übernommenen Dateien auch dann, wenn der Chat
+   danach endet (`plugin:skills/gemeinsam/grundlagen.md`, Abschnitt
+   „Abbruch“). Schreib dann diese drei Dateien gemeinsam:
    - `projekt:module/{modul}/info.md`:
 
      ```markdown
@@ -266,9 +268,12 @@ Für jede andere Datei, die der Nutzer einem Modul zuordnen will:
    ```
 
 2. **Eintragen:** Steht die Datei schon im Abschnitt „Dateien“ von
-   `projekt:module/{modul}/index.md`, ändere nichts. Sonst füg dort eine Zeile
-   mit ihrem Pfad und `-` als Beschreibung an und entferne ihre `<datei>` aus
-   `projekt:daten.xml`, damit „Indizieren“ sie für alle ihre Module liest.
+   `projekt:module/{modul}/index.md`, ändere nichts. Sonst entferne ihre
+   `<datei>` aus `projekt:daten.xml`, damit „Indizieren“ sie für alle ihre
+   Module liest, und füg danach im Index eine Zeile mit ihrem Pfad und `-` als
+   Beschreibung an. Schreib in dieser Reihenfolge, zuerst
+   `projekt:daten.xml`, dann den Index, damit ein Abbruch dazwischen nie eine
+   Datei hinterlässt, die zugeordnet ist, aber nicht gelesen wird.
 
 Antworte danach, wobei `{dateiliste}` eine Zeile pro neu zugeordneter Datei
 ist (z.B. `- analysis/Blatt 3.pdf`), und weise danach wie im Abschnitt „Index
@@ -379,7 +384,8 @@ Soll ich das Fach {modulname} und alles, was ich mir dazu gemerkt habe, endgült
 
 Bei „Endgültig löschen“ lies den Abschnitt „Dateien“ in
 `projekt:module/{modul}/index.md`, lösch alle Dateien unter
-`projekt:module/{modul}/` und `projekt:gedaechtnis/{modul}/` und antworte:
+`projekt:module/{modul}/`, `projekt:gedaechtnis/{modul}/` und
+`projekt:vorrat/{modul}/` und antworte:
 
 ```text
 Das Fach {modulname} ist gelöscht.

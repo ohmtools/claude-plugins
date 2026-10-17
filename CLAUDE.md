@@ -23,11 +23,13 @@ und die Projektdateien.
 | Installation | `README.md`, Abschnitte „Setup“ und „Lernhelfer“ |
 | Plugin und Marketplace | `lernhelfer/.claude-plugin/plugin.json`, `.claude-plugin/marketplace.json` |
 | Text der Projektanweisungen | `lernhelfer/skills/verwalten/projektanweisung.md` |
-| Gemeinsam für `lernen` und `verwalten`: Grundregeln, Pfade, Betriebsart, Nachrichten, Formate, Module, Datenquelle (`daten.xml`), Gedächtnis, Benutzererfahrung | `lernhelfer/skills/gemeinsam/grundlagen.md` |
+| Gemeinsam für `lernen` und `verwalten`: Grundregeln, Pfade, Betriebsart, Nachrichten, Abbruch (nur fertige Dateien ins Projekt), Formate, Module, Datenquelle (`daten.xml`), Gedächtnis, Benutzererfahrung | `lernhelfer/skills/gemeinsam/grundlagen.md` |
 | Lernen: Fähigkeiten, Fähigkeit wechseln, Modul bestimmen, Dateiprüfung, Dateien im Chat, PDF-Dateien, Probleme pflegen, gemeinsame Regeln der Lernmodi (Unterlagen, Belege, Nachrechnen, Leitplanken, fällige Themen, Session beenden) | `lernhelfer/skills/lernen/SKILL.md` |
 | Lernmodi (Erlernen, Wiederholen, Üben, Korrigieren) und Schwachstellen | `lernhelfer/skills/lernen/faehigkeiten/` |
 | Vorlagen für Ausgaben (Übungsblatt: LaTeX-Klasse mit Anleitung und `build.sh`) | `lernhelfer/skills/lernen/vorlagen/`, Konvention in `entwicklung.md` |
-| Verwalten: Fähigkeiten und ihre Verfügbarkeit, Projektstruktur, Dateien der Datenquelle | `lernhelfer/skills/verwalten/SKILL.md` |
+| Verwalten: Fähigkeiten und ihre Verfügbarkeit, Projektstruktur, Dateien der Datenquelle, automatische Anweisungen einrichten | `lernhelfer/skills/verwalten/SKILL.md` |
+| Automatische Anweisungen (geplante Anweisungen in Claude.ai): Prompts, Einrichten, Ausschalten | `lernhelfer/skills/verwalten/geplant/`, `lernhelfer/skills/verwalten/faehigkeiten/automatische-anweisungen.md` |
+| Vorrat an Übungsblättern (`projekt:vorrat/`) | `lernhelfer/skills/lernen/faehigkeiten/ueben.md`, „Vorrat“, und `lernhelfer/skills/verwalten/geplant/2-uebungsblaetter-vorbereiten.md` |
 | Konventionen für Fähigkeiten | `lernhelfer/skills/verwalten/faehigkeiten/entwicklung.md`, „Änderungen machen“, Schritt 2 |
 | Einrichten, Datenquelle anlegen | `lernhelfer/skills/verwalten/faehigkeiten/initialisieren.md` |
 | Fächer, Dateien zuordnen, Lernziele | `lernhelfer/skills/verwalten/faehigkeiten/modul-bearbeiten.md` |
@@ -100,6 +102,24 @@ die Änderung betrifft, vollständig.
     `helfen/SKILL.md`.
   - Seiten zählen mit `pdftotext` und `\f`: `lernen/SKILL.md`
     („PDF-Dateien“) und `indizieren.md`, Schritt 4.
+  - Vorspann der automatischen Anweisungen (niemand liest mit, keine
+    Rückfragen, „Abbruch“): beide Dateien in `verwalten/geplant/`.
+  - Namen von Abschnitten und Schritten, auf die die Prompts in
+    `verwalten/geplant/` verweisen: „Abbruch“ in `grundlagen.md`; „Vorrat“,
+    „Übungsblatt“, „Prüfen“, „Ohne LaTeX“ und die Optionen für Stoff und
+    Umfang in `ueben.md`; „Session beenden“ in `lernen/SKILL.md`. Die Prompts
+    liegen wörtlich in Claude.ai und wandern bei einem Update nicht mit.
+  - Nach einem Update die automatischen Anweisungen neu einrichten:
+    `entwicklung.md` („Exportieren“, `{automatik-hinweis}`) und
+    `helfen/SKILL.md`.
+  - Schlusszeile `% Ende des Lernhelfer-Vorrats`: `ueben.md` („Vorrat“) und
+    `testen.md`, Test 8.
+  - Schreibreihenfolge bei `daten.xml`: in `indizieren.md` zuerst der Index,
+    zuletzt `daten.xml`, in `modul-bearbeiten.md` („Neues Modul anlegen“,
+    „Dateien zuordnen“) zuerst `daten.xml`, dann der Index. Beides folgt aus
+    „Abbruch“ in `grundlagen.md`.
+  - Mehrere Module nur in automatischen Anweisungen: `lernen/SKILL.md` („Mit
+    einem Modul arbeiten“) und `entwicklung.md`.
 
 ## Stand
 
@@ -114,10 +134,13 @@ die Änderung betrifft, vollständig.
   `lernhelfer/skills/gemeinsam/grundlagen.md` (kein Skill, keine `SKILL.md`).
   Beide `SKILL.md` lassen die Datei vor allem anderen lesen, `helfen` nicht.
   `lernen` arbeitet mit genau einem Modul, liest `module/`, `daten.xml` und
-  `daten:` und schreibt nur `gedaechtnis/{modul}/probleme.md` und
-  `gedaechtnis/benutzererfahrung.md`. `verwalten` darf überall schreiben und
-  mit mehreren Modulen arbeiten. Verweise auf den anderen Skill stehen in
-  Nachrichten als „/lernhelfer:{skill} {satz}“.
+  `daten:` und schreibt nur `gedaechtnis/{modul}/probleme.md`,
+  `gedaechtnis/benutzererfahrung.md` und in „Üben“ den Vorrat
+  (`vorrat/{modul}/uebungsblatt.tex`). Nur eine automatische Anweisung lässt
+  `lernen` mehrere Module nacheinander bearbeiten, jedes für sich.
+  `verwalten` darf überall schreiben und mit mehreren Modulen arbeiten.
+  Verweise auf den anderen Skill stehen in Nachrichten als
+  „/lernhelfer:{skill} {satz}“.
 - Wechsel zu einer anderen Fähigkeit desselben Skills: in `lernen` erlaubt,
   z.B. bei einer Lücke zurück zu „Erlernen“, in `verwalten` verboten, dort
   weist eine Fähigkeit nur mit einer Nachricht auf eine andere hin. Zum
@@ -126,7 +149,8 @@ die Änderung betrifft, vollständig.
   (Beschreibung, Lernziele, Prüfung) und `module/{modul}/index.md` (Abschnitt
   „Dateien“ als einzige Zuordnung, Stichwortverzeichnis mit Dateiseiten),
   `gedaechtnis/{modul}/probleme.md` (Thema, Beschreibung, Ursache,
-  Verstanden, Historie) und `gedaechtnis/benutzererfahrung.md`. Alle Formate
+  Verstanden, Historie), `gedaechtnis/benutzererfahrung.md` und der Vorrat
+  `vorrat/{modul}/uebungsblatt.tex` (ohne Eintrag in „Formate“). Alle Formate
   sind 1, es gibt noch keine Migration. Das Plugin wird noch nicht genutzt.
   Deshalb gibt es keine Regeln für ältere Dateien, und die Spalte `Ursache`
   in `probleme.md` (Fehlerursache, Fischgräte, gefüllt von „Korrigieren“) und
@@ -222,6 +246,38 @@ die Änderung betrifft, vollständig.
   Markdown-Dateien.
 - Bewusst ohne Regel: Dateien, die ein Nutzer trotzdem über die Projektseite
   hochlädt.
+- Automatische Anweisungen: geplante Anweisungen des Claude.ai-Projekts,
+  einmal pro Woche, jeder Lauf ein neuer Chat. Damit übrige Nutzung nicht
+  verfällt, empfiehlt Claude zwei Stunden vor dem Reset des Wochenlimits (der
+  Nutzer nennt den Reset aus Settings > Usage, Zeitzone `Europe/Berlin`). Jede
+  Datei in `lernhelfer/skills/verwalten/geplant/` wird eine Anweisung
+  `Lernhelfer: {name}`: Frontmatter `name`, `modell` (nur die Reihe, gemeint
+  ist die neueste Fassung) und `benachrichtigung` (`push`, `email`, `slack`
+  oder `keine`), danach der Prompt. Der Prompt kommt wörtlich in Claude.ai, so
+  hat es der Nutzer entschieden, deshalb nach Updates neu einrichten. Die
+  Nummer im Dateinamen gibt die Reihenfolge, 30 Minuten Abstand. Zurzeit:
+  Indizieren (Haiku) und Übungsblätter vorbereiten (Opus), beide mit `push`.
+  „Initialisieren“ fragt danach, wenn es eine Datenquelle einrichtet, sonst
+  „Automatische Anweisungen“ (einrichten, Zeit ändern, ausschalten,
+  anzeigen). Neue Anweisungen werden vor dem Löschen der alten angelegt. Ohne
+  Werkzeug nennt Claude die Einstellungen zum Anlegen von Hand.
+- Vorrat: pro Modul höchstens ein Übungsblatt, 45 Minuten, Schwachstellen und
+  fällige Themen (so hat es der Nutzer entschieden), als LaTeX-Quelltext,
+  weil PDFs nicht in die Projektdateien passen, deshalb ohne eigene Dateien
+  (`\bild`, `\codedatei`). Beim Benutzen kommen `uebungsblatt.cls` und
+  `build.sh` aus der Vorlage dazu. Kopf mit `format`, Themen und
+  `quelle` (Identifikation und Pfad jeder gelesenen Datei), Schlusszeile
+  `% Ende des Lernhelfer-Vorrats`. Üben bietet ein gültiges Blatt als erste
+  Rückfrage an, übersetzt es, löscht es und stellt es dann bereit. Ungültige
+  löscht erst der nächste Lauf. Ein geänderter Kopf erhöht `% format:` statt
+  einer Migration. Module ohne Schwachstellen bekommen kein Blatt.
+- Abbruch: Claude sieht das restliche Limit nicht, ein Chat kann nach jedem
+  Schritt enden. Ins Projekt kommen nur fertige Dateien, je mit einem Aufruf,
+  große aus `arbeit:` mit `local_path`. Abhängige Dateien werden so
+  geschrieben, dass ein Abbruch nur Arbeit wiederholt: Indizieren schreibt nach
+  jeder Datei erst die Indexe, dann ihre Identifikation in `daten.xml` (die
+  Dateiprüfung blendet halb indizierte Dateien aus). Die Regel „wird der
+  Kontext knapp …“ ist dadurch entfallen.
 - Rückfragen: Mehr Optionen, als die Auswahlfelder zulassen, gehen als Text
   mit nummerierter Liste raus, bei nur einer Option entfällt die Rückfrage,
   eigenen Text ordnet Claude einer Option zu (`grundlagen.md`, „Nachrichten
@@ -344,11 +400,28 @@ eine PDF lässt sich nicht wieder lokal herstellen.
   (`testen.md`, Test 6).
 - Ob es eine Websuche gibt (Belege, zweiter Weg). Ohne sie schreibt Claude
   „nicht belegt“ (Vorbereitung in `testen.md`).
+- Geplante Anweisungen in Claude.ai (`testen.md`, Test 7): Gibt es ein
+  Werkzeug dafür, legt es wöchentliche Anweisungen mit Zeitzone an, ist jeder
+  Lauf ein neuer Chat im Projekt, lassen sich Modell und Benachrichtigung
+  (push, email, slack) setzen, nennt die Liste das Projekt? In Claude Code
+  Remote heißt das Werkzeug `create_trigger` (Modell nur über
+  `update_trigger`, Benachrichtigung nur push und email). Hat ein Lauf
+  Plugin, Projektdateien, LaTeX und die GitHub-Anbindung ohne Bestätigung?
+- `.tex` in den Projektdateien (`testen.md`, Test 8): Schreiben mit
+  `local_path`, Lesen unverändert, Löschen mit `project_delete`. Liefert
+  `project_read` große Dateien nur inline, schreibt „Üben“ den Quelltext beim
+  Benutzen ab.
+- Ob ein Abbruch am Nutzungslimit mitten in einem Aufruf zum Schreiben
+  passieren kann. Mit `local_path` unkritisch.
+- Ob Settings > Usage in Claude.ai den Reset des Wochenlimits zeigt.
 
 Nächster Testlauf: „/lernhelfer:verwalten Teste den Lernhelfer“ als erste
 Nachricht in einem neuen Chat, in einem Projekt mit privater Datenquelle
-(Tests 1 bis 6). Danach die Lernmodi, je im Projekt und im Chat ohne Projekt,
-mit diesen Fällen:
+(Tests 1 bis 8). Danach „/lernhelfer:verwalten Richte die automatischen
+Anweisungen ein“ und einen Lauf beider Anweisungen abwarten (Index, Vorrat,
+Benachrichtigung), dann „Mach mir ein Übungsblatt“ mit vorbereitetem Blatt.
+Danach die Lernmodi, je im Projekt und im Chat ohne Projekt, mit diesen
+Fällen:
 - „Ich erkläre dir jetzt die Kettenregel“ (Spiegeltest)
 - „Frag mich zu Kapitel 3 ab“ (Abfragen)
 - „Lass uns das Skript durchgehen“ (Seite für Seite, bei einer Lücke

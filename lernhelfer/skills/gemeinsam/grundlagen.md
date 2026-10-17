@@ -98,6 +98,25 @@ sie zusammen.
   Feld „Andere“, das das Werkzeug selbst ergänzt), ordne den Text einer Option
   zu. Passt keine, stell die Rückfrage noch einmal.
 
+## Abbruch
+
+Ein Chat kann nach jedem Schritt enden, z.B. wenn das Nutzungslimit erreicht
+ist, und du siehst nicht, wie viel davon übrig ist. Schreib deshalb so, dass
+in `projekt:` nach einem Abbruch an jeder Stelle nur vollständige Dateien
+liegen:
+
+- Schreib eine Datei erst, wenn sie fertig und geprüft ist, und dann mit genau
+  einem Aufruf, der sie ganz ersetzt. Zwischenstände, Entwürfe und
+  Hilfsdateien gehören nach `arbeit:`, nie nach `projekt:`.
+- Liegt eine große Datei schon fertig in `arbeit:`, schreib sie mit Angabe
+  ihres Pfads statt mit ihrem Inhalt (z.B. `local_path` bei `project_write`).
+  Dann ist der Aufruf kurz und kann nicht mit halbem Inhalt abbrechen.
+- Hängen Dateien voneinander ab, schreib sie in einer Reihenfolge, nach der ein
+  Abbruch dazwischen höchstens dazu führt, dass Arbeit wiederholt wird, nie
+  dazu, dass etwas als erledigt gilt, das fehlt: zuerst die Inhalte, zuletzt
+  die Datei, die sie als erledigt kennzeichnet (z.B. erst den Index, dann die
+  Identifikation in `projekt:daten.xml`).
+
 ## Formate
 
 Jede `.md`-Datei in `projekt:module/` und `projekt:gedaechtnis/` beginnt mit
@@ -143,11 +162,14 @@ Ein Modul ist ein Fach. Module gibt es nur im **Projekt**. Zu jedem Modul
 gehören der Ordner `projekt:module/{modul}/` mit
 `projekt:module/{modul}/info.md` und `projekt:module/{modul}/index.md` und der
 gleichnamige Ordner `projekt:gedaechtnis/{modul}/` (Abschnitt „Gedächtnis“).
-Die vorhandenen Module sind die Unterordner von `projekt:module/` in der
-Projektübersicht. Den Ordnernamen `{modul}` bildet „Modul bearbeiten“ beim
-Anlegen nach den Pfadregeln aus dem Namen (z.B. „Lineare Algebra“ →
-`lineare-algebra`). Er ändert sich danach nie. Den Namen `{modulname}`, wie der
-Nutzer ihn schreibt, enthält die erste Überschrift jeder Datei des Moduls.
+Dazu kann `projekt:vorrat/{modul}/` mit einem vorbereiteten Übungsblatt kommen,
+das eine automatische Anweisung anlegt (eine geplante Anweisung des Projekts,
+die einmal pro Woche ohne den Nutzer läuft). Die vorhandenen Module sind die
+Unterordner von `projekt:module/` in der Projektübersicht. Den Ordnernamen
+`{modul}` bildet „Modul bearbeiten“ beim Anlegen nach den Pfadregeln aus dem
+Namen (z.B. „Lineare Algebra“ → `lineare-algebra`). Er ändert sich danach nie.
+Den Namen `{modulname}`, wie der Nutzer ihn schreibt, enthält die erste
+Überschrift jeder Datei des Moduls.
 
 ### `projekt:module/{modul}/info.md`
 

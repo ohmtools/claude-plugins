@@ -1,10 +1,11 @@
 # Fähigkeit: Projekt initialisieren
 
 Richtet ein Claude.ai-Projekt als Lernhelfer ein und verbindet es auf Wunsch
-mit einer Datenquelle. Die Fähigkeiten kommen aus dem Plugin, ins Projekt
-kommen nur die Daten des Nutzers. In einem schon eingerichteten Projekt trägt
-sie eine fehlende Datenquelle nach und prüft die Projektanweisungen. Gilt für
-Claude.ai im Browser und in der Claude-App für Mobilgeräte.
+mit einer Datenquelle und automatischen Anweisungen. Die Fähigkeiten kommen
+aus dem Plugin, ins Projekt kommen nur die Daten des Nutzers. In einem schon
+eingerichteten Projekt trägt sie eine fehlende Datenquelle nach und prüft die
+Projektanweisungen. Gilt für Claude.ai im Browser und in der Claude-App für
+Mobilgeräte.
 
 Du bist hier ein sorgfältiger Einrichter. Du prüfst jeden Schritt und meldest
 Probleme offen.
@@ -53,7 +54,7 @@ Wo liegen deine Skripte, Übungen und Altklausuren? Am besten in einem GitHub-Re
 - Ohne Datenquelle
 ```
 
-Bei „Ich habe noch keins“ und „Ohne Datenquelle“ mach mit Schritt 4 weiter.
+Bei „Ich habe noch keins“ und „Ohne Datenquelle“ mach mit Schritt 5 weiter.
 Bei „Ich habe ein Repository“:
 
 1. Antworte und warte auf die Antwort:
@@ -84,7 +85,7 @@ Bei „Ich habe ein Repository“:
    ```
 
    Bei „Noch einmal versuchen“ fang wieder bei Punkt 1 an. Bei „Ohne
-   Datenquelle“ mach mit Schritt 4 weiter.
+   Datenquelle“ mach mit Schritt 5 weiter.
 6. **Schreiben:** Schreib `projekt:daten.xml`. Ersetze darin nur `{url}`, den
    Platzhalter `{pfad}` lässt du stehen. Setze für `{zugriff}` bei einem
    öffentlichen Repository ein:
@@ -114,14 +115,29 @@ Bei „Ich habe ein Repository“:
    Prüf Rückmeldung und Projektübersicht wie in Schritt 2. Bleibt der Fehler,
    antworte mit der Nachricht aus Schritt 2 und beende die Fähigkeit.
 
-## 4. Projektanweisung prüfen
+## 4. Automatische Anweisungen
+
+Nur wenn du in Schritt 3 eine Datenquelle eingerichtet hast, denn die
+automatischen Anweisungen arbeiten mit ihr. Stell diese Rückfrage:
+
+```auswahl
+Einige aufwendige Aufgaben kann ich einmal pro Woche automatisch erledigen: neue und geänderte Dateien indizieren (mit Haiku) und für jedes Fach ein Übungsblatt zu deinen Schwachstellen vorbereiten (mit Opus). Sie laufen kurz bevor dein Wochenlimit zurückgesetzt wird und verbrauchen so Nutzung, die sonst verfallen würde. Soll ich sie einrichten?
+- Einrichten
+- Nicht jetzt
+```
+
+Bei „Einrichten“ richte sie ein, wie in `skill:SKILL.md`, Abschnitt
+„Automatische Anweisungen“, beschrieben. Seine Nachricht zum Ergebnis gibst du
+in Schritt 6 aus.
+
+## 5. Projektanweisung prüfen
 
 Lies `skill:projektanweisung.md` vollständig. Vergleiche ihren Inhalt mit der
 Projektanweisung aus der Projektübersicht von Schritt 1 (z.B. das Feld
 `instructions` von `project_info`). Fehlt sie dort oder ist sie leer, gelten
 sie als verschieden.
 
-## 5. Abschluss
+## 6. Abschluss
 
 Antworte mit diesen Teilen in dieser Reihenfolge, jeder als eigener Absatz.
 
@@ -159,6 +175,14 @@ Bei „Ohne Datenquelle“:
 
 ```text
 Du arbeitest ohne Datenquelle. Ich merke mir trotzdem deine Fächer und Schwierigkeiten, deine Unterlagen hängst du mir im Chat an. Eine Datenquelle kannst du jederzeit nachtragen, schreib dafür noch einmal „/lernhelfer:verwalten Richte dieses Projekt als Lernhelfer ein“.
+```
+
+**Automatische Anweisungen:** Nur wenn du in Schritt 4 gefragt hast. Bei
+„Einrichten“ die Nachricht zum Ergebnis aus `skill:SKILL.md`, Abschnitt
+„Automatische Anweisungen“, bei „Nicht jetzt“:
+
+```text
+Die automatischen Anweisungen kannst du jederzeit einschalten, schreib dafür „/lernhelfer:verwalten Richte die automatischen Anweisungen ein“.
 ```
 
 **Projektanweisungen:** `{anweisung}` ist der Inhalt von

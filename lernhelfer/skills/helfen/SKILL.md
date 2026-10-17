@@ -1,6 +1,6 @@
 ---
 name: helfen
-description: "Hilfe zum Lernhelfer, einer Lernumgebung für Oberstufe, Berufsschule und Studium: erklärt, was der Lernhelfer kann, wie man ihn installiert, einrichtet, aktualisiert und benutzt, was die Datenquelle ist, wo die Daten liegen und wie man Rückmeldung gibt. Verwende diesen Skill, wenn der Nutzer Fragen zum Lernhelfer selbst stellt, z.B. „Was kannst du?“, „Wie funktioniert der Lernhelfer?“, „Brauche ich ein Projekt?“, „Brauche ich GitHub?“, „Wie aktualisiere ich?“, oder um Hilfe oder Info zum Lernhelfer bittet."
+description: "Hilfe zum Lernhelfer, einer Lernumgebung für Oberstufe, Berufsschule und Studium: erklärt, was der Lernhelfer kann, wie man ihn installiert, einrichtet, aktualisiert und benutzt, was die Datenquelle ist, wo die Daten liegen und wie man Rückmeldung gibt. Verwende diesen Skill, wenn der Nutzer Fragen zum Lernhelfer selbst stellt, z.B. „Was kannst du?“, „Wie funktioniert der Lernhelfer?“, „Brauche ich ein Projekt?“, „Brauche ich GitHub?“, „Was sind automatische Anweisungen?“, „Wie aktualisiere ich?“, oder um Hilfe oder Info zum Lernhelfer bittet."
 ---
 
 # Lernhelfer – Helfen
@@ -46,8 +46,10 @@ Er besteht aus drei Skills:
 - Verwalten, nur in einem Claude.ai-Projekt: Projekt einrichten und mit einer
   Datenquelle verbinden, Fächer anlegen, umbenennen und löschen, Dateien
   hochladen und Fächern zuordnen, indizieren, Lernziele aus dem Modulhandbuch
-  übernehmen, gespeicherte Daten an ein neues Format anpassen, Rückmeldung
-  geben, die Umgebung testen und den Lernhelfer weiterentwickeln.
+  übernehmen, automatische Anweisungen einrichten, die einmal pro Woche
+  indizieren und Übungsblätter vorbereiten, gespeicherte Daten an ein neues
+  Format anpassen, Rückmeldung geben, die Umgebung testen und den Lernhelfer
+  weiterentwickeln.
 - Helfen: diese Antworten.
 „Entwicklung“ nennst du nur als Möglichkeit für Fortgeschrittene, die ein
 eigenes Repository pflegen.
@@ -101,8 +103,10 @@ die Kettenregel“. Claude wählt dann einen dieser Lernmodi:
   ändert.
 - Üben, für die Prüfung: „Mach mir ein Übungsblatt“ liefert neue Aufgaben, die
   Verständnis statt Auswendiglernen prüfen, als zwei PDFs: Angabe und Lösung.
-  Claude fragt dafür höchstens nach Stoff und Länge. Die Bloom-Leiter führt im
-  Chat in sechs Stufen vom Erinnern bis zum Erschaffen.
+  Claude fragt dafür höchstens nach Stoff und Länge. Hat eine automatische
+  Anweisung schon ein Blatt vorbereitet, bietet Claude es zuerst an, dann ist
+  es sofort fertig. Die Bloom-Leiter führt im Chat in sechs Stufen vom
+  Erinnern bis zum Erschaffen.
 - Korrigieren: Der Nutzer schickt seine Lösung getippt oder als Foto. Claude
   bewertet sie wie ein strenger Prüfer, mit geschätzter Punktzahl, gibt
   Hinweise statt der Lösung und sucht zu jedem Fehler die Ursache. Danach geht
@@ -144,7 +148,9 @@ schreibt dann „/lernhelfer:verwalten Daten migrieren“ und den Namen eines Fa
 für jedes Fach einmal. Nach einem Update kann er in jedem Lernhelfer-Projekt
 „/lernhelfer:verwalten Richte dieses Projekt als Lernhelfer ein“ schreiben.
 Claude prüft dann, ob die Projektanweisungen noch passen, und gibt bei Bedarf
-den neuen Text.
+den neuen Text. Wer automatische Anweisungen nutzt, richtet sie nach einem
+Update am besten mit „/lernhelfer:verwalten Richte die automatischen
+Anweisungen ein“ neu ein, denn ihr Text ändert sich nicht von selbst.
         </antwort>
     </eintrag>
     <eintrag>
@@ -193,10 +199,36 @@ lesen. Dateien, die sich nicht geändert haben, liest Claude nicht noch einmal,
 außer der Nutzer will es ausdrücklich (z.B. „Indiziere alles neu“). Das
 Indizieren ist aufwendig, aber einfach, deshalb reicht das Modell Haiku und
 schont das Nutzungslimit. Der Nutzer startet dazu einen neuen Chat mit Haiku und
-schreibt „/lernhelfer:verwalten Indiziere“. Claude indiziert nur, wenn der
-Nutzer es verlangt. Hat sich eine Datei seit dem letzten Indizieren geändert,
-lernt Claude nicht mit ihr, sondern sagt Bescheid, damit es nicht mit falschen
-Inhalten arbeitet. Bis dahin kann der Nutzer die Datei direkt im Chat anhängen.
+schreibt „/lernhelfer:verwalten Indiziere“, oder er lässt es einmal pro Woche
+von einer automatischen Anweisung erledigen. Claude indiziert nur, wenn der
+Nutzer es verlangt oder eingerichtet hat. Hat sich eine Datei seit dem
+letzten Indizieren geändert, lernt Claude nicht mit ihr, sondern sagt
+Bescheid, damit es nicht mit falschen Inhalten arbeitet. Bis dahin kann der
+Nutzer die Datei direkt im Chat anhängen.
+        </antwort>
+    </eintrag>
+    <eintrag>
+        <frage>Was sind automatische Anweisungen?</frage>
+        <antwort>
+Nur im Projekt mit Datenquelle. Automatische Anweisungen sind geplante
+Anweisungen des Claude.ai-Projekts. Sie laufen einmal pro Woche ohne den
+Nutzer, jede in einem neuen Chat im Projekt:
+- „Indizieren“ (mit Haiku) indiziert neue und geänderte Dateien.
+- „Übungsblätter vorbereiten“ (mit Opus) legt für jedes Fach, in dem es
+  Schwachstellen oder fällige Themen gibt, ein Übungsblatt von etwa 45
+  Minuten in einen Vorrat. Schreibt der Nutzer später „/lernhelfer:lernen
+  Mach mir ein Übungsblatt“, bietet Claude es an, und es ist sofort fertig.
+  Ändert sich eine Datei, auf der das Blatt beruht, benutzt Claude es nicht
+  mehr, und der nächste Lauf ersetzt es.
+Sie laufen am besten etwa zwei Stunden vor dem Reset des Wochenlimits (zu
+sehen unter Settings > Usage), dann verbrauchen sie Nutzung, die sonst
+verfallen würde. Claude fragt danach, wenn es die Datenquelle einrichtet.
+Einschalten oder die Zeit ändern geht mit „/lernhelfer:verwalten Richte die
+automatischen Anweisungen ein“, ausschalten mit „/lernhelfer:verwalten Schalte
+die automatischen Anweisungen aus“. Kann Claude sie nicht selbst anlegen,
+nennt es die Einstellungen, die der Nutzer auf der Projektseite eingibt.
+Endet ein Lauf am Nutzungslimit, bleibt nichts Halbes zurück: Was fertig ist,
+bleibt, der Rest kommt beim nächsten Lauf dran.
         </antwort>
     </eintrag>
     <eintrag>
@@ -211,6 +243,9 @@ in der Datenquelle. In den Projektdateien liegen nur die Daten des Nutzers:
 - `projekt:gedaechtnis/`: pro Fach, womit der Nutzer Schwierigkeiten hat oder
   hatte und woran es liegt (`probleme.md`), dazu `benutzererfahrung.md` mit
   Notizen, wo der Umgang mit dem Lernhelfer hakt.
+- `projekt:vorrat/`: pro Fach höchstens ein vorbereitetes Übungsblatt als
+  LaTeX-Quelltext (`uebungsblatt.tex`), weil PDFs nicht in die Projektdateien
+  passen. Claude löscht es, sobald der Nutzer es bekommt.
 Ein Update des Plugins ändert diese Daten nie. Braucht eine neue Fassung ein
 anderes Format, passt „Daten migrieren“ sie an. In einem Chat ohne Projekt
 speichert der Lernhelfer nichts.

@@ -190,6 +190,14 @@ Einmal pro Chat, vor der ersten Änderung oder dem ersten Export.
      `kopie:skills/lernen/faehigkeiten/ueben.md`). Braucht eine Vorlage
      Programme oder Pakete, die kein Testlauf bestätigt hat, nimm dafür einen
      Test auf.
+   - Vorlagen folgen dem ohmtools-Design (`DESIGN.md` im Repository
+     `github.com/ohmtools/design`, Abschnitt „Documents“): Schrift Inter,
+     sonst die serifenlose Schrift des Werkzeugs, Rot als einzige
+     Akzentfarbe, keine Großbuchstaben und keine gesperrte Schrift, Linien
+     statt Kästen, eckige Ecken. Farben stehen nur mit ihren Namen aus
+     `kopie:skills/lernen/vorlagen/ohmtools-colors.sty` (z.B. `ohmPrimary`),
+     nie mit Werten. Diese Datei ist eine unveränderte Kopie aus dem
+     Design-Repository, ändere sie nicht.
    - Jede Fähigkeit in `lernen` arbeitet mit genau einem Modul. Sie liest nur
      dessen Dateien, `projekt:daten.xml` und `daten:` und schreibt nur
      `projekt:gedaechtnis/{modul}/probleme.md` und

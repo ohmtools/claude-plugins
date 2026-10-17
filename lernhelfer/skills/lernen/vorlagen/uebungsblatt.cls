@@ -5,12 +5,17 @@
 %  Vollständiges Beispiel:                beispiel.tex
 %  Leeres Grundgerüst:                    uebungsblatt.tex
 %
+%  Farben:                               ohmtools-colors.sty
+%
 %  Kompilieren: pdfLaTeX, am einfachsten mit  sh build.sh [name]
 %  (erzeugt aus EINER Datei Aufgabenblatt und Lösungsvorschlag;
 %  Gesamtpunkte, Aufgabenliste und "Seite x / y" brauchen 2 Durchläufe.)
+%  uebungsblatt.cls und ohmtools-colors.sty liegen neben dem Blatt.
 %
-%  GRUNDREGEL: Das Design ist vollständig in dieser Datei festgelegt.
-%  Im Dokument nur die hier aufgeführten Befehle verwenden, keine
+%  GRUNDREGEL: Das Design ist vollständig in dieser Datei festgelegt und
+%  folgt dem ohmtools-Design (github.com/ohmtools/design): Inter, Rot als
+%  einzige Akzentfarbe, keine Großbuchstaben, Linien statt Kästen, eckige
+%  Ecken. Im Dokument nur die hier aufgeführten Befehle verwenden, keine
 %  eigenen Farben, Schriftgrößen, Abstände oder \newpage/\vspace.
 %
 %  ---- KURZREFERENZ ---------------------------------------------------
@@ -18,7 +23,6 @@
 %
 %  Präambel:  \fach{..} \blatt{..} \untertitel{..} \kopfzusatz{..}
 %             \bearbeitungszeit{..} \hilfsmittel{..} \hinweis{..}
-%             \akzentfarbe{HEX}
 %
 %  Struktur:  \begin{aufgabe}[Punkte]{Titel} ... \end{aufgabe}
 %             \begin{teilaufgaben} \teil{Punkte} Text ... \end{teilaufgaben}
@@ -95,6 +99,7 @@
 \RequirePackage[a4paper,left=17mm,right=17mm,top=27mm,bottom=26mm,
   headheight=15pt,headsep=9mm,footskip=13mm]{geometry}
 \RequirePackage[table]{xcolor}
+\RequirePackage{ohmtools-colors}
 \RequirePackage{array}
 \RequirePackage{booktabs}
 \RequirePackage{amsmath}
@@ -116,26 +121,25 @@
 
 % =====================================================================
 % 2. Schriften
-%    Text: IBM Plex Sans (Paket "plex"), sonst Helvetica.
-%    Code: IBM Plex Mono, sonst TX-Typewriter, sonst Courier.
+%    Text: Inter (Paket "inter" mit der LY1-Kodierung aus Paket "ly1", in
+%    TeX Live beide in texlive-fonts-extra), sonst Helvetica, wie es das
+%    ohmtools-Design für Werkzeuge ohne Inter vorsieht. Fett ist bei Inter
+%    halbfett, Ziffern sind proportional (tabellarisch wäre auch der
+%    Bindestrich so breit wie eine Ziffer). Code: TX-Typewriter, sonst Courier.
 % =====================================================================
-\IfFileExists{plex-sans.sty}{%
-  \RequirePackage[sfdefault]{plex-sans}%
-}{%
-  \ClassWarningNoLine{uebungsblatt}{IBM Plex Sans nicht gefunden, verwende Helvetica}%
-  \RequirePackage[scaled=0.92]{helvet}%
-  \renewcommand\familydefault{\sfdefault}%
-}
-\IfFileExists{plex-mono.sty}{%
-  \RequirePackage[scale=0.95]{plex-mono}%
-  \newcommand\ub@mono{\ttfamily}%
-}{%
-  \IfFileExists{t1txtt.fd}{\renewcommand\ttdefault{txtt}}{\RequirePackage{courier}}%
-  \newcommand\ub@mono{\sffamily}%
-}
+\newif\ifub@inter
+\IfFileExists{inter.sty}{\IfFileExists{ly1enc.def}{\ub@intertrue}{}}{}
+\ifub@inter
+  \RequirePackage[sfdefault,semibold,proportional,scale=0.94]{inter}
+\else
+  \ClassWarningNoLine{uebungsblatt}{Inter nicht gefunden, verwende Helvetica}
+  \RequirePackage[scaled=0.92]{helvet}
+\fi
+\renewcommand\familydefault{\sfdefault}
+\IfFileExists{t1txtt.fd}{\renewcommand\ttdefault{txtt}}{\RequirePackage{courier}}
 \newcommand\ub@code{\ttfamily}
 \RequirePackage[italic,defaultmathsizes]{mathastext}
-\RequirePackage[letterspace=90]{microtype}
+\RequirePackage{microtype}
 % keine Ligaturen in Schreibmaschinenschrift (sonst wird << zu «, -- zu –)
 \DisableLigatures[<,>,-,`,']{encoding = T1, family = tt*}
 
@@ -145,20 +149,19 @@
 \DeclareSymbolFont{ubgriech}{OT1}{cmss}{m}{n}
 \DeclareMathSymbol{\ub@Omega}{\mathord}{ubgriech}{"0A}
 \DeclareSIUnit\ohm{\ub@Omega}
+% Inter hat kein µ in TS1 (\textmu, sonst eine Bitmap-Schrift), aber im
+% Griechischen (LGR)
+\ifub@inter\IfFileExists{lgrenc.def}{%
+  \input{lgrenc.def}%
+  \DeclareSIPrefix\micro{\text{\fontencoding{LGR}\selectfont m}}{-6}}{}\fi
 
 % =====================================================================
-% 3. Farben (nur über \akzentfarbe ändern)
+% 3. Farben: nur die Namen aus ohmtools-colors.sty (Abschnitt 1), nie Werte.
+%    ohmPrimary (Rot) ist die einzige Akzentfarbe: Nummern, Kopf,
+%    Markierungen und alle Lösungselemente. ohmForeground ist der Text,
+%    ohmMutedForeground das Grau, ohmBorder die Linien, ohmBackground das
+%    Papier; Diagramme nehmen ohmChart1 bis ohmChart5.
 % =====================================================================
-\definecolor{ubakzent}{HTML}{2450B8}
-\definecolor{ubtinte}{HTML}{15171C}
-\definecolor{ubgrau}{HTML}{5A6170}
-\definecolor{ublinie}{HTML}{C9CED7}
-\definecolor{ubhell}{HTML}{E1E4EA}
-\definecolor{ubflaeche}{HTML}{F3F5F8}
-\definecolor{ubteal}{HTML}{0F7B6C}
-\definecolor{uborange}{HTML}{C2410C}
-\definecolor{ubloesung}{HTML}{0F7B6C}   % Farbe aller Lösungselemente
-\newcommand\akzentfarbe[1]{\definecolor{ubakzent}{HTML}{#1}}
 
 % =====================================================================
 % 4. Metadaten (Präambel)
@@ -184,35 +187,35 @@
 % 5. Interne Stilbausteine
 % =====================================================================
 \newcommand\ub@zahl[1]{\num{#1}}
-\newcommand\ub@kicker[1]{\leavevmode{\ub@mono\footnotesize\bfseries\color{ubakzent}\textls{\MakeUppercase{#1}}}}
-\newcommand\ub@label[1]{\leavevmode{\scriptsize\bfseries\color{ubgrau}\textls[60]{\MakeUppercase{#1}}}}
+\newcommand\ub@kicker[1]{\leavevmode{\footnotesize\bfseries\color{ohmPrimary}#1}}
+\newcommand\ub@label[1]{\leavevmode{\footnotesize\bfseries\color{ohmMutedForeground}#1}}
 \newcommand\ub@punktewort[1]{\ifnum\fpeval{#1==1}=1 Punkt\else Punkte\fi}
 \newcommand\ub@unterschrift[2]{% #1 = Kürzel (Abb./Tab.), #2 = Text
-  {\small\color{ubgrau}#1: #2}}
+  {\small\color{ohmMutedForeground}#1: #2}}
 
 \setlength\parindent{0pt}
 \setlength\parskip{2mm plus 1mm}
-\AddToHook{begindocument/end}{\color{ubtinte}}
+\AddToHook{begindocument/end}{\color{ohmForeground}}
 
 % =====================================================================
 % 6. Kopf- und Fußzeilen
 % =====================================================================
 \pagestyle{fancy}
 \fancyhf{}
-\renewcommand\headrulewidth{1.2pt}
+\renewcommand\headrulewidth{0.5pt}
 \renewcommand\footrulewidth{0.5pt}
-\renewcommand\headrule{{\color{ubtinte}\hrule\@height\headrulewidth\@width\headwidth}\vskip-\headrulewidth}
-\renewcommand\footrule{{\color{ublinie}\hrule\@height\footrulewidth\@width\headwidth}\vskip\footruleskip}
+\renewcommand\headrule{{\color{ohmBorder}\hrule\@height\headrulewidth\@width\headwidth}\vskip-\headrulewidth}
+\renewcommand\footrule{{\color{ohmBorder}\hrule\@height\footrulewidth\@width\headwidth}\vskip\footruleskip}
 \newcommand\ub@fuss{%
-  \fancyfoot[L]{\ub@mono\footnotesize\color{ubgrau}\ub@kopfname\ \textperiodcentered\ \ub@fach}%
-  \fancyfoot[R]{\ub@mono\footnotesize\color{ubgrau}Seite \thepage\ / \pageref{LastPage}}}
+  \fancyfoot[L]{\footnotesize\color{ohmMutedForeground}\ub@kopfname\ \textperiodcentered\ \ub@fach}%
+  \fancyfoot[R]{\footnotesize\color{ohmMutedForeground}Seite \thepage\ / \pageref{LastPage}}}
 \fancyhead[L]{\ub@kicker{\ub@kopfname}}
-\fancyhead[R]{\footnotesize\color{ubgrau}\ub@fach}
+\fancyhead[R]{\footnotesize\color{ohmMutedForeground}\ub@fach}
 \ub@fuss
 \fancypagestyle{deckblatt}{%
   \fancyhf{}%
   \fancyhead[L]{\ub@kicker{\ub@kopfname}}%
-  \fancyhead[R]{\ub@mono\footnotesize\color{ubgrau}\ub@kopfzusatz}%
+  \fancyhead[R]{\footnotesize\color{ohmMutedForeground}\ub@kopfzusatz}%
   \ub@fuss}
 
 % =====================================================================
@@ -260,8 +263,8 @@
 \newcounter{aufgabe}
 \newcommand\ub@nummer[1]{%
   \begin{tikzpicture}[baseline=(n.base)]
-    \node[fill=ubakzent,text=white,rounded corners=1.8pt,minimum size=7.2mm,
-          inner sep=0pt,font=\ub@mono\bfseries\small] (n) {#1};
+    \node[fill=ohmPrimary,text=ohmPrimaryForeground,minimum size=7.2mm,
+          inner sep=0pt,font=\bfseries\small] (n) {#1};
   \end{tikzpicture}}
 
 \NewDocumentEnvironment{aufgabe}{o m}{%
@@ -271,7 +274,7 @@
   \IfNoValueTF{#1}{\gdef\ub@pktfest{}}{\xdef\ub@pktfest{\fpeval{#1}}}%
   \par\noindent
   \ub@nummer{\arabic{aufgabe}}\hspace{3mm}%
-  {\large\bfseries #2}\hfill{\ub@mono\small\ub@kopfpunkte}\par
+  {\large\bfseries #2}\hfill{\small\ub@kopfpunkte}\par
   \vspace{1.5mm}%
 }{%
   \par
@@ -300,14 +303,16 @@
   labelsep=2mm,align=left,rightmargin=14mm,itemsep=2.5mm,parsep=1.5mm,topsep=3mm}
 \newcommand\ub@randpunkte[1]{%
   \leavevmode\rlap{\hskip\linewidth\hskip\rightmargin
-        \llap{\ub@mono\small\color{ubgrau}\ub@zahl{#1}\,P}}}
+        \llap{\small\color{ohmMutedForeground}\ub@zahl{#1}\,P}}}
 \newcommand\teil[1]{\item\ub@addpkt{#1}\ub@randpunkte{#1}\ignorespaces}
 
 % =====================================================================
-% 9. Boxen: gegeben/gesucht, hinweisbox
+% 9. Abschnitte: gegeben/gesucht, hinweisbox
+%    Keine Kästen: je eine Linie darüber und darunter, keine Füllung.
 % =====================================================================
-\tcbset{ub box/.style={enhanced,colback=ubflaeche,colframe=ubflaeche,boxrule=0pt,
-  arc=1.2mm,left=4mm,right=4mm,top=3mm,bottom=3mm,before skip=3mm,after skip=3mm,
+\tcbset{ub box/.style={enhanced,frame hidden,colback=ohmBackground,sharp corners,
+  borderline north={0.5pt}{0pt}{ohmBorder},borderline south={0.5pt}{0pt}{ohmBorder},
+  left=0mm,right=0mm,top=3mm,bottom=3mm,before skip=3mm,after skip=3mm,
   before upper={\setlength\parskip{1.5mm}}}}
 
 \NewDocumentEnvironment{gegeben}{}{%
@@ -341,7 +346,7 @@
 \NewDocumentEnvironment{abbildung}{m}{%
   \par\vspace{4mm}\begin{center}}{%
   \IfBlankF{#1}{\par\vspace{2mm}%
-    \ifub@inloesung{\small\color{ubgrau}#1}\else
+    \ifub@inloesung{\small\color{ohmMutedForeground}#1}\else
     \refstepcounter{ubabbildung}%
     \ub@unterschrift{Abb.~\theubabbildung}{#1}\fi}%
   \end{center}\vspace{1mm}}
@@ -352,19 +357,19 @@
 % Gemeinsame TikZ-Stile (in allen Zeichnungsumgebungen nutzbar)
 \tikzset{
   ub zeichnung/.style={line width=0.8pt,>={Latex[length=2.4mm]},font=\small,
-    every node/.append style={text=ubtinte}},
+    every node/.append style={text=ohmForeground}},
   % Blockdiagramme / Regelkreise
   block/.style={draw,rectangle,minimum width=16mm,minimum height=10mm,
-    align=center,fill=white},
-  summe/.style={draw,circle,minimum size=5.5mm,inner sep=0pt,fill=white},
-  verzweigung/.style={circle,fill=ubtinte,inner sep=1.4pt},
+    align=center,fill=ohmBackground},
+  summe/.style={draw,circle,minimum size=5.5mm,inner sep=0pt,fill=ohmBackground},
+  verzweigung/.style={circle,fill=ohmForeground,inner sep=1.4pt},
   % Graphen
-  knoten/.style={draw,circle,minimum size=8mm,inner sep=1pt,fill=white},
-  gewicht/.style={font=\footnotesize,fill=white,inner sep=1.5pt},
+  knoten/.style={draw,circle,minimum size=8mm,inner sep=1pt,fill=ohmBackground},
+  gewicht/.style={font=\footnotesize,fill=ohmBackground,inner sep=1.5pt},
   % Hervorhebung
-  markiert/.style={draw=ubakzent,fill=ubakzent!12,text=ubtinte},
-  akzent/.style={color=ubakzent},
-  hilfslinie/.style={draw=ublinie,line width=0.5pt,dashed},
+  markiert/.style={draw=ohmPrimary,fill=ohmPrimary!12,text=ohmForeground},
+  akzent/.style={color=ohmPrimary},
+  hilfslinie/.style={draw=ohmMutedForeground,line width=0.5pt,dashed},
 }
 
 \NewDocumentEnvironment{zeichnung}{O{} m}{%
@@ -383,7 +388,7 @@
 
 \NewDocumentEnvironment{automat}{O{} m}{%
   \begin{abbildung}{#2}\begin{tikzpicture}[ub zeichnung,node distance=30mm,auto,
-    every state/.style={draw,circle,minimum size=11mm,inner sep=1pt,fill=white,
+    every state/.style={draw,circle,minimum size=11mm,inner sep=1pt,fill=ohmBackground,
       line width=0.8pt},
     accepting/.style={double,double distance=1.6pt},
     initial text={},every edge/.append style={->},#1]}{%
@@ -394,22 +399,24 @@
   \end{tikzpicture}\end{abbildung}}
 
 % ---- Diagramme (pgfplots) -------------------------------------------
+% Die Diagrammfarben des Designs, jede Kurve zusätzlich mit eigener
+% Strichart, denn die Farbe ist nie das einzige Merkmal.
 \pgfplotscreateplotcyclelist{ub farben}{%
-  {ubakzent,mark=none},{ubteal,mark=none},{uborange,mark=none},
-  {ubgrau,dashed,mark=none}}
+  {ohmChart4,mark=none},{ohmChart2,dashed,mark=none},
+  {ohmChart5,dotted,mark=none},{ohmMutedForeground,dashdotted,mark=none}}
 \pgfplotsset{/pgf/number format/use comma,/pgf/number format/1000 sep={\,},
   ub achsen/.style={width=0.78\linewidth,height=0.44\linewidth,
-    axis line style={ubtinte,line width=0.6pt},tick style={ubtinte},
+    axis line style={ohmForeground,line width=0.6pt},tick style={ohmForeground},
     tick label style={font=\small},label style={font=\small},
     title style={font=\small\bfseries},
-    grid=major,grid style={ubhell,line width=0.4pt},
+    grid=major,grid style={ohmBorder,line width=0.4pt},
     cycle list name=ub farben,
     every axis plot/.append style={line width=1.1pt},
-    legend style={draw=none,fill=white,fill opacity=0.85,text opacity=1,font=\small},
+    legend style={draw=none,fill=ohmBackground,fill opacity=0.85,text opacity=1,font=\small},
     legend cell align=left},
   ub skizze/.style={ub achsen,axis lines=middle,
     axis line style={-{Latex[length=2.2mm]}},grid=both,minor tick num=1,
-    minor grid style={ubhell!55,line width=0.3pt},
+    minor grid style={ohmBorder!55,line width=0.3pt},
     every axis x label/.style={at={(ticklabel* cs:1)},anchor=west},
     every axis y label/.style={at={(ticklabel* cs:1)},anchor=south},
     enlargelimits=false,clip=false},
@@ -426,11 +433,11 @@
   \begin{abbildung}{#2}%
   \begin{tikztimingtable}[timing/slope=0.08,timing/rowdist=4.4ex,xscale=4,
       yscale=1.6,line width=0.8pt,timing/name/.style={font=\small},
-      timing/font=\small,timing/z/.style={ubgrau},timing/x/.style={uborange},
-      timing/u/background/.style={fill=ubhell},timing/d/text/.style={font=\scriptsize},#1]
+      timing/font=\small,timing/z/.style={ohmMutedForeground},timing/x/.style={ohmPrimary},
+      timing/u/background/.style={fill=ohmMuted},timing/d/text/.style={font=\scriptsize},#1]
     #3
     \extracode
-    \begin{background}[draw=ubhell,line width=0.4pt]\vertlines{}\end{background}
+    \begin{background}[draw=ohmBorder,line width=0.4pt]\vertlines{}\end{background}
   \end{tikztimingtable}%
   \end{abbildung}}{}
 
@@ -469,28 +476,28 @@
     \pgfmathtruncatemacro\ub@kv@Rm{\ub@kv@R-1}%
     \pgfmathtruncatemacro\ub@kv@Cm{\ub@kv@C-1}%
     \foreach \r in {0,...,\ub@kv@Rm}{%
-      \node[font=\ub@mono\small,text=ubgrau] at (-0.5,-\r-0.5) {\ub@kv@kopf{\ub@kv@R}{\r}};
+      \node[font=\small,text=ohmMutedForeground] at (-0.5,-\r-0.5) {\ub@kv@kopf{\ub@kv@R}{\r}};
       \foreach \c in {0,...,\ub@kv@Cm}{%
         \edef\m{\the\numexpr\ub@kv@g{\r}*\ub@kv@C+\ub@kv@g{\c}\relax}%
-        \draw[ublinie] (\c,-\r) rectangle ++(1,-1);
+        \draw[ohmBorder] (\c,-\r) rectangle ++(1,-1);
         \ifub@kv@idx
-          \node[font=\ub@mono\tiny,text=ubgrau,anchor=north east,inner sep=1.2pt]
+          \node[font=\tiny,text=ohmMutedForeground,anchor=north east,inner sep=1.2pt]
             at (\c+1,-\r) {\m};\fi
         \ifub@kv@leer\else
           \edef\ub@tmp{\noexpand\in@{,\m,}{\ub@kv@x}}\ub@tmp
-          \ifin@ \node[font=\ub@mono] at (\c+0.5,-\r-0.5) {X};%
+          \ifin@ \node at (\c+0.5,-\r-0.5) {X};%
           \else
             \edef\ub@tmp{\noexpand\in@{,\m,}{\ub@kv@eins}}\ub@tmp
-            \ifin@ \node[font=\ub@mono\bfseries] at (\c+0.5,-\r-0.5) {1};%
-            \else \node[font=\ub@mono,text=ubgrau] at (\c+0.5,-\r-0.5) {0};\fi
+            \ifin@ \node[font=\bfseries] at (\c+0.5,-\r-0.5) {1};%
+            \else \node[text=ohmMutedForeground] at (\c+0.5,-\r-0.5) {0};\fi
           \fi
         \fi
       }%
     }%
     \foreach \c in {0,...,\ub@kv@Cm}{%
-      \node[font=\ub@mono\small,text=ubgrau] at (\c+0.5,0.5) {\ub@kv@kopf{\ub@kv@C}{\c}};}
-    \draw[ubtinte,line width=0.9pt] (0,0) rectangle (\ub@kv@C,-\ub@kv@R);
-    \draw[ubtinte,line width=0.6pt] (-1,1) -- (0,0);
+      \node[font=\small,text=ohmMutedForeground] at (\c+0.5,0.5) {\ub@kv@kopf{\ub@kv@C}{\c}};}
+    \draw[ohmForeground,line width=0.9pt] (0,0) rectangle (\ub@kv@C,-\ub@kv@R);
+    \draw[ohmForeground,line width=0.6pt] (-1,1) -- (0,0);
     \node[anchor=south west,inner sep=1pt] at (-0.55,0.5) {$\ub@kv@sv$};
     \node[anchor=north east,inner sep=1pt] at (-0.45,0.5) {$\ub@kv@zv$};
   \end{tikzpicture}%
@@ -508,10 +515,10 @@
   \ifx\ub@reg@hb\@empty\edef\ub@reg@hb{\the\numexpr\ub@reg@n-1}\fi
   \begin{tikzpicture}[x=\ub@reg@w,y=7mm,line width=0.7pt]
     \foreach \b [count=\i from 0] in {#3}{%
-      \draw[ubtinte,fill=white] (\i,0) rectangle ++(1,1);
-      \node[font=\ub@mono\scriptsize] at (\i+0.5,0.5) {\b};
+      \draw[ohmForeground,fill=ohmBackground] (\i,0) rectangle ++(1,1);
+      \node[font=\scriptsize] at (\i+0.5,0.5) {\b};
       \pgfmathtruncatemacro\nr{\ub@reg@hb-\i}%
-      \node[font=\ub@mono\scriptsize,text=ubgrau] at (\i+0.5,1.35) {\nr};}
+      \node[font=\scriptsize,text=ohmMutedForeground] at (\i+0.5,1.35) {\nr};}
     \node[anchor=east,font=\small\bfseries] at (-0.15,0.5) {#2};
   \end{tikzpicture}%
   \endgroup}
@@ -521,25 +528,25 @@
 \setlength\lightrulewidth{0.5pt}
 \NewDocumentEnvironment{tabelle}{m m}{%
   \par\vspace{3mm}\begin{center}\renewcommand\arraystretch{1.25}%
-  \begin{tabular}{#1}\arrayrulecolor{ubtinte}\toprule}{%
-  \arrayrulecolor{ubtinte}\bottomrule\end{tabular}%
+  \begin{tabular}{#1}\arrayrulecolor{ohmForeground}\toprule}{%
+  \arrayrulecolor{ohmForeground}\bottomrule\end{tabular}%
   \IfBlankF{#2}{\par\vspace{2mm}%
-    \ifub@inloesung{\small\color{ubgrau}#2}\else
+    \ifub@inloesung{\small\color{ohmMutedForeground}#2}\else
     \refstepcounter{ubtabelle}%
     \ub@unterschrift{Tab.~\theubtabelle}{#2}\fi}%
   \end{center}\vspace{1mm}}
-\newcommand\trennlinie{\arrayrulecolor{ublinie}\midrule}
+\newcommand\trennlinie{\arrayrulecolor{ohmBorder}\midrule}
 
 % =====================================================================
 % 12. Code
 % =====================================================================
 \lstdefinestyle{ub basis}{%
   basicstyle=\ub@code\small,
-  keywordstyle=\color{ubakzent}\bfseries,
-  keywordstyle=[2]\color{ubteal},
-  commentstyle=\color{ubgrau}\itshape,
-  stringstyle=\color{ubteal},
-  numbers=left,numberstyle=\ub@code\scriptsize\color{ubgrau},numbersep=3.5mm,
+  keywordstyle=\color{ohmPrimary}\bfseries,
+  keywordstyle=[2]\color{ohmPrimary},
+  commentstyle=\color{ohmMutedForeground}\itshape,
+  stringstyle=\color{ohmMutedForeground},
+  numbers=left,numberstyle=\ub@code\scriptsize\color{ohmMutedForeground},numbersep=3.5mm,
   xleftmargin=6mm,columns=fullflexible,keepspaces=true,
   showstringspaces=false,tabsize=4,breaklines=true,upquote=true,
   extendedchars=true,
@@ -594,8 +601,9 @@
 \@namedef{ub@lang@text}{}
 
 \tcbset{ub codebox/.style={enhanced,breakable,listing only,
-    colback=ubflaeche,colframe=ubflaeche,boxrule=0pt,arc=1.2mm,
-    left=1mm,right=3mm,top=2mm,bottom=2mm,before skip=3mm,after skip=3mm},
+    frame hidden,colback=ohmBackground,sharp corners,
+    borderline north={0.5pt}{0pt}{ohmBorder},borderline south={0.5pt}{0pt}{ohmBorder},
+    left=0mm,right=0mm,top=2mm,bottom=2mm,before skip=3mm,after skip=3mm},
   ub codekopf/.code 2 args={%
     \edef\ub@ct{\detokenize{#1}}% Titel wörtlich (Unterstriche erlaubt)
     \ifcsname ub@lang@#2\endcsname\edef\ub@cl{\csname ub@lang@#2\endcsname}%
@@ -605,12 +613,12 @@
     \else\pgfkeysalso{/tcb/ub codestreifen}\fi},
   ub codestreifen/.style={top=8mm,
     overlay unbroken and first={%
-      \draw[ubhell,line width=0.5pt]
-        ([xshift=2mm,yshift=-6mm]frame.north west) -- ([xshift=-2mm,yshift=-6mm]frame.north east);
-      \node[anchor=north west,inner sep=0pt,font=\ub@code\footnotesize\bfseries,text=ubtinte]
-        at ([xshift=4mm,yshift=-1.8mm]frame.north west) {\ub@ct};
-      \node[anchor=north east,inner sep=0pt,font=\ub@mono\scriptsize\bfseries,text=ubgrau]
-        at ([xshift=-4mm,yshift=-2mm]frame.north east) {\textls[60]{\MakeUppercase{\ub@cl}}};}}}
+      \draw[ohmBorder,line width=0.5pt]
+        ([yshift=-6mm]frame.north west) -- ([yshift=-6mm]frame.north east);
+      \node[anchor=north west,inner sep=0pt,font=\ub@code\footnotesize\bfseries,text=ohmForeground]
+        at ([yshift=-1.8mm]frame.north west) {\ub@ct};
+      \node[anchor=north east,inner sep=0pt,font=\footnotesize,text=ohmMutedForeground]
+        at ([yshift=-1.8mm]frame.north east) {\ub@cl};}}}
 
 \NewTCBListing{codeblock}{O{} m}{ub codebox,listing options={style=ub-#2},ub codekopf={#1}{#2}}
 \NewTCBInputListing{\codedatei}{O{} m m}{ub codebox,listing options={style=ub-#2},
@@ -622,10 +630,10 @@
 % 13. Antwortformate
 % =====================================================================
 \newcommand\kaestchen{%
-  \tikz[baseline=0pt]\draw[ubtinte,line width=0.75pt,rounded corners=0.8pt]
+  \tikz[baseline=0pt]\draw[ohmForeground,line width=0.75pt]
     (0,-1.1mm) rectangle (4.4mm,3.3mm);}
 \newcommand\kreis{%
-  \tikz[baseline=0pt]\draw[ubtinte,line width=0.75pt] (2.2mm,1.1mm) circle (2.2mm);}
+  \tikz[baseline=0pt]\draw[ohmForeground,line width=0.75pt] (2.2mm,1.1mm) circle (2.2mm);}
 
 % ---- antworten: Multiple/Single Choice -------------------------------
 \pgfkeys{/ub/aw/.is family,/ub/aw,
@@ -668,7 +676,7 @@
   \ub@zeilenoben\textbf{\alph{aussage})} &
   \ub@zeilenoben #2\ub@zeilenunten &
   \ub@zeilenoben\ub@rfkasten{r} & \ub@zeilenoben\ub@rfkasten{f} \\
-  \noalign{{\color{ubhell}\hrule height 0.5pt}}}
+  \noalign{{\color{ohmBorder}\hrule height 0.5pt}}}
 \newcommand\ub@rfkasten[1]{%
   \ifloesung\if#1\ub@rf\kaestchenkreuz\else\kaestchen\fi\else\kaestchen\fi}
 \NewDocumentEnvironment{ankreuzen}{O{1}}{%
@@ -680,7 +688,7 @@
     >{\centering\arraybackslash}p{\ub@kreuzbreite}
     >{\centering\arraybackslash}p{\ub@kreuzbreite}@{}}
   & \ub@label{Aussage} & \ub@label{Richtig} & \ub@label{Falsch}\rule[-1.6mm]{0pt}{0pt}\\
-  \noalign{{\color{ubtinte}\hrule height 0.9pt}}%
+  \noalign{{\color{ohmForeground}\hrule height 0.9pt}}%
 }{%
   \end{tabular}\par}
 
@@ -688,7 +696,7 @@
 \newcounter{ubzuordnung}
 \newcounter{ubzeile}
 \newcommand\ub@punkt[1]{\tikz[remember picture,baseline=0pt]
-  \node[circle,fill=ubtinte,inner sep=0pt,minimum size=3.2pt] (#1) at (0,0.65ex) {};}
+  \node[circle,fill=ohmForeground,inner sep=0pt,minimum size=3.2pt] (#1) at (0,0.65ex) {};}
 \newcommand\ub@zlinien{%
   \begin{tikzpicture}[remember picture,overlay]
     \def\ub@zlinie##1##2{\draw[loesung,shorten <=2.5pt,shorten >=2.5pt]
@@ -717,25 +725,26 @@
 % =====================================================================
 % 14. Lösungen
 %     Klassenoption "loesung": Lösungsvorschlag statt Aufgabenblatt.
-%     Ohne die Option sind alle Lösungselemente unsichtbar.
+%     Ohne die Option sind alle Lösungselemente unsichtbar. Sie stehen in
+%     ohmPrimary; eine Lösung hat links eine Linie statt eines Kastens.
 % =====================================================================
 \RequirePackage{verbatim}   % zum Ausblenden der Lösungen (\comment)
 \newcommand\kaestchenkreuz{%
-  \tikz[baseline=0pt]{\draw[ubtinte,line width=0.75pt,rounded corners=0.8pt]
+  \tikz[baseline=0pt]{\draw[ohmForeground,line width=0.75pt]
       (0,-1.1mm) rectangle (4.4mm,3.3mm);
-    \draw[ubloesung,line width=1.3pt,line cap=round]
+    \draw[ohmPrimary,line width=1.3pt,line cap=round]
       (0.9mm,-0.2mm) -- (3.5mm,2.4mm) (0.9mm,2.4mm) -- (3.5mm,-0.2mm);}}
 \newcommand\kreisvoll{%
-  \tikz[baseline=0pt]{\draw[ubtinte,line width=0.75pt] (2.2mm,1.1mm) circle (2.2mm);
-    \fill[ubloesung] (2.2mm,1.1mm) circle (1.3mm);}}
-\tikzset{loesung/.style={draw=ubloesung,text=ubloesung,line width=1.1pt}}
+  \tikz[baseline=0pt]{\draw[ohmForeground,line width=0.75pt] (2.2mm,1.1mm) circle (2.2mm);
+    \fill[ohmPrimary] (2.2mm,1.1mm) circle (1.3mm);}}
+\tikzset{loesung/.style={draw=ohmPrimary,text=ohmPrimary,line width=1.1pt}}
 \newcommand\ub@loesungslabel[1]{\leavevmode
-  {\scriptsize\bfseries\color{ubloesung}\textls[60]{\MakeUppercase{#1}}}}
+  {\footnotesize\bfseries\color{ohmPrimary}#1}}
 % Lösungsboxen werden nicht geteilt (sonst stünde ein kleiner Rest allein
 % mittig auf der nächsten Seite); eine Box darf höchstens eine Seite lang sein.
-\tcbset{ub loesungsbox/.style={enhanced,colback=ubloesung!7,
-  colframe=ubloesung!7,boxrule=0pt,arc=1.2mm,left=4mm,right=4mm,top=3mm,
-  bottom=3mm,before skip=3mm,after skip=3mm,
+\tcbset{ub loesungsbox/.style={enhanced,frame hidden,colback=ohmBackground,
+  sharp corners,borderline west={1pt}{0pt}{ohmPrimary},left=4mm,right=0mm,
+  top=1mm,bottom=1mm,before skip=3mm,after skip=3mm,
   before upper={\setlength\parskip{1.5mm}}}}
 \ifloesung
   \NewDocumentEnvironment{loesung}{O{Lösung}}{%
@@ -748,10 +757,10 @@
 \fi
 % Endergebnis hervorheben (Argument ist Mathematik)
 \newcommand\ub@ergebnis[1]{{\setlength\fboxsep{2.6pt}\setlength\fboxrule{0.9pt}%
-  \fcolorbox{ubloesung}{white}{$\displaystyle #1$}}}
+  \fcolorbox{ohmPrimary}{ohmBackground}{$\displaystyle #1$}}}
 \newcommand\ergebnis[1]{\ifmmode\text{\ub@ergebnis{#1}}\else\ub@ergebnis{#1}\fi}
 % Teilpunkte für das Bewertungsschema, rechtsbündig am Zeilenende
-\newcommand\ub@tp[1]{{\ub@mono\small\color{ubloesung}\ub@zahl{#1}\,P}}
+\newcommand\ub@tp[1]{{\small\color{ohmPrimary}\ub@zahl{#1}\,P}}
 \newcommand\teilpunkt[1]{%
   \ifmmode\tag*{\ub@tp{#1}}%
   \else\unskip\nobreak\hfil\penalty50\hskip1.5em\null\nobreak\hfill\ub@tp{#1}%
@@ -770,57 +779,57 @@
 \newcommand\basis[2]{\ensuremath{\mathrm{#1}_{#2}}}% Zahl zur Basis
 \newcommand\laplace[1]{\mathcal{L}\left\{#1\right\}}
 \newcommand\laplaceinv[1]{\mathcal{L}^{-1}\left\{#1\right\}}
-\newcommand\punkte[1]{{\ub@mono\small\color{ubgrau}(\ub@zahl{#1}\,P)}}
+\newcommand\punkte[1]{{\small\color{ohmMutedForeground}(\ub@zahl{#1}\,P)}}
 
 % =====================================================================
 % 16. Deckblatt (wird automatisch erzeugt)
 % =====================================================================
 \newcommand\ub@listenzeile[3]{%
-  \parbox[t]{6mm}{\leavevmode\ub@mono\bfseries\color{ubakzent}#1}%
+  \parbox[t]{6mm}{\leavevmode\bfseries\color{ohmPrimary}#1}%
   \parbox[t]{\dimexpr\linewidth-6mm-14mm\relax}{\raggedright #2}%
-  \parbox[t]{14mm}{\raggedleft\leavevmode\ub@mono\color{ubgrau}\ub@zahl{#3}\,P}\par
-  \vspace{1.6mm}{\color{ubhell}\hrule height 0.5pt}\vspace{1.6mm}}
+  \parbox[t]{14mm}{\raggedleft\leavevmode\color{ohmMutedForeground}\ub@zahl{#3}\,P}\par
+  \vspace{1.6mm}{\color{ohmBorder}\hrule height 0.5pt}\vspace{1.6mm}}
 \newcommand\ub@stat[2]{%
   \begin{minipage}[t]{0.3\linewidth}
-    {\ub@mono\fontsize{21}{25}\selectfont #1}\par\vspace{0.8mm}
-    {\small\color{ubgrau}#2}
+    {\fontsize{21}{25}\selectfont #1}\par\vspace{0.8mm}
+    {\small\color{ohmMutedForeground}#2}
   \end{minipage}}
 \newcommand\ub@hinweisblock{%
   \ub@label{Hinweise}\par\vspace{3mm}
-  {\small\raggedright\color{ubtinte!85}\setlength\parskip{0pt}%
+  {\small\raggedright\setlength\parskip{0pt}%
   \begin{itemize}[leftmargin=4.5mm,itemsep=1.5mm,parsep=0pt,topsep=0pt,
-                  label={\color{ubakzent}\textbullet}]
+                  label={\color{ohmPrimary}\textbullet}]
     \ifx\ub@hilfsmittel\@empty\else\item\textbf{Hilfsmittel:} \ub@hilfsmittel\fi
     \ub@hinweise
   \end{itemize}}}
 \newcommand\ub@deckblattsetzen{%
   \thispagestyle{deckblatt}%
   \ifub@zentriert\else\null\vspace{48mm}\fi
-  \tikz\fill[ubakzent,rounded corners=0.8mm] (0,0) rectangle (12mm,1.6mm);%
-  \ifloesung\hspace{4mm}\tikz[baseline=-0.4mm]\node[fill=ubloesung,text=white,
-    rounded corners=1mm,inner xsep=2.2mm,inner ysep=1.4mm,font=\ub@mono\scriptsize\bfseries]
-    {\textls[80]{LÖSUNGSVORSCHLAG}};\fi\par
+  \tikz\fill[ohmPrimary] (0,0) rectangle (12mm,1.6mm);%
+  \ifloesung\hspace{4mm}\tikz[baseline=-0.4mm]\node[fill=ohmPrimary,
+    text=ohmPrimaryForeground,inner xsep=2.2mm,inner ysep=1.4mm,
+    font=\footnotesize\bfseries]{Lösungsvorschlag};\fi\par
   \vspace{4mm}%
   {\fontsize{32}{37}\selectfont\bfseries\raggedright\ub@fach\par}%
   \vspace{3mm}%
-  {\large\color{ubgrau}%
+  {\large\color{ohmMutedForeground}%
     \ifx\ub@untertitel\@empty
       \ifloesung Lösungsvorschlag zu \ub@blattname\else\ub@blattname\ zur Prüfungsvorbereitung\fi
     \else\ub@untertitel\fi\par}%
   \vspace{11mm}%
-  {\color{ublinie}\hrule height 0.5pt}\vspace{5mm}%
+  {\color{ohmBorder}\hrule height 0.5pt}\vspace{5mm}%
   \noindent
   \ifx\ub@zeit\@empty\else\ub@stat{\ub@zeit}{Bearbeitungszeit}\hfill\fi
   \ub@stat{\ifx\ub@gesamtaux\@empty ??\else\ub@zahl{\ub@gesamtaux}\fi\ P}{Gesamtpunkte}\hfill
   \ub@stat{\ifx\ub@anzahlaux\@empty ??\else\ub@anzahlaux\fi}{Aufgaben}%
   \ifx\ub@zeit\@empty\hfill\hspace*{0.3\linewidth}\fi\par
-  \vspace{5mm}{\color{ublinie}\hrule height 0.5pt}%
+  \vspace{5mm}{\color{ohmBorder}\hrule height 0.5pt}%
   \vspace{10mm}%
   \noindent
   \begin{minipage}[t]{0.48\linewidth}
     \setlength\parskip{0pt}%
     \ub@label{Aufgaben}\par\vspace{3mm}
-    {\small\ifx\ub@liste\@empty\color{ubgrau}(erneut kompilieren)\else\ub@liste\fi}
+    {\small\ifx\ub@liste\@empty\color{ohmMutedForeground}(erneut kompilieren)\else\ub@liste\fi}
   \end{minipage}\hfill
   \begin{minipage}[t]{0.44\linewidth}
     \setlength\parskip{0pt}%

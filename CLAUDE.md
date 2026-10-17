@@ -115,7 +115,8 @@ die Änderung betrifft, vollständig.
     „ohne Vorrat“) zu den Rückfragen in `ueben.md` passen („Übungsblatt“,
     Schritt 2). Die Prompts liegen wörtlich in Claude.ai und wandern bei
     einem Update nicht mit.
-  - Namen der Niveaus (Klausurniveau, Klausurniveau+, Expertenniveau):
+  - Namen der Niveaus (Leicht, Klausurniveau, Klausurniveau+,
+    Expertenniveau):
     `ueben.md` (Abschnitt „Niveau“, Rückfrage in „Übungsblatt“, Schritt 2,
     und „Vorrat“), Prompt „Übungsblätter vorbereiten“ und `helfen/SKILL.md`.
   - Nach einem Update die automatischen Anweisungen neu einrichten:
@@ -203,11 +204,11 @@ die Änderung betrifft, vollständig.
   - Erlernen: sokratischer Tutor, bei räumlichen oder strukturellen Themen
     eine HTML-Darstellung, die der Nutzer danach ohne Vorlage nachzeichnet.
   - Wiederholen (AFB I und II, höchstens naher Transfer): Spiegeltest,
-    Abfragen mit Sicherheit 1 bis 5, Skript Seite für Seite in Etappen,
-    bestehende Aufgabe mit neuen Werten (gleicher Lösungsweg oder anderes
-    Verhalten, vorher nachgerechnet). Den Fortschritt im Skript speichert der
-    Lernhelfer bewusst nicht. Am Ende einer Etappe nennt er den Satz zum
-    Weitermachen.
+    Abfragen mit Sicherheit 1 bis 5, Skript Seite für Seite in Etappen. Den
+    Fortschritt im Skript speichert der Lernhelfer bewusst nicht. Am Ende
+    einer Etappe nennt er den Satz zum Weitermachen. „Aufgabe mit neuen
+    Werten“ ist seit 2026-10-17 das Niveau Leicht in Üben (Wunsch des
+    Nutzers).
   - Üben: Übungsblatt (erst ein Entwurf in Markdown, dann zwei PDFs aus
     `vorlagen/uebungsblatt.tex` mit der Klasse `uebungsblatt.cls` und
     `build.sh`, ohne LaTeX zwei Markdown-Dateien) oder Bloom-Leiter im Chat
@@ -217,21 +218,26 @@ die Änderung betrifft, vollständig.
     neuesten Altklausur (Routineanteil, Aufgabenarten, Führung), ohne
     Altklausur ein Drittel Routine und ein geschätztes Niveau.
     Routineaufgaben fallen nie ganz weg, damit der Nutzer sie nicht
-    verlernt. Niveau als Rückfrage: Klausurniveau, Klausurniveau+
-    (Schwachstellen auf Klausurniveau, alles andere darüber, nur im
-    Projekt) und Expertenniveau (alles darüber, auch die Routine, deren
-    Anteil bleibt). „Über Klausurniveau“ heißt mindestens zwei Hebel
+    verlernt. Niveau als Rückfrage: Leicht (nur bestehende Aufgaben aus
+    Übungen und Altklausuren mit neuen Werten, gleicher Lösungsweg oder
+    anderes Verhalten, vorher nachgerechnet, ohne Vorgabe der Anfrage
+    gemischt mit mindestens einer Aufgabe mit anderem Verhalten), Klausurniveau,
+    Klausurniveau+ (Schwachstellen auf Klausurniveau, alles andere darüber,
+    nur im Projekt) und Expertenniveau (alles darüber, auch die Routine, deren
+    Anteil bleibt). Nennt die Anfrage bestimmte Aufgaben mit neuen Werten,
+    gibt es ohne Rückfrage ein Blatt auf Leicht mit genau diesen, auch bei
+    einer Aufgabe als PDF (Wunsch des Nutzers, kein Sonderfall im Chat).
+    „Über Klausurniveau“ heißt mindestens zwei Hebel
     (Führung, Denkschritte, Verknüpfung, Sonderfälle, Transfer) über der
     Vergleichsaufgabe, nie mit Fremdwissen, Fangfragen oder mehr Rechnen.
     Das Niveau jeder Aufgabe steht mit ihrer Vergleichsaufgabe in „Zur
     Aufgabe“.
   - Korrigieren: strenger Prüfer, Punkte als Schätzung, Hinweise statt
     Lösung, Fehlerursachen nach Fischgräte mit bis zu fünfmal „Warum?“,
-    danach Wechsel zu Erlernen (Verständnis, Vorwissen) oder zu Wiederholen
-    mit derselben Aufgabe und neuen Werten (alle übrigen Ursachen). Üben kam
-    dafür nicht in Frage: Transferaufgaben helfen bei Flüchtigkeit und
-    Zeitdruck wenig und wären nach einer Wiederholen-Aufgabe ein Sprung im
-    Niveau.
+    danach Wechsel zu Erlernen (Verständnis, Vorwissen) oder zu Üben, mit
+    einem Übungsblatt auf Leicht aus derselben Aufgabe mit neuen Werten und
+    gleichem Lösungsweg (alle übrigen Ursachen). Transferaufgaben kamen dafür
+    nicht in Frage, sie helfen bei Flüchtigkeit und Zeitdruck wenig.
   Wechsel innerhalb von `lernen` kündigt eine feste Nachricht an, mit
   optionaler Rückkehr (z.B. vom Skript zu Erlernen und zurück zur selben
   Seite).
@@ -526,7 +532,10 @@ Fällen:
 - „Lass uns das Skript durchgehen“ (Seite für Seite, bei einer Lücke
   angekündigter Wechsel zu Erlernen und zurück zur selben Seite)
 - „Gib mir Aufgabe 2 von Blatt 3 mit anderen Zahlen, aber so, dass es kein
-  Maximum gibt“ (neue Werte, vorher nachgerechnet)
+  Maximum gibt“ (Übungsblatt auf Leicht ohne Rückfrage, eine Aufgabe als
+  PDF, neue Werte vorher nachgerechnet)
+- „Mach mir ein Übungsblatt“ mit dem Niveau Leicht (nur bestehende Aufgaben,
+  mindestens eine mit anderem Verhalten, das die Angabe nicht verrät)
 - „Mach mir ein Übungsblatt“ (höchstens drei Rückfragen, Angabe- und
   Lösungs-PDF mit nachgerechneten Lösungen, Entwurf vor dem Lesen von
   `ANLEITUNG.md`, Deckblatt ohne `??`, jede Aufgabe auf einer eigenen Seite,
@@ -537,7 +546,8 @@ Fällen:
   dazu einmal in einem Fach ohne Altklausur (Hinweis auf das geschätzte
   Niveau)
 - Foto einer fehlerhaften Lösung (Bewertung, Fischgräte, Eintrag mit Ursache
-  in `probleme.md`)
+  in `probleme.md`, danach bei Rechenfehlern Wechsel zu Üben mit einem Blatt
+  auf Leicht)
 
 ## Arbeitsweise
 

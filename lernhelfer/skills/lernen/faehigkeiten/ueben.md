@@ -5,7 +5,8 @@ zwei Formen: ein Übungsblatt als PDF mit Lösung und die Bloom-Leiter im Chat.
 Das Übungsblatt richtet sich nach der typischen Klausur des Moduls: Es mischt
 Routineaufgaben, damit eingeübte Verfahren sitzen, und Transferaufgaben, die
 sich nur mit echtem Verständnis lösen lassen, im Verhältnis der Klausur und auf
-dem Niveau, das der Nutzer wählt. Die Bloom-Leiter übt mit Transferaufgaben in
+dem Niveau, das der Nutzer wählt. Auf dem Niveau Leicht kommen nur bekannte
+Aufgaben mit neuen Werten. Die Bloom-Leiter übt mit Transferaufgaben in
 den Anforderungsbereichen II (erklären, ordnen, auf Vergleichbares übertragen)
 und III (neue Probleme lösen, begründet urteilen). Inhaltlich bleiben alle
 Aufgaben nah am Skript, nur kleine Abschweifungen sind erlaubt.
@@ -21,10 +22,14 @@ ist wie in der Klausur oder schwerer.
    `skill:SKILL.md`, Abschnitt „Mit einem Modul arbeiten“, einschließlich der
    Dateiprüfung. Pflege während der ganzen Fähigkeit die Probleme wie in
    `skill:SKILL.md`, Abschnitt „Probleme pflegen“.
-2. **Form wählen:** Will der Nutzer ein Übungsblatt, eine Probeklausur oder
-   Aufgaben zum Ausdrucken, arbeite nach dem Abschnitt „Übungsblatt“. Will er
-   Stufe für Stufe im Chat üben (z.B. „Bloom-Leiter“), arbeite nach dem
-   Abschnitt „Bloom-Leiter“. Ist das nicht eindeutig, stell diese Rückfrage:
+2. **Form wählen:** Will der Nutzer ein Übungsblatt, eine Probeklausur,
+   Aufgaben zum Ausdrucken oder eine bestehende Aufgabe mit neuen Werten (z.B.
+   „Gib mir Aufgabe 2 von Blatt 3 mit anderen Zahlen“), arbeite nach dem
+   Abschnitt „Übungsblatt“. Will er Stufe für Stufe im Chat üben (z.B.
+   „Bloom-Leiter“), arbeite nach dem Abschnitt „Bloom-Leiter“. Nach einem
+   Wechsel gilt das Thema als Anfrage (z.B. `Übungsblatt auf Leicht: Blatt 3,
+   Aufgabe 2 mit neuen Werten, gleicher Lösungsweg`). Ist das nicht
+   eindeutig, stell diese Rückfrage:
 
    ```auswahl
    Wie willst du üben?
@@ -49,13 +54,82 @@ einer neuen Angabe, so wie die Klausur es abfragt. Sie gehört auf jedes
   Kurvendiskussion, das Knotenpotenzialverfahren oder eine Wahrheitstabelle.
 - Ihre Angabe ist neu, aber vom selben Typ wie in Klausur und Übungen (eine
   andere Funktion, Schaltung oder Datenlage). Eine bestehende Aufgabe mit nur
-  anderen Zahlen nimmst du nicht, die rechnet der Nutzer in „Wiederholen“.
+  anderen Zahlen nimmst du nicht, die gibt es nur auf dem Niveau Leicht.
 - Ihre Zahlen sind so handlich wie in der Klausur.
 
 Prüf jeden Entwurf mit dem Stoff-, Löse-, Beleg- und Fairness-Test aus dem
 Abschnitt „Transferaufgaben“, „Vorgehen“, Schritt 4, und mit dem Niveau-Test
 (Abschnitt „Niveau“). Nachschlage- und Nachspiel-Test gelten für sie nicht,
 denn eine Routineaufgabe darf eine gelöste Übung als Muster haben.
+
+## Aufgaben mit neuen Werten
+
+Auf dem Niveau Leicht besteht das Übungsblatt nur aus Aufgaben aus den
+Übungsblättern und Altklausuren des Moduls, jede mit neuen Werten, in einer von
+zwei Varianten:
+
+- **Gleicher Lösungsweg:** nur andere Zahlen. Das Ergebnis verhält sich wie im
+  Original, z.B. gibt es weiter genau ein Maximum.
+- **Anderes Verhalten:** Werte, die das Ergebnis grundlegend ändern, z.B. eine
+  Optimierungsaufgabe ohne Maximum, ein Gleichungssystem ohne oder mit
+  unendlich vielen Lösungen oder ein Grenzfall. So zeigt sich, ob der Nutzer
+  das Verfahren versteht, statt es nur abzuspulen.
+
+Nennt die Anfrage für eine Aufgabe die Variante (z.B. „so, dass es kein
+Maximum gibt“ → Anderes Verhalten), nimm sie. Sonst bekommt mindestens eine
+Aufgabe des Blatts anderes Verhalten, bei mehr als drei Aufgaben etwa jede
+dritte, und die übrigen den gleichen Lösungsweg. Die Angabe verrät nicht, ob
+sich das Verhalten geändert hat, das soll der Nutzer selbst merken.
+
+Für jede Aufgabe:
+
+1. **Aufgabe finden:** Nennt die Anfrage eine Aufgabe, such sie im Index (z.B.
+   „Aufgabe 2 von Blatt 3“: die Datei, deren Name oder Beschreibung zu Blatt 3
+   passt, und ihre Seite mit `A2`), im **Chat** in der angehängten Datei.
+   Stammt sie aus diesem Chat (z.B. aus einem Übungsblatt des Lernhelfers),
+   nimm sie von dort. Sonst wähl Aufgaben zum Stoff aus den Übungsblättern und
+   Altklausuren im Stichwortverzeichnis, im **Chat** aus den angehängten
+   Dateien. Findest du keine, antworte und warte auf die Antwort:
+
+   ```text
+   Für das Niveau Leicht brauche ich Aufgaben aus deinen Übungsblättern oder Altklausuren zu diesem Stoff, ich finde aber keine. Häng mir eine Datei mit Aufgaben an oder sag mir, welches andere Niveau ich nehmen soll.
+   ```
+
+   Sieh dir die Seite der Aufgabe als Bild an, denn Formeln und Abbildungen
+   kommen als Text oft falsch an. Gibt es in den Unterlagen eine Lösung dazu,
+   lies sie auch.
+2. **Original lösen:** Lös die Originalaufgabe und rechne nach
+   (`skill:SKILL.md`, Abschnitt „Nachrechnen“). Notiere ihr Verhalten: Art und
+   Zahl der Lösungen, Extrema, Fallunterscheidungen, Vorzeichen.
+3. **Werte wählen und prüfen:** Wähl neue Werte und lös die Aufgabe damit
+   vollständig, ebenfalls nachgerechnet. Prüf:
+   - Gleicher Lösungsweg: Das Verhalten ist dasselbe wie in Schritt 2, und
+     die Zahlen sind so handlich wie im Original.
+   - Anderes Verhalten: Das Verhalten weicht so ab, wie die Anfrage es
+     verlangt, sonst grundlegend, und die Aufgabe ist weiter sinnvoll
+     gestellt.
+
+   Passt es nicht, wähl andere Werte. Lässt sich ein Verhalten, das die
+   Anfrage verlangt, mit anderen Werten allein nicht erreichen, stell diese
+   Rückfrage, wobei `{aufgabe}` die Herkunft der Aufgabe ist (z.B. `Blatt 3,
+   Aufgabe 2`), `{wunsch}` das gewünschte Verhalten, `{grund}` der Grund in
+   einem Satz und `{vorschlag}` ein anderes Verhalten, das sich erreichen
+   lässt:
+
+   ```auswahl
+   Mit anderen Werten allein lässt sich {wunsch} in {aufgabe} nicht erreichen, weil {grund}. Was soll ich stattdessen machen?
+   - {vorschlag}
+   - Gleicher Lösungsweg, andere Zahlen
+   ```
+
+   Verlangt die Anfrage nichts und lässt sich bei einer Aufgabe kein anderes
+   Verhalten erreichen, gib es einer anderen Aufgabe des Blatts. Geht es bei
+   keiner, bleiben alle beim gleichen Lösungsweg.
+4. **Übernehmen:** Die Aufgabe bekommt den Text des Originals mit den neuen
+   Werten und als Titel ihre Herkunft, z.B. `Blatt 3, Aufgabe 2 mit neuen
+   Werten`. Gib jeder Teilaufgabe so viele Punkte, wie sie etwa Minuten
+   braucht, auch wenn das Original andere Punkte hat, denn die Punktesumme ist
+   die Dauer des Blatts.
 
 ## Transferaufgaben
 
@@ -236,6 +310,7 @@ Aufgabe bekommt so viele Punkte, wie sie Minuten braucht.
 
 | `{niveau}` | Aufgaben |
 |---|---|
+| Leicht | nur Aufgaben mit neuen Werten (Abschnitt „Aufgaben mit neuen Werten“) |
 | Klausurniveau | alle auf Klausurniveau |
 | Klausurniveau+ | zu Schwachstellen auf Klausurniveau, alle übrigen über Klausurniveau |
 | Expertenniveau | alle über Klausurniveau |
@@ -247,6 +322,8 @@ Aufgabe bekommt so viele Punkte, wie sie Minuten braucht.
 - Über Klausurniveau gilt auch für die Routineteilaufgaben einer Aufgabe: Ihr
   Verfahren bleibt eingeübt, aber z.B. ohne vorgegebene Zwischenschritte, mit
   einer Fallunterscheidung oder mit einem zweiten Verfahren verknüpft.
+- Auf Leicht entfallen Klausurprofil, Vergleichsaufgabe und Niveau-Test, denn
+  jede Aufgabe hat ihr Original als Maßstab.
 
 ### Niveau-Test
 
@@ -256,10 +333,11 @@ nicht auf der Stufe, die `{niveau}` für sie verlangt, überarbeite sie.
 ## Übungsblatt
 
 Ein Übungsblatt wie eine typische Klausur des Moduls, aus Routine- und
-Transferaufgaben, gemischt aus mehreren Kapiteln ohne Kapitelangabe, damit der
-Nutzer wie in der Prüfung zuerst erkennen muss, welches Verfahren passt. Es
-kommt immer als zwei PDFs: die Angabe und die Lösung mit vollständigem
-Lösungsweg. Den LaTeX-Quelltext gibst du nur auf ausdrücklichen Wunsch heraus.
+Transferaufgaben (auf Leicht nur aus Aufgaben mit neuen Werten), gemischt aus
+mehreren Kapiteln ohne Kapitelangabe, damit der Nutzer wie in der Prüfung
+zuerst erkennen muss, welches Verfahren passt. Es kommt immer als zwei PDFs:
+die Angabe und die Lösung mit vollständigem Lösungsweg, auch bei nur einer
+Aufgabe. Den LaTeX-Quelltext gibst du nur auf ausdrücklichen Wunsch heraus.
 
 Du arbeitest in zwei Phasen: Erst entwirfst du Aufgaben und Lösungen und
 schreibst sie als Entwurf auf (Schritte 1 bis 6), dann setzt du den Entwurf
@@ -277,6 +355,11 @@ Aufgaben, und die vielen Regeln der Vorlage würden davon ablenken.
      `projekt:module/{modul}/info.md`, sonst aus einer Altklausur, sonst
      `keine Angabe`.
 2. **Rückfragen:** Frag nur, was sich nicht aus der Anfrage ergibt.
+   - Bestimmte Aufgaben: Verlangt die Anfrage bestimmte bestehende Aufgaben
+     mit neuen Werten (z.B. „Gib mir Aufgabe 2 von Blatt 3 mit anderen
+     Zahlen“), ist `{niveau}` `Leicht`, das Blatt enthält genau diese
+     Aufgaben, und die übrigen Rückfragen entfallen. `{dauer}` ist dann die
+     Summe ihrer Punkte in Minuten.
    - Vorrat: Nur im **Projekt**. Gibt es für das Modul ein gültiges Blatt im
      Vorrat (Abschnitt „Vorrat“) und verlangt die Anfrage nichts, das nicht
      dazu passt (z.B. bestimmte Themen, eine andere Länge, ein anderes Niveau
@@ -324,18 +407,19 @@ Aufgaben, und die vielen Regeln der Vorlage würden davon ablenken.
 
      ```auswahl
      Wie schwer soll das Übungsblatt sein?
+     - Leicht: bekannte Aufgaben mit neuen Werten
      - Klausurniveau
      - Klausurniveau+: schwerer als die Klausur, außer bei deinen Schwachstellen
      - Expertenniveau: alles schwerer als die Klausur
      ```
 
-     Die zweite Option gibt es nur im **Projekt** (Abschnitt „Niveau“, „Niveau
+     Die dritte Option gibt es nur im **Projekt** (Abschnitt „Niveau“, „Niveau
      des Blatts“).
 
    `{dauer}` ist danach die Dauer des Blatts: `15 Minuten`, `45 Minuten` oder
    `{pruefungsdauer}`. Ein Punkt steht für etwa eine Minute, deshalb ist die
    Punktesumme gleich der Dauer in Minuten. `{niveau}` ist das Niveau ohne den
-   Text nach dem Doppelpunkt: `Klausurniveau`, `Klausurniveau+` oder
+   Text nach dem Doppelpunkt: `Leicht`, `Klausurniveau`, `Klausurniveau+` oder
    `Expertenniveau`.
 3. **Stoff lesen:** Lies gezielt die Seiten zum Stoff: aus dem Skript die
    Kernkonzepte, aus Übungen und Altklausuren die Aufgaben dazu, damit du
@@ -344,17 +428,19 @@ Aufgaben, und die vielen Regeln der Vorlage würden davon ablenken.
    dir Seiten mit Abbildungen, Schaltplänen, Diagrammen oder Formeln als Bild
    an (`skill:SKILL.md`, Abschnitt „PDF-Dateien“), denn als Text kommen sie
    oft falsch an. Bestimm danach das Klausurprofil (Abschnitt „Niveau“,
-   „Klausurprofil“).
+   „Klausurprofil“), außer auf Leicht.
 4. **Aufgaben:** Entwirf die Aufgaben, beim Umfang „Kurz“ zwei oder drei:
-   1. Teil die Punkte auf: für Routineaufgaben den Routineanteil aus dem
+   1. Auf Leicht entwirf alle Aufgaben wie im Abschnitt „Aufgaben mit neuen
+      Werten“ und mach mit Punkt 4 weiter.
+   2. Teil die Punkte auf: für Routineaufgaben den Routineanteil aus dem
       Klausurprofil, mindestens aber eine Teilaufgabe, den Rest für
       Transferaufgaben. Eine Aufgabe darf wie in der Klausur Routine- und
       Transferteilaufgaben mischen.
-   2. Entwirf die Routineaufgaben wie im Abschnitt „Routineaufgaben“ und die
+   3. Entwirf die Routineaufgaben wie im Abschnitt „Routineaufgaben“ und die
       Transferaufgaben wie im Abschnitt „Transferaufgaben“, jede auf der
       Stufe, die `{niveau}` für sie verlangt (Abschnitt „Niveau“). Prüf jede
       zuletzt mit dem Niveau-Test.
-   3. Ordne die Aufgaben wie in der Klausur, sonst von der leichtesten zur
+   4. Ordne die Aufgaben wie in der Klausur, sonst von der leichtesten zur
       schwersten.
 
    Jede Aufgabe bekommt einen kurzen, neutralen Titel, der das geprüfte
@@ -378,7 +464,10 @@ Aufgaben, und die vielen Regeln der Vorlage würden davon ablenken.
      `Klausurniveau` oder `über Klausurniveau`, `{vergleich}` die Fundstelle
      der Vergleichsaufgabe und `{hebel}` die erhöhten Hebel, bei
      Klausurniveau `wie dort`. Ohne Altklausur endet die Zeile mit
-     ` (geschätzt, keine Altklausur)`.
+     ` (geschätzt, keine Altklausur)`. Auf Leicht lautet sie
+     `Niveau: Leicht, {variante}, Original {original}`, mit
+     `gleicher Lösungsweg` oder `anderes Verhalten` und der Fundstelle des
+     Originals.
    - die verlockendste falsche Antwort und die Fehlvorstellung dahinter
    - die Bewertungskriterien: was eine volle Antwort enthält, mit Punkten
    - die Fundstelle
@@ -512,8 +601,9 @@ Aufgaben, und die vielen Regeln der Vorlage würden davon ablenken.
     `{angabe}` und `{loesung}` sind die Dateinamen, hier `uebungsblatt.pdf`
     und `uebungsblatt-loesung.pdf`.
 
-    `{ohne-klausur}`: Hattest du für das Klausurprofil keine Altklausur, setze
-    diese Zeile ein, sonst lass den Platzhalter samt Zeile weg:
+    `{ohne-klausur}`: Hast du das Klausurprofil ohne Altklausur bestimmt,
+    setze diese Zeile ein, sonst (auch auf Leicht) lass den Platzhalter samt
+    Zeile weg:
 
     ```text
     Zu {modulname} hatte ich keine Altklausur, deshalb ist das Niveau nur geschätzt.

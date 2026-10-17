@@ -108,11 +108,14 @@ die Änderung betrifft, vollständig.
     („PDF-Dateien“) und `indizieren.md`, Schritt 4.
   - Vorspann der automatischen Anweisungen (niemand liest mit, keine
     Rückfragen, „Abbruch“): beide Dateien in `verwalten/geplant/`.
-  - Namen von Abschnitten und Schritten, auf die die Prompts in
-    `verwalten/geplant/` verweisen: „Abbruch“ in `grundlagen.md`; „Vorrat“,
-    „Übungsblatt“, „Prüfen“, „Ohne LaTeX“ und die Optionen für Stoff und
-    Umfang in `ueben.md`; „Session beenden“ in `lernen/SKILL.md`. Die Prompts
-    liegen wörtlich in Claude.ai und wandern bei einem Update nicht mit.
+  - Namen von Abschnitten, auf die die Prompts in `verwalten/geplant/`
+    verweisen: „Abbruch“ in `grundlagen.md`; „Vorrat“ in `ueben.md`;
+    „Dateiprüfung“ und „Session beenden“ in `lernen/SKILL.md`; die Spalte
+    `Historie` von `probleme.md` in `grundlagen.md`. Dazu muss die
+    Anfrage im Prompt „Übungsblätter vorbereiten“ (Stoff, Umfang, „ohne
+    Vorrat“) zu den Rückfragen in `ueben.md` passen („Übungsblatt“,
+    Schritt 2). Die Prompts liegen wörtlich in Claude.ai und wandern bei
+    einem Update nicht mit.
   - Nach einem Update die automatischen Anweisungen neu einrichten:
     `entwicklung.md` („Exportieren“, `{automatik-hinweis}`) und
     `helfen/SKILL.md`.
@@ -274,7 +277,12 @@ die Änderung betrifft, vollständig.
   `% Ende des Lernhelfer-Vorrats`. Üben bietet ein gültiges Blatt als erste
   Rückfrage an, übersetzt es, löscht es und stellt es dann bereit. Ungültige
   löscht erst der nächste Lauf. Ein geänderter Kopf erhöht `% format:` statt
-  einer Migration. Module ohne Schwachstellen bekommen kein Blatt.
+  einer Migration. Module ohne Schwachstellen bekommen kein Blatt. Der Prompt
+  beschreibt keinen Ablauf von „Üben“ (Wunsch des Nutzers, Konvention in
+  `entwicklung.md`): Er löscht ungültige Blätter, ruft „Üben“ für jedes
+  Modul ohne Blatt wie ein Nutzer auf („… als LaTeX-Quelltext, ohne
+  Vorrat“) und speichert den Quelltext. Gültige Blätter bleiben. Module mit
+  dem spätesten Datum unter `Historie` kommen zuerst dran.
 - Abbruch: Claude sieht das restliche Limit nicht, ein Chat kann nach jedem
   Schritt enden. Ins Projekt kommen nur fertige Dateien, je mit einem Aufruf,
   große aus `arbeit:` mit `local_path`. Abhängige Dateien werden so

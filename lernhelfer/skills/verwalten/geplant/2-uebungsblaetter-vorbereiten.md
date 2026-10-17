@@ -16,37 +16,23 @@ Abschnitt „Abbruch“ der Grundlagen. Deine letzte Antwort ist die
 Benachrichtigung an den Nutzer, halte sie kurz.
 
 Bereite Übungsblätter für den Vorrat vor, wie ihn die Fähigkeit „Üben“ im
-Abschnitt „Vorrat“ beschreibt. Will der Nutzer später ein Übungsblatt, bekommt
-er eins daraus sofort, und es schont sein Nutzungslimit. Du arbeitest dafür mit
-mehreren Modulen nacheinander, mit jedem für sich, als wäre es eine eigene
-Anfrage. Der Nutzer lernt hier nicht: Ändere
-`projekt:gedaechtnis/{modul}/probleme.md` nicht, stell nichts bereit, und die
-Nachricht aus „Session beenden“ entfällt.
+Abschnitt „Vorrat“ beschreibt. Der Nutzer lernt hier nicht: Stell nichts
+bereit, und die Nachricht aus „Session beenden“ entfällt.
 
-1. **Aufräumen:** Hol die Liste aller Projektdateien und die Liste der Dateien
-   der Datenquelle mit ihren Identifikationen. Lösch jede Datei in
-   `projekt:vorrat/`, die nach dem Abschnitt „Vorrat“ ungültig ist oder in
-   einem Ordner liegt, zu dem es kein Modul gibt.
-2. **Module wählen:** Zu bearbeiten ist jedes Modul, das danach kein Blatt im
-   Vorrat hat und für das „Üben“ beim Übungsblatt die Option „Meine
-   Schwachstellen und fällige Themen“ anbieten würde. Fang mit dem Modul an,
-   dessen `projekt:gedaechtnis/{modul}/probleme.md` unter `Historie` das
-   späteste Datum hat, dann das mit dem nächstspäteren. So bekommen bei
-   knappem Limit zuerst die Fächer ein Blatt, mit denen der Nutzer gerade
-   lernt.
-3. **Blatt erstellen:** Arbeite für das Modul nach „Üben“, Abschnitt
-   „Übungsblatt“, mit dem Stoff „Meine Schwachstellen und fällige Themen“ und
-   dem Umfang „Eine Lernsession: etwa 45 Minuten“, bis einschließlich
-   „Prüfen“. Dateiprüfung, Belege und Nachrechnen gelten wie sonst. Bleibt nach
-   der Dateiprüfung keine Datei des Moduls übrig, überspring es.
-4. **Speichern:** Speichere das fertige Blatt wie im Abschnitt „Vorrat“
-   beschrieben. Fang erst danach mit dem nächsten Modul an. So liegt im Vorrat
-   nie ein halbes Blatt: Endet der Chat vorher, fehlt nur das Blatt, an dem du
-   gerade gearbeitet hast, und der nächste Lauf macht es neu.
-5. **Ohne LaTeX:** Kannst du keine PDFs erzeugen (Abschnitt „Ohne LaTeX“),
-   speichere nichts und hör nach diesem Modul auf, denn der Vorrat braucht
-   übersetzbaren LaTeX-Quelltext.
-6. **Abschluss:** Antworte, wobei `{module}` die Namen der Module mit neuem
+1. **Aufräumen:** Lösch jedes Blatt im Vorrat, das ungültig ist oder zu keinem
+   Modul mehr gehört.
+2. **Blätter:** Nimm jedes Modul mit Schwachstellen oder fälligen Themen, das
+   danach kein Blatt im Vorrat hat. Fang mit dem an, dessen
+   `projekt:gedaechtnis/{modul}/probleme.md` unter `Historie` das späteste
+   Datum hat, dann das mit dem nächstspäteren. So bekommen bei knappem Limit
+   zuerst die Fächer ein Blatt, mit denen der Nutzer gerade lernt. Arbeite
+   jedes für sich ab, als hätte der Nutzer geschrieben: „Mach mir ein neues
+   Übungsblatt für {modulname} zu meinen Schwachstellen und fälligen Themen,
+   etwa 45 Minuten, als LaTeX-Quelltext, ohne Vorrat“. Speichere den
+   Quelltext im Vorrat, bevor du mit dem nächsten Modul anfängst. Bleibt nach
+   der Dateiprüfung keine Datei des Moduls übrig, lass es weg. Entsteht kein
+   übersetzter LaTeX-Quelltext, speichere nichts und hör auf.
+3. **Abschluss:** Antworte, wobei `{module}` die Namen der Module mit neuem
    Blatt durch Kommas getrennt sind:
 
    ```text
@@ -54,8 +40,8 @@ Nachricht aus „Session beenden“ entfällt.
    {offen}
    ```
 
-   `{offen}`: Hast du ein Modul übersprungen oder nicht geschafft, setze diese
-   Zeile ein, wobei `{gruende}` die Module mit dem Grund in Klammern sind,
+   `{offen}`: Hat ein Modul aus „Blätter“ kein Blatt bekommen, setze diese
+   Zeile ein, wobei `{gruende}` diese Module mit dem Grund in Klammern sind,
    sonst lass den Platzhalter samt Zeile weg:
 
    ```text

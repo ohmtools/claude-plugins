@@ -186,9 +186,9 @@ Aufgaben, und die vielen Regeln der Vorlage würden davon ablenken.
 2. **Rückfragen:** Frag nur, was sich nicht aus der Anfrage ergibt.
    - Vorrat: Nur im **Projekt**. Gibt es für das Modul ein gültiges Blatt im
      Vorrat (Abschnitt „Vorrat“) und verlangt die Anfrage nichts, das nicht
-     dazu passt (z.B. bestimmte Themen oder eine andere Länge), stell zuerst
-     diese Rückfrage, wobei `{vorrat-dauer}` und `{themen}` aus seinem Kopf
-     stammen:
+     dazu passt (z.B. bestimmte Themen, eine andere Länge oder ausdrücklich
+     ein neues Blatt ohne Vorrat), stell zuerst diese Rückfrage, wobei
+     `{vorrat-dauer}` und `{themen}` aus seinem Kopf stammen:
 
      ```auswahl
      Ich habe für {modulname} schon ein Übungsblatt vorbereitet: {vorrat-dauer} zu {themen}. Es ist sofort fertig und schont dein Nutzungslimit. Willst du es?

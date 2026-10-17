@@ -251,7 +251,11 @@ Einmal pro Chat, vor der ersten Änderung oder dem ersten Export.
      ändert sich mit einem Update nicht von selbst. Er beginnt mit dem Satz,
      der den Skill aufruft (z.B. „/lernhelfer:verwalten Indiziere“), sagt,
      dass niemand mitliest und keine Rückfragen kommen, und verweist auf den
-     Abschnitt „Abbruch“. Auf Fähigkeiten, Abschnitte und Schritte verweist er
+     Abschnitt „Abbruch“. Er beschreibt keinen Ablauf einer Fähigkeit,
+     sondern ruft sie mit einer Anfrage auf, wie sie der Nutzer schreiben
+     würde, und sagt nur, was mit dem Ergebnis geschieht (Vorbild:
+     `kopie:skills/verwalten/geplant/2-uebungsblaetter-vorbereiten.md`). So
+     bleibt er gültig, wenn sich die Fähigkeit ändert. Auf Fähigkeiten, Abschnitte und Schritte verweist er
      nur mit ihrem Namen, nie mit einer Nummer. Benennst du etwas um, auf das
      ein Prompt verweist, pass den Prompt an.
    - Ändert sich der Aufbau der Blätter im Vorrat

@@ -173,12 +173,18 @@ Einmal pro Chat, vor der ersten Änderung oder dem ersten Export.
      `kopie:skills/lernen/vorlagen/uebungsblatt.tex`, und heißen in
      Fähigkeiten `skill:vorlagen/{datei}`. Eine Vorlage ist eine fertige,
      lauffähige Datei mit Beispielinhalt. Was davon die Fähigkeit ersetzt,
-     steht in der Fähigkeit, nicht in der Vorlage. Hilfsdateien wie ein
-     Build-Skript liegen daneben. Weil `skill:` schreibgeschützt ist, kopiert
-     die Fähigkeit die Vorlage samt Hilfsdateien zuerst in einen eigenen
-     Ordner unter `arbeit:` und füllt und übersetzt sie nur dort. Braucht eine
-     Vorlage Programme oder Pakete, die kein Testlauf bestätigt hat, nimm
-     dafür einen Test auf.
+     steht in der Fähigkeit, nicht in der Vorlage. Hilfsdateien wie eine
+     LaTeX-Klasse, ein Build-Skript oder eine Anleitung zu den Befehlen der
+     Vorlage liegen daneben. Weil `skill:` schreibgeschützt ist, kopiert die
+     Fähigkeit die Vorlage samt den Hilfsdateien, die sie zum Übersetzen
+     braucht, zuerst in einen eigenen Ordner unter `arbeit:` und füllt und
+     übersetzt sie nur dort. Den Inhalt schreibt die Fähigkeit vorher als
+     Entwurf in einem einfachen Format (z.B. Markdown) und liest die
+     Anleitung der Vorlage erst danach, damit deren viele Regeln nicht von
+     der Qualität des Inhalts ablenken (Vorbild: „Übungsblatt“ in
+     `kopie:skills/lernen/faehigkeiten/ueben.md`). Braucht eine Vorlage
+     Programme oder Pakete, die kein Testlauf bestätigt hat, nimm dafür einen
+     Test auf.
    - Jede Fähigkeit in `lernen` arbeitet mit genau einem Modul. Sie liest nur
      dessen Dateien, `projekt:daten.xml` und `daten:` und schreibt nur
      `projekt:gedaechtnis/{modul}/probleme.md` und

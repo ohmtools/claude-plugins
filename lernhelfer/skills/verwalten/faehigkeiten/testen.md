@@ -124,35 +124,41 @@ Halte danach fest:
    Abweichung. Detail: kleinste und größte Zahl, Ergebnis beider Aufrufe.
    Protokoll: beide Aufrufe mit Parametern und vollständiger Rückmeldung.
 3. **LaTeX:** Davon hängt ab, dass „Üben“ im Skill `lernen` Übungsblätter als
-   PDF erzeugt. Das Testdokument lädt dieselben Pakete wie die Vorlage für
-   Übungsblätter.
+   PDF erzeugt. Das Testdokument lädt dieselben Pakete und Schriften wie die
+   Klasse der Vorlage für Übungsblätter.
    1. Leg den Ordner `arbeit:lernhelfer-test/` an und schreib darin
       `lernhelfer-test.tex` mit diesem Inhalt:
 
       ```latex
-      \documentclass[11pt,a4paper]{exam}
+      \NeedsTeXFormat{LaTeX2e}[2022/06/01]
+      \documentclass[11pt,a4paper]{article}
       \usepackage[T1]{fontenc}
-      \usepackage[ngerman]{babel}
-      \usepackage[sc]{mathpazo}
-      \usepackage{tgpagella}
-      \usepackage[scale=0.92]{tgheros}
-      \renewcommand{\ttdefault}{lmtt}
-      \usepackage{microtype,amsmath,amssymb,xcolor}
-      \usepackage[most]{tcolorbox}
-      \usepackage{siunitx}
+      \usepackage[utf8]{inputenc}
+      \IfFileExists{ngerman.ldf}{\usepackage[ngerman]{babel}}{\usepackage[provide=*,ngerman]{babel}}
+      \usepackage{geometry,array,booktabs,amsmath,amssymb,graphicx}
+      \usepackage[table]{xcolor}
+      \usepackage{tikz}
+      \usetikzlibrary{arrows.meta,positioning,calc,automata,shapes.geometric,backgrounds}
+      \usepackage[european,siunitx]{circuitikz}
       \usepackage{pgfplots}
       \pgfplotsset{compat=1.18}
-      \usepackage[european]{circuitikz}
-      \usepackage{listings}
+      \usepackage{tikz-timing,siunitx,enumitem,fancyhdr,lastpage,listings,verbatim}
+      \usepackage{tcolorbox}
+      \tcbuselibrary{skins,breakable,listings}
+      \IfFileExists{plex-sans.sty}{\usepackage[sfdefault]{plex-sans}}{\usepackage[scaled=0.92]{helvet}\renewcommand\familydefault{\sfdefault}}
+      \IfFileExists{plex-mono.sty}{\usepackage[scale=0.95]{plex-mono}}{\IfFileExists{t1xtt.fd}{\renewcommand\ttdefault{txtt}}{\usepackage{courier}}}
+      \usepackage[italic,defaultmathsizes]{mathastext}
+      \usepackage[letterspace=90]{microtype}
       \lstset{basicstyle=\ttfamily}
-      \usepackage[hidelinks]{hyperref}
       \begin{document}
-      \begin{tcolorbox}Größe: \qty{12}{\volt}, $\int_0^1 x\,\mathrm{d}x$\end{tcolorbox}
+      \begin{tcolorbox}Größe: \qty{12}{\volt}, $\int_0^1 x\,\mathrm{d}x = \fpeval{1/2}$\end{tcolorbox}
       \begin{lstlisting}[language=Python]
       def f(n): return n
       \end{lstlisting}
       \begin{circuitikz}\draw (0,0) to[R, l=$R_1$] (2,0);\end{circuitikz}
       \begin{tikzpicture}\begin{axis}[width=5cm]\addplot {x^2};\end{axis}\end{tikzpicture}
+      \begin{tikztimingtable}CLK & L 4{C} \\\end{tikztimingtable}
+      Seite \thepage\ / \pageref{LastPage}
       \end{document}
       ```
 
@@ -160,27 +166,33 @@ Halte danach fest:
 
       ```bash
       pdflatex --version | head -1
+      kpsewhich plex-sans.sty plex-mono.sty ngerman.ldf
+      pdflatex -interaction=nonstopmode -halt-on-error lernhelfer-test.tex > /dev/null; echo "exit=$?"
       pdflatex -interaction=nonstopmode -halt-on-error lernhelfer-test.tex > /dev/null; echo "exit=$?"
       grep -A2 '^!' lernhelfer-test.log
-      grep 'Font shape .* undefined' lernhelfer-test.log
+      grep -E 'Font shape .* undefined|You have requested' lernhelfer-test.log
       pdffonts lernhelfer-test.pdf
       pdftoppm -r 80 -png lernhelfer-test.pdf seite
       ```
 
-      Erwartet: `exit=0`, keine Zeile mit `!` und keine Warnung
-      `Font shape … undefined`. `pdffonts` nennt eine Schrift mit `LMMono`
-      im Namen. Fehlt das Paket lmodern, setzt LaTeX den Code ohne
-      Fehlermeldung in einer Serifenschrift. Dann fehlt `LMMono`, und das Log
-      warnt vor `T1/lmtt`.
+      Erwartet: `kpsewhich` gibt drei Pfade aus, beide Durchläufe enden mit
+      `exit=0`, es gibt keine Zeile mit `!`, keine Warnung
+      `Font shape … undefined` und keine Warnung `You have requested release`
+      (dann ist LaTeX älter als die Klasse verlangt). `pdffonts` nennt
+      Schriften mit `plxSans` und `plxMono` im Namen. Fehlt das Paket plex
+      (IBM Plex), setzt die Klasse ohne Fehlermeldung Helvetica und eine
+      andere Schreibmaschinenschrift. Dann fehlt `plex-sans.sty` in der
+      Ausgabe von `kpsewhich`, und `pdffonts` nennt z.B. `NimbusSanL`.
    3. Sieh dir das Bild der Seite an. Erwartet: ein Kasten mit „Größe: 12 V“
-      und einem Integral, die Codezeile in Schreibmaschinenschrift (alle
-      Zeichen gleich breit), ein Widerstand mit „R1“ und eine Parabel.
+      und einem Integral mit „= 0.5“, die Codezeile in Schreibmaschinenschrift
+      (alle Zeichen gleich breit), ein Widerstand mit „R1“, eine Parabel, ein
+      Taktsignal mit „CLK“ und „Seite 1 / 1“.
 
    `ok`: alles wie erwartet. `teilweise`: Das Dokument wird übersetzt, aber
-   etwas anderes weicht ab, z.B. die Schrift des Codes. `fehlgeschlagen`:
-   `pdflatex` fehlt oder bricht mit einem Fehler ab. Detail: Version, Exit-Code
-   und jede fehlende Datei (`File … not found`). Protokoll: alle Befehle mit
-   Ausgabe, die Schriften aus `pdffonts` und was das Bild zeigt.
+   etwas anderes weicht ab, z.B. fehlt IBM Plex. `fehlgeschlagen`: `pdflatex`
+   fehlt oder bricht mit einem Fehler ab. Detail: Version, Exit-Code, die
+   Schriften und jede fehlende Datei (`File … not found`). Protokoll: alle
+   Befehle mit Ausgabe, die Schriften aus `pdffonts` und was das Bild zeigt.
 4. **Rechnen mit Python:** Davon hängt ab, dass die Lernmodi Ergebnisse mit
    SymPy, NumPy und SciPy nachrechnen (Skill `lernen`, Abschnitt
    „Nachrechnen“).

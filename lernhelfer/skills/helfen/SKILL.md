@@ -118,8 +118,8 @@ die Kettenregel“. Claude wählt dann einen dieser Lernmodi:
 - Korrigieren: Der Nutzer schickt seine Lösung getippt oder als Foto. Claude
   bewertet sie wie ein strenger Prüfer, mit geschätzter Punktzahl, gibt
   Hinweise statt der Lösung und sucht zu jedem Fehler die Ursache. Danach geht
-  es bei Verständnisfehlern mit Erlernen weiter, sonst mit derselben Aufgabe
-  und neuen Werten als Übungsblatt auf Leicht.
+  es bei Verständnisfehlern mit Erlernen weiter, bei Fehlern in der
+  Rechentechnik mit Wiederholen, in dem der Nutzer die Regel selbst erklärt.
 Zeigt sich unterwegs eine Lücke, wechselt Claude zum Erlernen und sagt das
 deutlich an, beim Skript danach zurück zur selben Seite. Im Projekt schlägt
 Claude außerdem Themen vor, die 1, 3 und 7 Tage nach einem Problem wieder dran

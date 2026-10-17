@@ -234,10 +234,11 @@ die Änderung betrifft, vollständig.
     Aufgabe“.
   - Korrigieren: strenger Prüfer, Punkte als Schätzung, Hinweise statt
     Lösung, Fehlerursachen nach Fischgräte mit bis zu fünfmal „Warum?“,
-    danach Wechsel zu Erlernen (Verständnis, Vorwissen) oder zu Üben, mit
-    einem Übungsblatt auf Leicht aus derselben Aufgabe mit neuen Werten und
-    gleichem Lösungsweg (alle übrigen Ursachen). Transferaufgaben kamen dafür
-    nicht in Frage, sie helfen bei Flüchtigkeit und Zeitdruck wenig.
+    danach Wechsel zu Erlernen (Verständnis, Vorwissen) oder zu Wiederholen
+    mit einem Spiegeltest zur Regel hinter dem Fehler (Rechentechnik), sonst
+    Session beenden (Aufgabe falsch gelesen, Zeitdruck, Flüchtigkeit). Zu Üben
+    wechselt Korrigieren nicht (so hat es der Nutzer am 2026-10-17
+    entschieden).
   Wechsel innerhalb von `lernen` kündigt eine feste Nachricht an, mit
   optionaler Rückkehr (z.B. vom Skript zu Erlernen und zurück zur selben
   Seite).
@@ -546,8 +547,8 @@ Fällen:
   dazu einmal in einem Fach ohne Altklausur (Hinweis auf das geschätzte
   Niveau)
 - Foto einer fehlerhaften Lösung (Bewertung, Fischgräte, Eintrag mit Ursache
-  in `probleme.md`, danach bei Rechenfehlern Wechsel zu Üben mit einem Blatt
-  auf Leicht)
+  in `probleme.md`, danach Wechsel zu Erlernen oder bei Rechentechnik zu
+  Wiederholen mit einem Spiegeltest zur Regel)
 
 ## Arbeitsweise
 

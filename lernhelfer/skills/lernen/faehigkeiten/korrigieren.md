@@ -115,9 +115,11 @@ fragst bei jedem Fehler nach, bis seine eigentliche Ursache klar ist.
    - Gibt es Fehler der Ursache Verständnis oder Fehlendes Vorwissen, wechsle
      zu `skill:faehigkeiten/erlernen.md` mit dem Thema des ersten davon
      (`skill:SKILL.md`, Abschnitt „Fähigkeit wechseln“).
-   - Gibt es sonst Fehler, wechsle zu `skill:faehigkeiten/ueben.md` mit dem
-     Thema `Übungsblatt auf Leicht: {aufgabe} mit neuen Werten, gleicher
-     Lösungsweg`, wobei `{aufgabe}` die Aufgabe mit dem ersten dieser Fehler
-     ist. So rechnet der Nutzer dasselbe Verfahren noch einmal sorgfältig.
-   - Ohne Fehler beende die Session wie in `skill:SKILL.md`, Abschnitt
-     „Session beenden“.
+   - Gibt es sonst Fehler der Ursache Rechentechnik, wechsle zu
+     `skill:faehigkeiten/wiederholen.md` mit dem Thema `Spiegeltest:
+     {regel}`, wobei `{regel}` die Regel oder Technik hinter dem ersten
+     davon ist (z.B. `Kürzen in Brüchen`). So erklärt der Nutzer die Regel
+     selbst, statt sie nur nachzulesen.
+   - Sonst beende die Session wie in `skill:SKILL.md`, Abschnitt „Session
+     beenden“, denn gegen falsch gelesene Aufgaben, Zeitdruck und
+     Flüchtigkeit hilft weder Erklären noch Erklärenlassen.

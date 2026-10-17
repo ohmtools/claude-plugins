@@ -27,9 +27,8 @@ ist wie in der Klausur oder schwerer.
    „Gib mir Aufgabe 2 von Blatt 3 mit anderen Zahlen“), arbeite nach dem
    Abschnitt „Übungsblatt“. Will er Stufe für Stufe im Chat üben (z.B.
    „Bloom-Leiter“), arbeite nach dem Abschnitt „Bloom-Leiter“. Nach einem
-   Wechsel gilt das Thema als Anfrage (z.B. `Übungsblatt auf Leicht: Blatt 3,
-   Aufgabe 2 mit neuen Werten, gleicher Lösungsweg`). Ist das nicht
-   eindeutig, stell diese Rückfrage:
+   Wechsel gilt das Thema als Anfrage. Ist das nicht eindeutig, stell diese
+   Rückfrage:
 
    ```auswahl
    Wie willst du üben?

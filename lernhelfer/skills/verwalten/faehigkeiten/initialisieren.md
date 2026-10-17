@@ -48,7 +48,7 @@ Die Einrichtung ist fehlgeschlagen: {grund}. Sag mir, ob ich es noch einmal vers
 Nur wenn es noch keine Datenquelle gibt. Stell diese Rückfrage:
 
 ```auswahl
-Wo liegen deine Skripte, Übungen und Altklausuren? Am besten in einem GitHub-Repository, das nur dafür da ist. Dann finde ich sie in jedem Chat wieder, schlage gezielt darin nach und lege neue Dateien selbst dort ab.
+Wo sollen deine Skripte, Übungen und Altklausuren liegen? Am besten in einem GitHub-Repository, das nur dafür da ist. Dann finde ich sie in jedem Chat wieder und schlage gezielt darin nach. Das Repository darf noch leer sein: Dateien, die du mir im Chat anhängst, lege ich selbst dort ab.
 - Ich habe ein Repository
 - Ich habe noch keins
 - Ohne Datenquelle
@@ -168,7 +168,7 @@ Deine Datenquelle ist {url}.
 Bei „Ich habe noch keins“:
 
 ```text
-Leg auf github.com ein Repository für deine Unterlagen an. Skripte und Altklausuren anderer sind meist urheberrechtlich geschützt, wähle dann „Private“. Schreib danach noch einmal „/lernhelfer:verwalten Richte dieses Projekt als Lernhelfer ein“. Bis dahin merke ich mir trotzdem deine Fächer und Schwierigkeiten, deine Unterlagen hängst du mir im Chat an.
+Leg auf github.com ein Repository für deine Unterlagen an. Es darf leer bleiben, deine Dateien lege ich später selbst dort ab. Skripte und Altklausuren anderer sind meist urheberrechtlich geschützt, wähle dann „Private“. Schreib danach noch einmal „/lernhelfer:verwalten Richte dieses Projekt als Lernhelfer ein“. Bis dahin merke ich mir trotzdem deine Fächer und Schwierigkeiten, deine Unterlagen hängst du mir im Chat an.
 ```
 
 Bei „Ohne Datenquelle“:

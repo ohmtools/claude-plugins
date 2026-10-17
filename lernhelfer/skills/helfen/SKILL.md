@@ -74,17 +74,18 @@ ein.
         <antwort>
 Die Datenquelle ist der Ort, an dem Skripte, Übungsblätter, Altklausuren und das
 Modulhandbuch liegen. Zurzeit kann das nur ein GitHub-Repository sein,
-öffentlich oder privat. Skripte und Altklausuren anderer sind meist
-urheberrechtlich geschützt und gehören deshalb in ein privates Repository. Für
-ein privates Repository und fürs Hochladen braucht Claude Zugriff über die
-GitHub-Anbindung von Claude.ai. Die Datenquelle ist freiwillig. Ohne sie merkt
-sich Claude trotzdem die Fächer und Schwierigkeiten, die Unterlagen hängt der
-Nutzer dann im Chat an. Mit ihr legt Claude ein Verzeichnis an, findet in jedem
-Chat gezielt die richtigen Seiten und kann neue Dateien selbst dort ablegen.
-Einrichten oder nachtragen lässt sie sich mit „/lernhelfer:verwalten Richte
-dieses Projekt als Lernhelfer ein“. Darin liegt am besten pro Fach ein Ordner
-(Name klein geschrieben, Wörter mit Bindestrich, ohne Umlaute, z.B.
-lineare-algebra), das Modulhandbuch ohne Ordner.
+öffentlich oder privat. Es darf beim Einrichten noch leer sein, denn Dateien,
+die der Nutzer im Chat anhängt, legt Claude selbst dort ab. Skripte und
+Altklausuren anderer sind meist urheberrechtlich geschützt und gehören deshalb
+in ein privates Repository. Für ein privates Repository und fürs Hochladen
+braucht Claude Zugriff über die GitHub-Anbindung von Claude.ai. Die Datenquelle
+ist freiwillig. Ohne sie merkt sich Claude trotzdem die Fächer und
+Schwierigkeiten, die Unterlagen hängt der Nutzer dann im Chat an. Mit ihr legt
+Claude ein Verzeichnis an, findet in jedem Chat gezielt die richtigen Seiten und
+kann neue Dateien selbst dort ablegen. Einrichten oder nachtragen lässt sie sich
+mit „/lernhelfer:verwalten Richte dieses Projekt als Lernhelfer ein“. Darin
+liegt am besten pro Fach ein Ordner (Name klein geschrieben, Wörter mit
+Bindestrich, ohne Umlaute, z.B. lineare-algebra), das Modulhandbuch ohne Ordner.
         </antwort>
     </eintrag>
     <eintrag>

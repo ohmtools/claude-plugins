@@ -67,7 +67,7 @@ Datenquelle braucht, und fehlt `projekt:daten.xml`, führ sie nicht aus und
 antworte:
 
 ```text
-Dafür brauchst du eine Datenquelle, in der deine Skripte und Übungen liegen, z.B. ein GitHub-Repository. Schreib „/lernhelfer:verwalten Richte dieses Projekt als Lernhelfer ein“, dann richten wir sie ein.
+Dafür brauchst du eine Datenquelle für deine Skripte und Übungen, z.B. ein GitHub-Repository, auch ein leeres. Schreib „/lernhelfer:verwalten Richte dieses Projekt als Lernhelfer ein“, dann richten wir sie ein.
 ```
 
 ## Grundregeln

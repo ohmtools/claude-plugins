@@ -25,10 +25,10 @@ Skripten, Übungen und Altklausuren.
 2. Erstelle in Claude.ai ein Projekt.
 3. Starte darin einen Chat und sende
    `/lernhelfer:verwalten Richte dieses Projekt als Lernhelfer ein`.
-4. Claude fragt nach deiner Datenquelle (freiwillig: ein GitHub-Repository mit
-   deinen Unterlagen), mit Datenquelle auch nach automatischen Anweisungen, die
-   einmal pro Woche kurz vor dem Reset deines Wochenlimits indizieren und
-   Übungsblätter vorbereiten, und gibt dir einen Text für die
+4. Claude fragt nach deiner Datenquelle (freiwillig: ein GitHub-Repository für
+   deine Unterlagen, gern noch leer), mit Datenquelle auch nach automatischen
+   Anweisungen, die einmal pro Woche kurz vor dem Reset deines Wochenlimits
+   indizieren und Übungsblätter vorbereiten, und gibt dir einen Text für die
    Projektanweisungen.
 
 Ohne Projekt hilft der Lernhelfer auch, merkt sich dann aber nichts.

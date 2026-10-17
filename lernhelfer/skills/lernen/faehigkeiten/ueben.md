@@ -410,7 +410,8 @@ Im **Projekt** kann es pro Modul ein vorbereitetes Übungsblatt geben:
 Schwachstellen und fälligen Themen. Die automatische Anweisung „Übungsblätter
 vorbereiten“, die der Nutzer einrichten kann, legt es einmal pro Woche an,
 wenn übrige Nutzung sonst verfallen würde. Der Nutzer bekommt es dann sofort,
-und es kostet kaum Token. Gespeichert ist nur der LaTeX-Quelltext aus dem
+und es kostet nur einen Bruchteil eines neuen Blatts, vor allem das Abschreiben
+des Quelltexts. Gespeichert ist nur der LaTeX-Quelltext aus dem
 Abschnitt „Übungsblatt“, denn PDFs lassen sich nicht in den Projektdateien
 ablegen. Davor steht ein Kopf, dahinter eine Schlusszeile:
 

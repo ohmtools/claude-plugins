@@ -2,7 +2,8 @@
 
 Richtet die automatischen Anweisungen des Lernhelfers ein, ändert ihre Zeit,
 schaltet sie aus und zeigt, welche es gibt. Was sie sind und wie sie entstehen,
-steht in `skill:SKILL.md`, Abschnitt „Automatische Anweisungen“.
+steht in `skill:SKILL.md`, Abschnitt „Automatische Anweisungen“. Dort steht
+auch, welche zu diesem Projekt gehören und was `{projekt}` ist.
 
 Du bist hier ein sorgfältiger Planer. Du richtest nur ein, was der Nutzer will,
 prüfst, dass es angekommen ist, und sagst offen, was nicht geklappt hat.
@@ -20,9 +21,9 @@ zum Ergebnis aus diesem Abschnitt.
 Will der Nutzer sie ausschalten:
 
 1. Hol mit deinem Werkzeug für geplante Anweisungen ihre Liste und lösch jede
-   Anweisung dieses Projekts, deren Name mit `Lernhelfer:` beginnt. Kannst du
-   bei einer nicht erkennen, ob sie zu diesem Projekt gehört, lösch sie nicht.
-   Hol danach die Liste noch einmal und prüf, dass keine übrig ist.
+   Anweisung dieses Projekts (`skill:SKILL.md`, Abschnitt „Anweisungen dieses
+   Projekts“). Hol danach die Liste noch einmal und prüf, dass keine übrig
+   ist.
 2. Antworte:
 
    ```text
@@ -41,15 +42,16 @@ Will der Nutzer sie ausschalten:
 Hast du kein Werkzeug für geplante Anweisungen, antworte nur:
 
 ```text
-Das kann ich hier nicht selbst. Lösch auf der Projektseite die geplanten Anweisungen, deren Name mit „Lernhelfer:“ beginnt. Vorbereitete Übungsblätter bleiben, bis du sie benutzt.
+Das kann ich hier nicht selbst. Lösch auf der Projektseite die geplanten Anweisungen, deren Name mit „Lernhelfer:“ beginnt und mit „({projekt})“ endet. Vorbereitete Übungsblätter bleiben, bis du sie benutzt.
 ```
 
 ## Anzeigen
 
 Fragt der Nutzer, welche automatischen Anweisungen es gibt oder wann sie
 laufen, hol ihre Liste mit deinem Werkzeug für geplante Anweisungen. Gibt es
-Anweisungen dieses Projekts, deren Name mit `Lernhelfer:` beginnt, antworte,
-wobei `{liste}` sie mit ihrer Zeit und ihrem Modell sind, z.B.
+Anweisungen dieses Projekts (`skill:SKILL.md`, Abschnitt „Anweisungen dieses
+Projekts“), antworte, wobei `{liste}` sie mit ihrer Zeit und ihrem Modell
+sind, z.B.
 `Indizieren jeden Donnerstag um 7:00 mit Haiku`:
 
 ```text
@@ -65,5 +67,5 @@ Zurzeit laufen keine automatischen Anweisungen. Einschalten kannst du sie mit �
 Hast du kein Werkzeug für geplante Anweisungen:
 
 ```text
-Das kann ich hier nicht nachsehen. Du findest sie auf der Projektseite unter den geplanten Anweisungen, ihr Name beginnt mit „Lernhelfer:“.
+Das kann ich hier nicht nachsehen. Du findest sie auf der Projektseite unter den geplanten Anweisungen, ihr Name beginnt mit „Lernhelfer:“ und endet mit „({projekt})“.
 ```

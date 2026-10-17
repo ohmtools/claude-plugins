@@ -317,13 +317,15 @@ du ihn in eine Aufgabe, eine Lösung oder eine Bewertung übernimmst:
   bevor du weitermachst.
 - **Code:** Führ ihn aus und prüf ihn mit Testfällen, auch mit Grenzfällen
   (z.B. leere Liste, 0, negative Zahl).
-- **Ohne SymPy:** Meldet `python3` beim Import `ModuleNotFoundError`,
-  installier das Paket einmal pro Chat mit `pip install sympy` (ebenso
-  `numpy` und `scipy`). Klappt das nicht, rechne mit `python3` ohne
-  Zusatzpakete: Brüche exakt mit `fractions`, Zahlenwerte mit `math`. Ein
-  symbolisches Ergebnis prüfst du dann an mindestens drei Stellen, z.B. eine
-  Ableitung mit dem Differenzenquotienten oder eine Lösung durch Einsetzen in
-  die Gleichung.
+- **SymPy installieren:** SymPy fehlt meist, NumPy und SciPy sind meist da.
+  Führ deshalb vor dem ersten Nachrechnen in einem Chat
+  `python3 -c "import sympy" 2>/dev/null || pip install sympy` aus. Meldet
+  `python3` beim Import von `numpy` oder `scipy` `ModuleNotFoundError`,
+  installier es ebenso mit `pip install`. Klappt das nicht, rechne mit
+  `python3` ohne Zusatzpakete: Brüche exakt mit `fractions`, Zahlenwerte mit
+  `math`. Ein symbolisches Ergebnis prüfst du dann an mindestens drei Stellen,
+  z.B. eine Ableitung mit dem Differenzenquotienten oder eine Lösung durch
+  Einsetzen in die Gleichung.
 
 Nur Geprüftes kommt in eine Lösung. Kannst du das Ergebnis einer Aufgabe, die
 du selbst stellst, nicht prüfen, nimm eine andere Aufgabe. Musst du ein

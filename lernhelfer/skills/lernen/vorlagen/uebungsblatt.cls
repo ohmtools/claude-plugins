@@ -85,6 +85,10 @@
 % =====================================================================
 \RequirePackage[T1]{fontenc}
 \RequirePackage[utf8]{inputenc}
+% Ohne deutsche Trennmuster (Paket texlive-lang-german) trennt babel deutsche
+% Wörter nach englischen Regeln, dann besser gar nicht trennen.
+\@ifundefined{l@ngerman}
+  {\AtBeginDocument{\hyphenpenalty=10000 \emergencystretch=2em}}{}
 \IfFileExists{ngerman.ldf}
   {\RequirePackage[ngerman]{babel}}
   {\RequirePackage[provide=*,ngerman]{babel}}
@@ -126,7 +130,7 @@
   \RequirePackage[scale=0.95]{plex-mono}%
   \newcommand\ub@mono{\ttfamily}%
 }{%
-  \IfFileExists{t1xtt.fd}{\renewcommand\ttdefault{txtt}}{\RequirePackage{courier}}%
+  \IfFileExists{t1txtt.fd}{\renewcommand\ttdefault{txtt}}{\RequirePackage{courier}}%
   \newcommand\ub@mono{\sffamily}%
 }
 \newcommand\ub@code{\ttfamily}

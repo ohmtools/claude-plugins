@@ -224,6 +224,10 @@ Nutzer, jede in einem neuen Chat im Projekt:
 Sie laufen am besten etwa zwei Stunden vor dem Reset des Wochenlimits (zu
 sehen unter Settings > Usage), dann verbrauchen sie Nutzung, die sonst
 verfallen würde. Claude fragt danach, wenn es die Datenquelle einrichtet.
+Ihr Name endet mit dem Namen des Projekts, z.B. „Lernhelfer: Indizieren
+(Mathe)“, denn die Liste der geplanten Anweisungen zeigt die aller Projekte.
+Wer ein Projekt umbenennt, schaltet sie deshalb vorher aus und danach wieder
+ein.
 Einschalten oder die Zeit ändern geht mit „/lernhelfer:verwalten Richte die
 automatischen Anweisungen ein“, ausschalten mit „/lernhelfer:verwalten Schalte
 die automatischen Anweisungen aus“. Kann Claude sie nicht selbst anlegen,

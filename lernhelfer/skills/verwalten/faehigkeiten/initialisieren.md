@@ -97,7 +97,7 @@ Bei „Ich habe ein Repository“:
    bei einem privaten:
 
    ```text
-   Privates GitHub-Repository. Hol dir vor dem ersten Zugriff in diesem Chat Lesezugriff über die GitHub-Anbindung deiner Arbeitsumgebung (z.B. ein Werkzeug add_repo). Aus ihrer Antwort zählt nur, ob du Zugriff hast.
+   Privates GitHub-Repository. Hol dir vor dem ersten Zugriff in diesem Chat Lesezugriff über die GitHub-Anbindung deiner Arbeitsumgebung (z.B. ein Werkzeug add_repo). Aus ihrer Antwort zählt nur, ob du Zugriff hast. Hast du kein solches Werkzeug (z.B. in einer automatischen Anweisung), klone direkt, denn dann hat der Chat den Zugriff meist schon. Erst wenn der Klon scheitert, fehlt er.
    ```
 
    ```xml

@@ -143,13 +143,39 @@ benachrichtigung: push
 Das ist eine automatische Anweisung, die der Nutzer eingerichtet hat. …
 ```
 
-- `name`: Name der Anweisung. Sie heißt `Lernhelfer: {name}`.
+- `name`: Name der Anweisung. Sie heißt `Lernhelfer: {name} ({projekt})`
+  (Abschnitt „Anweisungen dieses Projekts“).
 - `modell`: die Reihe des Modells, z.B. `Haiku` oder `Opus`. Nimm die neueste
   Fassung dieser Reihe, die du kennst.
 - `benachrichtigung`: wie der Nutzer nach einem Lauf benachrichtigt wird:
   `push`, `email` oder `slack`, mehrere durch Kommas getrennt, oder `keine`.
 - Alles nach dem Frontmatter ist der Prompt. Übernimm ihn wörtlich, ohne die
   Leerzeilen am Anfang und am Ende.
+
+Eine Anweisung läuft in dem Projekt, in dem du sie anlegst, mit dem Plugin und
+dem GitHub-Zugriff, den dieser Chat beim Anlegen hat. Das gilt auch, wenn dein
+Werkzeug dafür keine Einstellung hat oder keine Plugins nennt (z.B.
+`enabled_plugins: []`). Im Lauf fehlt die GitHub-Anbindung (z.B. ein Werkzeug
+`add_repo`), einen fehlenden Zugriff kann er also nicht nachholen.
+
+### Anweisungen dieses Projekts
+
+Die Liste der geplanten Anweisungen enthält die aller Projekte des Nutzers und
+nennt bei keiner ihr Projekt. Deshalb steht der Name des Projekts im Namen
+jeder Anweisung. `{projekt}` ist der Name dieses Projekts, wie ihn die
+Projektübersicht nennt (z.B. ein Feld `name` von `project_info`), nicht die
+Überschrift der Projektanweisung. Findest du dort keinen, antworte und warte
+auf die Antwort:
+
+```text
+Wie heißt dieses Projekt in Claude.ai? Ich brauche den Namen, damit ich seine automatischen Anweisungen von denen deiner anderen Projekte unterscheiden kann.
+```
+
+Zu diesem Projekt gehört jede Anweisung, deren Name mit `Lernhelfer:` beginnt
+und mit ` ({projekt})` endet. Alle anderen änderst und löschst du nie, auch
+wenn sie ähnlich heißen, denn sie laufen in anderen Projekten.
+
+### Einrichten
 
 Verlangt eine Fähigkeit, die automatischen Anweisungen einzurichten:
 
@@ -180,34 +206,43 @@ Verlangt eine Fähigkeit, die automatischen Anweisungen einzurichten:
    Wann sollen sie laufen? Nenn mir Wochentag und Uhrzeit.
    ```
 
-   `{zeitpunkt}` ist die gewählte Zeit. Alle Zeiten gelten in der Zeitzone
-   `Europe/Berlin`, außer der Nutzer nennt eine andere.
+   `{zeitpunkt}` ist die gewählte Zeit.
 3. **Anlegen:** Geh die Dateien in `skill:geplant/` nach ihrem Namen
    aufsteigend durch. Die erste läuft zum `{zeitpunkt}`, jede weitere 30
    Minuten nach der vorigen, denn spätere bauen auf früheren auf (z.B.
-   Übungsblätter auf einem aktuellen Index).
-   1. **Alte merken:** Kann dein Werkzeug für geplante Anweisungen sie
-      auflisten, merk dir jede Anweisung dieses Projekts, deren Name mit
-      `Lernhelfer:` beginnt. Kannst du bei einer nicht erkennen, ob sie zu
-      diesem Projekt gehört, lass sie weg und notiere sie für
-      `{abweichungen}`.
-   2. **Neue anlegen:** Leg für jede Datei eine Anweisung an: Name
-      `Lernhelfer: {name}`, einmal pro Woche zu ihrer Zeit, jedes Mal in einem
-      neuen Chat in diesem Projekt, mit Modell und Benachrichtigung aus dem
-      Frontmatter und dem Prompt. Kann dein Werkzeug sie auflisten, prüf, dass
-      jede da ist.
-   3. **Alte löschen:** Lösch erst danach die Anweisungen aus Punkt 1, damit
-      keine doppelt läuft. In dieser Reihenfolge bleiben nach einem Abbruch
-      höchstens alte und neue nebeneinander, nie gar keine.
+   Übungsblätter auf einem aktuellen Index). Alle Zeiten gelten in der
+   Zeitzone `Europe/Berlin`, außer der Nutzer nennt eine andere.
+   1. **Zugriff:** Beginnt `<art>` in `projekt:daten.xml` mit „Privates
+      GitHub-Repository“, hol dir in diesem Chat Lesezugriff, wie `<art>` es
+      beschreibt, falls du ihn hier noch nicht geholt hast. Sonst fehlt er
+      jedem Lauf.
+   2. **Alte merken:** Kann dein Werkzeug für geplante Anweisungen sie
+      auflisten, merk dir die ID jeder Anweisung dieses Projekts (Abschnitt
+      „Anweisungen dieses Projekts“). Gibt es schon welche, legst du trotzdem
+      neue an, denn nur so bekommen sie den aktuellen Prompt.
+   3. **Neue anlegen:** Leg für jede Datei eine Anweisung an: Name
+      `Lernhelfer: {name} ({projekt})`, einmal pro Woche zu ihrer Zeit, jedes
+      Mal in einem neuen Chat, mit Modell und Benachrichtigung aus dem
+      Frontmatter und dem Prompt. Kann dein Werkzeug zum Anlegen kein Modell
+      setzen, setz es gleich danach mit dem Werkzeug zum Ändern (z.B.
+      `update_trigger` mit `model`). Der Nutzer hat die Modelle gewählt, als
+      er die Anweisungen einrichten ließ, denn sie gehören zu ihnen und
+      stehen in der Rückfrage aus Schritt 2. Kann dein Werkzeug die
+      Anweisungen auflisten, prüf danach, dass jede neue mit Zeit und Modell
+      da ist.
+   4. **Alte löschen:** Lösch erst danach die Anweisungen aus Punkt 2 anhand
+      ihrer ID, damit keine doppelt läuft. In dieser Reihenfolge bleiben nach
+      einem Abbruch höchstens alte und neue nebeneinander, nie gar keine.
 
    Notiere für `{abweichungen}` jede Einstellung, die du nicht so setzen
-   konntest (z.B. eine Benachrichtigung über Slack), mit dem, was jetzt gilt.
+   konntest (z.B. eine Benachrichtigung über Slack oder ein Modell), mit dem,
+   was jetzt gilt.
 4. **Ohne Werkzeug:** Hast du kein Werkzeug für geplante Anweisungen oder
    schlägt das Anlegen auch beim zweiten Versuch fehl, lösch keine Anweisung.
    Die Nachricht zum Ergebnis ist dann diese:
 
    ````text
-   Die automatischen Anweisungen kann ich hier nicht selbst anlegen. Leg sie auf der Projektseite als geplante Anweisungen an, jede einmal pro Woche, und lösch dort vorher alte, deren Name mit „Lernhelfer:“ beginnt:
+   Die automatischen Anweisungen kann ich hier nicht selbst anlegen. Leg sie auf der Projektseite als geplante Anweisungen an, jede einmal pro Woche, und lösch dort vorher alte, deren Name mit „Lernhelfer:“ beginnt und mit „({projekt})“ endet:
 
    {anleitung}
    ````
@@ -216,7 +251,7 @@ Verlangt eine Fähigkeit, die automatischen Anweisungen einzurichten:
    `{zeit}` ihre Zeit aus Schritt 3 ist und `{prompt}` ihr Prompt:
 
    ````text
-   **Lernhelfer: {name}**: jeden {zeit}, Modell {modell}, Benachrichtigung {benachrichtigung}. Kopiere diese Anweisung vollständig:
+   **Lernhelfer: {name} ({projekt})**: jeden {zeit}, Modell {modell}, Benachrichtigung {benachrichtigung}. Kopiere diese Anweisung vollständig:
 
    ```text
    {prompt}
@@ -224,8 +259,9 @@ Verlangt eine Fähigkeit, die automatischen Anweisungen einzurichten:
    ````
 
 5. **Ergebnis:** Sonst ist die Nachricht zum Ergebnis diese, wobei `{liste}`
-   die Anweisungen mit ihrer Zeit sind, z.B.
-   `Indizieren jeden Donnerstag um 7:00, Übungsblätter vorbereiten jeden Donnerstag um 7:30`:
+   die Anweisungen mit Zeit und Modell sind, die du in diesem Chat angelegt
+   hast, z.B.
+   `Indizieren jeden Donnerstag um 7:00 mit Haiku, Übungsblätter vorbereiten jeden Donnerstag um 7:30 mit Opus`:
 
    ```text
    Die automatischen Anweisungen sind eingerichtet: {liste}. Ändern oder ausschalten kannst du sie jederzeit, z.B. mit „/lernhelfer:verwalten Schalte die automatischen Anweisungen aus“.

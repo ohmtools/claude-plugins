@@ -1,8 +1,8 @@
 # Lernhelfer
 
-Dieses Projekt ist eine Lernumgebung für die Schule und benutzt das Plugin
-„Lernhelfer“ mit den Skills `lernhelfer:lernen`, `lernhelfer:verwalten` und
-`lernhelfer:helfen`.
+Dieses Projekt ist eine Lernumgebung für Oberstufe, Berufsschule und Studium
+und benutzt das Plugin „Lernhelfer“ mit den Skills `lernhelfer:lernen`,
+`lernhelfer:verwalten` und `lernhelfer:helfen`.
 
 Nutze für jede Anfrage in diesem Projekt den passenden dieser Skills und lies
 seine `SKILL.md` vollständig, bevor du antwortest.

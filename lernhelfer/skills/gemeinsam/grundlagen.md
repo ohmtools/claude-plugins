@@ -42,11 +42,13 @@ liegt:
   nicht. Pfade mit Ordner schreibst du ohne Schrägstrich am Anfang.
 - Im Chat angehängte Dateien liegen in deiner Arbeitsumgebung, meist unter
   `/root/.claude/uploads/{sitzung}/` mit einem Präfix aus acht Hex-Zeichen und
-  Bindestrich vor dem Originalnamen (z.B. `7a57d930-Blatt 3.pdf`). Such sie
-  mit `find /root/.claude/uploads -name '*{name}' 2>/dev/null`, wobei `{name}`
-  der Originalname ist. Findest du dort nichts, such mit
-  `find / -xdev -name '*{name}' 2>/dev/null` und lass Treffer in `arbeit:`
-  weg, die stammen von dir.
+  Bindestrich vor dem Originalnamen (z.B. `7a57d930-Blatt 3.pdf`). Nennt ein
+  Hinweis der Umgebung zur Nachricht des Nutzers ihren Pfad, nimm ihn. Sonst
+  such sie mit `find /root/.claude/uploads -name '*{name}' 2>/dev/null`, wobei
+  `{name}` der Originalname ist. Fotos heißen oft nur `image.jpg`, dann sind
+  die aus der letzten Nachricht die neuesten Treffer (`ls -t`). Findest du dort
+  nichts, such mit `find / -xdev -name '*{name}' 2>/dev/null` und lass Treffer
+  in `arbeit:` weg, die stammen von dir.
 
 ## Betriebsart
 
@@ -85,8 +87,9 @@ Stell sie mit den Auswahlfeldern mit Rückfrage (Knöpfe, die der Nutzer antippt
 statt eine Antwort zu tippen). Übernimm Frage und Optionen wörtlich und in
 dieser Reihenfolge. Verlangt das Werkzeug zusätzlich eine kurze Überschrift,
 nimm ein Stichwort aus der Frage (z.B. „Fach“). Hast du keine Auswahlfelder
-oder hat die Rückfrage mehr Optionen, als die Auswahlfelder zulassen, gib die
-Frage als Text aus und die Optionen als nummerierte Liste darunter. Warte in
+oder hat die Rückfrage mehr Optionen, als die Auswahlfelder zulassen (in
+Claude.ai höchstens vier), gib die Frage als Text aus und die Optionen als
+nummerierte Liste darunter. Warte in
 beiden Fällen auf die Antwort. Für Platzhalter gilt dasselbe wie bei
 `text`-Blöcken. Folgen mehrere `auswahl`-Blöcke ohne Schritt dazwischen
 aufeinander und erlaubt dein Werkzeug mehrere Fragen in einem Aufruf, stell

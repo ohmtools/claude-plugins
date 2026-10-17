@@ -28,7 +28,7 @@ und die Projektdateien.
 | Lernmodi (Erlernen, Wiederholen, Üben, Korrigieren) und Schwachstellen | `lernhelfer/skills/lernen/faehigkeiten/` |
 | Vorlagen für Ausgaben (Übungsblatt: LaTeX-Klasse mit Anleitung und `build.sh`) | `lernhelfer/skills/lernen/vorlagen/`, Konvention in `entwicklung.md` |
 | Verwalten: Fähigkeiten und ihre Verfügbarkeit, Projektstruktur, Dateien der Datenquelle, automatische Anweisungen einrichten | `lernhelfer/skills/verwalten/SKILL.md` |
-| Automatische Anweisungen (geplante Anweisungen in Claude.ai): Prompts, Einrichten, Ausschalten | `lernhelfer/skills/verwalten/geplant/`, `lernhelfer/skills/verwalten/faehigkeiten/automatische-anweisungen.md` |
+| Automatische Anweisungen (geplante Anweisungen in Claude.ai): Prompts, Name mit Projekt, Einrichten, Ausschalten | `lernhelfer/skills/verwalten/geplant/`, `lernhelfer/skills/verwalten/faehigkeiten/automatische-anweisungen.md` |
 | Vorrat an Übungsblättern (`projekt:vorrat/`) | `lernhelfer/skills/lernen/faehigkeiten/ueben.md`, „Vorrat“, und `lernhelfer/skills/verwalten/geplant/2-uebungsblaetter-vorbereiten.md` |
 | Konventionen für Fähigkeiten | `lernhelfer/skills/verwalten/faehigkeiten/entwicklung.md`, „Änderungen machen“, Schritt 2 |
 | Einrichten, Datenquelle anlegen | `lernhelfer/skills/verwalten/faehigkeiten/initialisieren.md` |
@@ -77,31 +77,28 @@ die Änderung betrifft, vollständig.
     `initialisieren.md` und Befehle in `hochladen.md`, dort auch das leere
     Repository (`Not a valid object name HEAD`, dann
     `symbolic-ref HEAD refs/heads/main`).
-  - Zugriff am Exit-Code von `ls-remote` erkennen: `initialisieren.md`,
-    Schritt 3, und `testen.md`, Test 1.
   - GitHub-Anbindung nur für den Zugriff, nicht für den Klon: `initialisieren.md`
-    (Schritt 3, Punkt 4, und Vorlage für `{zugriff}`), `hochladen.md`,
-    Schritt 3, und `testen.md`, Test 1.
+    (Schritt 3, Punkt 4, und Vorlage für `{zugriff}`) und `hochladen.md`,
+    Schritt 3.
+  - Lesezugriff auf ein privates Repository vor dem Anlegen automatischer
+    Anweisungen, weil ein Lauf keine GitHub-Anbindung hat: `verwalten/SKILL.md`
+    („Automatische Anweisungen“, „Einrichten“, Schritt 3), `testen.md`,
+    Test 2, und die Vorlage für `{zugriff}` in `initialisieren.md` (ohne
+    Werkzeug direkt klonen).
   - Beschreibung, Lernziele und Angaben zur Prüfung aus dem Modulhandbuch
     auslesen: `indizieren.md`, Schritt 5, und `modul-bearbeiten.md`,
     „Lernziele übernehmen“, Schritte 3 und 4.
   - Aufbau von `info.md` (Abschnitte Beschreibung, Lernziele, Prüfung):
     Vorlagen in `grundlagen.md` und `modul-bearbeiten.md`. `ueben.md`
     („Übungsblatt“, Schritt 1) liest `Dauer` und `Hilfsmittel` daraus.
-  - Pakete und Schriften der Übungsblatt-Vorlage: Abschnitte 1 und 2 von
-    `lernen/vorlagen/uebungsblatt.cls` und Testdokument in `testen.md`,
-    Test 3. Das Testdokument liest die Vorlage nicht selbst, weil ein Skill
-    keine Dateien eines anderen Skills liest.
+  - Schriften und Silbentrennung der Übungsblatt-Vorlage: Abschnitte 1 und 2
+    von `lernen/vorlagen/uebungsblatt.cls` und `ANLEITUNG.md`, Kapitel 1.
   - Dateien und Übersetzen der Übungsblatt-Vorlage: Kopf von
     `uebungsblatt.cls`, `uebungsblatt.tex` und `beispiel.tex`,
     `ANLEITUNG.md` (Kapitel 1, 3 und 11), `build.sh` und `ueben.md`
     („Übungsblatt“, Schritte 7 und 8).
   - Darstellungen der Übungsblatt-Vorlage: `ueben.md` („Übungsblatt“,
     Schritt 4) und `ANLEITUNG.md`, Kapitel 12.
-  - SymPy, NumPy und SciPy nachinstallieren mit `pip install`:
-    `lernen/SKILL.md` („Nachrechnen“) und `testen.md`, Test 4.
-  - Darstellung als HTML-Datei ohne Dateien aus dem Internet: `erlernen.md`,
-    Schritt 3, und `testen.md`, Test 5.
   - Erkennen des Modulhandbuchs am Dateinamen („Modulhandbuch“ oder
     „Lehrplan“): `verwalten/SKILL.md` („Dateien der Datenquelle“), die
     Abschlussnachricht in `initialisieren.md`, `modul-bearbeiten.md` und
@@ -121,8 +118,11 @@ die Änderung betrifft, vollständig.
   - Nach einem Update die automatischen Anweisungen neu einrichten:
     `entwicklung.md` („Exportieren“, `{automatik-hinweis}`) und
     `helfen/SKILL.md`.
-  - Schlusszeile `% Ende des Lernhelfer-Vorrats`: `ueben.md` („Vorrat“) und
-    `testen.md`, Test 8.
+  - Name der automatischen Anweisungen `Lernhelfer: {name} ({projekt})` mit
+    dem Projektnamen aus der Projektübersicht: `verwalten/SKILL.md`
+    („Automatische Anweisungen“), die Nachrichten ohne Werkzeug in
+    `automatische-anweisungen.md`, `helfen/SKILL.md` und `testen.md`
+    (Test 1, `Lernhelfer-Test ({projekt})` in Test 2).
   - Schreibreihenfolge bei `daten.xml`: in `indizieren.md` zuerst der Index,
     zuletzt `daten.xml`, in `modul-bearbeiten.md` („Neues Modul anlegen“,
     „Dateien zuordnen“) zuerst `daten.xml`, dann der Index. Beides folgt aus
@@ -230,7 +230,9 @@ die Änderung betrifft, vollständig.
   2026-10-16, die es vor allem fürs Design gibt: Klasse `uebungsblatt.cls`
   (Deckblatt mit Punkten und Aufgabenliste, jede Aufgabe auf einer eigenen
   Seite, jede Seite vertikal zentriert, damit man am Tablet, z.B. in
-  GoodNotes, ohne Scrollen arbeitet, Schrift IBM Plex, sonst Helvetica),
+  GoodNotes, ohne Scrollen arbeitet, Schrift IBM Plex, sonst Helvetica und
+  für Code TX-Typewriter, ohne deutsche Trennmuster keine Silbentrennung im
+  Blocksatz, so hat es der Nutzer am 2026-10-17 entschieden),
   `ANLEITUNG.md` mit allen Befehlen für KI-Modelle, `beispiel.tex` mit
   `material/` als Beispiel für jeden Befehl. Aufgaben und Lösungen stehen in
   einer Datei: `build.sh [name]` erzeugt daraus `{name}.pdf` ohne und
@@ -243,8 +245,10 @@ die Änderung betrifft, vollständig.
   `uebungsblatt.tex`, die Hilfsdateien `vorlage-loesung.tex` und
   `beispiel-loesung.tex` sind entfallen, die Versionsangabe der Klasse ist
   entfernt (Konvention), Kopf von Klasse, Vorlage und Beispiel und die
-  Kapitel 1, 3 und 11 der Anleitung beschreiben `build.sh`. Die
-  mitgelieferten PDFs sind nicht im Plugin.
+  Kapitel 1, 3 und 11 der Anleitung beschreiben `build.sh`, und die Klasse
+  prüft `t1txtt.fd` statt `t1xtt.fd` (Tippfehler, dadurch immer Courier) und
+  trennt ohne `\l@ngerman` nicht. Die mitgelieferten PDFs sind nicht im
+  Plugin.
 - Übungsblatt in zwei Phasen (Wunsch des Nutzers, damit die Qualität der
   Aufgaben nicht unter vielen geladenen Regeln leidet): `ueben.md` lässt
   erst Aufgaben und Lösungen als `arbeit:uebungsblatt/entwurf.md` schreiben
@@ -260,16 +264,27 @@ die Änderung betrifft, vollständig.
   verfällt, empfiehlt Claude zwei Stunden vor dem Reset des Wochenlimits (der
   Nutzer nennt den Reset aus Settings > Usage, Zeitzone `Europe/Berlin`). Jede
   Datei in `lernhelfer/skills/verwalten/geplant/` wird eine Anweisung
-  `Lernhelfer: {name}`: Frontmatter `name`, `modell` (nur die Reihe, gemeint
-  ist die neueste Fassung) und `benachrichtigung` (`push`, `email`, `slack`
-  oder `keine`), danach der Prompt. Der Prompt kommt wörtlich in Claude.ai, so
-  hat es der Nutzer entschieden, deshalb nach Updates neu einrichten. Die
+  `Lernhelfer: {name} ({projekt})`: Frontmatter `name`, `modell` (nur die
+  Reihe, gemeint ist die neueste Fassung) und `benachrichtigung` (`push`,
+  `email`, `slack` oder `keine`), danach der Prompt. Der Projektname steht im
+  Namen, weil die Liste die Anweisungen aller Projekte ohne ihr Projekt zeigt.
+  Claude nimmt ihn aus der Projektübersicht (so hat es der Nutzer am
+  2026-10-17 entschieden, ohne ihn zu speichern), sonst fragt es. Eine
+  Anweisung läuft im Projekt des anlegenden Chats, mit dessen Plugin und
+  GitHub-Zugriff, deshalb holt Claude vor dem Anlegen Lesezugriff auf ein
+  privates Repository. Kennt das Werkzeug beim Anlegen kein Modell, setzt
+  Claude es danach (`update_trigger`). Der Prompt kommt wörtlich in
+  Claude.ai, so hat es der Nutzer entschieden, deshalb nach Updates neu
+  einrichten. Die
   Nummer im Dateinamen gibt die Reihenfolge, 30 Minuten Abstand. Zurzeit:
   Indizieren (Haiku) und Übungsblätter vorbereiten (Opus), beide mit `push`.
   „Initialisieren“ fragt danach, wenn es eine Datenquelle einrichtet, sonst
   „Automatische Anweisungen“ (einrichten, Zeit ändern, ausschalten,
-  anzeigen). Neue Anweisungen werden vor dem Löschen der alten angelegt. Ohne
-  Werkzeug nennt Claude die Einstellungen zum Anlegen von Hand.
+  anzeigen). Neue Anweisungen werden vor dem Löschen der alten angelegt, die
+  alten löscht Claude anhand ihrer ID. Das Löschen entfernt auch die Chats
+  ihrer Läufe, der Nutzer wollte am 2026-10-17 trotzdem kein Ändern der
+  vorhandenen. Ohne Werkzeug nennt Claude die Einstellungen zum Anlegen von
+  Hand.
 - Vorrat: pro Modul höchstens ein Übungsblatt, 45 Minuten, Schwachstellen und
   fällige Themen (so hat es der Nutzer entschieden), als LaTeX-Quelltext,
   weil PDFs nicht in die Projektdateien passen, deshalb ohne eigene Dateien
@@ -299,11 +314,14 @@ die Änderung betrifft, vollständig.
 
 ## Testläufe
 
-Mit dem Plugin am 2026-10-16: erst im Browser je einmal mit Haiku 5.5 und
-Opus 5.5 (alle damaligen Tests), dann in der iPad-App mit Opus 5.5 (Dateien
-ohne Ordner, Hochladen in den Hauptzweig), in einem Projekt mit privater
-Datenquelle. Davor 2026-10-10 ohne Plugin, Version 0.11.2 und 0.14.0, im
-Browser und in der iPad-App.
+Mit dem Plugin am 2026-10-17: „Testen“ im Browser und in der iPad-App, je mit
+Opus 5.5 (Tests 1 bis 8), gleichzeitig in zwei Projekten desselben Kontos mit
+derselben privaten Datenquelle, dazu „Initialisieren“ in drei Projekten
+(Browser mit Haiku 5.5 und Opus 5.5, iPad-App mit Opus 5.5). Am 2026-10-16
+erst im Browser je einmal mit Haiku 5.5 und Opus 5.5 (alle damaligen Tests),
+dann in der iPad-App mit Opus 5.5 (Dateien ohne Ordner, Hochladen in den
+Hauptzweig), in einem Projekt mit privater Datenquelle. Davor 2026-10-10 ohne
+Plugin, Version 0.11.2 und 0.14.0, im Browser und in der iPad-App.
 
 ### Bestätigt
 
@@ -312,10 +330,27 @@ Browser und in der iPad-App.
   `README.md` und `CLAUDE.md`. Die Rückmeldung des Werkzeugs `Skill` beginnt
   mit „Base directory for this skill: …/skills/{skill}“, daraus ergeben sich
   `skill:` und `plugin:`, und `../gemeinsam/grundlagen.md` wird gefunden.
-  Installiert über `marketplace.json` mit `"source": "./"`.
+  Installiert über `marketplace.json` mit `"source": "./"`. In einer
+  geplanten Anweisung liegt es unter `/root/.claude/plugins/synced/…/lernhelfer/`,
+  und der Skill kommt über den Befehl im Prompt, nicht über das Werkzeug
+  `Skill`.
 - Werkzeuge: `curl`, `git` 2.43, `zip`, `unzip`, `file`, `sha256sum`,
   `python3` 3.13, `pdftoppm`, `pdftotext` und `pdfinfo` (poppler 24.02),
   `pypdf`, `pdfplumber`, `pypdfium2`. PyMuPDF fehlt. `gh` ist vorinstalliert.
+  NumPy 2.5.3 und SciPy 1.18.1 sind da, SymPy fehlt, `pip install sympy`
+  klappt ohne `--break-system-packages` (SymPy 1.14.0). Websuche mit
+  `WebSearch` und `WebFetch`.
+- LaTeX: pdfTeX 1.40.25 (TeX Live 2023/Debian) mit texlive-base, -binaries,
+  -fonts-recommended, -lang-greek, -latex-base, -latex-extra,
+  -latex-recommended, -pictures, -science und -xetex, ohne -fonts-extra (kein
+  IBM Plex) und -lang-german (`ngerman.ldf` und deutsche Trennmuster fehlen,
+  babel trennt mit `provide=*` nach englischen Regeln). Ein Testdokument mit
+  den Paketen der Vorlage wurde ohne Fehler übersetzt (`NimbusSanL`,
+  `NimbusMonL`). Lokal mit denselben Paketen aus Ubuntu 24.04 geprüft: Mit
+  `t1txtt.fd` setzt die Klasse Code in TX-Typewriter (`t1xtt`), ohne
+  Trennmuster trennt sie nicht, das Beispiel hat weiter 18 und 23 Seiten ohne
+  Overfull-Box, `build.sh` braucht dafür etwa 16 s, für die leere Vorlage
+  etwa 5 s. Mit Plex nennt `pdffonts` `plxSans` und `plxMono`.
 - Projektdateien: Werkzeug `Projects` mit `method` `project_info`,
   `project_read`, `project_search`, `project_write` (`content` oder
   `local_path`, nur aus `/home/claude`, ersetzt ganze Dateien, meldet
@@ -326,7 +361,9 @@ Browser und in der iPad-App.
   `path` und `created_at`, neueste zuerst, ohne Ordner, dazu
   `knowledge_size`. Pfade mit Ordner bleiben, wie geschrieben. Ersetzen mit
   `project_write` behält `doc_uuid` und `created_at` (über die Projektseite
-  ändert sich `created_at`).
+  ändert sich `created_at`). Eine `.tex`-Datei mit 403 Zeilen (25 KB) aus
+  `local_path` liefert `project_read` unverändert inline im Feld `content`,
+  nicht als Datei, `project_delete` löscht sie.
 - Dateien ohne Ordner: Laut Beschreibung von `project_write` landet ein Pfad
   ohne `/` unter `claude/`. Mit Schrägstrich (`/daten.xml`) klappen
   Schreiben, Lesen, Ersetzen (`replaced: true`, kein zweiter Eintrag) und
@@ -334,10 +371,16 @@ Browser und in der iPad-App.
   scheitert mit `No doc or file at "…". Available: …` und allen Pfaden.
 - Chat: Angehängte Dateien liegen byte-genau unter
   `/root/.claude/uploads/{sitzung}/{8 Hex-Zeichen}-{name}`. `find /` findet
-  dabei auch eigene Dateien in `/home/claude`. `SendUserFile` stellt Dateien
-  bereit, `AskUserQuestion` zeigt Knöpfe (Überschrift `header` höchstens 12
-  Zeichen, ergänzt selbst „Other“). Eine PDF-Seite als Bild klappt mit
-  `pdftoppm` und `Read`.
+  dabei auch eigene Dateien in `/home/claude`. Fotos kommen als JPEG an
+  (Browser 2576×1932, iPad-App 1999×999), heißen meist `image.jpg`, stehen
+  auch direkt im Chat, und ein Hinweis der Umgebung zur Nachricht nennt ihren
+  Pfad. Handschrift war lesbar. `SendUserFile` stellt Dateien bereit
+  (`display` `render` oder `attach`). Eine HTML-Datei mit SVG und Knopf
+  funktioniert im Browser und in der iPad-App. `AskUserQuestion` zeigt Knöpfe
+  (1 bis 4 Fragen, je 2 bis 4 Optionen, Überschrift `header` höchstens 12
+  Zeichen, ergänzt selbst „Other“). Fünf oder eine Option lehnt es mit
+  `InputValidationError` ab, der Nutzer sieht dann nichts. Eine PDF-Seite als
+  Bild klappt mit `pdftoppm` und `Read`.
 - GitHub: `mcp__claude-code-remote__add_repo` (`owner`, `repo`, `access`
   read/push) gibt git über den Proxy Zugriff, pro Chat. Ihre Antwort verlangt
   einen Klon nach `/home/claude/{repo}` und den Aufruf von
@@ -351,7 +394,26 @@ Browser und in der iPad-App.
   gleich `rev-parse`). `git push --delete` lehnt der Proxy mit HTTP 403 ab.
   Pushes melden manchmal `push negotiation failed` oder
   `fatal: expected 'acknowledgments'`, enden aber mit Exit-Code 0.
-  `api.github.com` und Archive über `github.com` liefern HTTP 403.
+  `api.github.com` und Archive über `github.com` liefern HTTP 403. Ein nicht
+  vorhandenes und ein privates Repository ohne Freischaltung enden bei
+  `ls-remote` gleich (`could not read Username …`, Exit-Code 128). Nach
+  `add_repo` (ohne Bestätigung des Nutzers) endet das private mit 0, das nicht
+  vorhandene weiter mit 128.
+- Geplante Anweisungen: `mcp__claude-code-remote__create_trigger` (`name`,
+  `prompt`, `initiation`, `cron_expression` mit `CRON_TZ=` oder
+  `run_once_at`, `notifications` nur `push` und `email`, `permission_mode`,
+  `environment_id`, `folders`, `requires_local_device`), ohne Modell und ohne
+  Projekt. Dazu `list_triggers`, `update_trigger` (auch `model`, laut
+  Beschreibung nur auf ausdrückliche Bitte des Nutzers), `delete_trigger`
+  (löscht auch die Chats der Läufe) und `fire_trigger`. Eine Anweisung bekommt
+  das Modell des anlegenden Chats. Ihr Lauf ist ein neuer Chat im Projekt des
+  anlegenden Chats, ohne Rückfragen (auto mode), mit Plugin, Projektwerkzeugen,
+  `pdflatex` und dem GitHub-Zugriff des anlegenden Chats, aber ohne
+  `add_repo`, obwohl `create_trigger` `enabled_plugins: []` meldet. Die
+  Push-Benachrichtigung kommt. `list_triggers` zeigt die Anweisungen aller
+  Projekte des Kontos und bei keiner das Projekt. Löschen einer schon
+  gelöschten meldet „not found“. Der Server verschiebt Startzeiten um einige
+  Minuten.
 - Leeres Repository: `ls-remote` gibt nichts aus, endet aber mit Exit-Code 0.
   `ls-tree -r HEAD` meldet `Not a valid object name HEAD`. Der erste
   gepushte Zweig wird Standardzweig. Ein Commit mit leerem Baum gibt bei
@@ -378,15 +440,38 @@ Ungeprüftes. Dazu kamen:
 - in `indizieren.md`, Schritt 4, genauere Regeln.
 `projektanweisung.md` liegt nicht mehr in `faehigkeiten/`.
 
+Folgen der Läufe vom 2026-10-17: Die drei Initialisierungen und beide Tests
+liefen gleichzeitig in mehreren Projekten eines Kontos. Haiku hielt dabei die
+automatischen Anweisungen eines anderen Projekts für die eigenen, legte keine
+an und meldete trotzdem „eingerichtet“. Opus in der iPad-App hielt sie für
+eine doppelt gesendete Nachricht, Opus im Browser löschte beim Aufräumen die
+Testanweisung des iPad-Tests samt Chat (dort deshalb „not found“). Dazu kamen:
+- in `verwalten/SKILL.md`, „Automatische Anweisungen“: der Projektname im
+  Namen, der Lauf im Projekt des anlegenden Chats, Lesezugriff vor dem
+  Anlegen, das Modell nach dem Anlegen, alte nur anhand ihrer ID löschen,
+  `{liste}` nur mit in diesem Chat angelegten Anweisungen und ihrem Modell;
+- in `initialisieren.md`, Vorlage für `{zugriff}`: ohne Werkzeug der
+  GitHub-Anbindung direkt klonen;
+- in `uebungsblatt.cls` und `ANLEITUNG.md`, Kapitel 1: TX-Typewriter für
+  Code, keine Trennung ohne deutsche Trennmuster;
+- in `grundlagen.md`: der Pfad aus dem Hinweis der Umgebung, Fotos als
+  `image.jpg`, höchstens vier Optionen;
+- in `lernen/SKILL.md`, „Nachrechnen“: SymPy vor dem ersten Nachrechnen
+  installieren; in `erlernen.md`: `display: render`;
+- in `projektanweisung.md`: „für Oberstufe, Berufsschule und Studium“ statt
+  „für die Schule“, das Opus als Widerspruch las;
+- in `testen.md`: die Tests 1 bis 6 und 8 sind heraus, neu sind Test 1
+  (Projektname) und Test 2 (Modell nach dem Anlegen), Testanweisungen löscht
+  Claude nur anhand ihrer ID.
+Die Testprojekte vom 2026-10-17 haben noch `daten.xml` mit dem alten
+`<art>` und, im Projekt von Opus im Browser, Anweisungen ohne Projektnamen.
+
 Grund für die Datenquelle: Von Uploads über die Projektseite liefert
 `project_read` nur extrahierten Text, leere Seiten fehlen darin spurlos, und
 eine PDF lässt sich nicht wieder lokal herstellen.
 
 ### Ungeprüft
 
-- Ob `ls-remote` bei einem falschen Link und bei einem privaten Repository
-  ohne Freischaltung mit einem Fehler endet. Sonst hält „Initialisieren“
-  beides für ein leeres öffentliches Repository (`testen.md`, Test 1).
 - Push großer Dateien (die Antwort von `add_repo` nennt HTTP 413). Zeigt sich
   beim ersten Hochladen eines echten Skripts, „Hochladen“ nennt dann die
   Zielpfade zum Hochladen von Hand.
@@ -394,46 +479,28 @@ eine PDF lässt sich nicht wieder lokal herstellen.
   geprüft, der Push in einen neuen Zweig eines leeren Repositorys klappte in
   Claude.ai).
 - Wie viel das Lesen großer Modulhandbücher kostet.
-- Grenzen der Auswahlfelder in Claude.ai: kleinste und größte Zahl von
-  Optionen (`testen.md`, Test 2). In Claude Code sind es 2 bis 4. Ob
-  mehrere Rückfragen in einem Aufruf gehen, steht in der Beschreibung des
-  Werkzeugs.
-- `pdflatex` mit den Paketen der Übungsblatt-Vorlage und die Schrift IBM
-  Plex (`testen.md`, Test 3). Lokal geprüft (TeX Live 2023 aus Ubuntu 24.04):
-  Vorlage, Beispiel und Testdokument werden ohne Fehler übersetzt, zwei
-  Durchläufe reichen (keine Warnung zum erneuten Übersetzen), `build.sh`
-  braucht für die leere Vorlage etwa 5 s, das Beispiel mit 18 und 23 Seiten
-  etwa 17 s. Ohne `texlive-fonts-extra` fehlt Plex, dann setzt die Klasse
-  ohne Fehler Helvetica (`NimbusSanL`) und Courier (`NimbusMonL`). So sind
-  die PDFs des Nutzers entstanden. Mit Plex nennt `pdffonts` `plxSans` und
-  `plxMono`.
-- SymPy, NumPy und SciPy und ob `pip install` klappt (`testen.md`, Test 4).
-- Ob eine bereitgestellte HTML-Datei im Chat angezeigt wird und ihre Knöpfe
-  funktionieren, im Browser und in der App (`testen.md`, Test 5).
-- Ob Fotos aus der App als JPEG oder PNG ankommen und lesbar sind
-  (`testen.md`, Test 6).
-- Ob es eine Websuche gibt (Belege, zweiter Weg). Ohne sie schreibt Claude
-  „nicht belegt“ (Vorbereitung in `testen.md`).
-- Geplante Anweisungen in Claude.ai (`testen.md`, Test 7): Gibt es ein
-  Werkzeug dafür, legt es wöchentliche Anweisungen mit Zeitzone an, ist jeder
-  Lauf ein neuer Chat im Projekt, lassen sich Modell und Benachrichtigung
-  (push, email, slack) setzen, nennt die Liste das Projekt? In Claude Code
-  Remote heißt das Werkzeug `create_trigger` (Modell nur über
-  `update_trigger`, Benachrichtigung nur push und email). Hat ein Lauf
-  Plugin, Projektdateien, LaTeX und die GitHub-Anbindung ohne Bestätigung?
-- `.tex` in den Projektdateien (`testen.md`, Test 8): Schreiben mit
-  `local_path`, Lesen unverändert, Löschen mit `project_delete`. Liefert
-  `project_read` große Dateien nur inline, schreibt „Üben“ den Quelltext beim
-  Benutzen ab.
+- Wo Claude.ai den Namen des Projekts nennt. Haiku fand ihn erst nach einem
+  Hinweis des Nutzers „in den Projektdaten“ und nannte zuerst die Überschrift
+  der Projektanweisung (`testen.md`, Test 1).
+- Ob ein Lauf mit dem Modell arbeitet, das `update_trigger` nach dem Anlegen
+  setzt, und ob Claude es ohne Bitte im Wortlaut setzt: Opus in der
+  iPad-App stellte „Indizieren“ auf Haiku um (die Liste zeigte danach
+  `claude-haiku-5-5`), Opus im Browser fragte erst nach (`testen.md`,
+  Test 2).
+- Wöchentliche Läufe mit `CRON_TZ=Europe/Berlin` (nur einmalige geprüft) und
+  Benachrichtigung per E-Mail.
+- Ein Kamerafoto direkt aus der iPad- oder iPhone-App (HEIC?). Das Foto aus
+  der iPad-App war vermutlich eine digitale Notiz.
 - Ob ein Abbruch am Nutzungslimit mitten in einem Aufruf zum Schreiben
   passieren kann. Mit `local_path` unkritisch.
 - Ob Settings > Usage in Claude.ai den Reset des Wochenlimits zeigt.
 
 Nächster Testlauf: „/lernhelfer:verwalten Teste den Lernhelfer“ als erste
-Nachricht in einem neuen Chat, in einem Projekt mit privater Datenquelle
-(Tests 1 bis 8). Danach „/lernhelfer:verwalten Richte die automatischen
-Anweisungen ein“ und einen Lauf beider Anweisungen abwarten (Index, Vorrat,
-Benachrichtigung), dann „Mach mir ein Übungsblatt“ mit vorbereitetem Blatt.
+Nachricht in einem neuen Chat, in einem frisch eingerichteten Projekt mit
+privater Datenquelle (Tests 1 und 2). Danach „/lernhelfer:verwalten Richte
+die automatischen Anweisungen ein“ und einen Lauf beider Anweisungen abwarten
+(Index, Vorrat, Benachrichtigung, Modell), dann „Mach mir ein Übungsblatt“ mit
+vorbereitetem Blatt (Code in TX-Typewriter, keine Silbentrennung).
 Danach die Lernmodi, je im Projekt und im Chat ohne Projekt, mit diesen
 Fällen:
 - „Ich erkläre dir jetzt die Kettenregel“ (Spiegeltest)

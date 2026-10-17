@@ -54,7 +54,9 @@ automatisch. Steht auf dem Deckblatt „??“, einfach noch einmal kompilieren.
 Benötigte Pakete (in TeX Live enthalten): tikz, circuitikz, pgfplots,
 tikz-timing, siunitx, listings, tcolorbox, enumitem, fancyhdr, lastpage,
 booktabs, mathastext, microtype. Schrift: IBM Plex (Paket `plex`); fehlt es,
-wird automatisch Helvetica benutzt.
+setzt die Klasse automatisch Helvetica und für Code TX-Typewriter oder Courier.
+Die Warnung „IBM Plex Sans nicht gefunden“ ist dann kein Fehler. Fehlen die
+deutschen Trennmuster, trennt die Klasse keine Wörter.
 
 ---
 

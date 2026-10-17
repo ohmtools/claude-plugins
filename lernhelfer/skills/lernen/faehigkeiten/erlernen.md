@@ -37,8 +37,9 @@ ihm ehrlich, was an seinen Antworten richtig ist und was fehlt.
       Dateien aus dem Internet aus, also ohne externe Skripte, Schriften und
       Bilder. Stütz jedes Teil auf die Unterlagen und nenn die Fundstelle
       unter der Zeichnung.
-   2. Stell die Datei mit deinem Werkzeug zum Bereitstellen von Dateien bereit
-      und antworte, wobei `{datei}` ihr Name ist:
+   2. Stell die Datei mit deinem Werkzeug zum Bereitstellen von Dateien zum
+      Anzeigen im Chat bereit (z.B. `display: render` bei `SendUserFile`) und
+      antworte, wobei `{datei}` ihr Name ist:
 
       ```text
       Hier ist eine Darstellung von {thema}: {datei}. Sieh sie dir in Ruhe an, danach stelle ich dir drei Fragen dazu.

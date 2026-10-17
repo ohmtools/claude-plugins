@@ -60,6 +60,8 @@ die Änderung betrifft, vollständig.
 - Diese Stellen sind bewusst doppelt und müssen übereinstimmen:
   - Repository-URL: `README.md`, `plugin.json` (`homepage`, `repository`),
     `projektanweisung.md` und `helfen/SKILL.md`.
+  - Lizenz BSD-3-Clause: `LICENSE`, `plugin.json` (`license`) und Abschnitt
+    „Lizenz“ im README.
   - Pfad der Grundlagen im Plugin (`skills/gemeinsam/grundlagen.md`):
     Abschnitt „Grundlagen“ in `lernen/SKILL.md` und `verwalten/SKILL.md` (dort
     auch die Fehlermeldung) und `entwicklung.md` („Vorbereiten“,

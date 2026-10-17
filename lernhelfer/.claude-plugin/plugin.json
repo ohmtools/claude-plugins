@@ -6,6 +6,7 @@
   },
   "homepage": "https://github.com/ohmtools/claude-plugins",
   "repository": "https://github.com/ohmtools/claude-plugins",
+  "license": "BSD-3-Clause",
   "keywords": [
     "lernen",
     "schule",

@@ -49,4 +49,9 @@ lernhelfer/skills/lernen/         Lernen mit dem Nutzer
 lernhelfer/skills/verwalten/      Projekt, Fächer, Datenquelle, Entwicklung
 lernhelfer/skills/helfen/         Antworten auf Fragen zum Lernhelfer
 CLAUDE.md                         Hinweise für Claude Code bei der Entwicklung
+LICENSE                           Lizenz
 ```
+
+## Lizenz
+
+BSD-3-Clause, siehe [LICENSE](LICENSE).

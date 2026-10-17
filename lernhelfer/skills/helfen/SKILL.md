@@ -102,12 +102,17 @@ die Kettenregel“. Claude wählt dann einen dieser Lernmodi:
   Skript durchgehen“ (Seite für Seite, in Etappen) oder „Gib mir Aufgabe 2 von
   Blatt 3 mit anderen Zahlen“, auch so, dass sich das Ergebnis grundlegend
   ändert.
-- Üben, für die Prüfung: „Mach mir ein Übungsblatt“ liefert neue Aufgaben, die
-  Verständnis statt Auswendiglernen prüfen, als zwei PDFs: Angabe und Lösung.
-  Claude fragt dafür höchstens nach Stoff und Länge. Hat eine automatische
-  Anweisung schon ein Blatt vorbereitet, bietet Claude es zuerst an, dann ist
-  es sofort fertig. Die Bloom-Leiter führt im Chat in sechs Stufen vom
-  Erinnern bis zum Erschaffen.
+- Üben, für die Prüfung: „Mach mir ein Übungsblatt“ liefert neue Aufgaben wie
+  in einer typischen Klausur des Fachs, als zwei PDFs: Angabe und Lösung.
+  Neben Aufgaben, die Verständnis statt Auswendiglernen prüfen, gibt es immer
+  auch Routineaufgaben, damit eingeübte Verfahren sitzen. Claude fragt dafür
+  höchstens nach Stoff, Länge und Niveau: Klausurniveau, Klausurniveau+
+  (schwerer als die Klausur, außer bei den eigenen Schwachstellen, nur im
+  Projekt) oder Expertenniveau (alles schwerer als die Klausur). Maßstab sind
+  die Altklausuren des Fachs, ohne sie ist das Niveau nur geschätzt. Hat eine
+  automatische Anweisung schon ein Blatt vorbereitet, bietet Claude es zuerst
+  an, dann ist es sofort fertig. Die Bloom-Leiter führt im Chat in sechs
+  Stufen vom Erinnern bis zum Erschaffen.
 - Korrigieren: Der Nutzer schickt seine Lösung getippt oder als Foto. Claude
   bewertet sie wie ein strenger Prüfer, mit geschätzter Punktzahl, gibt
   Hinweise statt der Lösung und sucht zu jedem Fehler die Ursache. Danach geht
@@ -217,8 +222,9 @@ Nutzer, jede in einem neuen Chat im Projekt:
 - „Indizieren“ (mit Haiku) indiziert neue und geänderte Dateien.
 - „Übungsblätter vorbereiten“ (mit Opus) legt für jedes Fach, in dem es
   Schwachstellen oder fällige Themen gibt, ein Übungsblatt von etwa 45
-  Minuten in einen Vorrat. Schreibt der Nutzer später „/lernhelfer:lernen
-  Mach mir ein Übungsblatt“, bietet Claude es an, und es ist sofort fertig.
+  Minuten auf Klausurniveau+ in einen Vorrat. Schreibt der Nutzer später
+  „/lernhelfer:lernen Mach mir ein Übungsblatt“, bietet Claude es an, und es
+  ist sofort fertig.
   Ändert sich eine Datei, auf der das Blatt beruht, benutzt Claude es nicht
   mehr, und der nächste Lauf ersetzt es.
 Sie laufen am besten etwa zwei Stunden vor dem Reset des Wochenlimits (zu

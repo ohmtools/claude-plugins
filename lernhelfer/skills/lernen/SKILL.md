@@ -30,7 +30,7 @@ Lies die passende Fähigkeit vollständig und führe sie aus.
 |---|---|---|
 | Erlernen | Neuen Stoff verstehen, mit Leitfragen und bei Bedarf einer Darstellung | `skill:faehigkeiten/erlernen.md` |
 | Wiederholen | Gelerntes festigen: abfragen, selbst erklären, das Skript durchgehen oder eine bestehende Aufgabe mit neuen Werten rechnen | `skill:faehigkeiten/wiederholen.md` |
-| Üben | Neue Aufgaben, die Verständnis prüfen: Übungsblatt als PDF oder Bloom-Leiter im Chat | `skill:faehigkeiten/ueben.md` |
+| Üben | Neue Aufgaben für die Prüfung: Übungsblatt als PDF wie eine Klausur, auf Wunsch schwerer, oder Bloom-Leiter im Chat | `skill:faehigkeiten/ueben.md` |
 | Korrigieren | Eine Lösung des Nutzers bewerten, getippt oder als Foto, und seine Fehler nach Ursachen ordnen | `skill:faehigkeiten/korrigieren.md` |
 | Schwachstellen listen | Schwierigkeiten und Probleme, die wiederholt werden sollten, aufzeigen | `skill:faehigkeiten/schwachstellen.md` |
 

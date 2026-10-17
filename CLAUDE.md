@@ -111,10 +111,13 @@ die Änderung betrifft, vollständig.
     verweisen: „Abbruch“ in `grundlagen.md`; „Vorrat“ in `ueben.md`;
     „Dateiprüfung“ und „Session beenden“ in `lernen/SKILL.md`; die Spalte
     `Historie` von `probleme.md` in `grundlagen.md`. Dazu muss die
-    Anfrage im Prompt „Übungsblätter vorbereiten“ (Stoff, Umfang, „ohne
-    Vorrat“) zu den Rückfragen in `ueben.md` passen („Übungsblatt“,
+    Anfrage im Prompt „Übungsblätter vorbereiten“ (Stoff, Umfang, Niveau,
+    „ohne Vorrat“) zu den Rückfragen in `ueben.md` passen („Übungsblatt“,
     Schritt 2). Die Prompts liegen wörtlich in Claude.ai und wandern bei
     einem Update nicht mit.
+  - Namen der Niveaus (Klausurniveau, Klausurniveau+, Expertenniveau):
+    `ueben.md` (Abschnitt „Niveau“, Rückfrage in „Übungsblatt“, Schritt 2,
+    und „Vorrat“), Prompt „Übungsblätter vorbereiten“ und `helfen/SKILL.md`.
   - Nach einem Update die automatischen Anweisungen neu einrichten:
     `entwicklung.md` („Exportieren“, `{automatik-hinweis}`) und
     `helfen/SKILL.md`.
@@ -205,11 +208,23 @@ die Änderung betrifft, vollständig.
     Verhalten, vorher nachgerechnet). Den Fortschritt im Skript speichert der
     Lernhelfer bewusst nicht. Am Ende einer Etappe nennt er den Satz zum
     Weitermachen.
-  - Üben (AFB II und III, Schwerpunkt ferner Transfer): Transferaufgaben nach
-    dem Transfer-Prompt des Playbooks, als Übungsblatt (erst ein Entwurf in
-    Markdown, dann zwei PDFs aus `vorlagen/uebungsblatt.tex` mit der Klasse
-    `uebungsblatt.cls` und `build.sh`, ohne LaTeX zwei Markdown-Dateien) oder
-    Bloom-Leiter im Chat.
+  - Üben: Übungsblatt (erst ein Entwurf in Markdown, dann zwei PDFs aus
+    `vorlagen/uebungsblatt.tex` mit der Klasse `uebungsblatt.cls` und
+    `build.sh`, ohne LaTeX zwei Markdown-Dateien) oder Bloom-Leiter im Chat
+    (AFB II und III, Transferaufgaben nach dem Transfer-Prompt des
+    Playbooks). Das Übungsblatt richtet sich nach der typischen Klausur (so
+    hat es der Nutzer am 2026-10-17 entschieden): Klausurprofil aus der
+    neuesten Altklausur (Routineanteil, Aufgabenarten, Führung), ohne
+    Altklausur ein Drittel Routine und ein geschätztes Niveau.
+    Routineaufgaben fallen nie ganz weg, damit der Nutzer sie nicht
+    verlernt. Niveau als Rückfrage: Klausurniveau, Klausurniveau+
+    (Schwachstellen auf Klausurniveau, alles andere darüber, nur im
+    Projekt) und Expertenniveau (alles darüber, auch die Routine, deren
+    Anteil bleibt). „Über Klausurniveau“ heißt mindestens zwei Hebel
+    (Führung, Denkschritte, Verknüpfung, Sonderfälle, Transfer) über der
+    Vergleichsaufgabe, nie mit Fremdwissen, Fangfragen oder mehr Rechnen.
+    Das Niveau jeder Aufgabe steht mit ihrer Vergleichsaufgabe in „Zur
+    Aufgabe“.
   - Korrigieren: strenger Prüfer, Punkte als Schätzung, Hinweise statt
     Lösung, Fehlerursachen nach Fischgräte mit bis zu fünfmal „Warum?“,
     danach Wechsel zu Erlernen (Verständnis, Vorwissen) oder zu Wiederholen
@@ -285,21 +300,24 @@ die Änderung betrifft, vollständig.
   ihrer Läufe, der Nutzer wollte am 2026-10-17 trotzdem kein Ändern der
   vorhandenen. Ohne Werkzeug nennt Claude die Einstellungen zum Anlegen von
   Hand.
-- Vorrat: pro Modul höchstens ein Übungsblatt, 45 Minuten, Schwachstellen und
-  fällige Themen (so hat es der Nutzer entschieden), als LaTeX-Quelltext,
-  weil PDFs nicht in die Projektdateien passen, deshalb ohne eigene Dateien
-  (`\bild`, `\codedatei`). Beim Benutzen kommen `uebungsblatt.cls` und
-  `build.sh` aus der Vorlage dazu. Kopf mit `format`, Themen und
-  `quelle` (Identifikation und Pfad jeder gelesenen Datei), Schlusszeile
-  `% Ende des Lernhelfer-Vorrats`. Üben bietet ein gültiges Blatt als erste
+- Vorrat: pro Modul höchstens ein Übungsblatt, 45 Minuten, Klausurniveau+,
+  Schwachstellen und fällige Themen (so hat es der Nutzer entschieden), als
+  LaTeX-Quelltext, weil PDFs nicht in die Projektdateien passen, deshalb ohne
+  eigene Dateien (`\bild`, `\codedatei`). Beim Benutzen kommen
+  `uebungsblatt.cls` und `build.sh` aus der Vorlage dazu. Kopf mit `format`,
+  Themen und `quelle` (Identifikation und Pfad jeder gelesenen Datei),
+  Schlusszeile `% Ende des Lernhelfer-Vorrats`. Das Niveau steht nicht im
+  Kopf, weil der Vorrat nur Klausurniveau+ hält, und `format` blieb 1, weil
+  es noch keine Blätter im Vorrat gibt. Üben bietet ein gültiges Blatt als erste
   Rückfrage an, übersetzt es, löscht es und stellt es dann bereit. Ungültige
   löscht erst der nächste Lauf. Ein geänderter Kopf erhöht `% format:` statt
   einer Migration. Module ohne Schwachstellen bekommen kein Blatt. Der Prompt
   beschreibt keinen Ablauf von „Üben“ (Wunsch des Nutzers, Konvention in
   `entwicklung.md`): Er löscht ungültige Blätter, ruft „Üben“ für jedes
-  Modul ohne Blatt wie ein Nutzer auf („… als LaTeX-Quelltext, ohne
-  Vorrat“) und speichert den Quelltext. Gültige Blätter bleiben. Module mit
-  dem spätesten Datum unter `Historie` kommen zuerst dran.
+  Modul ohne Blatt wie ein Nutzer auf („… auf Klausurniveau+, als
+  LaTeX-Quelltext, ohne Vorrat“) und speichert den Quelltext. Gültige
+  Blätter bleiben. Module mit dem spätesten Datum unter `Historie` kommen
+  zuerst dran.
 - Abbruch: Claude sieht das restliche Limit nicht, ein Chat kann nach jedem
   Schritt enden. Ins Projekt kommen nur fertige Dateien, je mit einem Aufruf,
   große aus `arbeit:` mit `local_path`. Abhängige Dateien werden so
@@ -509,10 +527,15 @@ Fällen:
   angekündigter Wechsel zu Erlernen und zurück zur selben Seite)
 - „Gib mir Aufgabe 2 von Blatt 3 mit anderen Zahlen, aber so, dass es kein
   Maximum gibt“ (neue Werte, vorher nachgerechnet)
-- „Mach mir ein Übungsblatt“ (höchstens zwei Rückfragen, Angabe- und
+- „Mach mir ein Übungsblatt“ (höchstens drei Rückfragen, Angabe- und
   Lösungs-PDF mit nachgerechneten Lösungen, Entwurf vor dem Lesen von
   `ANLEITUNG.md`, Deckblatt ohne `??`, jede Aufgabe auf einer eigenen Seite,
-  nur Befehle aus `ANLEITUNG.md`)
+  nur Befehle aus `ANLEITUNG.md`, Routineanteil wie in der Altklausur, Zeile
+  `Niveau:` in „Zur Aufgabe“)
+- „Mach mir ein Übungsblatt auf Expertenniveau“ (auch die Routineaufgaben
+  schwerer als ihre Vergleichsaufgabe, ohne Fremdwissen und Fangfragen),
+  dazu einmal in einem Fach ohne Altklausur (Hinweis auf das geschätzte
+  Niveau)
 - Foto einer fehlerhaften Lösung (Bewertung, Fischgräte, Eintrag mit Ursache
   in `probleme.md`)
 

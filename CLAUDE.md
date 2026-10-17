@@ -122,10 +122,14 @@ die Änderung betrifft, vollständig.
     verweisen: „Abbruch“ in `grundlagen.md`; „Vorrat“ in `ueben.md`;
     „Dateiprüfung“ und „Session beenden“ in `lernen/SKILL.md`; die Spalte
     `Historie` von `probleme.md` in `grundlagen.md`. Dazu muss die
-    Anfrage im Prompt „Übungsblätter vorbereiten“ (Stoff, Umfang, „ohne
-    Vorrat“) zu den Rückfragen in `ueben.md` passen („Übungsblatt“,
+    Anfrage im Prompt „Übungsblätter vorbereiten“ (Stoff, Umfang, Niveau,
+    „ohne Vorrat“) zu den Rückfragen in `ueben.md` passen („Übungsblatt“,
     Schritt 2). Die Prompts liegen wörtlich in Claude.ai und wandern bei
     einem Update nicht mit.
+  - Namen der Niveaus (Leicht, Klausurniveau, Klausurniveau+,
+    Expertenniveau):
+    `ueben.md` (Abschnitt „Niveau“, Rückfrage in „Übungsblatt“, Schritt 2,
+    und „Vorrat“), Prompt „Übungsblätter vorbereiten“ und `helfen/SKILL.md`.
   - Nach einem Update die automatischen Anweisungen neu einrichten:
     `entwicklung.md` („Exportieren“, `{automatik-hinweis}`) und
     `helfen/SKILL.md`.
@@ -211,24 +215,42 @@ die Änderung betrifft, vollständig.
   - Erlernen: sokratischer Tutor, bei räumlichen oder strukturellen Themen
     eine HTML-Darstellung, die der Nutzer danach ohne Vorlage nachzeichnet.
   - Wiederholen (AFB I und II, höchstens naher Transfer): Spiegeltest,
-    Abfragen mit Sicherheit 1 bis 5, Skript Seite für Seite in Etappen,
-    bestehende Aufgabe mit neuen Werten (gleicher Lösungsweg oder anderes
-    Verhalten, vorher nachgerechnet). Den Fortschritt im Skript speichert der
-    Lernhelfer bewusst nicht. Am Ende einer Etappe nennt er den Satz zum
-    Weitermachen.
-  - Üben (AFB II und III, Schwerpunkt ferner Transfer): Transferaufgaben nach
-    dem Transfer-Prompt des Playbooks, als Übungsblatt (erst ein Entwurf in
-    Markdown, dann zwei PDFs aus `vorlagen/uebungsblatt.tex` mit der Klasse
-    `uebungsblatt.cls`, ihren Farben `ohmtools-colors.sty` und `build.sh`,
-    ohne LaTeX zwei Markdown-Dateien) oder
-    Bloom-Leiter im Chat.
+    Abfragen mit Sicherheit 1 bis 5, Skript Seite für Seite in Etappen. Den
+    Fortschritt im Skript speichert der Lernhelfer bewusst nicht. Am Ende
+    einer Etappe nennt er den Satz zum Weitermachen. „Aufgabe mit neuen
+    Werten“ ist seit 2026-10-17 das Niveau Leicht in Üben (Wunsch des
+    Nutzers).
+  - Üben: Übungsblatt (erst ein Entwurf in Markdown, dann zwei PDFs aus
+    `vorlagen/uebungsblatt.tex` mit der Klasse `uebungsblatt.cls`, ihren
+    Farben `ohmtools-colors.sty` und `build.sh`, ohne LaTeX zwei
+    Markdown-Dateien) oder Bloom-Leiter im Chat
+    (AFB II und III, Transferaufgaben nach dem Transfer-Prompt des
+    Playbooks). Das Übungsblatt richtet sich nach der typischen Klausur (so
+    hat es der Nutzer am 2026-10-17 entschieden): Klausurprofil aus der
+    neuesten Altklausur (Routineanteil, Aufgabenarten, Führung), ohne
+    Altklausur ein Drittel Routine und ein geschätztes Niveau.
+    Routineaufgaben fallen nie ganz weg, damit der Nutzer sie nicht
+    verlernt. Niveau als Rückfrage: Leicht (nur bestehende Aufgaben aus
+    Übungen und Altklausuren mit neuen Werten, gleicher Lösungsweg oder
+    anderes Verhalten, vorher nachgerechnet, ohne Vorgabe der Anfrage
+    gemischt mit mindestens einer Aufgabe mit anderem Verhalten), Klausurniveau,
+    Klausurniveau+ (Schwachstellen auf Klausurniveau, alles andere darüber,
+    nur im Projekt) und Expertenniveau (alles darüber, auch die Routine, deren
+    Anteil bleibt). Nennt die Anfrage bestimmte Aufgaben mit neuen Werten,
+    gibt es ohne Rückfrage ein Blatt auf Leicht mit genau diesen, auch bei
+    einer Aufgabe als PDF (Wunsch des Nutzers, kein Sonderfall im Chat).
+    „Über Klausurniveau“ heißt mindestens zwei Hebel
+    (Führung, Denkschritte, Verknüpfung, Sonderfälle, Transfer) über der
+    Vergleichsaufgabe, nie mit Fremdwissen, Fangfragen oder mehr Rechnen.
+    Das Niveau jeder Aufgabe steht mit ihrer Vergleichsaufgabe in „Zur
+    Aufgabe“.
   - Korrigieren: strenger Prüfer, Punkte als Schätzung, Hinweise statt
     Lösung, Fehlerursachen nach Fischgräte mit bis zu fünfmal „Warum?“,
     danach Wechsel zu Erlernen (Verständnis, Vorwissen) oder zu Wiederholen
-    mit derselben Aufgabe und neuen Werten (alle übrigen Ursachen). Üben kam
-    dafür nicht in Frage: Transferaufgaben helfen bei Flüchtigkeit und
-    Zeitdruck wenig und wären nach einer Wiederholen-Aufgabe ein Sprung im
-    Niveau.
+    mit einem Spiegeltest zur Regel hinter dem Fehler (Rechentechnik), sonst
+    Session beenden (Aufgabe falsch gelesen, Zeitdruck, Flüchtigkeit). Zu Üben
+    wechselt Korrigieren nicht (so hat es der Nutzer am 2026-10-17
+    entschieden).
   Wechsel innerhalb von `lernen` kündigt eine feste Nachricht an, mit
   optionaler Rückkehr (z.B. vom Skript zu Erlernen und zurück zur selben
   Seite).
@@ -304,22 +326,24 @@ die Änderung betrifft, vollständig.
   ihrer Läufe, der Nutzer wollte am 2026-10-17 trotzdem kein Ändern der
   vorhandenen. Ohne Werkzeug nennt Claude die Einstellungen zum Anlegen von
   Hand.
-- Vorrat: pro Modul höchstens ein Übungsblatt, 45 Minuten, Schwachstellen und
-  fällige Themen (so hat es der Nutzer entschieden), als LaTeX-Quelltext,
-  weil PDFs nicht in die Projektdateien passen, deshalb ohne eigene Dateien
-  (`\bild`, `\codedatei`). Beim Benutzen kommen `uebungsblatt.cls`,
-  `ohmtools-colors.sty` und `build.sh` aus der Vorlage dazu. Kopf mit
-  `format`, Themen und `quelle` (Identifikation und Pfad jeder gelesenen
-  Datei), Schlusszeile
-  `% Ende des Lernhelfer-Vorrats`. Üben bietet ein gültiges Blatt als erste
+- Vorrat: pro Modul höchstens ein Übungsblatt, 45 Minuten, Klausurniveau+,
+  Schwachstellen und fällige Themen (so hat es der Nutzer entschieden), als
+  LaTeX-Quelltext, weil PDFs nicht in die Projektdateien passen, deshalb ohne
+  eigene Dateien (`\bild`, `\codedatei`). Beim Benutzen kommen
+  `uebungsblatt.cls`, `ohmtools-colors.sty` und `build.sh` aus der Vorlage
+  dazu. Kopf mit `format`, Themen und `quelle` (Identifikation und Pfad jeder
+  gelesenen Datei), Schlusszeile `% Ende des Lernhelfer-Vorrats`. Das Niveau
+  steht nicht im Kopf, weil der Vorrat nur Klausurniveau+ hält, und `format`
+  blieb 1, weil es noch keine Blätter im Vorrat gibt. Üben bietet ein gültiges Blatt als erste
   Rückfrage an, übersetzt es, löscht es und stellt es dann bereit. Ungültige
   löscht erst der nächste Lauf. Ein geänderter Kopf erhöht `% format:` statt
   einer Migration. Module ohne Schwachstellen bekommen kein Blatt. Der Prompt
   beschreibt keinen Ablauf von „Üben“ (Wunsch des Nutzers, Konvention in
   `entwicklung.md`): Er löscht ungültige Blätter, ruft „Üben“ für jedes
-  Modul ohne Blatt wie ein Nutzer auf („… als LaTeX-Quelltext, ohne
-  Vorrat“) und speichert den Quelltext. Gültige Blätter bleiben. Module mit
-  dem spätesten Datum unter `Historie` kommen zuerst dran.
+  Modul ohne Blatt wie ein Nutzer auf („… auf Klausurniveau+, als
+  LaTeX-Quelltext, ohne Vorrat“) und speichert den Quelltext. Gültige
+  Blätter bleiben. Module mit dem spätesten Datum unter `Historie` kommen
+  zuerst dran.
 - Abbruch: Claude sieht das restliche Limit nicht, ein Chat kann nach jedem
   Schritt enden. Ins Projekt kommen nur fertige Dateien, je mit einem Aufruf,
   große aus `arbeit:` mit `local_path`. Abhängige Dateien werden so
@@ -530,13 +554,22 @@ Fällen:
 - „Lass uns das Skript durchgehen“ (Seite für Seite, bei einer Lücke
   angekündigter Wechsel zu Erlernen und zurück zur selben Seite)
 - „Gib mir Aufgabe 2 von Blatt 3 mit anderen Zahlen, aber so, dass es kein
-  Maximum gibt“ (neue Werte, vorher nachgerechnet)
-- „Mach mir ein Übungsblatt“ (höchstens zwei Rückfragen, Angabe- und
+  Maximum gibt“ (Übungsblatt auf Leicht ohne Rückfrage, eine Aufgabe als
+  PDF, neue Werte vorher nachgerechnet)
+- „Mach mir ein Übungsblatt“ mit dem Niveau Leicht (nur bestehende Aufgaben,
+  mindestens eine mit anderem Verhalten, das die Angabe nicht verrät)
+- „Mach mir ein Übungsblatt“ (höchstens drei Rückfragen, Angabe- und
   Lösungs-PDF mit nachgerechneten Lösungen, Entwurf vor dem Lesen von
   `ANLEITUNG.md`, Deckblatt ohne `??`, jede Aufgabe auf einer eigenen Seite,
-  nur Befehle aus `ANLEITUNG.md`)
+  nur Befehle aus `ANLEITUNG.md`, Routineanteil wie in der Altklausur, Zeile
+  `Niveau:` in „Zur Aufgabe“)
+- „Mach mir ein Übungsblatt auf Expertenniveau“ (auch die Routineaufgaben
+  schwerer als ihre Vergleichsaufgabe, ohne Fremdwissen und Fangfragen),
+  dazu einmal in einem Fach ohne Altklausur (Hinweis auf das geschätzte
+  Niveau)
 - Foto einer fehlerhaften Lösung (Bewertung, Fischgräte, Eintrag mit Ursache
-  in `probleme.md`)
+  in `probleme.md`, danach Wechsel zu Erlernen oder bei Rechentechnik zu
+  Wiederholen mit einem Spiegeltest zur Regel)
 
 ## Arbeitsweise
 

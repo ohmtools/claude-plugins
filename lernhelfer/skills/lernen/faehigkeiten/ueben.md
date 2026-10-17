@@ -1,16 +1,20 @@
 # Fähigkeit: Üben
 
-Macht Gelerntes prüfungstauglich, mit neuen, einzigartigen Aufgaben, die sich
-nur mit echtem Verständnis lösen lassen. Das Niveau liegt in den
-Anforderungsbereichen II (erklären, ordnen, auf Vergleichbares übertragen) und
-III (neue Probleme lösen, begründet urteilen), der Schwerpunkt auf fernem
-Transfer. Inhaltlich bleiben die Aufgaben nah am Skript, nur kleine
-Abschweifungen sind erlaubt. Es gibt zwei Formen: ein Übungsblatt als PDF mit
-Lösung und die Bloom-Leiter im Chat.
+Macht Gelerntes prüfungstauglich, mit neuen, einzigartigen Aufgaben. Es gibt
+zwei Formen: ein Übungsblatt als PDF mit Lösung und die Bloom-Leiter im Chat.
+Das Übungsblatt richtet sich nach der typischen Klausur des Moduls: Es mischt
+Routineaufgaben, damit eingeübte Verfahren sitzen, und Transferaufgaben, die
+sich nur mit echtem Verständnis lösen lassen, im Verhältnis der Klausur und auf
+dem Niveau, das der Nutzer wählt. Auf dem Niveau Leicht kommen nur bekannte
+Aufgaben mit neuen Werten. Die Bloom-Leiter übt mit Transferaufgaben in
+den Anforderungsbereichen II (erklären, ordnen, auf Vergleichbares übertragen)
+und III (neue Probleme lösen, begründet urteilen). Inhaltlich bleiben alle
+Aufgaben nah am Skript, nur kleine Abschweifungen sind erlaubt.
 
-Du bist hier ein erfahrener Prüfer und Lernwissenschaftler. Du schreibst
-Aufgaben, die Verständnis prüfen statt Erinnerung, rechnest jede selbst durch
-und verwirfst, was sich durch Nachschlagen oder Nachspielen lösen lässt.
+Du bist hier ein erfahrener Prüfer und Lernwissenschaftler. Du kennst die
+Klausuren des Moduls, schreibst Aufgaben, die Verständnis prüfen statt
+Erinnerung, rechnest jede selbst durch und weißt bei jeder, ob sie so schwer
+ist wie in der Klausur oder schwerer.
 
 ## Ablauf
 
@@ -18,10 +22,13 @@ und verwirfst, was sich durch Nachschlagen oder Nachspielen lösen lässt.
    `skill:SKILL.md`, Abschnitt „Mit einem Modul arbeiten“, einschließlich der
    Dateiprüfung. Pflege während der ganzen Fähigkeit die Probleme wie in
    `skill:SKILL.md`, Abschnitt „Probleme pflegen“.
-2. **Form wählen:** Will der Nutzer ein Übungsblatt, eine Probeklausur oder
-   Aufgaben zum Ausdrucken, arbeite nach dem Abschnitt „Übungsblatt“. Will er
-   Stufe für Stufe im Chat üben (z.B. „Bloom-Leiter“), arbeite nach dem
-   Abschnitt „Bloom-Leiter“. Ist das nicht eindeutig, stell diese Rückfrage:
+2. **Form wählen:** Will der Nutzer ein Übungsblatt, eine Probeklausur,
+   Aufgaben zum Ausdrucken oder eine bestehende Aufgabe mit neuen Werten (z.B.
+   „Gib mir Aufgabe 2 von Blatt 3 mit anderen Zahlen“), arbeite nach dem
+   Abschnitt „Übungsblatt“. Will er Stufe für Stufe im Chat üben (z.B.
+   „Bloom-Leiter“), arbeite nach dem Abschnitt „Bloom-Leiter“. Nach einem
+   Wechsel gilt das Thema als Anfrage. Ist das nicht eindeutig, stell diese
+   Rückfrage:
 
    ```auswahl
    Wie willst du üben?
@@ -34,6 +41,94 @@ und verwirfst, was sich durch Nachschlagen oder Nachspielen lösen lässt.
    nicht versteht, wechsle zu `skill:faehigkeiten/erlernen.md` mit diesem
    Konzept als Thema (`skill:SKILL.md`, Abschnitt „Fähigkeit wechseln“). Bei
    der Bloom-Leiter gibt es eine Rückkehr zur aktuellen Stufe.
+
+## Routineaufgaben
+
+Eine Routineaufgabe prüft ein eingeübtes Verfahren aus Skript und Übungen an
+einer neuen Angabe, so wie die Klausur es abfragt. Sie gehört auf jedes
+Übungsblatt, damit der Nutzer die Verfahren nicht verlernt, während er Transfer
+übt.
+
+- Sie wendet ein Verfahren an, das Skript oder Übungen vorführen, z.B. eine
+  Kurvendiskussion, das Knotenpotenzialverfahren oder eine Wahrheitstabelle.
+- Ihre Angabe ist neu, aber vom selben Typ wie in Klausur und Übungen (eine
+  andere Funktion, Schaltung oder Datenlage). Eine bestehende Aufgabe mit nur
+  anderen Zahlen nimmst du nicht, die gibt es nur auf dem Niveau Leicht.
+- Ihre Zahlen sind so handlich wie in der Klausur.
+
+Prüf jeden Entwurf mit dem Stoff-, Löse-, Beleg- und Fairness-Test aus dem
+Abschnitt „Transferaufgaben“, „Vorgehen“, Schritt 4, und mit dem Niveau-Test
+(Abschnitt „Niveau“). Nachschlage- und Nachspiel-Test gelten für sie nicht,
+denn eine Routineaufgabe darf eine gelöste Übung als Muster haben.
+
+## Aufgaben mit neuen Werten
+
+Auf dem Niveau Leicht besteht das Übungsblatt nur aus Aufgaben aus den
+Übungsblättern und Altklausuren des Moduls, jede mit neuen Werten, in einer von
+zwei Varianten:
+
+- **Gleicher Lösungsweg:** nur andere Zahlen. Das Ergebnis verhält sich wie im
+  Original, z.B. gibt es weiter genau ein Maximum.
+- **Anderes Verhalten:** Werte, die das Ergebnis grundlegend ändern, z.B. eine
+  Optimierungsaufgabe ohne Maximum, ein Gleichungssystem ohne oder mit
+  unendlich vielen Lösungen oder ein Grenzfall. So zeigt sich, ob der Nutzer
+  das Verfahren versteht, statt es nur abzuspulen.
+
+Nennt die Anfrage für eine Aufgabe die Variante (z.B. „so, dass es kein
+Maximum gibt“ → Anderes Verhalten), nimm sie. Sonst bekommt mindestens eine
+Aufgabe des Blatts anderes Verhalten, bei mehr als drei Aufgaben etwa jede
+dritte, und die übrigen den gleichen Lösungsweg. Die Angabe verrät nicht, ob
+sich das Verhalten geändert hat, das soll der Nutzer selbst merken.
+
+Für jede Aufgabe:
+
+1. **Aufgabe finden:** Nennt die Anfrage eine Aufgabe, such sie im Index (z.B.
+   „Aufgabe 2 von Blatt 3“: die Datei, deren Name oder Beschreibung zu Blatt 3
+   passt, und ihre Seite mit `A2`), im **Chat** in der angehängten Datei.
+   Stammt sie aus diesem Chat (z.B. aus einem Übungsblatt des Lernhelfers),
+   nimm sie von dort. Sonst wähl Aufgaben zum Stoff aus den Übungsblättern und
+   Altklausuren im Stichwortverzeichnis, im **Chat** aus den angehängten
+   Dateien. Findest du keine, antworte und warte auf die Antwort:
+
+   ```text
+   Für das Niveau Leicht brauche ich Aufgaben aus deinen Übungsblättern oder Altklausuren zu diesem Stoff, ich finde aber keine. Häng mir eine Datei mit Aufgaben an oder sag mir, welches andere Niveau ich nehmen soll.
+   ```
+
+   Sieh dir die Seite der Aufgabe als Bild an, denn Formeln und Abbildungen
+   kommen als Text oft falsch an. Gibt es in den Unterlagen eine Lösung dazu,
+   lies sie auch.
+2. **Original lösen:** Lös die Originalaufgabe und rechne nach
+   (`skill:SKILL.md`, Abschnitt „Nachrechnen“). Notiere ihr Verhalten: Art und
+   Zahl der Lösungen, Extrema, Fallunterscheidungen, Vorzeichen.
+3. **Werte wählen und prüfen:** Wähl neue Werte und lös die Aufgabe damit
+   vollständig, ebenfalls nachgerechnet. Prüf:
+   - Gleicher Lösungsweg: Das Verhalten ist dasselbe wie in Schritt 2, und
+     die Zahlen sind so handlich wie im Original.
+   - Anderes Verhalten: Das Verhalten weicht so ab, wie die Anfrage es
+     verlangt, sonst grundlegend, und die Aufgabe ist weiter sinnvoll
+     gestellt.
+
+   Passt es nicht, wähl andere Werte. Lässt sich ein Verhalten, das die
+   Anfrage verlangt, mit anderen Werten allein nicht erreichen, stell diese
+   Rückfrage, wobei `{aufgabe}` die Herkunft der Aufgabe ist (z.B. `Blatt 3,
+   Aufgabe 2`), `{wunsch}` das gewünschte Verhalten, `{grund}` der Grund in
+   einem Satz und `{vorschlag}` ein anderes Verhalten, das sich erreichen
+   lässt:
+
+   ```auswahl
+   Mit anderen Werten allein lässt sich {wunsch} in {aufgabe} nicht erreichen, weil {grund}. Was soll ich stattdessen machen?
+   - {vorschlag}
+   - Gleicher Lösungsweg, andere Zahlen
+   ```
+
+   Verlangt die Anfrage nichts und lässt sich bei einer Aufgabe kein anderes
+   Verhalten erreichen, gib es einer anderen Aufgabe des Blatts. Geht es bei
+   keiner, bleiben alle beim gleichen Lösungsweg.
+4. **Übernehmen:** Die Aufgabe bekommt den Text des Originals mit den neuen
+   Werten und als Titel ihre Herkunft, z.B. `Blatt 3, Aufgabe 2 mit neuen
+   Werten`. Gib jeder Teilaufgabe so viele Punkte, wie sie etwa Minuten
+   braucht, auch wenn das Original andere Punkte hat, denn die Punktesumme ist
+   die Dauer des Blatts.
 
 ## Transferaufgaben
 
@@ -160,13 +255,88 @@ Arbeite diese Schritte für dich ab. Der Nutzer sieht nur das Ergebnis.
 5. **Auswählen:** Behalte die besten und ordne sie vom nahen zum fernen
    Transfer.
 
+## Niveau
+
+Das Niveau eines Übungsblatts misst du an der typischen Klausur des Moduls,
+nicht an einem allgemeinen Maßstab, denn nur sie zeigt, was der Nutzer in der
+Prüfung können muss.
+
+### Klausurprofil
+
+Bestimm es einmal pro Übungsblatt, bevor du Aufgaben entwirfst:
+
+1. Nimm die neueste Altklausur des Moduls, im **Projekt** aus dem Abschnitt
+   „Dateien“ des Index (nach Name oder Beschreibung), im **Chat** aus den
+   angehängten Dateien. Lies alle ihre Aufgaben, aber nicht ihren Lösungsteil.
+2. Notiere für dich:
+   - den Routineanteil: die Punkte der Teilaufgaben, die ein eingeübtes
+     Verfahren abfragen, als Anteil an allen Punkten
+   - die Aufgabenarten, z.B. Rechnung, Herleitung, Skizze, Multiple Choice
+   - die Führung: wie viele Teilaufgaben eine Aufgabe hat und ob sie
+     Zwischenschritte, Ansätze oder Formeln vorgibt
+   - wie viele Konzepte eine Aufgabe verknüpft und wie viele Punkte sie hat
+3. Gibt es keine Altklausur, nimm die Übungsblätter des Moduls als Muster für
+   Aufgabenarten und Führung, ohne Übungsblätter die Beispiele im Skript, und
+   setz den Routineanteil auf etwa ein Drittel der Punkte. Das Niveau ist dann
+   nur geschätzt.
+
+### Vergleichsaufgabe
+
+Die Vergleichsaufgabe einer Aufgabe ist die Aufgabe einer Altklausur, die
+dasselbe Verfahren oder Konzept prüft, ohne Altklausur die einer Übung. Prüft
+keine dasselbe, nimm die ähnlichste.
+
+### Stufen
+
+- **Klausurniveau:** in jedem Hebel wie die Vergleichsaufgabe.
+- **Über Klausurniveau:** mindestens zwei Hebel eine Stufe höher als die
+  Vergleichsaufgabe, alle übrigen wie dort.
+
+| Hebel | Über Klausurniveau heißt |
+|---|---|
+| Führung | weniger Teilaufgaben, keine vorgegebenen Zwischenschritte, Ansätze oder Formeln |
+| Denkschritte | mehr Entscheidungen bis zum Ergebnis, z.B. welches Verfahren, welcher Fall, welche Näherung |
+| Verknüpfung | mindestens ein Konzept oder Verfahren mehr |
+| Sonderfälle | eine Fallunterscheidung, ein Grenzfall oder eine Gültigkeitsgrenze, die die Vergleichsaufgabe auslässt |
+| Transfer | fernerer Transfer oder Anforderungsbereich III statt II, nur bei Transferaufgaben |
+
+Schwerer machst du eine Aufgabe nur mit diesen Hebeln. Fremdwissen,
+Randdetails, Fangformulierungen, mehr Rechenaufwand ohne mehr Denken und
+knappere Zeit machen sie nicht schwerer, nur unfairer. Auch eine schwerere
+Aufgabe bekommt so viele Punkte, wie sie Minuten braucht.
+
+### Niveau des Blatts
+
+| `{niveau}` | Aufgaben |
+|---|---|
+| Leicht | nur Aufgaben mit neuen Werten (Abschnitt „Aufgaben mit neuen Werten“) |
+| Klausurniveau | alle auf Klausurniveau |
+| Klausurniveau+ | zu Schwachstellen auf Klausurniveau, alle übrigen über Klausurniveau |
+| Expertenniveau | alle über Klausurniveau |
+
+- Schwachstellen sind die Themen mit `-` unter `Verstanden` in
+  `projekt:gedaechtnis/{modul}/probleme.md`. Alle anderen Themen, auch die, die
+  dort nicht stehen, gelten als verstanden. Klausurniveau+ gibt es deshalb nur
+  im **Projekt**.
+- Über Klausurniveau gilt auch für die Routineteilaufgaben einer Aufgabe: Ihr
+  Verfahren bleibt eingeübt, aber z.B. ohne vorgegebene Zwischenschritte, mit
+  einer Fallunterscheidung oder mit einem zweiten Verfahren verknüpft.
+- Auf Leicht entfallen Klausurprofil, Vergleichsaufgabe und Niveau-Test, denn
+  jede Aufgabe hat ihr Original als Maßstab.
+
+### Niveau-Test
+
+Vergleiche jede Aufgabe Hebel für Hebel mit ihrer Vergleichsaufgabe. Liegt sie
+nicht auf der Stufe, die `{niveau}` für sie verlangt, überarbeite sie.
+
 ## Übungsblatt
 
-Ein Übungsblatt aus Transferaufgaben, gemischt aus mehreren Kapiteln ohne
-Kapitelangabe, damit der Nutzer wie in der Prüfung zuerst erkennen muss,
-welches Verfahren passt. Es kommt immer als zwei PDFs: die Angabe und die
-Lösung mit vollständigem Lösungsweg. Den LaTeX-Quelltext gibst du nur auf
-ausdrücklichen Wunsch heraus.
+Ein Übungsblatt wie eine typische Klausur des Moduls, aus Routine- und
+Transferaufgaben (auf Leicht nur aus Aufgaben mit neuen Werten), gemischt aus
+mehreren Kapiteln ohne Kapitelangabe, damit der Nutzer wie in der Prüfung
+zuerst erkennen muss, welches Verfahren passt. Es kommt immer als zwei PDFs:
+die Angabe und die Lösung mit vollständigem Lösungsweg, auch bei nur einer
+Aufgabe. Den LaTeX-Quelltext gibst du nur auf ausdrücklichen Wunsch heraus.
 
 Du arbeitest in zwei Phasen: Erst entwirfst du Aufgaben und Lösungen und
 schreibst sie als Entwurf auf (Schritte 1 bis 6), dann setzt du den Entwurf
@@ -184,14 +354,19 @@ Aufgaben, und die vielen Regeln der Vorlage würden davon ablenken.
      `projekt:module/{modul}/info.md`, sonst aus einer Altklausur, sonst
      `keine Angabe`.
 2. **Rückfragen:** Frag nur, was sich nicht aus der Anfrage ergibt.
+   - Bestimmte Aufgaben: Verlangt die Anfrage bestimmte bestehende Aufgaben
+     mit neuen Werten (z.B. „Gib mir Aufgabe 2 von Blatt 3 mit anderen
+     Zahlen“), ist `{niveau}` `Leicht`, das Blatt enthält genau diese
+     Aufgaben, und die übrigen Rückfragen entfallen. `{dauer}` ist dann die
+     Summe ihrer Punkte in Minuten.
    - Vorrat: Nur im **Projekt**. Gibt es für das Modul ein gültiges Blatt im
      Vorrat (Abschnitt „Vorrat“) und verlangt die Anfrage nichts, das nicht
-     dazu passt (z.B. bestimmte Themen, eine andere Länge oder ausdrücklich
-     ein neues Blatt ohne Vorrat), stell zuerst diese Rückfrage, wobei
-     `{vorrat-dauer}` und `{themen}` aus seinem Kopf stammen:
+     dazu passt (z.B. bestimmte Themen, eine andere Länge, ein anderes Niveau
+     oder ausdrücklich ein neues Blatt ohne Vorrat), stell zuerst diese
+     Rückfrage, wobei `{vorrat-dauer}` und `{themen}` aus seinem Kopf stammen:
 
      ```auswahl
-     Ich habe für {modulname} schon ein Übungsblatt vorbereitet: {vorrat-dauer} zu {themen}. Es ist sofort fertig und schont dein Nutzungslimit. Willst du es?
+     Ich habe für {modulname} schon ein Übungsblatt vorbereitet: {vorrat-dauer} auf Klausurniveau+ zu {themen}. Es ist sofort fertig und schont dein Nutzungslimit. Willst du es?
      - Das vorbereitete Blatt
      - Ein neues Übungsblatt
      ```
@@ -227,33 +402,71 @@ Aufgaben, und die vielen Regeln der Vorlage würden davon ablenken.
      - Prüfungslänge: {pruefungsdauer}
      ```
 
+   - Niveau:
+
+     ```auswahl
+     Wie schwer soll das Übungsblatt sein?
+     - Leicht: bekannte Aufgaben mit neuen Werten
+     - Klausurniveau
+     - Klausurniveau+: schwerer als die Klausur, außer bei deinen Schwachstellen
+     - Expertenniveau: alles schwerer als die Klausur
+     ```
+
+     Die dritte Option gibt es nur im **Projekt** (Abschnitt „Niveau“, „Niveau
+     des Blatts“).
+
    `{dauer}` ist danach die Dauer des Blatts: `15 Minuten`, `45 Minuten` oder
    `{pruefungsdauer}`. Ein Punkt steht für etwa eine Minute, deshalb ist die
-   Punktesumme gleich der Dauer in Minuten.
+   Punktesumme gleich der Dauer in Minuten. `{niveau}` ist das Niveau ohne den
+   Text nach dem Doppelpunkt: `Leicht`, `Klausurniveau`, `Klausurniveau+` oder
+   `Expertenniveau`.
 3. **Stoff lesen:** Lies gezielt die Seiten zum Stoff: aus dem Skript die
    Kernkonzepte, aus Übungen und Altklausuren die Aufgaben dazu, damit du
    Tiefenstruktur und Oberfläche trennen kannst. Beim ganzen Skript wählst du
    die Konzepte über das Stichwortverzeichnis aus, statt alles zu lesen. Sieh
    dir Seiten mit Abbildungen, Schaltplänen, Diagrammen oder Formeln als Bild
    an (`skill:SKILL.md`, Abschnitt „PDF-Dateien“), denn als Text kommen sie
-   oft falsch an.
-4. **Aufgaben:** Entwirf die Aufgaben wie im Abschnitt „Transferaufgaben“,
-   beim Umfang „Kurz“ zwei oder drei. Jede Aufgabe bekommt einen kurzen,
-   neutralen Titel, der das geprüfte Konzept nicht verrät, und Teilaufgaben
-   mit Punkten. Plane jede Aufgabe so, dass ihre Angabe auf eine Seite passt,
-   denn im PDF steht jede Aufgabe auf einer eigenen Seite, damit der Nutzer
-   sie am Tablet ohne Scrollen bearbeiten kann. Der Rest der Seite bleibt
-   leer, füll ihn nicht mit weiteren Teilaufgaben auf. Das PDF kann außer
-   Text und Formeln Schaltpläne, Funktionsgraphen, leere Koordinatensysteme
-   zum Einzeichnen, Zeitdiagramme, KV-Diagramme, Zustandsautomaten, Graphen,
-   Blockdiagramme, Registerbelegungen, Tabellen, Code und freie Zeichnungen
-   (z.B. Zeigerdiagramme) zeigen, dazu Multiple Choice, Richtig/Falsch und
+   oft falsch an. Bestimm danach das Klausurprofil (Abschnitt „Niveau“,
+   „Klausurprofil“), außer auf Leicht.
+4. **Aufgaben:** Entwirf die Aufgaben, beim Umfang „Kurz“ zwei oder drei:
+   1. Auf Leicht entwirf alle Aufgaben wie im Abschnitt „Aufgaben mit neuen
+      Werten“ und mach mit Punkt 4 weiter.
+   2. Teil die Punkte auf: für Routineaufgaben den Routineanteil aus dem
+      Klausurprofil, mindestens aber eine Teilaufgabe, den Rest für
+      Transferaufgaben. Eine Aufgabe darf wie in der Klausur Routine- und
+      Transferteilaufgaben mischen.
+   3. Entwirf die Routineaufgaben wie im Abschnitt „Routineaufgaben“ und die
+      Transferaufgaben wie im Abschnitt „Transferaufgaben“, jede auf der
+      Stufe, die `{niveau}` für sie verlangt (Abschnitt „Niveau“). Prüf jede
+      zuletzt mit dem Niveau-Test.
+   4. Ordne die Aufgaben wie in der Klausur, sonst von der leichtesten zur
+      schwersten.
+
+   Jede Aufgabe bekommt einen kurzen, neutralen Titel, der das geprüfte
+   Konzept nicht verrät, und Teilaufgaben mit Punkten. Plane jede Aufgabe so,
+   dass ihre Angabe auf eine Seite passt, denn im PDF steht jede Aufgabe auf
+   einer eigenen Seite, damit der Nutzer sie am Tablet ohne Scrollen
+   bearbeiten kann. Der Rest der Seite bleibt leer, füll ihn nicht mit
+   weiteren Teilaufgaben auf. Das PDF kann außer Text und Formeln
+   Schaltpläne, Funktionsgraphen, leere Koordinatensysteme zum Einzeichnen,
+   Zeitdiagramme, KV-Diagramme, Zustandsautomaten, Graphen, Blockdiagramme,
+   Registerbelegungen, Tabellen, Code und freie Zeichnungen (z.B.
+   Zeigerdiagramme) zeigen, dazu Multiple Choice, Richtig/Falsch und
    Zuordnungen. Felder oder Linien zum Hineinschreiben gibt es nicht.
 5. **Lösungen:** Schreib zu jeder Teilaufgabe den vollständigen Lösungsweg mit
    den Denkschritten, nicht nur das Ergebnis, nachgerechnet. Schreib danach zu
    jeder Aufgabe:
    - welches Konzept sie prüft und worin sie sich von Skript und Übungen
      unterscheidet
+   - ihr Niveau: `Niveau: {art}, {stufe}, verglichen mit {vergleich}: {hebel}`.
+     `{art}` ist `Routine`, `Transfer` oder `Routine und Transfer`, `{stufe}`
+     `Klausurniveau` oder `über Klausurniveau`, `{vergleich}` die Fundstelle
+     der Vergleichsaufgabe und `{hebel}` die erhöhten Hebel, bei
+     Klausurniveau `wie dort`. Ohne Altklausur endet die Zeile mit
+     ` (geschätzt, keine Altklausur)`. Auf Leicht lautet sie
+     `Niveau: Leicht, {variante}, Original {original}`, mit
+     `gleicher Lösungsweg` oder `anderes Verhalten` und der Fundstelle des
+     Originals.
    - die verlockendste falsche Antwort und die Fehlvorstellung dahinter
    - die Bewertungskriterien: was eine volle Antwort enthält, mit Punkten
    - die Fundstelle
@@ -293,7 +506,9 @@ Aufgaben, und die vielen Regeln der Vorlage würden davon ablenken.
       Zeitkonstante: **doppelte Füllzeit** (2 P).
 
    Zur Aufgabe: prüft die Zeitkonstante $\tau = RC$ in einem fremden
-   Kontext, das Skript rechnet nur mit Schaltungen. Verlockend falsch:
+   Kontext, das Skript rechnet nur mit Schaltungen. Niveau: Transfer, über
+   Klausurniveau, verglichen mit (Klausur 2024.pdf, S. 3 A2): fernerer
+   Transfer, keine Formel vorgegeben. Verlockend falsch:
    „gleich lang, der Druck bleibt ja gleich“, Fehlvorstellung: Die Füllzeit
    hänge nur vom Antrieb ab, nicht vom Speicher. Fundstelle:
    (skript.pdf, S. 45)
@@ -374,7 +589,8 @@ Aufgaben, und die vielen Regeln der Vorlage würden davon ablenken.
     Platzhalter samt Zeile weg.
 
     ```text
-    Dein Übungsblatt ist fertig: {anzahl} Aufgaben, {dauer}, {punkte} Punkte.
+    Dein Übungsblatt ist fertig: {anzahl} Aufgaben, {dauer}, {punkte} Punkte, {niveau}.
+    {ohne-klausur}
     {ohne-latex}
 
     - {angabe}: die Angabe
@@ -385,6 +601,14 @@ Aufgaben, und die vielen Regeln der Vorlage würden davon ablenken.
 
     `{angabe}` und `{loesung}` sind die Dateinamen, hier `uebungsblatt.pdf`
     und `uebungsblatt-loesung.pdf`.
+
+    `{ohne-klausur}`: Hast du das Klausurprofil ohne Altklausur bestimmt,
+    setze diese Zeile ein, sonst (auch auf Leicht) lass den Platzhalter samt
+    Zeile weg:
+
+    ```text
+    Zu {modulname} hatte ich keine Altklausur, deshalb ist das Niveau nur geschätzt.
+    ```
 11. **Danach:** Fragt der Nutzer zu einer Aufgabe, hilf mit den Hinweisen aus
     Schritt 5 (`skill:SKILL.md`, Abschnitt „Leitplanken“). Schickt er seine
     Lösung, wechsle zu `skill:faehigkeiten/korrigieren.md` mit dem
@@ -408,12 +632,12 @@ Hier kann ich gerade keine PDFs erzeugen ({grund}), deshalb bekommst du es als T
 ## Vorrat
 
 Im **Projekt** kann es pro Modul ein vorbereitetes Übungsblatt geben:
-`projekt:vorrat/{modul}/uebungsblatt.tex`, etwa 45 Minuten zu den
-Schwachstellen und fälligen Themen. Die automatische Anweisung „Übungsblätter
-vorbereiten“, die der Nutzer einrichten kann, legt es einmal pro Woche an,
-wenn übrige Nutzung sonst verfallen würde. Der Nutzer bekommt es dann sofort,
-und es kostet nur einen Bruchteil eines neuen Blatts, vor allem das Abschreiben
-des Quelltexts. Gespeichert ist nur der LaTeX-Quelltext aus dem
+`projekt:vorrat/{modul}/uebungsblatt.tex`, etwa 45 Minuten auf Klausurniveau+
+zu den Schwachstellen und fälligen Themen. Die automatische Anweisung
+„Übungsblätter vorbereiten“, die der Nutzer einrichten kann, legt es einmal pro
+Woche an, wenn übrige Nutzung sonst verfallen würde. Der Nutzer bekommt es dann
+sofort, und es kostet nur einen Bruchteil eines neuen Blatts, vor allem das
+Abschreiben des Quelltexts. Gespeichert ist nur der LaTeX-Quelltext aus dem
 Abschnitt „Übungsblatt“, denn PDFs lassen sich nicht in den Projektdateien
 ablegen. Davor steht ein Kopf, dahinter eine Schlusszeile:
 
@@ -461,11 +685,12 @@ die automatische Anweisung beim nächsten Lauf.
 
 ### Speichern
 
-Nur die automatische Anweisung speichert Blätter, eins pro Modul, und erst,
-wenn das Blatt Schritt 9 („Prüfen“) bestanden hat. So kommt nie ein halbes
-Blatt in den Vorrat (`plugin:skills/gemeinsam/grundlagen.md`, Abschnitt
-„Abbruch“). Ein Blatt, das eigene Dateien einbindet (z.B. mit `\bild` oder
-`\codedatei`), speicherst du nicht, denn der Vorrat hält nur den Quelltext.
+Nur die automatische Anweisung speichert Blätter, eins pro Modul, nur auf
+Klausurniveau+ und erst, wenn das Blatt Schritt 9 („Prüfen“) bestanden hat.
+So kommt nie ein halbes Blatt in den Vorrat
+(`plugin:skills/gemeinsam/grundlagen.md`, Abschnitt „Abbruch“). Ein Blatt,
+das eigene Dateien einbindet (z.B. mit `\bild` oder `\codedatei`), speicherst
+du nicht, denn der Vorrat hält nur den Quelltext.
 
 1. Schreib den Kopf mit dem heutigen Datum unter `erstellt` nach
    `arbeit:uebungsblatt/kopf.tex`. Führ dann im Ordner `arbeit:uebungsblatt/`
@@ -501,7 +726,9 @@ Blatt in den Vorrat (`plugin:skills/gemeinsam/grundlagen.md`, Abschnitt
    bereitstellst. So bekommt der Nutzer kein Blatt zweimal, auch wenn der Chat
    danach endet.
 6. Mach mit Schritt 10 weiter, mit `{dauer}`, `{anzahl}` und `{punkte}` aus
-   `dauer`, `aufgaben` und `punkte` im Kopf, und danach mit Schritt 11.
+   `dauer`, `aufgaben` und `punkte` im Kopf und `Klausurniveau+` als
+   `{niveau}`. `{ohne-klausur}` entfällt, denn die Lösung nennt den Maßstab
+   selbst. Mach danach mit Schritt 11 weiter.
 
 ## Bloom-Leiter
 

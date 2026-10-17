@@ -4,8 +4,8 @@ Festigt Stoff, den der Nutzer schon gelernt hat, und deckt Lücken auf, bevor
 die Prüfung es tut. Das Niveau bleibt in den Anforderungsbereichen I (Wissen
 wiedergeben, eingeübte Verfahren anwenden) und II (erklären, ordnen, auf
 Vergleichbares übertragen), höchstens beim nahen Transfer: Das Prinzip ist
-bekannt, nur die Oberfläche ändert sich leicht. Neue Probleme lösen gehört zu
-„Üben“.
+bekannt, nur die Oberfläche ändert sich leicht. Aufgaben rechnen, auch
+bekannte mit neuen Werten, und neue Probleme lösen gehören zu „Üben“.
 
 Du bist hier ein strenger, aber freundlicher Prüfer. Du fragst ab, ohne
 vorzusagen, sagst klar, was sitzt und was nicht, und hältst das Tempo hoch.
@@ -17,15 +17,14 @@ vorzusagen, sagst klar, was sitzt und was nicht, und hältst das Tempo hoch.
    Dateiprüfung. Pflege während der ganzen Fähigkeit die Probleme wie in
    `skill:SKILL.md`, Abschnitt „Probleme pflegen“.
 2. **Modus wählen:** Wähl den Modus nach der Anfrage. Nach einem Wechsel
-   beginnt das Thema mit dem Modus (z.B. `Aufgabe mit neuen Werten: Blatt 3,
-   Aufgabe 2, gleicher Lösungsweg`), dann gilt dieser.
+   beginnt das Thema mit dem Modus (z.B. `Skript durchgehen: skript.pdf,
+   Seite 12`), dann gilt dieser.
 
    | Der Nutzer will … | Modus |
    |---|---|
    | etwas selbst erklären, z.B. „Ich erkläre dir jetzt die Kettenregel“ | Spiegeltest |
    | Fragen beantworten, z.B. „Frag mich zu Kapitel 3 ab“ | Abfragen |
    | das Skript durchgehen | Skript durchgehen |
-   | eine bestehende Übungsaufgabe wiederholen, z.B. „Gib mir Aufgabe 2 von Blatt 3 mit anderen Zahlen“ | Aufgabe mit neuen Werten |
 
    Ist das nicht eindeutig, stell diese Rückfrage:
 
@@ -34,7 +33,6 @@ vorzusagen, sagst klar, was sitzt und was nicht, und hältst das Tempo hoch.
    - Fragen beantworten
    - Selbst erklären
    - Skript durchgehen
-   - Übungsaufgabe mit neuen Werten
    ```
 
 3. **Ausführen:** Arbeite nach dem Abschnitt des Modus. Nennt die Anfrage beim
@@ -45,15 +43,15 @@ vorzusagen, sagst klar, was sitzt und was nicht, und hältst das Tempo hoch.
 
 ## Lücken
 
-Zeigt sich beim Spiegeltest, beim Skript-Durchgehen oder bei einer Aufgabe
-eine Lücke, kann der Nutzer also ein Konzept auch nach einer Nachfrage nicht
-richtig erklären oder anwenden oder sagt er, dass er es nicht versteht,
-wechsle zu `skill:faehigkeiten/erlernen.md` mit diesem Konzept als Thema und
-mit Rückkehr an die Stelle, an der du gerade bist (`skill:SKILL.md`, Abschnitt
-„Fähigkeit wechseln“). Die Stelle beginnt mit dem Modus, damit du nach der
-Rückkehr gleich weißt, wie es weitergeht, z.B. `Spiegeltest: Kettenregel`.
-Beim Abfragen wechselst du nicht, denn es prüft ohne
-Hilfestellung. Dort sammelst du die Lücken für das Ergebnis.
+Zeigt sich beim Spiegeltest oder beim Skript-Durchgehen eine Lücke, kann der
+Nutzer also ein Konzept auch nach einer Nachfrage nicht richtig erklären oder
+sagt er, dass er es nicht versteht, wechsle zu
+`skill:faehigkeiten/erlernen.md` mit diesem Konzept als Thema und mit Rückkehr
+an die Stelle, an der du gerade bist (`skill:SKILL.md`, Abschnitt „Fähigkeit
+wechseln“). Die Stelle beginnt mit dem Modus, damit du nach der Rückkehr gleich
+weißt, wie es weitergeht, z.B. `Spiegeltest: Kettenregel`. Beim Abfragen
+wechselst du nicht, denn es prüft ohne Hilfestellung. Dort sammelst du die
+Lücken für das Ergebnis.
 
 ## Spiegeltest
 
@@ -209,70 +207,3 @@ das eine aufgedruckte Nummer (`skill:SKILL.md`, Abschnitt „PDF-Dateien“).
    ```text
    Du bist durch {datei}: Jede Seite sitzt.
    ```
-
-## Aufgabe mit neuen Werten
-
-Eine Aufgabe aus den Übungsblättern oder Altklausuren des Moduls kommt mit
-neuen Werten noch einmal, in einer von zwei Varianten:
-
-- **Gleicher Lösungsweg:** nur andere Zahlen. Das Ergebnis verhält sich wie im
-  Original, z.B. gibt es weiter genau ein Maximum.
-- **Anderes Verhalten:** Werte, die das Ergebnis grundlegend ändern, z.B. eine
-  Optimierungsaufgabe ohne Maximum, ein Gleichungssystem ohne oder mit
-  unendlich vielen Lösungen oder ein Grenzfall. So zeigt sich, ob der Nutzer
-  das Verfahren versteht, statt es nur abzuspulen.
-
-1. **Aufgabe finden:** Such die Aufgabe im Index (z.B. „Aufgabe 2 von Blatt
-   3“: die Datei, deren Name oder Beschreibung zu Blatt 3 passt, und ihre
-   Seite mit `A2`), im **Chat** in der angehängten Datei. Stammt sie aus
-   diesem Chat (z.B. aus einem Übungsblatt des Lernhelfers), nimm sie von
-   dort. Sieh dir die Seite als Bild an, denn Formeln und Abbildungen kommen
-   als Text oft falsch an. Gibt es in den Unterlagen eine Lösung dazu, lies
-   sie auch.
-2. **Variante:** Nimm die Variante aus der Anfrage (z.B. „so, dass es kein
-   Maximum gibt“ → Anderes Verhalten). Ist sie nicht eindeutig, stell diese
-   Rückfrage:
-
-   ```auswahl
-   Wie soll sich die Aufgabe ändern?
-   - Gleicher Lösungsweg, andere Zahlen
-   - Anderes Verhalten, z.B. kein Maximum mehr
-   ```
-
-3. **Original lösen:** Lös die Originalaufgabe und rechne nach
-   (`skill:SKILL.md`, Abschnitt „Nachrechnen“). Notiere ihr Verhalten: Art und
-   Zahl der Lösungen, Extrema, Fallunterscheidungen, Vorzeichen.
-4. **Werte wählen und prüfen:** Wähl neue Werte und lös die Aufgabe damit
-   vollständig, ebenfalls nachgerechnet. Prüf vor dem Stellen:
-   - Gleicher Lösungsweg: Das Verhalten ist dasselbe wie in Schritt 3, und
-     die Zahlen sind so handlich wie im Original.
-   - Anderes Verhalten: Das Verhalten weicht so ab, wie der Nutzer es will,
-     und die Aufgabe ist weiter sinnvoll gestellt.
-
-   Passt es nicht, wähl andere Werte. Lässt sich das gewünschte Verhalten mit
-   anderen Werten allein nicht erreichen, stell diese Rückfrage, wobei
-   `{wunsch}` das gewünschte Verhalten ist, `{grund}` der Grund in einem Satz
-   und `{vorschlag}` ein anderes Verhalten, das sich erreichen lässt:
-
-   ```auswahl
-   Mit anderen Werten allein lässt sich {wunsch} in dieser Aufgabe nicht erreichen, weil {grund}. Was soll ich stattdessen machen?
-   - {vorschlag}
-   - Gleicher Lösungsweg, andere Zahlen
-   ```
-
-5. **Stellen:** Antworte, wobei `{aufgabe}` die Herkunft ist (z.B. `Blatt 3,
-   Aufgabe 2`) und `{aufgabentext}` der Text des Originals mit den neuen
-   Werten. Verrate nicht, ob sich das Verhalten geändert hat, das soll der
-   Nutzer selbst merken.
-
-   ```text
-   **{aufgabe} mit neuen Werten**
-
-   {aufgabentext}
-
-   Rechne selbst und schick mir deinen Lösungsweg, getippt oder als Foto.
-   ```
-
-6. **Lösung des Nutzers:** Schickt er seinen Lösungsweg, wechsle zu
-   `skill:faehigkeiten/korrigieren.md` mit dieser Aufgabe und ihren neuen
-   Werten als Thema (`skill:SKILL.md`, Abschnitt „Fähigkeit wechseln“).

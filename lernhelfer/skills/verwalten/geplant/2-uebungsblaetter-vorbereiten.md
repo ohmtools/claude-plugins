@@ -28,10 +28,11 @@ bereit, und die Nachricht aus „Session beenden“ entfällt.
    zuerst die Fächer ein Blatt, mit denen der Nutzer gerade lernt. Arbeite
    jedes für sich ab, als hätte der Nutzer geschrieben: „Mach mir ein neues
    Übungsblatt für {modulname} zu meinen Schwachstellen und fälligen Themen,
-   etwa 45 Minuten, als LaTeX-Quelltext, ohne Vorrat“. Speichere den
-   Quelltext im Vorrat, bevor du mit dem nächsten Modul anfängst. Bleibt nach
-   der Dateiprüfung keine Datei des Moduls übrig, lass es weg. Entsteht kein
-   übersetzter LaTeX-Quelltext, speichere nichts und hör auf.
+   etwa 45 Minuten, auf Klausurniveau+, als LaTeX-Quelltext, ohne Vorrat“.
+   Speichere den Quelltext im Vorrat, bevor du mit dem nächsten Modul
+   anfängst. Bleibt nach der Dateiprüfung keine Datei des Moduls übrig, lass
+   es weg. Entsteht kein übersetzter LaTeX-Quelltext, speichere nichts und
+   hör auf.
 3. **Abschluss:** Antworte, wobei `{module}` die Namen der Module mit neuem
    Blatt durch Kommas getrennt sind:
 

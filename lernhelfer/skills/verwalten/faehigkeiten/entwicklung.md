@@ -117,7 +117,10 @@ Einmal pro Chat, vor der ersten Änderung oder dem ersten Export.
    - Schreib keine Leerzeichen am Zeilenende. Manche Schreibwerkzeuge entfernen
      sie, dann ändert sich eine Datei unbemerkt.
    - Schreib keine Versionsnummern, Autoren oder Änderungsdaten in die Dateien
-     der Skills. Claude.ai verwaltet das Plugin.
+     der Skills. Claude.ai verwaltet das Plugin. Auch
+     `kopie:.claude-plugin/plugin.json` bekommt kein Feld `version`: Ohne
+     Version zählt jeder Commit als Update, mit Version bekäme niemand ein
+     Update, bis sie erhöht wird.
    - Leg jede Fähigkeit nach ihrer Aufgabe ab: in
      `kopie:skills/lernen/faehigkeiten/`, wenn sie mit dem Nutzer an einem
      Fach lernt, in `kopie:skills/verwalten/faehigkeiten/`, wenn sie Fächer,

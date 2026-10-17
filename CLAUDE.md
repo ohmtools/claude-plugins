@@ -49,7 +49,11 @@ die Änderung betrifft, vollständig.
 - Die Konventionen in `entwicklung.md` gelten auch für dich.
 - Neue Konventionen für Fähigkeiten gehören nach `entwicklung.md`, nicht
   hierher, weil die Entwicklungsinstanz im Projekt nur das Plugin kennt.
-- Prüf nach jeder Änderung mit `claude plugin validate .`.
+- Prüf nach jeder Änderung mit `claude plugin validate .`. Zwei Meldungen
+  sind gewollt: die Warnung zur fehlenden `version` in `plugin.json` (sonst
+  kämen Commits erst nach einer neuen Version an, Regel in `entwicklung.md`)
+  und der Hinweis auf eine Installationszeile für Claude Code im README (der
+  Lernhelfer ist für Claude.ai gebaut).
 - Trag die Ergebnisse jedes Testlaufs unter „Testläufe“ ein, pass die
   Fähigkeiten an und nimm bestätigte Tests aus `testen.md` heraus
   (Konvention in `entwicklung.md`).

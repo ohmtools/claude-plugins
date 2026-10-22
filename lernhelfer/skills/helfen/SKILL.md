@@ -115,9 +115,11 @@ die Kettenregel“. Claude wählt dann einen dieser Lernmodi:
   automatische Anweisung schon ein Blatt vorbereitet, bietet Claude es zuerst
   an, dann ist es sofort fertig. Die Bloom-Leiter führt im Chat in sechs
   Stufen vom Erinnern bis zum Erschaffen.
-- Korrigieren: Der Nutzer schickt seine Lösung getippt oder als Foto. Claude
-  bewertet sie wie ein strenger Prüfer, mit geschätzter Punktzahl, gibt
-  Hinweise statt der Lösung und sucht zu jedem Fehler die Ursache. Danach geht
+- Korrigieren: Der Nutzer schickt seine Lösung getippt oder als Foto. Bei
+  einem Foto oder einer Datei schreibt Claude zuerst ab, was es gelesen hat,
+  damit der Nutzer Lesefehler sofort sieht. Dann bewertet es sie wie ein
+  strenger Prüfer, mit geschätzter Punktzahl, gibt Hinweise statt der Lösung
+  und sucht zu jedem Fehler die Ursache. Danach geht
   es bei Verständnisfehlern mit Erlernen weiter, bei Fehlern in der
   Rechentechnik mit Wiederholen, in dem der Nutzer die Regel selbst erklärt.
 Zeigt sich unterwegs eine Lücke, wechselt Claude zum Erlernen und sagt das

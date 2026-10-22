@@ -326,9 +326,9 @@ die Änderung betrifft, vollständig.
   deutscher Zeit (POSIX-TZ, ohne tzdata) als `\ubdatum` und `\ubuhrzeit`,
   ohne `build.sh` gilt die Uhr beim Übersetzen.
   Schaltzeichen nach DIN EN 60617 (Wunsch des Nutzers vom 2026-10-22):
-  Spule als Halbkreisbögen (`american inductors` in `schaltung`, das
-  gefüllte Rechteck von `european` ist die alte DIN-Form), Negation an
-  Gattern als Kreis, in `ANLEITUNG.md` (Kapitel 7, `schaltung`)
+  Negation an Gattern als Kreis, gerade Spannungspfeile (`voltage=straight`,
+  circuitikz biegt sie sonst), Spule und Transformator aber als gefülltes
+  Rechteck wie an der Schule des Nutzers (nicht die Halbkreisbögen der Norm), in `ANLEITUNG.md` (Kapitel 7, `schaltung`)
   Operationsverstärker `en amp` statt `op amp` und Messgeräte `rmeter`
   statt `ammeter`/`voltmeter` (mit Pfeil). Mit circuitikz 1.6.6 geprüft.
 - Übungsblatt in zwei Phasen (Wunsch des Nutzers, damit die Qualität der

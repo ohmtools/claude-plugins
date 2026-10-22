@@ -381,14 +381,14 @@
   \begin{abbildung}{#2}\begin{tikzpicture}[ub zeichnung,#1]}{%
   \end{tikzpicture}\end{abbildung}}
 
-% Schaltzeichen nach DIN EN 60617: Spule als Halbkreisbögen (das gefüllte
-% Rechteck der Option european ist die alte DIN-Form), Negation als Kreis;
-% Operationsverstärker als "en amp", Messgeräte als "rmeter" (ANLEITUNG.md)
+% Schaltzeichen nach DIN EN 60617, Negation als Kreis; Spule und Trafo als
+% gefülltes Rechteck (wie an der Schule des Nutzers); Operationsverstärker
+% als "en amp", Messgeräte als "rmeter" (ANLEITUNG.md); Spannungspfeile
+% gerade neben dem Bauteil statt gebogen
 \ctikzset{bipoles/thickness=1, monopoles/ground/width=0.25,
-  tripoles/european not symbol=circle}
+  tripoles/european not symbol=circle, voltage=straight}
 \NewDocumentEnvironment{schaltung}{O{} m}{%
-  \begin{abbildung}{#2}\begin{circuitikz}[american inductors,
-      line width=0.7pt,font=\small,#1]}{%
+  \begin{abbildung}{#2}\begin{circuitikz}[line width=0.7pt,font=\small,#1]}{%
   \end{circuitikz}\end{abbildung}}
 
 \NewDocumentEnvironment{blockdiagramm}{O{} m}{%

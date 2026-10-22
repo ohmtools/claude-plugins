@@ -325,6 +325,12 @@ die Änderung betrifft, vollständig.
   Fuß nur „Seite x / y“. `build.sh` übergibt Datum und Uhrzeit einmal in
   deutscher Zeit (POSIX-TZ, ohne tzdata) als `\ubdatum` und `\ubuhrzeit`,
   ohne `build.sh` gilt die Uhr beim Übersetzen.
+  Schaltzeichen nach DIN EN 60617 (Wunsch des Nutzers vom 2026-10-22):
+  Spule als Halbkreisbögen (`american inductors` in `schaltung`, das
+  gefüllte Rechteck von `european` ist die alte DIN-Form), Negation an
+  Gattern als Kreis, in `ANLEITUNG.md` (Kapitel 7, `schaltung`)
+  Operationsverstärker `en amp` statt `op amp` und Messgeräte `rmeter`
+  statt `ammeter`/`voltmeter` (mit Pfeil). Mit circuitikz 1.6.6 geprüft.
 - Übungsblatt in zwei Phasen (Wunsch des Nutzers, damit die Qualität der
   Aufgaben nicht unter vielen geladenen Regeln leidet): `ueben.md` lässt
   erst Aufgaben und Lösungen als `arbeit:uebungsblatt/entwurf.md` schreiben

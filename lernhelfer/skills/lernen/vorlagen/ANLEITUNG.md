@@ -355,19 +355,25 @@ Farbnamen, falls ausnahmsweise nötig (z. B. Füllung): `ohmForeground`
 \end{schaltung}
 ```
 
-* Europäische Symbole (DIN/IEC) sind voreingestellt.
-* Zweipole mit `to[..]`: `R` Widerstand, `C` Kondensator, `L` Spule,
-  `V` Spannungsquelle, `I` Stromquelle, `battery1`, `D` Diode, `led`,
-  `zD` Z-Diode, `vR` verstellbarer Widerstand, `lamp`, `fuse`,
-  `nos`/`ncs` Schalter, `short` Leitung, `open` offene Klemmen.
+* Die Schaltzeichen folgen DIN EN 60617 und sind voreingestellt. Nimm nur
+  die hier genannten, andere Namen aus circuitikz zeichnen teils
+  amerikanische Symbole (z. B. `op amp` als Dreieck, `ammeter` mit Pfeil).
+* Zweipole mit `to[..]`: `R` Widerstand, `C` Kondensator, `L` Spule
+  (Halbkreisbögen), `V` Spannungsquelle, `I` Stromquelle, `sV`
+  Wechselspannungsquelle, `battery1`, `D` Diode, `led`, `zD` Z-Diode, `vR`
+  verstellbarer Widerstand, `lamp`, `fuse`, `nos`/`ncs` Schalter, `short`
+  Leitung, `open` offene Klemmen.
+* Messgeräte: `to[rmeter, t=A]` Strommesser, `to[rmeter, t=V]`
+  Spannungsmesser.
 * Beschriftungen: `l=` (Bauteilname), `l_=` (andere Seite), `v=` / `v^=`
   Spannungspfeil, `i=` / `i>_=` Strompfeil, `a=` Wert.
 * Anschlüsse: `*-*` Knotenpunkte, `o-o` Klemmen, z. B. `to[R, o-*]`.
 * Einpolige Symbole: `node[ground]{}`, `node[vcc]{$+\qty{5}{V}$}`.
-* Dreipole: `node[op amp] (OP) {}` mit Anschlüssen `(OP.-)`, `(OP.+)`,
-  `(OP.out)`; Transistoren `node[npn] (T) {}` mit `(T.B)`, `(T.C)`, `(T.E)`;
-  `nmos`, `pmos`.
-* **Logikgatter** (IEC-Rechteckform): `node[and port] (U) {}`,
+* Dreipole: Operationsverstärker `node[en amp] (OP) {}` (Rechteck mit
+  ▷∞, invertierender Eingang oben, mit `en amp, noinv input up` unten) mit
+  Anschlüssen `(OP.-)`, `(OP.+)`, `(OP.out)`; Transistoren `node[npn] (T) {}`
+  mit `(T.B)`, `(T.C)`, `(T.E)`; `nmos`, `pmos`.
+* **Logikgatter** (Rechteckform, Negation als Kreis): `node[and port] (U) {}`,
   `or port`, `not port`, `nand port`, `nor port`, `xor port`;
   Eingänge `(U.in 1)`, `(U.in 2)`, Ausgang `(U.out)`. Siehe Aufgabe 3 in
   `beispiel.tex`.

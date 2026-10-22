@@ -270,7 +270,10 @@ die Änderung betrifft, vollständig.
     Vergleichsaufgabe, nie mit Fremdwissen, Fangfragen oder mehr Rechnen.
     Das Niveau jeder Aufgabe steht mit ihrer Vergleichsaufgabe in „Zur
     Aufgabe“.
-  - Korrigieren: strenger Prüfer, Punkte als Schätzung, Hinweise statt
+  - Korrigieren: bei einer angehängten Lösung zuerst eine wörtliche Abschrift
+    des Gelesenen, auch mit den Fehlern, damit der Nutzer Lesefehler
+    erkennt (Wunsch des Nutzers vom 2026-10-22), strenger Prüfer, Punkte als
+    Schätzung, Hinweise statt
     Lösung, Fehlerursachen nach Fischgräte mit bis zu fünfmal „Warum?“,
     danach Wechsel zu Erlernen (Verständnis, Vorwissen) oder zu Wiederholen
     mit einem Spiegeltest zur Regel hinter dem Fehler (Rechentechnik), sonst
@@ -608,7 +611,8 @@ Fällen:
   schwerer als ihre Vergleichsaufgabe, ohne Fremdwissen und Fangfragen),
   dazu einmal in einem Fach ohne Altklausur (Hinweis auf das geschätzte
   Niveau)
-- Foto einer fehlerhaften Lösung (Bewertung, Fischgräte, Eintrag mit Ursache
+- Foto einer fehlerhaften Lösung (Abschrift vor der Bewertung, Fehler darin
+  unverändert, Bewertung, Fischgräte, Eintrag mit Ursache
   in `probleme.md`, danach Wechsel zu Erlernen oder bei Rechentechnik zu
   Wiederholen mit einem Spiegeltest zur Regel)
 

@@ -23,6 +23,30 @@ fragst bei jedem Fehler nach, bis seine eigentliche Ursache klar ist.
    Diese Stelle kann ich nicht sicher lesen: {stelle}. Was steht dort?
    ```
 
+   Hat der Nutzer seine Lösung als Datei angehängt, schreib danach alles ab,
+   was du darin gelesen hast, und gib es aus, bevor du weitermachst. So sieht
+   er, ob du seine Handschrift richtig gelesen hast. Antworte:
+
+   ```text
+   ## So habe ich deine Lösung gelesen
+
+   {abschrift}
+
+   Habe ich etwas falsch gelesen, nenn mir die Stelle und was dort steht. Dann bewerte ich neu.
+   ```
+
+   `{abschrift}`: die ganze Lösung in der Reihenfolge des Blatts, Zeile für
+   Zeile, genau wie geschrieben, auch mit ihren Fehlern, denn du bewertest,
+   was dasteht. Verbessere nichts und ergänze nichts. Schreib Formeln in einer
+   Zeile mit Unicode (z.B. `f'(x) = 2x · cos(x²)`), Teilaufgaben mit ihrer
+   Bezeichnung (z.B. `b)`), Skizzen in Worten (z.B. `[Skizze: Parabel mit
+   Scheitel bei (1|2)]`) und Durchgestrichenes als `[durchgestrichen: …]`.
+   Stellen, nach denen du gefragt hast, schreibst du so, wie der Nutzer sie
+   genannt hat.
+
+   Korrigiert der Nutzer die Abschrift, gilt seine Fassung. Bewerte dann mit
+   ihr ab Schritt 4 neu.
+
 2. **Vorbereiten:** Im **Projekt** arbeite mit dem Modul wie in
    `skill:SKILL.md`, Abschnitt „Mit einem Modul arbeiten“, einschließlich der
    Dateiprüfung. Das Fach geht oft schon aus der Lösung hervor. Pflege
@@ -76,8 +100,8 @@ fragst bei jedem Fehler nach, bis seine eigentliche Ursache klar ist.
      Verbessere deine Lösung selbst und schick sie mir noch einmal. Brauchst du einen genaueren Hinweis, frag einfach.
      ```
 
-5. **Verbessern:** Schickt der Nutzer eine verbesserte Fassung, prüf sie
-   ebenso und gib, wo noch etwas fehlt, den konkreten Hinweis. Die Punkte aus
+5. **Verbessern:** Schickt der Nutzer eine verbesserte Fassung, lies sie wie
+   in Schritt 1, mit Abschrift, prüf sie wie in Schritt 4 und gib, wo noch etwas fehlt, den konkreten Hinweis. Die Punkte aus
    Schritt 4 bleiben, denn sie gelten für seine erste Fassung. Will er nicht
    verbessern, mach mit Schritt 6 weiter.
 6. **Ursachen:** Ordne jeden Fehler einer dieser Ursachen zu, wie in einer

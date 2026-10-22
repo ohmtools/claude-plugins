@@ -316,6 +316,15 @@ die Änderung betrifft, vollständig.
   `gegeben`, `hinweisbox` und Code zwischen zwei Linien, Lösungen mit einer
   roten Linie links statt Kästen, keine Großbuchstaben und Sperrungen, eckige
   Ecken. `\akzentfarbe` und die Farbnamen `ub…` sind entfallen.
+  Seit dem 2026-10-22 haben Blätter keine Nummer mehr (Wunsch des Nutzers,
+  damit Claude keine suchen muss): `\blatt`, `\untertitel` und `\kopfzusatz`
+  sind entfallen. Kopf „Übungsblatt · Angabe“ bzw. „· Lösung“, rechts das
+  Fach, auf dem Deckblatt der Link „OhmTools“ (github.com/ohmtools, mit
+  `\pdfstartlink` statt hyperref), Marke „Angabe“ bzw. „Lösung“ ohne roten
+  Balken davor, statt des Untertitels „Erstellt am {datum} um {hh:mm}“, im
+  Fuß nur „Seite x / y“. `build.sh` übergibt Datum und Uhrzeit einmal in
+  deutscher Zeit (POSIX-TZ, ohne tzdata) als `\ubdatum` und `\ubuhrzeit`,
+  ohne `build.sh` gilt die Uhr beim Übersetzen.
 - Übungsblatt in zwei Phasen (Wunsch des Nutzers, damit die Qualität der
   Aufgaben nicht unter vielen geladenen Regeln leidet): `ueben.md` lässt
   erst Aufgaben und Lösungen als `arbeit:uebungsblatt/entwurf.md` schreiben

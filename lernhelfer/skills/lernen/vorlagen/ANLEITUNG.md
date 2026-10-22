@@ -102,7 +102,6 @@ Kästen, eckige Ecken.
 \documentclass{uebungsblatt}
 
 \fach{Grundlagen der Elektrotechnik}
-\blatt{04}
 \bearbeitungszeit{60 min}
 \hilfsmittel{Formelsammlung, nicht programmierbarer Taschenrechner}
 \hinweis{Rechenweg vollständig angeben}
@@ -162,13 +161,14 @@ Beispiel: `\documentclass[ohnedeckblatt,aufgabenoben]{uebungsblatt}`
 ## 4. Präambel: Angaben zum Blatt
 
 Alle Angaben stehen **vor** `\begin{document}`. Nur `\fach` ist Pflicht.
+Übungsblätter haben keine Nummer. Kopfzeile („Übungsblatt · Angabe“ bzw.
+„Lösung“, rechts das Fach, auf dem Deckblatt „OhmTools“), Fußzeile (nur
+„Seite x / y“) und die Zeile „Erstellt am … um …“ unter dem Titel setzt die
+Klasse selbst.
 
 | Befehl | Bedeutung | Erscheint in |
 |---|---|---|
-| `\fach{Text}` | Fach / Titel des Blatts | Deckblatt (groß), Kopf- und Fußzeile |
-| `\blatt{07}` | Nummer des Übungsblatts | „Übungsblatt 07“ in Kopf/Fuß/Deckblatt |
-| `\untertitel{Text}` | Untertitel (Standard: „Übungsblatt 07 zur Prüfungsvorbereitung“) | Deckblatt |
-| `\kopfzusatz{Text}` | rechts oben auf dem Deckblatt (Standard: „Prüfungsvorbereitung“) | Deckblatt |
+| `\fach{Text}` | Fach / Titel des Blatts | Deckblatt (groß), Kopfzeile |
 | `\bearbeitungszeit{90 min}` | optional | Deckblatt |
 | `\hilfsmittel{Text}` | optional, erscheint als erster Hinweis | Deckblatt |
 | `\hinweis{Text}` | beliebig oft, je ein Punkt in der Hinweisliste | Deckblatt |
@@ -714,17 +714,17 @@ Daraus entstehen zwei PDFs:
 | Lösungsvorschlag `blatt-loesung.pdf` | `loesung` | sichtbar |
 
 `sh build.sh blatt` erzeugt beide auf einmal und setzt die Option selbst,
-ohne die Datei zu ändern. Von Hand (z. B. in Overleaf) schaltest du die
+ohne die Datei zu ändern. Datum und Uhrzeit auf dem Deckblatt sind dabei in
+beiden PDFs gleich, in deutscher Zeit. Von Hand (z. B. in Overleaf) schaltest du die
 Lösungen mit `\documentclass[loesung]{uebungsblatt}` ein und mit
 `\documentclass{uebungsblatt}` wieder aus.
 
 Ausgeblendete Lösungen nehmen **keinen Platz** ein: Das Aufgabenblatt sieht
 Pixel für Pixel genauso aus, als stünden sie nicht in der Datei.
 
-Im Lösungsvorschlag ändert sich automatisch: Kopf- und Fußzeile tragen
-„Lösung“, das Deckblatt zeigt die Marke „Lösungsvorschlag“ und den
-Untertitel „Lösungsvorschlag zu Übungsblatt …“, alle Seiten bleiben
-vertikal zentriert, alle Lösungselemente erscheinen in Rot.
+Im Lösungsvorschlag ändert sich automatisch: Die Kopfzeile trägt „Lösung“
+statt „Angabe“, ebenso die Marke über dem Titel auf dem Deckblatt, alle
+Seiten bleiben vertikal zentriert, alle Lösungselemente erscheinen in Rot.
 
 ### `loesung` – die Lösungsbox
 

@@ -21,8 +21,7 @@
 %  ---- KURZREFERENZ ---------------------------------------------------
 %  Klassenoptionen:  ohnedeckblatt, aufgabenoben, loesung
 %
-%  Präambel:  \fach{..} \blatt{..} \untertitel{..} \kopfzusatz{..}
-%             \bearbeitungszeit{..} \hilfsmittel{..} \hinweis{..}
+%  Präambel:  \fach{..} \bearbeitungszeit{..} \hilfsmittel{..} \hinweis{..}
 %
 %  Struktur:  \begin{aufgabe}[Punkte]{Titel} ... \end{aufgabe}
 %             \begin{teilaufgaben} \teil{Punkte} Text ... \end{teilaufgaben}
@@ -167,27 +166,33 @@
 % 4. Metadaten (Präambel)
 % =====================================================================
 \newcommand*\ub@fach{Übungsblatt}
-\newcommand*\ub@blatt{}
-\newcommand*\ub@untertitel{}
-\newcommand*\ub@kopfzusatz{Prüfungsvorbereitung}
 \newcommand*\ub@zeit{}
 \newcommand*\ub@hilfsmittel{}
 \newcommand*\ub@hinweise{}
 \newcommand\fach[1]{\renewcommand*\ub@fach{#1}}
-\newcommand\blatt[1]{\renewcommand*\ub@blatt{#1}}
-\newcommand\untertitel[1]{\renewcommand*\ub@untertitel{#1}}
-\newcommand\kopfzusatz[1]{\renewcommand*\ub@kopfzusatz{#1}}
 \newcommand\bearbeitungszeit[1]{\renewcommand*\ub@zeit{#1}}
 \newcommand\hilfsmittel[1]{\renewcommand*\ub@hilfsmittel{#1}}
 \newcommand\hinweis[1]{\g@addto@macro\ub@hinweise{\item #1}}
-\newcommand\ub@blattname{Übungsblatt\ifx\ub@blatt\@empty\else\ \ub@blatt\fi}
-\newcommand\ub@kopfname{\ub@blattname\ifloesung\ \textperiodcentered\ Lösung\fi}
+\newcommand\ub@art{\ifloesung Lösung\else Angabe\fi}
+\newcommand\ub@kopfname{Übungsblatt\ \textperiodcentered\ \ub@art}
+% Zeitpunkt der Erstellung fürs Deckblatt: build.sh übergibt \ubdatum und
+% \ubuhrzeit in deutscher Zeit, für beide PDFs gleich; sonst gilt die Uhr
+% beim Übersetzen.
+\@ifundefined{ubdatum}{%
+  \edef\ubdatum{\two@digits\day.\two@digits\month.\the\year}}{}
+\@ifundefined{ubuhrzeit}{%
+  \@tempcnta\time \divide\@tempcnta 60
+  \@tempcntb\numexpr\time-60*\@tempcnta\relax
+  \edef\ubuhrzeit{\two@digits\@tempcnta:\two@digits\@tempcntb}}{}
 
 % =====================================================================
 % 5. Interne Stilbausteine
 % =====================================================================
 \newcommand\ub@zahl[1]{\num{#1}}
 \newcommand\ub@kicker[1]{\leavevmode{\footnotesize\bfseries\color{ohmPrimary}#1}}
+% Link ohne Rahmen, ohne hyperref (nur pdfTeX, sonst nur der Text)
+\newcommand\ub@link[2]{\ifdefined\pdfstartlink\pdfstartlink attr{/Border[0 0 0]}
+  user{/Subtype/Link/A<</S/URI/URI(#1)>>}#2\pdfendlink\else#2\fi}
 \newcommand\ub@label[1]{\leavevmode{\footnotesize\bfseries\color{ohmMutedForeground}#1}}
 \newcommand\ub@punktewort[1]{\ifnum\fpeval{#1==1}=1 Punkt\else Punkte\fi}
 \newcommand\ub@unterschrift[2]{% #1 = Kürzel (Abb./Tab.), #2 = Text
@@ -207,7 +212,6 @@
 \renewcommand\headrule{{\color{ohmBorder}\hrule\@height\headrulewidth\@width\headwidth}\vskip-\headrulewidth}
 \renewcommand\footrule{{\color{ohmBorder}\hrule\@height\footrulewidth\@width\headwidth}\vskip\footruleskip}
 \newcommand\ub@fuss{%
-  \fancyfoot[L]{\footnotesize\color{ohmMutedForeground}\ub@kopfname\ \textperiodcentered\ \ub@fach}%
   \fancyfoot[R]{\footnotesize\color{ohmMutedForeground}Seite \thepage\ / \pageref{LastPage}}}
 \fancyhead[L]{\ub@kicker{\ub@kopfname}}
 \fancyhead[R]{\footnotesize\color{ohmMutedForeground}\ub@fach}
@@ -215,7 +219,8 @@
 \fancypagestyle{deckblatt}{%
   \fancyhf{}%
   \fancyhead[L]{\ub@kicker{\ub@kopfname}}%
-  \fancyhead[R]{\footnotesize\color{ohmMutedForeground}\ub@kopfzusatz}%
+  \fancyhead[R]{\footnotesize\color{ohmPrimary}%
+    \ub@link{https://github.com/ohmtools}{OhmTools}}%
   \ub@fuss}
 
 % =====================================================================
@@ -805,17 +810,13 @@
 \newcommand\ub@deckblattsetzen{%
   \thispagestyle{deckblatt}%
   \ifub@zentriert\else\null\vspace{48mm}\fi
-  \tikz\fill[ohmPrimary] (0,0) rectangle (12mm,1.6mm);%
-  \ifloesung\hspace{4mm}\tikz[baseline=-0.4mm]\node[fill=ohmPrimary,
+  \tikz[baseline=-0.4mm]\node[fill=ohmPrimary,
     text=ohmPrimaryForeground,inner xsep=2.2mm,inner ysep=1.4mm,
-    font=\footnotesize\bfseries]{Lösungsvorschlag};\fi\par
+    font=\footnotesize\bfseries]{\ub@art};\par
   \vspace{4mm}%
   {\fontsize{32}{37}\selectfont\bfseries\raggedright\ub@fach\par}%
   \vspace{3mm}%
-  {\large\color{ohmMutedForeground}%
-    \ifx\ub@untertitel\@empty
-      \ifloesung Lösungsvorschlag zu \ub@blattname\else\ub@blattname\ zur Prüfungsvorbereitung\fi
-    \else\ub@untertitel\fi\par}%
+  {\large\color{ohmMutedForeground}Erstellt am \ubdatum\ um \ubuhrzeit\par}%
   \vspace{11mm}%
   {\color{ohmBorder}\hrule height 0.5pt}\vspace{5mm}%
   \noindent

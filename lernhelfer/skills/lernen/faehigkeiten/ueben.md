@@ -535,9 +535,9 @@ Aufgaben, und die vielen Regeln der Vorlage würden davon ablenken.
       und `skill:vorlagen/build.sh` nach `arbeit:uebungsblatt/`.
    4. Ändere in der Kopie `arbeit:uebungsblatt/uebungsblatt.tex` vor
       `\begin{document}` `\fach` (`{modulname}`), `\bearbeitungszeit`
-      (`{dauer}`) und `\hilfsmittel` (`{hilfsmittel}`). Lösch die Zeile mit
-      `\blatt`, und behalte von den Zeilen mit `\hinweis` nur die, die zu
-      deinen Aufgaben passen. Sonst änderst du vor `\begin{document}` nichts.
+      (`{dauer}`) und `\hilfsmittel` (`{hilfsmittel}`). Behalte von den Zeilen
+      mit `\hinweis` nur die, die zu deinen Aufgaben passen. Sonst änderst
+      du vor `\begin{document}` nichts.
    5. Ersetze alles zwischen `\begin{document}` und `\end{document}` durch
       die Aufgaben aus `arbeit:uebungsblatt/entwurf.md`, jede in einer
       Umgebung `aufgabe`. Übertrag Texte, Lösungen und Punkte unverändert, du

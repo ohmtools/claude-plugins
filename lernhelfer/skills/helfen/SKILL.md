@@ -42,7 +42,9 @@ Er besteht aus drei Skills:
   als PDF mit Lösung, von bekannten Aufgaben mit neuen Werten bis schwerer als
   die Klausur, oder Bloom-Leiter im Chat) und Korrigieren (eine eigene Lösung
   bewerten lassen, getippt oder als Foto). „Schwachstellen listen“ zeigt,
-  womit der Nutzer in einem Fach noch Schwierigkeiten hat.
+  womit der Nutzer in einem Fach noch Schwierigkeiten hat. „Skript
+  verbessern“ macht aus einem Skript eine interaktive Webseite mit
+  Erklärungen und Wiederholungsfragen, der Originaltext bleibt unverändert.
 - Verwalten, nur in einem Claude.ai-Projekt: Projekt einrichten und mit einer
   Datenquelle verbinden, Fächer anlegen, umbenennen und löschen, Dateien
   hochladen und Fächern zuordnen, indizieren, Lernziele aus dem Modulhandbuch
@@ -122,11 +124,39 @@ die Kettenregel“. Claude wählt dann einen dieser Lernmodi:
   und sucht zu jedem Fehler die Ursache. Danach geht
   es bei Verständnisfehlern mit Erlernen weiter, bei Fehlern in der
   Rechentechnik mit Wiederholen, in dem der Nutzer die Regel selbst erklärt.
+Außerdem macht „/lernhelfer:lernen Verbessere mein Skript“ aus einem Skript
+eine Webseite zum Durcharbeiten (siehe „Was macht ‚Skript verbessern‘?“).
 Zeigt sich unterwegs eine Lücke, wechselt Claude zum Erlernen und sagt das
 deutlich an, beim Skript danach zurück zur selben Seite. Im Projekt schlägt
 Claude außerdem Themen vor, die 1, 3 und 7 Tage nach einem Problem wieder dran
 sind. Jede Lernsession endet mit einer kleinen Aufgabe, die der Nutzer ohne
 KI löst.
+        </antwort>
+    </eintrag>
+    <eintrag>
+        <frage>Was macht „Skript verbessern“?</frage>
+        <antwort>
+Der Nutzer schreibt z.B. „/lernhelfer:lernen Verbessere mein Skript“ oder
+„/lernhelfer:lernen Bereite Kapitel 3 auf“, im Projekt mit dem Skript aus der
+Datenquelle, sonst mit dem Skript als PDF im Chat. Claude macht daraus eine
+Webseite in einer einzigen HTML-Datei, die es im Chat zeigt und die auch
+heruntergeladen ohne Internet funktioniert, am Computer, Tablet und Handy. Der
+Originaltext steht Wort für Wort darin, Claude prüft das mit einem Programm,
+deshalb passen Seitenangaben weiter zum PDF. Alles, was Claude ergänzt, trägt
+eine rote Linie und die Beschriftung „Ergänzung“ und lässt sich mit „Nur
+Original“ ausblenden: die Bedeutung aller Variablen einer Gleichung,
+Erklärungen zu Abbildungen und fehlenden Zwischenschritten, Denkanstöße mit
+verdeckter Auflösung, eigene Grafiken (z.B. Schaltpläne, Graphen), Elemente
+zum Ausprobieren mit Reglern und am Ende jedes Abschnitts kurze
+Wiederholungsfragen mit verdeckter Lösung. Im Projekt erklärt Claude die
+Themen gründlicher, mit denen der Nutzer Schwierigkeiten hat, ohne sie auf der
+Seite zu nennen. Ein ganzes Skript bereitet Claude in Etappen von höchstens
+einem Kapitel und 20 Seiten auf. Nach jeder Etappe gibt es die Webseite und
+eine Datei mit dem Quellcode (…-quelle.zip). Mit „Mach mit dem Skript weiter“
+geht es im selben Chat weiter, in einem neuen Chat mit der angehängten
+Quellcode-Datei. Die Vorlage der Webseite liegt öffentlich unter
+<https://github.com/ohmtools/lernhelfer-skript>. Der Originaltext gehört
+seinem Autor: Die Seite ist für den eigenen Gebrauch.
         </antwort>
     </eintrag>
     <eintrag>

@@ -174,6 +174,48 @@ Halte danach fest:
    die Antwort des Nutzers und den Inhalt von
    `projekt:lernhelfer-test-geplant.md` vollständig.
 
+3. **Webseite:** Davon hängt „Skript verbessern“ ab: Node und npm, der Klon
+   der Vorlage, die Installation ihrer Pakete, das Bauen und die Anzeige der
+   HTML-Datei im Chat. Alles geschieht in `arbeit:lernhelfer-test-webseite/`,
+   nichts im Projekt oder in der Datenquelle.
+   1. Führ aus und notiere Ausgabe, Exit-Code und Dauer (`time`):
+      `node --version`, `npm --version`, dann in
+      `arbeit:lernhelfer-test-webseite/`
+      `git clone --depth 1 https://github.com/ohmtools/lernhelfer-skript skript`,
+      dann im Ordner `skript/` `npm ci --omit=dev`, `du -sh node_modules`,
+      `df -h .`, `npm run pruefen` und `npm run build`, zuletzt
+      `ls -l dist/index.html`. Schlägt ein Schritt fehl, mach mit dem
+      nächsten weiter, soweit er nicht von ihm abhängt.
+   2. Gibt es `dist/index.html`, kopier sie nach
+      `arbeit:lernhelfer-test-webseite/lernhelfer-test-webseite.html`, stell
+      sie mit deinem Werkzeug zum Bereitstellen von Dateien zum Anzeigen im
+      Chat bereit (z.B. `display: render` bei `SendUserFile`) und stell diese
+      Rückfrage:
+
+      ```auswahl
+      Test der Webseite: Erscheint die Seite „Grundlagen der Elektrotechnik“? Probier: ein anderes Kapitel öffnen, in Kapitel 2 den Regler für R bewegen und eine Lösung aufdecken.
+      - Erscheint, alles bedienbar
+      - Erscheint, aber etwas geht nicht
+      - Erscheint nicht
+      ```
+
+      Bei „Erscheint, aber etwas geht nicht“ antworte und warte auf die
+      Antwort:
+
+      ```text
+      Was geht nicht? Beschreib kurz, was du gemacht hast und was passiert ist.
+      ```
+
+   `ok`: Alle Befehle enden mit Exit-Code 0, und die Seite erscheint und ist
+   bedienbar. `teilweise`: Die Seite entsteht, erscheint aber nicht oder nur
+   eingeschränkt. `fehlgeschlagen`: Ein Befehl bricht ab, und es gibt keine
+   Seite. Detail: die Node-Version, die Dauer von `npm ci` und
+   `npm run build`, die Größe der HTML-Datei und was nicht ging. Protokoll:
+   jeder Befehl mit Ausgabe (bei langen die ersten und letzten zehn Zeilen),
+   Exit-Code und Dauer, das Werkzeug zum Bereitstellen mit Parametern und
+   Rückmeldung und die Antworten des Nutzers. Lösch danach
+   `arbeit:lernhelfer-test-webseite/`.
+
 ## Aufräumen
 
 Lösch jede Datei, die ein Test im Projekt oder in der Datenquelle angelegt hat,

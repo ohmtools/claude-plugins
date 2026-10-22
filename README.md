@@ -53,7 +53,9 @@ hochgeladen, lösch ihn in Claude.ai, sonst gibt es ihn doppelt.
 
 Jedes Plugin liegt in einem eigenen Ordner. Claude.ai installiert nur diesen
 Ordner. Zeiteisen liegt im Repository der App unter
-`skill/zeiteisen-generator/`, `marketplace.json` verweist dorthin.
+`skill/zeiteisen-generator/`, `marketplace.json` verweist dorthin. Die Vorlage
+der Webseiten, die der Lernhelfer aus Skripten macht, liegt im Repository
+[lernhelfer-skript](https://github.com/ohmtools/lernhelfer-skript).
 
 ```text
 .claude-plugin/marketplace.json   Marketplace mit allen Plugins

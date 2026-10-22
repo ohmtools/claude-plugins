@@ -190,9 +190,24 @@ Einmal pro Chat, vor der ersten Änderung oder dem ersten Export.
      `kopie:skills/lernen/faehigkeiten/ueben.md`). Braucht eine Vorlage
      Programme oder Pakete, die kein Testlauf bestätigt hat, nimm dafür einen
      Test auf.
-   - Vorlagen folgen dem ohmtools-Design (`DESIGN.md` im Repository
-     `github.com/ohmtools/design`, Abschnitt „Documents“): Schrift Inter,
-     sonst die serifenlose Schrift des Werkzeugs, Rot als einzige
+   - Eine Vorlage, die ein Node-Projekt ist (Pakete, Lockfile, Build), liegt
+     nicht in `vorlagen/`, sondern in einem eigenen öffentlichen Repository,
+     denn sie ist zu groß fürs Plugin. Zurzeit ist das die Webseite von
+     „Skript verbessern“: `https://github.com/ohmtools/lernhelfer-skript`.
+     Die Fähigkeit klont sie mit `git clone --depth 1` nach `arbeit:`,
+     installiert mit `npm ci --omit=dev` und schreibt nur ihren Ordner für
+     den Inhalt. Ihre Anleitung heißt `ANLEITUNG.md` und liegt in der Wurzel
+     des Repositorys; auch hier liest die Fähigkeit sie erst nach dem
+     Entwurf. „Entwicklung“ ändert eine solche Vorlage nicht, Änderungen
+     gehören in ihr Repository. Was die Fähigkeit von ihr benutzt (Befehle,
+     Markierungen, Dateinamen), muss zu dieser Fassung des Repositorys
+     passen.
+   - Webseiten-Vorlagen folgen `DESIGN.md` des ohmtools-Designs vollständig
+     (shadcn base-sera, Farben nur über die Tokens, `src/index.css` mit dem
+     Theme unverändert aus `github.com/ohmtools/design`).
+   - Vorlagen für Dokumente folgen dem ohmtools-Design (`DESIGN.md` im
+     Repository `github.com/ohmtools/design`, Abschnitt „Documents“): Schrift
+     Inter, sonst die serifenlose Schrift des Werkzeugs, Rot als einzige
      Akzentfarbe, keine Großbuchstaben und keine gesperrte Schrift, Linien
      statt Kästen, eckige Ecken. Farben stehen nur mit ihren Namen aus
      `kopie:skills/lernen/vorlagen/ohmtools-colors.sty` (z.B. `ohmPrimary`),

@@ -28,7 +28,8 @@ README. Zurzeit gibt es zwei Plugins:
   Installation lädt nur den Ordner samt Schemas und findet einen Skill
   (`zeiteisen-generator`, auch mit `plugin.json`).
   Ungeprüft ist, ob Claude.ai das Plugin mit `plugin.json` annimmt.
-- Lernhelfer, um den es im Rest dieser Datei geht.
+- Lernhelfer, um den es im Rest dieser Datei geht. Die Vorlage seiner
+  Webseiten liegt in `ohmtools/lernhelfer-skript` (eigene `CLAUDE.md`).
 
 Lernhelfer (`lernhelfer/`) ist ein Plugin für Claude.ai mit den Skills
 `lernen`, `verwalten` und `helfen`. Ihre Markdown-Anweisungen („Fähigkeiten“)
@@ -49,6 +50,7 @@ und die Projektdateien.
 | Vorlagen für Ausgaben (Übungsblatt: LaTeX-Klasse mit Farben, Anleitung und `build.sh`) | `lernhelfer/skills/lernen/vorlagen/`, Konvention in `entwicklung.md` |
 | Verwalten: Fähigkeiten und ihre Verfügbarkeit, Projektstruktur, Dateien der Datenquelle, automatische Anweisungen einrichten | `lernhelfer/skills/verwalten/SKILL.md` |
 | Automatische Anweisungen (geplante Anweisungen in Claude.ai): Prompts, Name mit Projekt, Einrichten, Ausschalten | `lernhelfer/skills/verwalten/geplant/`, `lernhelfer/skills/verwalten/faehigkeiten/automatische-anweisungen.md` |
+| Skript als Webseite aufbereiten | `lernhelfer/skills/lernen/faehigkeiten/skript-verbessern.md`, Vorlage in `ohmtools/lernhelfer-skript` (dort `ANLEITUNG.md` und `CLAUDE.md`) |
 | Vorrat an Übungsblättern (`projekt:vorrat/`) | `lernhelfer/skills/lernen/faehigkeiten/ueben.md`, „Vorrat“, und `lernhelfer/skills/verwalten/geplant/2-uebungsblaetter-vorbereiten.md` |
 | Konventionen für Fähigkeiten | `lernhelfer/skills/verwalten/faehigkeiten/entwicklung.md`, „Änderungen machen“, Schritt 2 |
 | Einrichten, Datenquelle anlegen | `lernhelfer/skills/verwalten/faehigkeiten/initialisieren.md` |
@@ -170,6 +172,25 @@ die Änderung betrifft, vollständig.
     „Abbruch“ in `grundlagen.md`.
   - Mehrere Module nur in automatischen Anweisungen: `lernen/SKILL.md` („Mit
     einem Modul arbeiten“) und `entwicklung.md`.
+  - URL der Vorlage für „Skript verbessern“
+    (`https://github.com/ohmtools/lernhelfer-skript`):
+    `skript-verbessern.md`, `entwicklung.md` (Konvention „Vorlagen“),
+    `testen.md` (Test 3), `helfen/SKILL.md` und README.
+  - Was `skript-verbessern.md` von der Vorlage benutzt, muss zu ihr passen,
+    denn sie wird immer vom Hauptzweig geklont: die Markierungen der
+    Ergänzungen (`:::variablen`, `:::anmerkung`, `:::denkanstoss`,
+    `:::grafik`, `:::interaktiv`, `:::frage`, `:::auswahl`, `:::rechnen`,
+    `:anm`, `::seite[n]`; dort in `plugins/ergaenzungen.mjs` und
+    `ANLEITUNG.md`), die Befehle (`npm ci --omit=dev`, `npm run wortlaut`,
+    `mdx`, `pruefen`, `build`, `quelle`, `ausschnitt`), `src/inhalt/`,
+    `skript.json`, `dist/index.html`, der Ordner `lernhelfer-skript/` in der
+    ZIP und die Kapitel „Originaltext“ („Ausschneiden“), „Angaben zum
+    Skript“ und „Häufige Fehler“ der Anleitung. `testen.md`, Test 3, nennt
+    das Beispiel der Vorlage („Grundlagen der Elektrotechnik“, Kapitel 2 mit
+    Regler für R).
+  - Etappen von „Skript verbessern“ (höchstens ein Kapitel und 20 Seiten,
+    ZIP `{name}-quelle.zip` zum Weitermachen): `skript-verbessern.md` und
+    `helfen/SKILL.md`.
 
 ## Stand
 
@@ -342,6 +363,35 @@ die Änderung betrifft, vollständig.
   steht deshalb kurz in `ueben.md`, Schritt 4. Ohne LaTeX (`command -v
   pdflatex` vor dem Lesen der Anleitung) werden aus dem Entwurf die zwei
   Markdown-Dateien.
+- Skript verbessern (seit 2026-10-22, Wunsch des Nutzers): `lernen` macht aus
+  Seiten, Kapiteln oder dem ganzen Skript eine interaktive Webseite in einer
+  einzigen HTML-Datei, gezeigt mit `SendUserFile` (`display: render`), dazu
+  der Quellcode als ZIP. Originaltext wortgleich (damit die anderen
+  Fähigkeiten weiter mit dem PDF arbeiten), Ergänzungen nur in Markierungen
+  (`:::variablen`, `:::anmerkung`, `:::denkanstoss`, `:::grafik`,
+  `:::interaktiv`, Fragen `:::frage`/`:::auswahl`/`:::rechnen` am Ende jedes
+  Abschnitts, `:anm`), rot markiert und mit „Nur Original“ ausblendbar.
+  Schwachstellen aus `probleme.md` werden gründlicher erklärt, die Seite
+  nennt sie nicht. Kein Lernmodus, pflegt keine Probleme, schreibt nichts
+  ins Projekt. Zwei Phasen wie beim Übungsblatt: Entwurf in Markdown mit
+  denselben Markierungen, Prüfung des Wortlauts gegen `pdftotext`
+  (`npm run wortlaut`), erst dann `ANLEITUNG.md` der Vorlage lesen, Entwurf
+  mit `npm run mdx` umwandeln (kein Abschreiben) und nur Grafiken und
+  Experimente als Bausteine setzen, Wortlaut gegen den Entwurf, `npm run
+  pruefen` (übersetzt und rendert jedes Kapitel), `npm run build`. Etappen
+  von höchstens einem Kapitel und 20 Seiten; weiter im selben Chat oder in
+  einem neuen mit der ZIP. Ohne Node gibt es den Entwurf als Markdown.
+  Die Vorlage ist das öffentliche Repository `ohmtools/lernhelfer-skript`
+  (Vite, React, shadcn base-sera, MDX mit remark-math/rehype-katex,
+  vite-plugin-singlefile, Mafs für Graphen, eigene SVG-Schaltzeichen nach DIN
+  EN 60617, weil keine JS-Bibliothek sie zeichnet; so hat es der Nutzer am
+  2026-10-22 entschieden). Layout: am Desktop fumadocs-artig (Kapitelbaum
+  mit Suche, Kapitel, „Auf dieser Seite“), am Handy die Tab-Leiste wie
+  Zeiteisen (DESIGN.md bleibt), ein Kapitel pro Seite (Entscheidungen des
+  Nutzers). Die Fähigkeit klont immer den Hauptzweig, wie Zeiteisen ohne
+  `ref`. In „Dateien im Chat“ fragt `lernen` nur noch bei Unterlagen nach dem
+  Hochladen, damit eine angehängte ZIP (oder ein Foto einer Lösung) keinen
+  Upload-Vorschlag auslöst.
 - Bewusst ohne Regel: Dateien, die ein Nutzer trotzdem über die Projektseite
   hochlädt.
 - Automatische Anweisungen: geplante Anweisungen des Claude.ai-Projekts,
@@ -584,10 +634,17 @@ eine PDF lässt sich nicht wieder lokal herstellen.
 - Ob ein Abbruch am Nutzungslimit mitten in einem Aufruf zum Schreiben
   passieren kann. Mit `local_path` unkritisch.
 - Ob Settings > Usage in Claude.ai den Reset des Wochenlimits zeigt.
+- Ob Node und npm in Claude.ai da sind, ob `npm ci` die Pakete der Vorlage
+  laden darf (pip klappt), wie lange Installation und Bauen dauern und ob
+  der Platz reicht (lokal: 331 MB `node_modules`, `npm ci --omit=dev` 10 s,
+  Bauen 3 s, Beispiel 1,5 MB). Ob `SendUserFile` mit `display: render` eine
+  HTML-Datei dieser Größe mit Skripten im Browser und in der iPad-App zeigt,
+  ob dort Regler per Touch gehen und ob `pdfimages` da ist (`testen.md`,
+  Test 3).
 
 Nächster Testlauf: „/lernhelfer:verwalten Teste den Lernhelfer“ als erste
 Nachricht in einem neuen Chat, in einem frisch eingerichteten Projekt mit
-privater Datenquelle (Tests 1 und 2). Danach „/lernhelfer:verwalten Richte
+privater Datenquelle (Tests 1 bis 3). Danach „/lernhelfer:verwalten Richte
 die automatischen Anweisungen ein“ und einen Lauf beider Anweisungen abwarten
 (Index, Vorrat, Benachrichtigung, Modell), dann „Mach mir ein Übungsblatt“ mit
 vorbereitetem Blatt (Code in TX-Typewriter, keine Silbentrennung).
@@ -611,6 +668,12 @@ Fällen:
   schwerer als ihre Vergleichsaufgabe, ohne Fremdwissen und Fangfragen),
   dazu einmal in einem Fach ohne Altklausur (Hinweis auf das geschätzte
   Niveau)
+- „Verbessere Kapitel 2 meines Skripts“, im Projekt mit einer Schwachstelle
+  im Kapitel und im Chat mit angehängter PDF (Wortlaut ohne Abweichungen,
+  jede Gleichung mit Variablen, jede Abbildung ausgeschnitten und erklärt,
+  Fragen am Ende jedes Abschnitts, Seite und ZIP bereitgestellt, Darstellung
+  im Browser und in der iPad-App); danach „Mach mit dem Skript weiter“ und
+  in einem neuen Chat mit der ZIP weitermachen
 - Foto einer fehlerhaften Lösung (Abschrift vor der Bewertung, Fehler darin
   unverändert, Bewertung, Fischgräte, Eintrag mit Ursache
   in `probleme.md`, danach Wechsel zu Erlernen oder bei Rechentechnik zu

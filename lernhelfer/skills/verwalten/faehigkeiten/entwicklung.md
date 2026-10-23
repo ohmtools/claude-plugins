@@ -145,6 +145,19 @@ Einmal pro Chat, vor der ersten Änderung oder dem ersten Export.
      Ablaufs aus. Gleiche Abläufe stehen deshalb in mehreren Fähigkeiten, z.B.
      das Auslesen der Lernziele in „Indizieren“ und „Modul bearbeiten“.
      Änderst du einen, änderst du alle Kopien.
+   - Braucht eine lange Fähigkeit Teile nur manchmal, lagere sie in eigene
+     Dateien `{faehigkeit}-{teil}.md` daneben aus, denn jede gelesene Zeile
+     kostet Token (Vorbild: `kopie:skills/lernen/faehigkeiten/ueben-vorrat.md`
+     und `kopie:skills/lernen/faehigkeiten/ueben-bloom-leiter.md`). Ein Teil
+     gehört zu seiner Fähigkeit: Er steht nicht in der Tabelle des Skills,
+     hat keine eigene Rolle und sagt im ersten Absatz, zu welcher Fähigkeit
+     er gehört. Die Fähigkeit behält für jeden Teil einen Abschnitt mit
+     seinem Namen, der sagt, wann der Teil zu lesen ist, damit Verweise
+     darauf (z.B. aus einem Prompt) gültig bleiben. Fähigkeit und Teile
+     dürfen auf ihre Schritte und Abschnitte gegenseitig verweisen. Ebenso
+     teilt sich eine lange Anleitung einer Vorlage in einen Kern und Teile
+     `ANLEITUNG-{teil}.md`, und der Kern sagt, wo welcher Baustein steht
+     (Vorbild: Kapitel 12 in `kopie:skills/lernen/vorlagen/ANLEITUNG.md`).
    - Wechsel zu einer anderen Fähigkeit desselben Skills:
      - In `lernen` erlaubt, damit das Lernen nicht unterbrochen wird (z.B. von
        „Üben“ zurück zu „Erlernen“, wenn sich eine Lücke zeigt). Die
@@ -197,13 +210,19 @@ Einmal pro Chat, vor der ersten Änderung oder dem ersten Export.
      denn sie ist zu groß fürs Plugin. Zurzeit ist das die Webseite von
      „Skript verbessern“: `https://github.com/ohmtools/lernhelfer-skript`.
      Die Fähigkeit klont sie mit `git clone --depth 1` nach `arbeit:`,
+     löscht dort `.git`, damit nichts in die Vorlage zurückfließt,
      installiert mit `npm ci --omit=dev` und schreibt nur ihren Ordner für
-     den Inhalt. Ihre Anleitung heißt `ANLEITUNG.md` und liegt in der Wurzel
+     den Inhalt. Was sie daraus baut, gehört dem Nutzer und wird nie
+     hochgeladen. Ihre Anleitung heißt `ANLEITUNG.md` und liegt in der Wurzel
      des Repositorys; auch hier liest die Fähigkeit sie erst nach dem
      Entwurf. „Entwicklung“ ändert eine solche Vorlage nicht, Änderungen
      gehören in ihr Repository. Was die Fähigkeit von ihr benutzt (Befehle,
      Markierungen, Dateinamen), muss zu dieser Fassung des Repositorys
      passen.
+   - Erzeugt eine Fähigkeit eine Darstellung als HTML (z.B. in „Erlernen“
+     oder „Skript verbessern“), sieht sie sie vor dem Bereitstellen als Bild
+     an, wenn die Arbeitsumgebung das kann, denn Fehler in einer Zeichnung
+     fallen im Quelltext nicht auf.
    - Webseiten-Vorlagen folgen `DESIGN.md` des ohmtools-Designs vollständig
      (shadcn base-sera, Farben nur über die Tokens, `src/index.css` mit dem
      Theme unverändert aus `github.com/ohmtools/design`).
@@ -219,8 +238,9 @@ Einmal pro Chat, vor der ersten Änderung oder dem ersten Export.
      dessen Dateien, `projekt:daten.xml` und `daten:` und schreibt nur
      `projekt:gedaechtnis/{modul}/probleme.md` und
      `projekt:gedaechtnis/benutzererfahrung.md`, dazu „Üben“ den Vorrat in
-     `projekt:vorrat/{modul}/` (Abschnitt „Vorrat“ in
-     `kopie:skills/lernen/faehigkeiten/ueben.md`). Bau dort keine Abläufe über
+     `projekt:vorrat/{modul}/`
+     (`kopie:skills/lernen/faehigkeiten/ueben-vorrat.md`). Bau dort keine
+     Abläufe über
      mehrere Module, auch keine Übersichten oder Vergleiche. Nur eine
      automatische Anweisung darf verlangen, mehrere Module nacheinander zu
      bearbeiten, jedes für sich. Fähigkeiten in `verwalten` dürfen mit
@@ -231,9 +251,12 @@ Einmal pro Chat, vor der ersten Änderung oder dem ersten Export.
      ausdrücklich, Probleme zu pflegen wie dort beschrieben. Ohne diese Angabe
      tut eine Fähigkeit beides nicht.
    - Auf `daten:` greifen Fähigkeiten nur so zu, wie es `projekt:daten.xml`
-     beschreibt. Schreiben in `daten:` darf nur „Hochladen“, dazu „Testen“
-     seine Testdateien. Eine neue Art von Datenquelle bekommt Vorlagen für
-     `<art>` und `<identifizieren>` in
+     beschreibt. Schreiben in `daten:` darf nur „Hochladen“, dazu „Testen“ seine
+     Testdateien, und nur sie committen und pushen, mit genauen Befehlen. Ein
+     Klon der Datenquelle zeigt in git keine Änderungen (Vorlage für `<art>` in
+     `kopie:skills/verwalten/faehigkeiten/initialisieren.md`), damit die
+     Arbeitsumgebung nicht zum Committen auffordert. Eine neue Art von
+     Datenquelle bekommt Vorlagen für `<art>` und `<identifizieren>` in
      `kopie:skills/verwalten/faehigkeiten/initialisieren.md`.
    - Jede Fähigkeit in `lernen` und `verwalten` außer „Initialisieren“ und
      „Testen“ pflegt `projekt:gedaechtnis/benutzererfahrung.md`. Das regelt der
@@ -241,7 +264,9 @@ Einmal pro Chat, vor der ersten Änderung oder dem ersten Export.
      Wiederhol es nicht in den Fähigkeiten und schreib keiner Fähigkeit vor,
      die Datei nicht zu ändern. Eine Fähigkeit, die sonst nichts schreibt, darf
      deshalb keinen Grundsatz wie „Ändere nichts“ haben, sondern nennt genau,
-     was sie nicht ändert. Der Skill `helfen` schreibt nichts.
+     was sie nicht ändert. Der Skill `helfen` hängt dort nur Rückmeldungen an
+     und schreibt sonst nichts. Weil er die Grundlagen nicht liest, beschreibt
+     er den Aufbau der Datei selbst.
    - Prüfe bei jeder neuen oder geänderten Funktion, ob
      `kopie:skills/helfen/SKILL.md` angepasst werden muss. Der Skill `helfen`
      steht für sich und beschreibt alle Funktionen selbst.
@@ -283,8 +308,8 @@ Einmal pro Chat, vor der ersten Änderung oder dem ersten Export.
      bleibt er gültig, wenn sich die Fähigkeit ändert. Auf Fähigkeiten, Abschnitte und Schritte verweist er
      nur mit ihrem Namen, nie mit einer Nummer. Benennst du etwas um, auf das
      ein Prompt verweist, pass den Prompt an.
-   - Blätter im Vorrat (`kopie:skills/lernen/faehigkeiten/ueben.md`,
-     Abschnitt „Vorrat“) werden vor dem Speichern vollständig geprüft und
+   - Blätter im Vorrat (`kopie:skills/lernen/faehigkeiten/ueben-vorrat.md`)
+     werden vor dem Speichern vollständig geprüft und
      danach nie wieder. Ändert sich ihr Aufbau oder die Vorlage, bleiben
      ältere Blätter deshalb liegen. Ein Blatt, das sich beim Benutzen nicht
      übersetzen lässt, löscht „Üben“. Eine Migration braucht es nicht, denn

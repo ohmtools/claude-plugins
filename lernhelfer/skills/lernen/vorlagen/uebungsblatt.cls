@@ -383,8 +383,8 @@
 
 % Schaltzeichen nach DIN EN 60617, Negation als Kreis; Spule und Trafo als
 % gefülltes Rechteck (wie an der Schule des Nutzers); Operationsverstärker
-% als "en amp", Messgeräte als "rmeter" (ANLEITUNG.md); Spannungspfeile
-% gerade neben dem Bauteil statt gebogen
+% als "en amp", Messgeräte als "rmeter" (ANLEITUNG-schaltungen.md);
+% Spannungspfeile gerade neben dem Bauteil statt gebogen
 \ctikzset{bipoles/thickness=1, monopoles/ground/width=0.25,
   tripoles/european not symbol=circle, voltage=straight}
 \NewDocumentEnvironment{schaltung}{O{} m}{%

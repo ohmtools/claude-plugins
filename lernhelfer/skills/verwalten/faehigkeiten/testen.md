@@ -95,7 +95,7 @@ Halte danach fest:
       Rückfrage:
 
       ```auswahl
-      Test der Webseite: Erscheint die Seite „Grundlagen der Elektrotechnik“? Probier: ein anderes Kapitel öffnen, in Kapitel 2 den Regler für R bewegen und eine Lösung aufdecken.
+      Test der Webseite: Erscheint die Seite „Grundlagen der Elektrotechnik“? Probier: ein anderes Kapitel öffnen, in Kapitel 2 den Regler für R bewegen, dort die Animation „Vom Zeiger zur Sinuskurve“ abspielen und eine Lösung aufdecken.
       - Erscheint, alles bedienbar
       - Erscheint, aber etwas geht nicht
       - Erscheint nicht
@@ -117,6 +117,51 @@ Halte danach fest:
    (bei langen die ersten und letzten zehn Zeilen), Exit-Code und Dauer, das
    Werkzeug zum Bereitstellen mit Parametern und Rückmeldung und die
    Antworten des Nutzers. Lösch danach `arbeit:lernhelfer-test-webseite/`.
+2. **Klon der Datenquelle:** Davon hängen alle Fähigkeiten ab, die `daten:`
+   lesen, und der Schutz vor versehentlichen Commits. Nur mit
+   `projekt:daten.xml`, sonst `übersprungen`. Alles geschieht in
+   `arbeit:lernhelfer-test-klon/`, nichts wird geschrieben.
+   1. Hol dir Zugriff, wie `<art>` in `projekt:daten.xml` es beschreibt.
+      Führ dann in `arbeit:lernhelfer-test-klon/` aus und notiere Ausgabe,
+      Exit-Code und Dauer:
+      `git clone --depth 1 --filter=blob:none --no-checkout {url}.git daten`,
+      `git -C daten sparse-checkout set --no-cone /.lernhelfer-leer`,
+      `git -C daten reset -q`, `git -C daten status --porcelain | wc -l`,
+      `git -C daten -c core.quotepath=off ls-tree -r -l HEAD | wc -l`.
+   2. Nimm die kleinste Datei aus `ls-tree -r -l` (viertes Feld) und führ aus:
+      `git -C daten checkout --ignore-skip-worktree-bits HEAD -- '{pfad}'`,
+      `ls -l 'daten/{pfad}'` und noch einmal
+      `git -C daten status --porcelain | wc -l`.
+
+   `ok`: Alle Befehle enden mit Exit-Code 0, `status` zählt beide Male 0
+   Zeilen, und die Datei liegt danach vor. `teilweise`: Die Datei kommt an,
+   aber `status` zählt Zeilen. `fehlgeschlagen`: Ein Befehl bricht ab.
+   Detail: Dauer des Klons, Zahl der Dateien, die Zahlen von `status`.
+   Protokoll: jeder Befehl mit Ausgabe und Exit-Code, ohne Dateinamen der
+   Datenquelle (nur ihre Anzahl). Lösch danach
+   `arbeit:lernhelfer-test-klon/`.
+3. **Bild einer Webseite:** Davon hängt ab, ob „Erlernen“ und „Skript
+   verbessern“ ihre Darstellungen vor dem Bereitstellen ansehen können. Alles
+   geschieht in `arbeit:lernhelfer-test-bild/`.
+   1. Schreib dort `test.html`: eine Seite mit einem SVG (ein Kreis, ein
+      Pfeil und die Beschriftung „Test ①“) und einem Knopf, der beim Klick
+      den Text „geklickt“ zeigt.
+   2. Such einen Weg, die Seite als Bild aufzunehmen, und probier jeden, bis
+      einer klappt: ein Browser ohne Fenster (z.B.
+      `command -v chromium chromium-browser google-chrome`, dann
+      `{browser} --headless --screenshot=bild.png --window-size=800,600 file://{pfad}`),
+      Playwright für Python (`python3 -c "import playwright"`) oder für Node
+      (`npm ls -g playwright`). Ein Weg, der erst etwas installieren muss
+      (z.B. `pip install playwright` und `playwright install chromium`),
+      zählt mit, notiere dann Dauer und Größe. Sieh dir jedes Bild an.
+   3. Kann der Weg auch klicken (Playwright), klick den Knopf und nimm noch
+      ein Bild auf.
+
+   `ok`: Ein Bild zeigt Kreis, Pfeil und Beschriftung, und ein Klick
+   klappt. `teilweise`: Bilder ja, Klicks nicht. `fehlgeschlagen`: kein
+   Bild. Detail: der Weg, der geklappt hat, mit dem genauen Befehl. Protokoll:
+   jeder Versuch mit Befehl, Ausgabe, Exit-Code und Dauer. Lösch danach
+   `arbeit:lernhelfer-test-bild/`.
 
 ## Aufräumen
 

@@ -19,13 +19,34 @@ ihm ehrlich, was an seinen Antworten richtig ist und was fehlt.
    Ursache, wo du ansetzt. Im **Chat** nimm die Dateien, die der Nutzer
    angehängt hat. Pflege während der ganzen Fähigkeit die Probleme wie in
    `skill:SKILL.md`, Abschnitt „Probleme pflegen“.
-2. **Einstieg:** Ist aus dem Chat noch nicht klar, was der Nutzer schon weiß
-   und wo er hängt (nach einem Wechsel ist es das meist), antworte, wobei
-   `{thema}` das Thema ist, und warte auf die Antwort:
+2. **Einstieg:**
+   1. **Eingrenzen:** Ist das Thema breit, gehören also laut Index oder
+      Unterlagen mehrere Teilthemen dazu (z.B. ein ganzes Kapitel, oder
+      „Asynchronmaschine“ mit Aufbau, Drehfeld, Kennlinie und
+      Ersatzschaltbild), stell diese Rückfrage, mit einer Option pro
+      Teilthema, höchstens drei, Teilthemen mit Schwachstellen zuerst, sonst
+      in der Reihenfolge der Unterlagen, und zuletzt „Ein anderes Teilthema“:
 
-   ```text
-   Bevor wir loslegen: Was weißt du schon über {thema}, und an welcher Stelle hängst du? Halbe Gedanken reichen, z.B. „Ich glaube, ich brauche die Produktregel, weiß aber nicht, wie ich sie anwende.“ Dann setze ich genau dort an.
-   ```
+      ```auswahl
+      Zu {thema} gehört einiges. Womit fangen wir an?
+      - {teilthema}
+      - Ein anderes Teilthema
+      ```
+
+      Bei „Ein anderes Teilthema“ antworte und warte auf die Antwort:
+
+      ```text
+      Welchen Teil von {thema} nehmen wir?
+      ```
+
+      Ab dann ist das gewählte Teilthema `{thema}`, auch in den Problemen.
+   2. **Vorwissen:** Ist aus dem Chat noch nicht klar, was der Nutzer schon
+      weiß und wo er hängt (nach einem Wechsel ist es das meist), antworte und
+      warte auf die Antwort:
+
+      ```text
+      Bevor wir loslegen: Was weißt du schon über {thema}, und an welcher Stelle hängst du? Halbe Gedanken reichen, z.B. „Ich kenne die Formel, weiß aber nicht, woher sie kommt.“ Dann setze ich genau dort an.
+      ```
 
 3. **Darstellung:** Nur wenn das Thema räumlich oder strukturell ist (z.B. ein
    Ablauf, ein System, eine Schaltung, ein Körper oder eine Datenstruktur).
@@ -37,16 +58,27 @@ ihm ehrlich, was an seinen Antworten richtig ist und was fehlt.
       Dateien aus dem Internet aus, also ohne externe Skripte, Schriften und
       Bilder. Stütz jedes Teil auf die Unterlagen und nenn die Fundstelle
       unter der Zeichnung.
-   2. Stell die Datei mit deinem Werkzeug zum Bereitstellen von Dateien zum
+   2. Kann deine Arbeitsumgebung eine HTML-Datei als Bild aufnehmen (z.B. ein
+      Browser ohne Fenster wie
+      `chromium --headless --screenshot=bild.png --window-size=1000,1400 'file://{pfad}'`
+      oder Playwright), sieh dir die Darstellung vor dem Bereitstellen als
+      Bild an, bei Knöpfen auch jeden Schritt: Nichts ist abgeschnitten oder
+      überlappt, jedes Zeichen erscheint (kein Kästchen statt eines Pfeils),
+      und jede Beschriftung sitzt an ihrem Teil. Korrigiere, was nicht stimmt,
+      und sieh es dir noch einmal an.
+   3. Stell die Datei mit deinem Werkzeug zum Bereitstellen von Dateien zum
       Anzeigen im Chat bereit (z.B. `display: render` bei `SendUserFile`) und
-      antworte, wobei `{datei}` ihr Name ist:
+      antworte, wobei `{datei}` ihr Name ist und `{frage}` die erste von drei
+      Fragen, die prüfen, ob er die Darstellung verstanden hat:
 
       ```text
-      Hier ist eine Darstellung von {thema}: {datei}. Sieh sie dir in Ruhe an, danach stelle ich dir drei Fragen dazu.
+      Hier ist eine Darstellung von {thema}: {datei}. Sieh sie dir in Ruhe an. Danach stelle ich dir drei Fragen dazu, hier die erste:
+
+      **Frage 1 von 3:** {frage}
       ```
 
-   3. Stell drei Fragen, eine pro Nachricht, die prüfen, ob er die
-      Darstellung verstanden hat. Mach danach mit Schritt 4 weiter.
+   4. Stell die beiden anderen Fragen, eine pro Nachricht, jeweils nach der
+      Antwort auf die vorige. Mach danach mit Schritt 4 weiter.
 4. **Leitfragen:** Führ den Nutzer mit Leitfragen zum Verständnis:
    - Stell eine Leitfrage pro Nachricht und warte auf die Antwort.
    - Sag nach jeder Antwort kurz, was richtig war und was fehlte, dann folgt
@@ -62,6 +94,9 @@ ihm ehrlich, was an seinen Antworten richtig ist und was fehlt.
      anderer Weg falsch wäre.
    - Richte das Niveau nach seinen Antworten und nach den Lernzielen in
      `projekt:module/{modul}/info.md`.
+   - Sagt der Nutzer, er habe es jetzt verstanden, ohne es gezeigt zu haben
+     (z.B. „verstanden“ statt einer Antwort), mach mit Schritt 5 weiter, denn
+     das Gefühl, etwas verstanden zu haben, täuscht oft.
 5. **Prüfen:** Glaubst du, dass er das Thema verstanden hat, lass ihn es ohne
    Hilfe zeigen. Gab es in Schritt 3 eine Darstellung, antworte:
 

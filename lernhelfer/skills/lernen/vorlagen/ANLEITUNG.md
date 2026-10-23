@@ -38,6 +38,7 @@ den Befehlen („Primitiven“) aus dieser Anleitung.
 | `build.sh` | Übersetzt ein Blatt zu zwei PDFs: Aufgabenblatt und Lösungsvorschlag (Kapitel 11). |
 | `beispiel.tex` | Vollständiges Beispiel mit Lösungen, das **jeden** Baustein benutzt. Bei Unklarheiten dort nachsehen. |
 | `material/` | Beispieldateien (Bild, C-Datei) für `\bild` und `\codedatei`. |
+| `ANLEITUNG-schaltungen.md`, `ANLEITUNG-digitaltechnik.md`, `ANLEITUNG-code.md` | Weitere Bausteine, nur bei Bedarf zu lesen (Kapitel 12). |
 
 Kompilieren mit **pdfLaTeX**, am einfachsten mit `build.sh` (Name des Blatts
 ohne `.tex`, ohne Angabe `uebungsblatt`):
@@ -343,45 +344,16 @@ Farbnamen, falls ausnahmsweise nötig (z. B. Füllung): `ohmForeground`
 (Schwarz), `ohmMutedForeground` (Grau), `ohmPrimary` (Rot), `ohmBorder`
 (helles Grau für Linien). Keine anderen Farben und nie Farbwerte.
 
-### `schaltung` – Schaltbilder (circuitikz)
+### Weitere Abbildungen
 
-```latex
-\begin{schaltung}{Gleichstromnetzwerk}
-  \draw (0,0) to[V, l=$U_0$] (0,3)
-        to[R, l=$R_1$, i>^=$I_1$] (3,3) -- (5,3);
-  \draw (3,3) to[R, l_=$R_2$, *-*] (3,0);
-  \draw (5,3) to[C, l_=$C$] (5,0);
-  \draw (0,0) -- (5,0);
-\end{schaltung}
-```
+Diese Bausteine stehen in eigenen Dateien neben dieser Anleitung. Lies eine
+nur, wenn dein Blatt einen ihrer Bausteine braucht (Kapitel 12):
 
-* Die Schaltzeichen folgen DIN EN 60617 und sind voreingestellt. Nimm nur
-  die hier genannten, andere Namen aus circuitikz zeichnen teils
-  amerikanische Symbole (z. B. `op amp` als Dreieck, `ammeter` mit Pfeil).
-* Zweipole mit `to[..]`: `R` Widerstand, `C` Kondensator, `L` Spule
-  (gefülltes Rechteck), `V` Spannungsquelle, `I` Stromquelle, `sV`
-  Wechselspannungsquelle, `battery1`, `D` Diode, `led`, `zD` Z-Diode, `vR`
-  verstellbarer Widerstand, `lamp`, `fuse`, `nos`/`ncs` Schalter, `short`
-  Leitung, `open` offene Klemmen.
-* Messgeräte: `to[rmeter, t=A]` Strommesser, `to[rmeter, t=V]`
-  Spannungsmesser.
-* Beschriftungen: `l=` (Bauteilname), `l_=` (andere Seite), `v=` / `v^=`
-  Spannungspfeil (gerade, neben dem Bauteil), `i=` / `i>_=` Strompfeil,
-  `a=` Wert.
-* Anschlüsse: `*-*` Knotenpunkte, `o-o` Klemmen, z. B. `to[R, o-*]`.
-* Einpolige Symbole: `node[ground]{}`, `node[vcc]{$+\qty{5}{V}$}`.
-* Dreipole: Operationsverstärker `node[en amp] (OP) {}` (Rechteck mit
-  ▷∞, invertierender Eingang oben, mit `en amp, noinv input up` unten) mit
-  Anschlüssen `(OP.-)`, `(OP.+)`, `(OP.out)`; Transistoren `node[npn] (T) {}`
-  mit `(T.B)`, `(T.C)`, `(T.E)`; `nmos`, `pmos`; Transformator
-  `node[transformer core] (T) {}` mit `(T.A1)`, `(T.A2)` links und `(T.B1)`,
-  `(T.B2)` rechts.
-* **Logikgatter** (Rechteckform, Negation als Kreis): `node[and port] (U) {}`,
-  `or port`, `not port`, `nand port`, `nor port`, `xor port`;
-  Eingänge `(U.in 1)`, `(U.in 2)`, Ausgang `(U.out)`. Siehe Aufgabe 3 in
-  `beispiel.tex`.
-* Soll etwas eingezeichnet werden (Zählpfeile, Ströme), das Schaltbild
-  ohne diese Elemente zeichnen und in der Teilaufgabe dazu auffordern.
+| Datei | Bausteine |
+|---|---|
+| `ANLEITUNG-schaltungen.md` | `schaltung`: Schaltbilder mit Zweipolen, Messgeräten, Operationsverstärkern, Transistoren, Transformator und Logikgattern |
+| `ANLEITUNG-digitaltechnik.md` | `zeitdiagramm`, `automat`, `\kvdiagramm`, `\register` |
+| `ANLEITUNG-code.md` | `codeblock`, `\codedatei`, `\code`, `\codetext` (Kapitel 8) |
 
 ### `diagramm` – Funktionsgraphen, Kennlinien, Messkurven (pgfplots)
 
@@ -418,24 +390,6 @@ Farbnamen, falls ausnahmsweise nötig (z. B. Füllung): `ohmForeground`
 Achsen mit Pfeilen durch den Ursprung und feines Raster. Für „Skizzieren
 Sie …“-Aufgaben. Es darf auch ein gegebener Graph hinein (`\addplot`).
 
-### `zeitdiagramm` – Digitale Signalverläufe (tikz-timing)
-
-```latex
-\begin{zeitdiagramm}{Eingangssignale des D-Flipflops}
-  CLK & L 8{C} \\
-  D   & 2L 3H 2L 2H \\
-  Q   & L 8S \\
-\end{zeitdiagramm}
-```
-
-* Jede Zeile: `Name & Signalfolge \\`.
-* Zeichen: `L` low, `H` high, `C` Taktflanke (wechselt jedes Mal),
-  `Z` hochohmig, `X` undefiniert, `S` leer (nichts gezeichnet),
-  `D{Text}` Datenwort/Bus (z. B. `2D{0x3F}`), `U` unbekannt.
-* Eine Zahl davor = Länge in Zeiteinheiten: `3H` = 3 Einheiten high.
-  `8{C}` = 8 Taktwechsel. **Alle Zeilen gleich lang machen.**
-* Zum Einzeichnen lassen: Zeile mit `S` füllen (z. B. `Q & L 8S \\`).
-
 ### `blockdiagramm` – Regelkreise, Signalflusspläne
 
 ```latex
@@ -457,28 +411,6 @@ Sie …“-Aufgaben. Es darf auch ein gegebener Graph hinein (`\addplot`).
 * Positionieren mit `right=of x`, `below=of x`, `right=20mm of x`.
 * Stile: `block`, `summe`, `verzweigung`, `coordinate` (unsichtbarer Punkt).
 
-### `automat` – Zustandsautomaten (Moore/Mealy, DEA)
-
-```latex
-\begin{automat}{Moore-Automat}
-  \node[state, initial]                 (s0) {$S_0/0$};
-  \node[state, right=of s0]             (s1) {$S_1/0$};
-  \node[state, accepting, right=of s1]  (s2) {$S_2/1$};
-  \path (s0) edge[loop above]   node {0} (s0)
-             edge[bend left]    node {1} (s1)
-        (s1) edge[bend left]    node {0} (s0)
-             edge               node {1} (s2)
-        (s2) edge[loop above]   node {1} (s2)
-             edge[bend left=50] node {0} (s0);
-\end{automat}
-```
-
-* `state` = Zustand, `initial` = Startpfeil, `accepting` = Endzustand
-  (doppelter Rand).
-* Übergänge mit `\path (a) edge[..] node {Beschriftung} (b);` –
-  `loop above/below/left/right`, `bend left`, `bend right`, `bend left=50`.
-* Mealy-Beschriftung: `node {$1/0$}`.
-
 ### `knotengraph` – Graphen (Netze, kürzeste Wege, Bäume)
 
 ```latex
@@ -491,45 +423,6 @@ Sie …“-Aufgaben. Es darf auch ein gegebener Graph hinein (`\addplot`).
   \draw[->] (C) -- node[gewicht] {1} (B);   % gerichtete Kante
 \end{knotengraph}
 ```
-
-### `\kvdiagramm[Optionen]{Variablen}{Einsen}` – KV-Diagramm
-
-```latex
-\begin{abbildung}{KV-Diagramm von $f$}
-  \kvdiagramm[dontcare={6}, indizes]{A,B,C,D}{0,2,5,7,8,10,13,15}
-\end{abbildung}
-```
-
-* **Variablen**: 2, 3 oder 4, durch Kommas getrennt. Die erste Variable
-  ist das höchstwertige Bit.
-* **Einsen**: Minterm-Indizes, an denen die Funktion 1 ist. Index =
-  Binärzahl der Variablen in der angegebenen Reihenfolge, z. B. bei
-  `A,B,C,D`: A=1, B=0, C=1, D=1 → 1011₂ = 11.
-* Alle übrigen Felder zeigen 0.
-* Optionen:
-  `dontcare={..}` Indizes mit beliebigem Wert (zeigt X),
-  `indizes` kleine Minterm-Nummern in jedem Feld,
-  `leer` keine Werte (zum Ausfüllen durch die Studierenden),
-  `groesse=9mm` Feldgröße.
-* Aufteilung: 2 Var. → Zeile A, Spalte B; 3 Var. → Zeile A, Spalten BC;
-  4 Var. → Zeilen AB, Spalten CD (jeweils Gray-Code 00, 01, 11, 10).
-* Ohne Unterschrift kann `\kvdiagramm` auch direkt im Text stehen; mit
-  Unterschrift in `abbildung` einbetten.
-
-### `\register[Optionen]{Name}{Bits}` – Registerbelegung (Mikrocontroller)
-
-```latex
-\begin{abbildung}{Register TCCR0B}
-  \register{TCCR0B}{FOC0A,FOC0B,--,--,WGM02,CS02,CS01,CS00}
-\end{abbildung}
-```
-
-* Bits vom höchstwertigen zum niederwertigsten angeben (links → rechts).
-  Die Bitnummern stehen automatisch darüber.
-* Unbenutzte Bits: `--`.
-* Optionen: `breite=14mm` (Breite eines Bitfelds, Standard 12 mm; bei
-  langen Namen erhöhen), `hoechstesbit=15` (Nummer des linken Bits, z. B.
-  für die obere Hälfte eines 16-Bit-Registers).
 
 ### `tabelle` – Wertetabellen, Wahrheitstabellen, Datenblattwerte
 
@@ -552,57 +445,8 @@ Sie …“-Aufgaben. Es darf auch ein gegebener Graph hinein (`\addplot`).
 
 ## 8. Code
 
-### `codeblock` – Quelltext mit Syntaxhervorhebung
-
-```latex
-\begin{codeblock}[mittelwert.py]{python}
-def mittelwert(werte):
-    return sum(werte) / len(werte)
-\end{codeblock}
-```
-
-* `[Titel]` optional (meist Dateiname); erscheint links oben. Wird
-  wörtlich gesetzt, Unterstriche sind erlaubt.
-* `{Sprache}` Pflicht, eine von:
-
-| Wert | Sprache |
-|---|---|
-| `python` | Python |
-| `c` | C (inkl. `uint8_t` usw.) |
-| `cpp` | C++ |
-| `asm` | Assembler allgemein (AVR, ARM, RISC-V; Kommentare mit `;` oder `//`) |
-| `x86` | x86-Assembler (MASM-Syntax) |
-| `verilog` | Verilog / SystemVerilog |
-| `vhdl` | VHDL |
-| `matlab` | MATLAB / Octave |
-| `text` | ohne Hervorhebung (Pseudocode, Konsolenausgabe, Datenformate) |
-
-* Der Code steht **wörtlich** zwischen `\begin{codeblock}` und
-  `\end{codeblock}`: keine Maskierung von `_`, `%`, `#`, `&`, `{` nötig.
-  Umlaute und `← → ∞ ≤ ≥ ≠ Ω ·` funktionieren.
-* Zeilennummern kommen automatisch. In Teilaufgaben auf Zeilen verweisen:
-  „In Zeile 5 …“.
-* Leerzeichen am Zeilenanfang (Einrückung) bleiben erhalten. Tabs werden
-  zu 4 Leerzeichen.
-* `\end{codeblock}` muss **allein am Zeilenanfang** stehen.
-* Lange Codeblöcke dürfen über eine Seitengrenze laufen.
-* Nicht innerhalb von `nebeneinander` oder in Argumenten anderer Befehle.
-
-### `\codedatei[Titel]{Sprache}{Pfad}` – Code aus Datei
-
-```latex
-\codedatei[blink.c]{c}{material/blink.c}
-```
-
-### Code im Fließtext
-
-| Befehl | Wo | Beispiel |
-|---|---|---|
-| `\code{..}` | normaler Text, Teilaufgabentexte | `\code{PORTB ^= (1 << LED_PIN);}` – wörtlich, keine Maskierung |
-| `\codetext{..}` | **in Argumenten** anderer Befehle (`\aussage`, `\antwort`, `\wert`, Titel) | `\antwort{\codetext{PORTB \&= 0x08;}}` – Sonderzeichen maskieren: `\_ \& \% \# \{ \}` |
-
-Wenn der Code selbst `{` oder `}` enthält, im Fließtext `\code|a{b}|` mit
-`|` als Begrenzer schreiben.
+Quelltext, Code aus Dateien und Code im Fließtext beschreibt
+`ANLEITUNG-code.md`. Lies sie, wenn dein Blatt Code enthält.
 
 ---
 
@@ -816,25 +660,8 @@ direkt in die Abbildung der Aufgabe zeichnen. Stil `loesung` verwenden:
 ```
 
 * Geht in `schaltung`, `zeichnung`, `diagramm`, `koordinatensystem`,
-  `blockdiagramm`, `automat`, `knotengraph` und im Text.
-* **Nicht** in den Zeilen von `zeitdiagramm`. Stattdessen in der
-  `loesung`-Box das vollständige Zeitdiagramm wiederholen, die gesuchte
-  Zeile mit `[loesung]` beginnen:
-
-```latex
-\begin{loesung}
-  $Q$ übernimmt bei jeder steigenden Flanke den Wert von $D$.
-  \begin{zeitdiagramm}{Vollständiges Zeitdiagramm}
-    CLK & L 8{C} \\
-    D   & 2L 4H 2L 1H \\
-    Q   & [loesung] 3L 4H 2L \\
-  \end{zeitdiagramm}
-\end{loesung}
-```
-
-* Ebenso für ein auszufüllendes KV-Diagramm: in der Lösung
-  `\kvdiagramm{..}{Einsen}` mit den richtigen Werten zeigen und die Blöcke
-  im Text nennen.
+  `blockdiagramm`, `automat`, `knotengraph` und im Text. Für `zeitdiagramm`
+  und `\kvdiagramm` siehe `ANLEITUNG-digitaltechnik.md`.
 
 ### Antwortformate
 
@@ -867,31 +694,31 @@ einen anderen Satz im Aufgabentext. In den allermeisten Fällen reichen
 
 ## 12. Welcher Baustein für welchen Inhalt?
 
-| Inhalt | Baustein |
-|---|---|
-| Gegebene Größen und gesuchte Größen | `gegeben` + `\wert` + `\gesucht` |
-| Formel, Tipp, Definition | `hinweisbox` |
-| Gleichstrom-/Wechselstromschaltung, OPV, Transistor | `schaltung` |
-| Logikgatter-Schaltung | `schaltung` mit `and port` usw. |
-| Funktion, Kennlinie, Bode-Diagramm, Messkurve | `diagramm` |
-| „Skizzieren Sie …“ | `koordinatensystem` (leer) |
-| Takt-/Signalverläufe, Flipflops, Bus-Timing | `zeitdiagramm` |
-| KV-Diagramm (gegeben oder leer) | `\kvdiagramm` in `abbildung` |
-| Wahrheitstabelle, Wertetabelle | `tabelle` |
-| Zustandsautomat, Moore/Mealy | `automat` |
-| Regelkreis, Signalflussplan | `blockdiagramm` |
-| Graph, Netzwerk, kürzester Weg, Baum | `knotengraph` |
-| Registerbelegung | `\register` in `abbildung` |
-| Physikalischer Aufbau, Zeigerdiagramm, Geometrie | `zeichnung` |
-| Foto, Screenshot, Oszilloskopbild | `\bild` |
-| Programmcode | `codeblock` / `\codedatei` |
-| Pseudocode, Konsolenausgabe | `codeblock` mit `{text}` |
-| Einfach-/Mehrfachauswahl | `antworten` |
-| Richtig/Falsch-Aussagen | `ankreuzen` |
-| Begriffe zuordnen | `zuordnung` |
-| Text neben Abbildung | `nebeneinander` |
-| Lösung einer (Teil-)Aufgabe | `loesung` (+ `\ergebnis`, `\teilpunkt`) |
-| Lösung in eine Abbildung zeichnen | `\nurloesung{..}` mit Stil `loesung` |
+| Inhalt | Baustein | Steht in |
+|---|---|---|
+| Gegebene Größen und gesuchte Größen | `gegeben` + `\wert` + `\gesucht` | hier |
+| Formel, Tipp, Definition | `hinweisbox` | hier |
+| Gleichstrom-/Wechselstromschaltung, OPV, Transistor | `schaltung` | `ANLEITUNG-schaltungen.md` |
+| Logikgatter-Schaltung | `schaltung` mit `and port` usw. | `ANLEITUNG-schaltungen.md` |
+| Funktion, Kennlinie, Bode-Diagramm, Messkurve | `diagramm` | hier |
+| „Skizzieren Sie …“ | `koordinatensystem` (leer) | hier |
+| Takt-/Signalverläufe, Flipflops, Bus-Timing | `zeitdiagramm` | `ANLEITUNG-digitaltechnik.md` |
+| KV-Diagramm (gegeben oder leer) | `\kvdiagramm` in `abbildung` | `ANLEITUNG-digitaltechnik.md` |
+| Wahrheitstabelle, Wertetabelle | `tabelle` | hier |
+| Zustandsautomat, Moore/Mealy | `automat` | `ANLEITUNG-digitaltechnik.md` |
+| Regelkreis, Signalflussplan | `blockdiagramm` | hier |
+| Graph, Netzwerk, kürzester Weg, Baum | `knotengraph` | hier |
+| Registerbelegung | `\register` in `abbildung` | `ANLEITUNG-digitaltechnik.md` |
+| Physikalischer Aufbau, Zeigerdiagramm, Geometrie | `zeichnung` | hier |
+| Foto, Screenshot, Oszilloskopbild | `\bild` | hier |
+| Programmcode | `codeblock` / `\codedatei` | `ANLEITUNG-code.md` |
+| Pseudocode, Konsolenausgabe | `codeblock` mit `{text}` | `ANLEITUNG-code.md` |
+| Einfach-/Mehrfachauswahl | `antworten` | hier |
+| Richtig/Falsch-Aussagen | `ankreuzen` | hier |
+| Begriffe zuordnen | `zuordnung` | hier |
+| Text neben Abbildung | `nebeneinander` | hier |
+| Lösung einer (Teil-)Aufgabe | `loesung` (+ `\ergebnis`, `\teilpunkt`) | hier |
+| Lösung in eine Abbildung zeichnen | `\nurloesung{..}` mit Stil `loesung` | hier |
 
 ---
 
@@ -903,11 +730,6 @@ einen anderen Satz im Aufgabentext. In den allermeisten Fällen reichen
 | Warnung „Aufgabe n hat 0 Punkte“ | Weder `\teil{..}` noch `[Punkte]` noch `ankreuzen` in der Aufgabe. |
 | Warnung „vorgegebene Punkte passen nicht …“ | `[Punkte]` bei `aufgabe` widerspricht der Summe der `\teil`-Punkte; `[..]` entfernen. |
 | „Missing $ inserted“ bei `\wert` | `$…$` in `\wert{..}` geschrieben: weglassen, das Argument ist schon Mathe. |
-| „Missing $ inserted“ bei `\codetext` | `_` nicht maskiert: `\codetext{LED\_PIN}`. |
-| „Unbekannte Code-Sprache“ | Sprache nicht in der Liste; `text` verwenden. |
-| Code in `nebeneinander` / `\antwort` geht kaputt | Codeblöcke nur direkt in der Aufgabe oder in `teilaufgaben`; in Argumenten `\codetext`. |
-| `\end{codeblock}` wird nicht erkannt | Muss allein am Zeilenanfang stehen. |
-| Zeitdiagramm verrutscht | Alle Zeilen müssen dieselbe Gesamtlänge haben. |
 | Sinus in pgfplots falsch | pgfplots rechnet in Grad: `sin(deg(x))`. |
 | Ω erscheint falsch | Immer `\ohm` (in `\qty`/`\unit`), nie `$\Omega$`. |
 | `\spalte` Fehler | `\spalte` nur innerhalb von `nebeneinander`, genau einmal. |
@@ -916,7 +738,6 @@ einen anderen Satz im Aufgabentext. In den allermeisten Fällen reichen
 | Aufgabenblatt endet plötzlich / Text fehlt | `\end{loesung}` fehlt oder steht nicht allein in seiner Zeile. |
 | Lösungsbox ragt unten aus der Seite | Box länger als eine Seite: auf mehrere `loesung`-Boxen aufteilen. |
 | Leerzeile oben in der Lösungsbox | Box beginnt mit `\[` oder `align*`: einen kurzen Satz davor schreiben. |
-| Zeitdiagramm-Fehler mit `\nurloesung` | In `zeitdiagramm` nicht möglich; vollständige Kopie in die `loesung`-Box. |
 
 ---
 

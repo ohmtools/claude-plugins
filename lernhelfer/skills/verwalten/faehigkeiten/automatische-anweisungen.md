@@ -48,10 +48,11 @@ Das kann ich hier nicht selbst. Lösch auf der Projektseite die geplanten Anweis
 ## Anzeigen
 
 Fragt der Nutzer, welche automatischen Anweisungen es gibt oder wann sie
-laufen, hol ihre Liste mit deinem Werkzeug für geplante Anweisungen. Gibt es
-Anweisungen dieses Projekts (`skill:SKILL.md`, Abschnitt „Anweisungen dieses
-Projekts“), antworte, wobei `{liste}` sie mit ihrer Zeit und ihrem Modell
-sind, z.B.
+laufen, hol ihre Liste mit deinem Werkzeug für geplante Anweisungen.
+Ausgeschaltete Anweisungen (z.B. mit `enabled: false`) laufen nicht, lass sie
+weg. Gibt es Anweisungen dieses Projekts (`skill:SKILL.md`, Abschnitt
+„Anweisungen dieses Projekts“), antworte, wobei `{liste}` sie mit ihrer Zeit
+und ihrem Modell sind, z.B.
 `Indizieren jeden Donnerstag um 7:00 mit Haiku`:
 
 ```text

@@ -24,28 +24,6 @@ weiter.
   weiterentwickelt, sieht diesen Chat nicht und kann nur aus dem Protokoll
   nachvollziehen, was passiert ist. Schreib lieber zu viel als zu wenig.
 
-## Als automatische Anweisung
-
-Lautet die Anfrage „Teste den Lernhelfer als automatische Anweisung“, läuft
-dieser Chat als geplante Anweisung aus Test 2, und niemand liest mit. Führ dann
-nur diese Schritte aus, ohne Rückfrage, statt der übrigen Abschnitte:
-
-1. Halte fest: dein Modell, Datum und Uhrzeit, ob du Werkzeuge für
-   Projektdateien hast, den Namen des Projekts laut Projektübersicht und wie
-   viele Dateien sie nennt.
-2. Nur wenn es `projekt:daten.xml` gibt: Hol die Liste der Dateien der
-   Datenquelle, wie `projekt:daten.xml` es beschreibt. Notiere, ob das klappt,
-   mit Befehlen, Exit-Codes und Fehlermeldungen wörtlich, und nur die Zahl der
-   Dateien. Bei einem privaten Repository notiere auch, ob du ein Werkzeug der
-   GitHub-Anbindung hattest, und wenn ja, seine vollständige Rückmeldung und
-   ob es eine Bestätigung verlangt hat.
-3. Schreib alles als Liste nach `projekt:lernhelfer-test-geplant.md`.
-4. Antworte:
-
-   ```text
-   Test der automatischen Anweisungen fertig. Das Ergebnis liegt in lernhelfer-test-geplant.md.
-   ```
-
 ## Protokoll
 
 Halte alles während der Tests fest, nicht erst am Ende aus dem Gedächtnis.
@@ -96,90 +74,14 @@ Halte danach fest:
 
 ## Tests
 
-1. **Projektname:** Davon hängt ab, dass sich die automatischen Anweisungen
-   dieses Projekts von denen anderer Projekte unterscheiden lassen
-   (`skill:SKILL.md`, Abschnitt „Anweisungen dieses Projekts“).
-   1. Such den Namen dieses Projekts in der Projektübersicht, z.B. in einem
-      Feld `name` von `project_info`. Die Überschrift der Projektanweisung ist
-      es nicht. Notiere das Werkzeug, das Feld und die Namen aller Felder der
-      Rückmeldung, ohne ihren Inhalt.
-   2. Hast du einen Namen gefunden, stell diese Rückfrage, wobei `{projekt}`
-      der Name ist:
-
-      ```auswahl
-      Test des Projektnamens: Heißt dieses Projekt in Claude.ai „{projekt}“?
-      - Ja
-      - Nein
-      ```
-
-   3. Hast du keinen Namen gefunden oder stimmt er nicht, frag nach ihm wie in
-      `skill:SKILL.md`, Abschnitt „Anweisungen dieses Projekts“. Den Namen
-      brauchst du in Test 2.
-
-   `ok`: Du hast einen Namen gefunden, und er stimmt. `fehlgeschlagen`: Du hast
-   keinen gefunden, oder er stimmt nicht. Detail: Werkzeug und Feld. Protokoll:
-   der Aufruf, die Namen der Felder und die Antwort des Nutzers.
-2. **Automatische Anweisungen:** Davon hängt ab, dass „Initialisieren“ und
-   „Automatische Anweisungen“ das Modell einer Anweisung setzen können, auch
-   erst nach dem Anlegen, und dass der Lauf dann mit diesem Modell arbeitet
-   (`skill:SKILL.md`, Abschnitt „Automatische Anweisungen“). Hast du kein
-   Werkzeug für geplante Anweisungen, ist der Test `fehlgeschlagen`, Detail
-   „kein Werkzeug“.
-   1. Stell diese Rückfrage:
-
-      ```auswahl
-      Test der automatischen Anweisungen: Ich lege eine Anweisung an, die in etwa fünf Minuten einmal mit Haiku in einem neuen Chat in diesem Projekt läuft, und lösche sie danach wieder. Einverstanden?
-      - Ja, mit Haiku
-      - Test überspringen
-      ```
-
-      Bei „Test überspringen“ ist der Test `übersprungen`.
-   2. Gibt es `projekt:daten.xml` und beginnt `<art>` darin mit „Privates
-      GitHub-Repository“, hol dir Lesezugriff, wie `<art>` es beschreibt.
-   3. Leg die Anweisung an: Name `Lernhelfer-Test ({projekt})` mit dem Namen
-      aus Test 1, einmal etwa fünf Minuten nach jetzt, in einem neuen Chat,
-      Benachrichtigung push, mit diesem Prompt:
-
-      ```text
-      /lernhelfer:verwalten Teste den Lernhelfer als automatische Anweisung
-      ```
-
-      Kann das Werkzeug keine einmalige Anweisung, nimm eine wöchentliche zur
-      nächsten möglichen Zeit. Merk dir ihre ID. Setz das Modell auf Haiku,
-      beim Anlegen oder, wenn das Werkzeug dort kein Modell kennt, gleich
-      danach mit dem Werkzeug zum Ändern (z.B. `update_trigger` mit `model`).
-      Prüf in der Liste der geplanten Anweisungen, dass sie mit Haiku da ist.
-   4. Stell diese Rückfrage, wobei `{uhrzeit}` ihre Zeit ist:
-
-      ```auswahl
-      Test der automatischen Anweisungen: Ich habe eine für {uhrzeit} angelegt. Sie läuft in einem neuen Chat in diesem Projekt. Sag mir Bescheid, sobald du den Chat oder eine Benachrichtigung siehst, spätestens nach zehn Minuten.
-      - Gelaufen, mit Benachrichtigung
-      - Gelaufen, ohne Benachrichtigung
-      - Nichts passiert
-      ```
-
-   5. Lies `projekt:lernhelfer-test-geplant.md`, bevor du die Anweisung
-      löschst, denn das Löschen entfernt auch den Chat ihres Laufs. Lösch sie
-      dann anhand ihrer ID. Meldet das Löschen, dass es sie nicht gibt, und
-      fehlt sie in der Liste, gilt sie als gelöscht.
-
-   `ok`: Sie ist mit Benachrichtigung gelaufen, und laut
-   `projekt:lernhelfer-test-geplant.md` lief sie mit Haiku, im Projekt aus
-   Test 1, mit Werkzeugen für Projektdateien und, falls es
-   `projekt:daten.xml` gibt, mit Zugriff auf die Datenquelle ohne Bestätigung.
-   `teilweise`: Sie ist gelaufen, aber etwas davon fehlt, z.B. lief sie mit
-   einem anderen Modell. `fehlgeschlagen`: Sie ließ sich nicht anlegen oder
-   ist nicht gelaufen. Detail: das Modell laut Liste und laut Lauf und was
-   fehlte. Protokoll: jedes Werkzeug mit allen Parametern und Rückmeldungen,
-   die Antwort des Nutzers und den Inhalt von
-   `projekt:lernhelfer-test-geplant.md` vollständig.
-
-3. **Webseite:** Davon hängt „Skript verbessern“ ab: Node und npm, der Klon
-   der Vorlage, die Installation ihrer Pakete, das Bauen und die Anzeige der
-   HTML-Datei im Chat. Alles geschieht in `arbeit:lernhelfer-test-webseite/`,
-   nichts im Projekt oder in der Datenquelle.
-   1. Führ aus und notiere Ausgabe, Exit-Code und Dauer (`time`):
-      `node --version`, `npm --version`, dann in
+1. **Webseite:** Davon hängt „Skript verbessern“ ab: Node und npm, der Klon
+   der Vorlage, die Installation ihrer Pakete, das Bauen, `pdfimages` zum
+   Ausschneiden von Abbildungen und die Anzeige der HTML-Datei im Chat. Alles
+   geschieht in `arbeit:lernhelfer-test-webseite/`, nichts im Projekt oder in
+   der Datenquelle.
+   1. Führ aus und notiere Ausgabe, Exit-Code und Dauer (z.B. mit
+      `date +%s.%N` davor und danach):
+      `node --version`, `npm --version`, `command -v pdfimages`, dann in
       `arbeit:lernhelfer-test-webseite/`
       `git clone --depth 1 https://github.com/ohmtools/lernhelfer-skript skript`,
       dann im Ordner `skript/` `npm ci --omit=dev`, `du -sh node_modules`,
@@ -207,14 +109,14 @@ Halte danach fest:
       ```
 
    `ok`: Alle Befehle enden mit Exit-Code 0, und die Seite erscheint und ist
-   bedienbar. `teilweise`: Die Seite entsteht, erscheint aber nicht oder nur
-   eingeschränkt. `fehlgeschlagen`: Ein Befehl bricht ab, und es gibt keine
-   Seite. Detail: die Node-Version, die Dauer von `npm ci` und
-   `npm run build`, die Größe der HTML-Datei und was nicht ging. Protokoll:
-   jeder Befehl mit Ausgabe (bei langen die ersten und letzten zehn Zeilen),
-   Exit-Code und Dauer, das Werkzeug zum Bereitstellen mit Parametern und
-   Rückmeldung und die Antworten des Nutzers. Lösch danach
-   `arbeit:lernhelfer-test-webseite/`.
+   bedienbar. `teilweise`: Die Seite entsteht, aber `pdfimages` fehlt, oder
+   sie erscheint nicht oder nur eingeschränkt. `fehlgeschlagen`: Ein Befehl
+   bricht ab, und es gibt keine Seite. Detail: die Node-Version, die Dauer
+   von `npm ci` und `npm run build`, die Größe der HTML-Datei, ob es
+   `pdfimages` gibt, und was nicht ging. Protokoll: jeder Befehl mit Ausgabe
+   (bei langen die ersten und letzten zehn Zeilen), Exit-Code und Dauer, das
+   Werkzeug zum Bereitstellen mit Parametern und Rückmeldung und die
+   Antworten des Nutzers. Lösch danach `arbeit:lernhelfer-test-webseite/`.
 
 ## Aufräumen
 
@@ -233,10 +135,10 @@ antworte mit derselben Nachricht. Kürze sie nicht, auch wenn sie lang wird.
 
 - `{modell}` und `{oberflaeche}`: Modell und Antwort aus der Vorbereitung.
 - `{zeilen}`: eine Tabellenzeile pro Test in der Reihenfolge oben, z.B.
-  `| 1 Projektname | ok | project_info, Feld name |`.
+  `| 1 Webseite | ok | Node v22.22.0, npm ci 36 s, … |`.
 - `{umgebung}`: was du in der Vorbereitung notiert hast, als Liste.
 - `{protokoll}`: ein Abschnitt `### {name}` für die Vorbereitung, jeden Test
-  (z.B. `### 1 Projektname`) und das Aufräumen. Darin die
+  (z.B. `### 1 Webseite`) und das Aufräumen. Darin die
   Punkte aus dem Abschnitt „Protokoll“ als Liste. Lass Punkte ohne Inhalt weg.
   Für übersprungene Tests nur der Grund.
 - `{vorschlaege}`: eine nummerierte Liste konkreter Änderungen am

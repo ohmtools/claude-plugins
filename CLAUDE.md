@@ -117,9 +117,8 @@ die Änderung betrifft, vollständig.
     Schritt 3.
   - Lesezugriff auf ein privates Repository vor dem Anlegen automatischer
     Anweisungen, weil ein Lauf keine GitHub-Anbindung hat: `verwalten/SKILL.md`
-    („Automatische Anweisungen“, „Einrichten“, Schritt 3), `testen.md`,
-    Test 2, und die Vorlage für `{zugriff}` in `initialisieren.md` (ohne
-    Werkzeug direkt klonen).
+    („Automatische Anweisungen“, „Einrichten“, Schritt 3) und die Vorlage
+    für `{zugriff}` in `initialisieren.md` (ohne Werkzeug direkt klonen).
   - Beschreibung, Lernziele und Angaben zur Prüfung aus dem Modulhandbuch
     auslesen: `indizieren.md`, Schritt 5, und `modul-bearbeiten.md`,
     „Lernziele übernehmen“, Schritte 3 und 4.
@@ -164,8 +163,7 @@ die Änderung betrifft, vollständig.
   - Name der automatischen Anweisungen `Lernhelfer: {name} ({projekt})` mit
     dem Projektnamen aus der Projektübersicht: `verwalten/SKILL.md`
     („Automatische Anweisungen“), die Nachrichten ohne Werkzeug in
-    `automatische-anweisungen.md`, `helfen/SKILL.md` und `testen.md`
-    (Test 1, `Lernhelfer-Test ({projekt})` in Test 2).
+    `automatische-anweisungen.md` und `helfen/SKILL.md`.
   - Schreibreihenfolge bei `daten.xml`: in `indizieren.md` zuerst der Index,
     zuletzt `daten.xml`, in `modul-bearbeiten.md` („Neues Modul anlegen“,
     „Dateien zuordnen“) zuerst `daten.xml`, dann der Index. Beides folgt aus
@@ -175,7 +173,7 @@ die Änderung betrifft, vollständig.
   - URL der Vorlage für „Skript verbessern“
     (`https://github.com/ohmtools/lernhelfer-skript`):
     `skript-verbessern.md`, `entwicklung.md` (Konvention „Vorlagen“),
-    `testen.md` (Test 3), `helfen/SKILL.md` und README.
+    `testen.md` (Test 1), `helfen/SKILL.md` und README.
   - Was `skript-verbessern.md` von der Vorlage benutzt, muss zu ihr passen,
     denn sie wird immer vom Hauptzweig geklont: die Markierungen der
     Ergänzungen (`:::variablen`, `:::anmerkung`, `:::denkanstoss`,
@@ -185,7 +183,7 @@ die Änderung betrifft, vollständig.
     `mdx`, `pruefen`, `build`, `quelle`, `ausschnitt`), `src/inhalt/`,
     `skript.json`, `dist/index.html`, der Ordner `lernhelfer-skript/` in der
     ZIP und die Kapitel „Originaltext“ („Ausschneiden“), „Angaben zum
-    Skript“ und „Häufige Fehler“ der Anleitung. `testen.md`, Test 3, nennt
+    Skript“ und „Häufige Fehler“ der Anleitung. `testen.md`, Test 1, nennt
     das Beispiel der Vorlage („Grundlagen der Elektrotechnik“, Kapitel 2 mit
     Regler für R).
   - Etappen von „Skript verbessern“ (höchstens ein Kapitel und 20 Seiten,
@@ -452,14 +450,17 @@ die Änderung betrifft, vollständig.
 
 ## Testläufe
 
-Mit dem Plugin am 2026-10-17: „Testen“ im Browser und in der iPad-App, je mit
-Opus 5.5 (Tests 1 bis 8), gleichzeitig in zwei Projekten desselben Kontos mit
-derselben privaten Datenquelle, dazu „Initialisieren“ in drei Projekten
-(Browser mit Haiku 5.5 und Opus 5.5, iPad-App mit Opus 5.5). Am 2026-10-16
-erst im Browser je einmal mit Haiku 5.5 und Opus 5.5 (alle damaligen Tests),
-dann in der iPad-App mit Opus 5.5 (Dateien ohne Ordner, Hochladen in den
-Hauptzweig), in einem Projekt mit privater Datenquelle. Davor 2026-10-10 ohne
-Plugin, Version 0.11.2 und 0.14.0, im Browser und in der iPad-App.
+Mit dem Plugin am 2026-10-23: „Testen“ im Browser mit Opus 5.5 (Tests 1 bis
+3), in einem Projekt mit leerer privater Datenquelle, dazu ein Lauf der
+Testanweisung mit Haiku 5.5. Am 2026-10-17: „Testen“ im Browser und in der
+iPad-App, je mit Opus 5.5 (Tests 1 bis 8), gleichzeitig in zwei Projekten
+desselben Kontos mit derselben privaten Datenquelle, dazu „Initialisieren“ in
+drei Projekten (Browser mit Haiku 5.5 und Opus 5.5, iPad-App mit Opus 5.5).
+Am 2026-10-16 erst im Browser je einmal mit Haiku 5.5 und Opus 5.5 (alle
+damaligen Tests), dann in der iPad-App mit Opus 5.5 (Dateien ohne Ordner,
+Hochladen in den Hauptzweig), in einem Projekt mit privater Datenquelle. Davor
+2026-10-10 ohne Plugin, Version 0.11.2 und 0.14.0, im Browser und in der
+iPad-App.
 
 ### Bestätigt
 
@@ -477,7 +478,9 @@ Plugin, Version 0.11.2 und 0.14.0, im Browser und in der iPad-App.
   `pypdf`, `pdfplumber`, `pypdfium2`. PyMuPDF fehlt. `gh` ist vorinstalliert.
   NumPy 2.5.3 und SciPy 1.18.1 sind da, SymPy fehlt, `pip install sympy`
   klappt ohne `--break-system-packages` (SymPy 1.14.0). Websuche mit
-  `WebSearch` und `WebFetch`.
+  `WebSearch` und `WebFetch`. Node v22.22.0 und npm 10.9.4. Manche Werkzeuge
+  sind nur nachladbar (`ToolSearch` mit `select:…`), z.B. `list_triggers`,
+  `update_trigger`, `delete_trigger`, `fire_trigger` und `list_repos`.
 - LaTeX: pdfTeX 1.40.25 (TeX Live 2023/Debian) mit texlive-base, -binaries,
   -fonts-recommended, -lang-greek, -latex-base, -latex-extra,
   -latex-recommended, -pictures, -science und -xetex, ohne -fonts-extra (kein
@@ -494,12 +497,16 @@ Plugin, Version 0.11.2 und 0.14.0, im Browser und in der iPad-App.
 - Projektdateien: Werkzeug `Projects` mit `method` `project_info`,
   `project_read`, `project_search`, `project_write` (`content` oder
   `local_path`, nur aus `/home/claude`, ersetzt ganze Dateien, meldet
-  `replaced`) und `project_delete` (nur Text-Dokumente). Umlaute und
-  Sonderzeichen bleiben erhalten, `project_read` liefert kleine Dateien
-  inline. `project_info` liefert `instructions` (die Projektanweisung),
+  `replaced`), `project_delete` (nur Text-Dokumente), `project_memory_list`
+  und `project_memory_read`. Umlaute und Sonderzeichen bleiben erhalten,
+  `project_read` liefert kleine Dateien inline. `project_info` liefert `instructions` (die Projektanweisung),
   `docs` (eigene Dokumente) und `files` (Uploads der Projektseite), je mit
   `path` und `created_at`, neueste zuerst, ohne Ordner, dazu
-  `knowledge_size`. Pfade mit Ordner bleiben, wie geschrieben. Ersetzen mit
+  `knowledge_size`. Am 2026-10-23 hatte die Rückmeldung die Felder `method`,
+  `name`, `description`, `instructions`, `docs`, `files`, `sync_sources` und
+  `knowledge`. Der Name des Projekts steht in `name` (Opus und Haiku fanden
+  ihn dort) und im Hinweis der Umgebung „This session is attached to the
+  Project "{name}"“. Pfade mit Ordner bleiben, wie geschrieben. Ersetzen mit
   `project_write` behält `doc_uuid` und `created_at` (über die Projektseite
   ändert sich `created_at`). Eine `.tex`-Datei mit 403 Zeilen (25 KB) aus
   `local_path` liefert `project_read` unverändert inline im Feld `content`,
@@ -521,6 +528,13 @@ Plugin, Version 0.11.2 und 0.14.0, im Browser und in der iPad-App.
   Zeichen, ergänzt selbst „Other“). Fünf oder eine Option lehnt es mit
   `InputValidationError` ab, der Nutzer sieht dann nichts. Eine PDF-Seite als
   Bild klappt mit `pdftoppm` und `Read`.
+- Webseite (Vorlage von „Skript verbessern“, im Browser): Klon von
+  `ohmtools/lernhelfer-skript` 0,8 s, `npm ci --omit=dev` 36 s (545 Pakete,
+  331 MB, Warnung `ERESOLVE overriding peer dependency`: `mafs@0.21.0` bringt
+  `use-resize-observer@9.1.0` mit, das React 16.8 bis 18 verlangt, die
+  Vorlage hat React 19.3.1), `npm run pruefen` 2,4 s, `npm run build` 1,8 s,
+  `dist/index.html` 1,5 MB. `SendUserFile` mit `display: render` zeigt sie,
+  Kapitelwechsel, Regler und Aufdecken gehen.
 - GitHub: `mcp__claude-code-remote__add_repo` (`owner`, `repo`, `access`
   read/push) gibt git über den Proxy Zugriff, pro Chat. Ihre Antwort verlangt
   einen Klon nach `/home/claude/{repo}` und den Aufruf von
@@ -553,7 +567,15 @@ Plugin, Version 0.11.2 und 0.14.0, im Browser und in der iPad-App.
   Push-Benachrichtigung kommt. `list_triggers` zeigt die Anweisungen aller
   Projekte des Kontos und bei keiner das Projekt. Löschen einer schon
   gelöschten meldet „not found“. Der Server verschiebt Startzeiten um einige
-  Minuten.
+  Minuten (am 2026-10-23 um 5,5 Minuten bei einer einmaligen Anweisung).
+  `update_trigger` mit `model` setzt das Modell nach dem Anlegen, die Liste
+  zeigt es, und der Lauf nennt es als sein Modell (`claude-haiku-5-5`). Opus
+  setzte es nach einer Rückfrage, die das Modell nannte, wie die beim
+  Einrichten. Ein Lauf klont ein privates Repository ohne Bestätigung. Seine
+  Shell beginnt im Ordner, den `add_repo` im anlegenden Chat nannte
+  (`/home/claude/{repo}`), dort liegt dann `arbeit:`, was nicht stört.
+  `list_triggers` nennt `enabled`, `ended_reason` (z.B. `run_once_fired`,
+  `auto_disabled_install_removed`) und `last_run` mit Status und Sitzung.
 - Leeres Repository: `ls-remote` gibt nichts aus, endet aber mit Exit-Code 0.
   `ls-tree -r HEAD` meldet `Not a valid object name HEAD`. Der erste
   gepushte Zweig wird Standardzweig. Ein Commit mit leerem Baum gibt bei
@@ -606,6 +628,21 @@ Testanweisung des iPad-Tests samt Chat (dort deshalb „not found“). Dazu kame
 Die Testprojekte vom 2026-10-17 haben noch `daten.xml` mit dem alten
 `<art>` und, im Projekt von Opus im Browser, Anweisungen ohne Projektnamen.
 
+Folgen des Laufs vom 2026-10-23: Alle drei Tests waren `ok`. Der Lauf der
+Testanweisung (Haiku) meldete „kein Werkzeug“ für geplante Anweisungen,
+vermutlich weil sie nur nachladbar waren. Dazu kamen:
+- in `grundlagen.md`, „Grundregeln“: erst unter den nachladbaren Werkzeugen
+  suchen (z.B. `ToolSearch`), dann ohne Werkzeug arbeiten;
+- in `automatische-anweisungen.md`, „Anzeigen“: ausgeschaltete Anweisungen
+  zählen nicht als laufend;
+- in `testen.md`: Tests 1 und 2 und „Als automatische Anweisung“ sind
+  heraus, „Webseite“ ist jetzt Test 1, prüft auch `pdfimages` und misst die
+  Dauer beliebig.
+Bewusst nicht übernommen: `arbeit:` als fester Pfad (der andere Ordner im
+Lauf stört nicht), ein Hinweis auf `register_repo_root` (`<art>` lässt schon
+nur den Zugriff zählen). Die Peer-Warnung von `npm ci` gehört nach
+`ohmtools/lernhelfer-skript`.
+
 Grund für die Datenquelle: Von Uploads über die Projektseite liefert
 `project_read` nur extrahierten Text, leere Seiten fehlen darin spurlos, und
 eine PDF lässt sich nicht wieder lokal herstellen.
@@ -619,35 +656,32 @@ eine PDF lässt sich nicht wieder lokal herstellen.
   geprüft, der Push in einen neuen Zweig eines leeren Repositorys klappte in
   Claude.ai).
 - Wie viel das Lesen großer Modulhandbücher kostet.
-- Wo Claude.ai den Namen des Projekts nennt. Haiku fand ihn erst nach einem
-  Hinweis des Nutzers „in den Projektdaten“ und nannte zuerst die Überschrift
-  der Projektanweisung (`testen.md`, Test 1).
-- Ob ein Lauf mit dem Modell arbeitet, das `update_trigger` nach dem Anlegen
-  setzt, und ob Claude es ohne Bitte im Wortlaut setzt: Opus in der
-  iPad-App stellte „Indizieren“ auf Haiku um (die Liste zeigte danach
-  `claude-haiku-5-5`), Opus im Browser fragte erst nach (`testen.md`,
-  Test 2).
 - Wöchentliche Läufe mit `CRON_TZ=Europe/Berlin` (nur einmalige geprüft) und
   Benachrichtigung per E-Mail.
+- `checkout` einer Datei in einem Lauf (nur im Chat geprüft, im Test vom
+  2026-10-23 war die Datenquelle leer). Zeigt sich beim ersten Lauf von
+  „Indizieren“.
+- Warum zwei ältere geplante Anweisungen des Kontos mit `ended_reason`
+  `auto_disabled_install_removed` ausgeschaltet sind. Vermutung: Eine
+  Neuinstallation des Plugins schaltet Anweisungen aus, die es benutzen. Dann
+  sollte `helfen/SKILL.md` das Neueinrichten auch dafür nennen.
 - Ein Kamerafoto direkt aus der iPad- oder iPhone-App (HEIC?). Das Foto aus
   der iPad-App war vermutlich eine digitale Notiz.
 - Ob ein Abbruch am Nutzungslimit mitten in einem Aufruf zum Schreiben
   passieren kann. Mit `local_path` unkritisch.
 - Ob Settings > Usage in Claude.ai den Reset des Wochenlimits zeigt.
-- Ob Node und npm in Claude.ai da sind, ob `npm ci` die Pakete der Vorlage
-  laden darf (pip klappt), wie lange Installation und Bauen dauern und ob
-  der Platz reicht (lokal: 331 MB `node_modules`, `npm ci --omit=dev` 10 s,
-  Bauen 3 s, Beispiel 1,5 MB). Ob `SendUserFile` mit `display: render` eine
-  HTML-Datei dieser Größe mit Skripten im Browser und in der iPad-App zeigt,
-  ob dort Regler per Touch gehen und ob `pdfimages` da ist (`testen.md`,
-  Test 3).
+- Ob `SendUserFile` mit `display: render` die Webseite (1,5 MB mit
+  Skripten) in der iPad-App zeigt, ob dort Regler per Touch gehen und ob
+  `pdfimages` da ist (`testen.md`, Test 1).
 
 Nächster Testlauf: „/lernhelfer:verwalten Teste den Lernhelfer“ als erste
-Nachricht in einem neuen Chat, in einem frisch eingerichteten Projekt mit
-privater Datenquelle (Tests 1 bis 3). Danach „/lernhelfer:verwalten Richte
-die automatischen Anweisungen ein“ und einen Lauf beider Anweisungen abwarten
-(Index, Vorrat, Benachrichtigung, Modell), dann „Mach mir ein Übungsblatt“ mit
-vorbereitetem Blatt (Code in TX-Typewriter, keine Silbentrennung).
+Nachricht in einem neuen Chat in der iPad-App (Test 1). Danach in einem
+Projekt mit privater Datenquelle, in der schon Dateien liegen (Skript,
+Altklausur, Modulhandbuch), „/lernhelfer:verwalten Richte die automatischen
+Anweisungen ein“ und den ersten wöchentlichen Lauf beider Anweisungen
+abwarten (Index mit Dateiinhalten, Vorrat, Benachrichtigung, Modell,
+Startzeit mit `CRON_TZ`), dann „Mach mir ein Übungsblatt“ mit vorbereitetem
+Blatt (Code in TX-Typewriter, keine Silbentrennung).
 Danach die Lernmodi, je im Projekt und im Chat ohne Projekt, mit diesen
 Fällen:
 - „Ich erkläre dir jetzt die Kettenregel“ (Spiegeltest)

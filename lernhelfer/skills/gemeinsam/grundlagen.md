@@ -12,6 +12,9 @@ arbeitest („dieser Skill“).
   offen, statt dir einen Ablauf auszudenken.
 - Fähigkeiten in `skill:faehigkeiten/` geben dir eine Rolle. Sie gilt nur,
   solange du nach dieser Fähigkeit arbeitest.
+- Manche Werkzeuge musst du erst laden, bevor du sie benutzen kannst (z.B.
+  mit `ToolSearch`). Such deshalb auch dort nach einem Werkzeug, bevor du nach
+  dem Weg ohne Werkzeug arbeitest.
 
 ## Pfade
 

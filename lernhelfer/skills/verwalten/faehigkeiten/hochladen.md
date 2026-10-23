@@ -116,3 +116,14 @@ angekommen ist.
 
    Damit ich sie beim Lernen nutzen kann, müssen sie noch indiziert werden. Das kann viel von deinem Nutzungslimit verbrauchen. Am sparsamsten: Starte einen neuen Chat, wähle das Modell Haiku und schreib „/lernhelfer:verwalten Indiziere“.
    ```
+
+   Gibt es noch kein Modul (dann hast du nach Schritt 2 nur Modulhandbücher
+   hochgeladen), antworte stattdessen:
+
+   ```text
+   Diese Dateien liegen jetzt in deiner Datenquelle:
+
+   {dateiliste}
+
+   Aus dem Modulhandbuch lege ich deine Fächer an. Dafür lese ich es ganz, das kann viel von deinem Nutzungslimit verbrauchen. Am sparsamsten: Starte einen neuen Chat, wähle das Modell Haiku und schreib „/lernhelfer:verwalten Leg die Fächer aus dem Modulhandbuch an“.
+   ```

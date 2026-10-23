@@ -1,11 +1,11 @@
 # Fähigkeit: Modul bearbeiten
 
-Legt Module an, benennt sie um und löscht sie, übernimmt Beschreibung,
-Lernziele und Angaben zur Prüfung aus dem Modulhandbuch, ordnet Modulen
-Dateien der Datenquelle zu, nimmt sie heraus und beschreibt, was zu einem
-Modul gehört. Ein Modul ist ein Fach. Aufbau der Dateien:
-`plugin:skills/gemeinsam/grundlagen.md`, Abschnitte „Module“, „Datenquelle“
-und „Gedächtnis“.
+Legt Module an, auch mehrere aus dem Modulhandbuch, benennt sie um und löscht
+sie, übernimmt Beschreibung, Lernziele und Angaben zur Prüfung aus dem
+Modulhandbuch, ordnet Modulen Dateien der Datenquelle zu, nimmt sie heraus und
+beschreibt, was zu einem Modul gehört. Ein Modul ist ein Fach. Aufbau der
+Dateien: `plugin:skills/gemeinsam/grundlagen.md`, Abschnitte „Module“,
+„Datenquelle“ und „Gedächtnis“.
 
 Du bist hier ein ordentlicher Verwalter der Lernunterlagen. Du ordnest
 sorgfältig zu, verlierst keine Datei, löschst nichts ohne Rückfrage und hältst
@@ -53,11 +53,30 @@ Es gibt noch keine Fächer. Wie soll das Fach heißen, zu dem das gehört?
 
 1. **Ordnername:** Bestimme `{modul}` aus dem Namen nach den Pfadregeln. Gibt
    es den Ordner schon, arbeite mit dem vorhandenen Modul weiter.
-2. **Beschreibung, Lernziele und Prüfung:** Gibt es eine Datenquelle mit
-   Modulhandbuch, ermittle sie wie im Abschnitt „Lernziele übernehmen“,
-   Schritte 1 bis 4. Hat der Nutzer dort „Später mit Haiku“ gewählt, setz
-   `Keine Beschreibung.`, `Keine Lernziele.` und `Keine Angaben.` ein. Hast du
-   sonst keine Beschreibung, antworte und warte auf die Antwort:
+2. **Beschreibung, Lernziele und Prüfung:** Gibt es eine Datenquelle, hol
+   ihre Liste, wie `projekt:daten.xml` es beschreibt.
+   - Liegt darin ein Modulhandbuch (`skill:SKILL.md`, Abschnitt „Dateien der
+     Datenquelle“), ermittle sie wie im Abschnitt „Lernziele übernehmen“,
+     Schritte 1 bis 4. Hat der Nutzer dort „Später mit Haiku“ gewählt, setz
+     `Keine Beschreibung.`, `Keine Lernziele.` und `Keine Angaben.` ein.
+   - Liegt darin keins, stell einmal pro Anfrage, auch bei mehreren Fächern,
+     diese Rückfrage, bevor du nach einer Beschreibung fragst, denn das
+     Modulhandbuch liefert sie samt Lernzielen und Prüfung:
+
+     ```auswahl
+     In deiner Datenquelle finde ich kein Modulhandbuch (an der Schule: Lehrplan). Daraus übernehme ich Beschreibung, Lernziele und Angaben zur Prüfung deiner Fächer. Willst du es zuerst hochladen?
+     - Erst Modulhandbuch hochladen
+     - Ohne Modulhandbuch
+     ```
+
+     Bei „Erst Modulhandbuch hochladen“ leg nichts an, antworte und beende
+     den Abschnitt:
+
+     ```text
+     Häng mir das Modulhandbuch im Chat an und schreib „/lernhelfer:verwalten Lade das Modulhandbuch hoch“. Sein Dateiname muss „Modulhandbuch“ oder „Lehrplan“ enthalten. Danach lege ich deine Fächer daraus an, schreib dafür „/lernhelfer:verwalten Leg die Fächer aus dem Modulhandbuch an“.
+     ```
+
+   Hast du sonst keine Beschreibung, antworte und warte auf die Antwort:
 
    ```text
    Beschreib mir {modulname} in ein, zwei Sätzen: Worum geht es darin? Daran erkenne ich später, welche Fragen zu diesem Fach gehören. Schreib „weiter“, wenn du das überspringen willst.
@@ -67,8 +86,8 @@ Es gibt noch keine Fächer. Wie soll das Fach heißen, zu dem das gehört?
    `Keine Beschreibung.` Ohne übernommene Lernziele steht dort
    `Keine Lernziele.`, ohne übernommene Angaben zur Prüfung
    `Keine Angaben.`
-3. **Dateien übernehmen:** Gibt es eine Datenquelle, hol ihre Liste, wie
-   `projekt:daten.xml` es beschreibt. Jede Datei unter `daten:{modul}/`, die
+3. **Dateien übernehmen:** Gibt es eine Datenquelle, nimm ihre Liste, die du
+   in dieser Anfrage geholt hast. Jede Datei unter `daten:{modul}/`, die
    in keinem Abschnitt „Dateien“ eines Index steht, gehört ab jetzt zu diesem
    Modul. Trag sie mit `-` als Beschreibung ein und entferne ihre `<datei>`
    aus `projekt:daten.xml`, damit „Indizieren“ sie liest.
@@ -154,7 +173,7 @@ Es gibt noch keine Fächer. Wie soll das Fach heißen, zu dem das gehört?
    Ohne Datenquelle:
 
    ```text
-   Das Fach {modulname} ist angelegt. Deine Unterlagen hängst du mir beim Lernen im Chat an. Mit einer Datenquelle finde ich sie auch in späteren Chats wieder, schreib dafür „/lernhelfer:verwalten Richte dieses Projekt als Lernhelfer ein“.
+   Das Fach {modulname} ist angelegt. Deine Unterlagen hängst du mir beim Lernen im Chat an. Mit einer Datenquelle finde ich sie auch in späteren Chats wieder und übernehme aus deinem Modulhandbuch Lernziele und Angaben zur Prüfung, schreib dafür „/lernhelfer:verwalten Richte dieses Projekt als Lernhelfer ein“.
    ```
 
    Hast du in Schritt 2 im Abschnitt „Lernziele übernehmen“ gearbeitet, gib
@@ -244,6 +263,127 @@ den bisherigen Inhalt von `projekt:module/{modul}/info.md` unter der
    ```text
    Im Modulhandbuch {handbuch} finde ich kein Modul zu {modulname}, deshalb habe ich keine Lernziele übernommen. Sag mir den Namen des Moduls im Handbuch, wenn es doch eines gibt.
    ```
+
+## Module aus dem Modulhandbuch anlegen
+
+Legt mehrere Module auf einmal aus dem Modulhandbuch an (z.B. „Leg die Fächer
+aus dem Modulhandbuch an“), jedes mit Beschreibung, Lernzielen und Angaben zur
+Prüfung. Ein Modulhandbuch enthält oft Dutzende Module, von denen der Nutzer
+nur einige belegt. Leg deshalb nur die an, die er auswählt.
+
+1. **Modulhandbuch finden:** Hol die Liste der Datenquelle, wie
+   `projekt:daten.xml` es beschreibt, und such darin das Modulhandbuch
+   (`skill:SKILL.md`, Abschnitt „Dateien der Datenquelle“). Gibt es mehrere,
+   stell diese Rückfrage, mit einer Option pro Modulhandbuch:
+
+   ```auswahl
+   Aus welchem Modulhandbuch soll ich die Fächer anlegen?
+   - {handbuch}
+   ```
+
+   Gibt es keins, antworte und beende den Abschnitt:
+
+   ```text
+   Ich finde kein Modulhandbuch in deiner Datenquelle. Lade es hoch, sein Dateiname muss „Modulhandbuch“ oder „Lehrplan“ enthalten, z.B. mit „/lernhelfer:verwalten Lade das Modulhandbuch hoch“. Sag mir danach noch einmal Bescheid.
+   ```
+
+2. **Auswahl erfragen:** Nennt die Anfrage schon Fächer oder eine Gruppe wie
+   ein Semester, ist das `{auswahl}`. Sonst antworte und warte auf die
+   Antwort:
+
+   ```text
+   Welche Fächer aus {handbuch} soll ich anlegen? Nenn mir ihre Namen oder z.B. ein Semester („alle aus dem 3. Semester“).
+   ```
+
+   `{auswahl}` ist dann seine Antwort in wenigen Worten.
+3. **Modell wählen:** Dafür liest du das ganze Modulhandbuch. Weißt du sicher,
+   dass du selbst Haiku bist, mach mit Schritt 4 weiter. Sonst stell diese
+   Rückfrage:
+
+   ```auswahl
+   Für die Fächer muss ich das ganze Modulhandbuch {handbuch} lesen. Das kann viel von deinem Nutzungslimit verbrauchen. Am sparsamsten geht es in einem neuen Chat mit dem Modell Haiku. Wie willst du es machen?
+   - Jetzt anlegen
+   - Später mit Haiku
+   ```
+
+   Bei „Später mit Haiku“ leg nichts an, antworte und beende den Abschnitt:
+
+   ```text
+   Für die Fächer starte einen neuen Chat, wähle das Modell Haiku und schreib „/lernhelfer:verwalten Leg aus dem Modulhandbuch diese Fächer an: {auswahl}“.
+   ```
+
+4. **Module im Handbuch finden:** Hol das Modulhandbuch, wie
+   `projekt:daten.xml` es beschreibt, und lies es vollständig (eine PDF mit
+   `pdftotext -layout '{datei}' -`). Such die Teile, die zu `{auswahl}`
+   passen: zu einem Namen den Teil mit diesem Namen, dieser Abkürzung oder
+   Modulnummer, zu einer Gruppe wie einem Semester jedes Modul, das das
+   Handbuch ihr zuordnet (z.B. in einem Studienplan). Passen zu einem Namen
+   mehrere Teile, stell die Rückfrage aus dem Abschnitt „Lernziele
+   übernehmen“, Schritt 3, mit diesem Namen als `{modulname}`. Findest du zu
+   einem Namen keinen Teil oder wählt der Nutzer dort „Keines davon“,
+   antworte vor Schritt 5, wobei `{namen}` diese Namen durch Kommas getrennt
+   sind:
+
+   ```text
+   Im Modulhandbuch {handbuch} finde ich kein Modul zu: {namen}.
+   ```
+
+   Findest du gar keinen Teil, antworte danach mit der Nachricht aus Schritt 2
+   und mach mit der Antwort bei Schritt 4 weiter, ohne das Handbuch noch
+   einmal zu lesen.
+5. **Bestätigen:** `{liste}` sind die Namen der gefundenen Module, wie sie im
+   Handbuch stehen, ohne Modulnummer, durch Kommas getrennt, `{anzahl}` ihre
+   Zahl. Stell diese Rückfrage:
+
+   ```auswahl
+   Diese {anzahl} Fächer lege ich aus {handbuch} an: {liste}. Passt das?
+   - Anlegen
+   - Andere Auswahl
+   ```
+
+   Bei „Andere Auswahl“ antworte mit der Nachricht aus Schritt 2 und mach mit
+   der Antwort bei Schritt 4 weiter, ohne das Handbuch noch einmal zu lesen.
+   Nennt der Nutzer statt einer Option eine Änderung (z.B. „ohne Physik“),
+   ändere die Liste so und stell diese Rückfrage noch einmal.
+6. **Anlegen:** Für jedes Modul der Liste ist `{modulname}` sein Name aus
+   `{liste}`. Bestimm `{modul}` wie im Abschnitt „Neues Modul anlegen“,
+   Schritt 1, lies Beschreibung, Lernziele und Prüfung aus seinem Teil wie im
+   Abschnitt „Lernziele übernehmen“, Schritt 4, und übernimm Dateien wie im
+   Abschnitt „Neues Modul anlegen“, Schritt 3. Gibt es den Ordner eines Moduls
+   schon, ersetz in seiner `projekt:module/{modul}/info.md` nur den Inhalt
+   unter der Überschrift und lass alle anderen Dateien dieses Moduls, wie sie
+   sind. Schreib dann wie im Abschnitt „Neues Modul anlegen“, Schritt 4:
+   zuerst `projekt:daten.xml`, wenn du sie geändert hast, einmal für alle
+   Module, danach die Dateien jedes Moduls.
+7. **Abschluss:** Antworte:
+
+   ```text
+   Aus {handbuch} habe ich diese Fächer mit Beschreibung, Lernzielen und Angaben zur Prüfung angelegt, soweit das Handbuch sie nennt: {liste}.
+   {vorhanden}
+   {unterlagen}
+   ```
+
+   - `{vorhanden}`: Gab es Module schon, setze diese Zeile ein, wobei
+     `{namen}` ihre Namen durch Kommas getrennt sind, sonst lass den
+     Platzhalter samt Zeile weg:
+
+     ```text
+     Davon gab es schon {namen}, dort habe ich nur Beschreibung, Lernziele und Angaben zur Prüfung ersetzt.
+     ```
+
+   - `{unterlagen}`: Hast du Dateien übernommen, setze diese Zeile ein, wobei
+     `{dateien}` ihre Pfade ohne Präfix durch Kommas getrennt sind:
+
+     ```text
+     Aus deiner Datenquelle habe ich ihnen schon diese Dateien zugeordnet: {dateien}. Mit ihnen kann ich erst lernen, wenn sie indiziert sind. Indizieren kann viel von deinem Nutzungslimit verbrauchen. Am sparsamsten: Starte einen neuen Chat, wähle das Modell Haiku und schreib „/lernhelfer:verwalten Indiziere“.
+     ```
+
+     Sonst setze diese Zeile ein, wobei `{modulname}` das erste Modul aus
+     `{liste}` ist:
+
+     ```text
+     Häng mir Skripte, Übungsblätter oder alte Prüfungen im Chat an und schreib z.B. „/lernhelfer:verwalten Lade die Dateien in {modulname} hoch“, dann lege ich sie in deiner Datenquelle ab.
+     ```
 
 ## Dateien zuordnen
 

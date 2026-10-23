@@ -54,7 +54,7 @@ und die Projektdateien.
 | Vorrat an Übungsblättern (`projekt:vorrat/`) | `lernhelfer/skills/lernen/faehigkeiten/ueben.md`, „Vorrat“, und `lernhelfer/skills/verwalten/geplant/2-uebungsblaetter-vorbereiten.md` |
 | Konventionen für Fähigkeiten | `lernhelfer/skills/verwalten/faehigkeiten/entwicklung.md`, „Änderungen machen“, Schritt 2 |
 | Einrichten, Datenquelle anlegen | `lernhelfer/skills/verwalten/faehigkeiten/initialisieren.md` |
-| Fächer, Dateien zuordnen, Lernziele | `lernhelfer/skills/verwalten/faehigkeiten/modul-bearbeiten.md` |
+| Fächer (auch aus dem Modulhandbuch), Dateien zuordnen, Lernziele | `lernhelfer/skills/verwalten/faehigkeiten/modul-bearbeiten.md` |
 | Hochladen, Indizieren | `lernhelfer/skills/verwalten/faehigkeiten/hochladen.md`, `lernhelfer/skills/verwalten/faehigkeiten/indizieren.md` |
 | Migrationen | `lernhelfer/skills/verwalten/faehigkeiten/migrieren.md` |
 | Export | `lernhelfer/skills/verwalten/faehigkeiten/entwicklung.md`, „Exportieren“ |
@@ -141,6 +141,11 @@ die Änderung betrifft, vollständig.
     „Lehrplan“): `verwalten/SKILL.md` („Dateien der Datenquelle“), die
     Abschlussnachricht in `initialisieren.md`, `modul-bearbeiten.md` und
     `helfen/SKILL.md`.
+  - Satz „/lernhelfer:verwalten Leg die Fächer aus dem Modulhandbuch an“:
+    `modul-bearbeiten.md` (Abschnitt „Module aus dem Modulhandbuch anlegen“
+    und Nachricht in „Neues Modul anlegen“, Schritt 2), `indizieren.md`
+    (Schritt 1), `hochladen.md` (Schritt 7), `verwalten/SKILL.md` (Tabelle
+    „Was ist zu tun?“) und `helfen/SKILL.md`.
   - Seiten zählen mit `pdftotext` und `\f`: `lernen/SKILL.md`
     („PDF-Dateien“) und `indizieren.md`, Schritt 4.
   - Vorspann der automatischen Anweisungen (niemand liest mit, keine
@@ -243,7 +248,15 @@ die Änderung betrifft, vollständig.
   Identifikation ist die Git-Objekt-ID aus `ls-tree` eines Klons mit
   `--depth 1 --filter=blob:none --no-checkout`, die Dateiprüfung liest also
   keine Dateiinhalte. Das Modulhandbuch liegt auch dort und liefert
-  `info.md`.
+  `info.md`. „Modul bearbeiten“ legt mit „Leg die Fächer aus dem
+  Modulhandbuch an“ mehrere Module daraus an, nur die, die der Nutzer nennt
+  (Namen oder z.B. ein Semester), nach einer Rückfrage mit der gefundenen
+  Liste, weil ein Handbuch oft Dutzende Module enthält. Fehlt beim Anlegen
+  eines Fachs das Modulhandbuch, fragt es zuerst, ob der Nutzer es hochladen
+  will, und erst dann nach einer Beschreibung, ohne Datenquelle nennt es das
+  Modulhandbuch als Grund für eine. „Indizieren“ und „Hochladen“ verweisen
+  ohne Module auf den Satz, damit das Handbuch nicht an fehlenden Fächern
+  hängt (Wünsche des Nutzers vom 2026-10-23).
 - Indizieren arbeitet immer über alle Module und liest nur neue und
   geänderte Dateien, außer der Nutzer verlangt mehr. Neue Dateien in
   `daten:{modul}/` ordnet es selbst zu. „Datei zuordnen“ entfernt die Datei
@@ -712,7 +725,11 @@ Altklausur, Modulhandbuch), „/lernhelfer:verwalten Richte die automatischen
 Anweisungen ein“ und den ersten wöchentlichen Lauf beider Anweisungen
 abwarten (Index mit Dateiinhalten, Vorrat, Benachrichtigung, Modell,
 Startzeit mit `CRON_TZ`), dann „Mach mir ein Übungsblatt“ mit vorbereitetem
-Blatt (Code in TX-Typewriter, keine Silbentrennung).
+Blatt (Code in TX-Typewriter, keine Silbentrennung). Dazu in einem Projekt
+ohne Fächer „Leg die Fächer aus dem Modulhandbuch an“ mit einem echten
+Modulhandbuch (Auswahl nach Semester, Liste vor dem Anlegen, `info.md` je
+Fach, Kosten des Lesens) und „Leg ein Fach an“ ohne Modulhandbuch (erst die
+Frage nach dem Hochladen, dann die nach der Beschreibung).
 Danach die Lernmodi, je im Projekt und im Chat ohne Projekt, mit diesen
 Fällen:
 - „Ich erkläre dir jetzt die Kettenregel“ (Spiegeltest)

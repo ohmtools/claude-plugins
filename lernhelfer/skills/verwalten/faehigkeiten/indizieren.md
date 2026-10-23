@@ -36,13 +36,22 @@ ein Lernender danach suchen würde.
 ## Ablauf
 
 1. **Stand ermitteln:** Hol die Liste aller Projektdateien mit einem Aufruf der
-   Projektübersicht. Gibt es noch kein Modul, antworte und beende die Fähigkeit:
+   Projektübersicht. Gibt es noch kein Modul, hol die Liste der Datenquelle,
+   wie `projekt:daten.xml` es beschreibt. Liegt darin ein Modulhandbuch
+   (`skill:SKILL.md`, Abschnitt „Dateien der Datenquelle“), antworte und
+   beende die Fähigkeit:
+
+   ```text
+   Es gibt noch keine Fächer, die ich indizieren könnte. Aus deinem Modulhandbuch lege ich sie an, schreib dafür „/lernhelfer:verwalten Leg die Fächer aus dem Modulhandbuch an“.
+   ```
+
+   Sonst antworte und beende die Fähigkeit:
 
    ```text
    Es gibt noch keine Fächer, die ich indizieren könnte. Leg zuerst eins an, z.B. mit „/lernhelfer:verwalten Leg das Fach Mathematik an“.
    ```
 
-   Sonst lies `projekt:daten.xml` und von jedem Modul
+   Gibt es Module, lies `projekt:daten.xml` und von jedem Modul
    `projekt:module/{modul}/info.md` und `projekt:module/{modul}/index.md`
    vollständig. Hol die Liste der Dateien der Datenquelle mit ihren aktuellen
    Identifikationen, wie `projekt:daten.xml` es beschreibt.

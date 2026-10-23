@@ -38,7 +38,7 @@ Spalte „Verfügbar“ zur Verfügung steht.
 | Situation | Fähigkeit | Lies | Verfügbar |
 |---|---|---|---|
 | Projekt als Lernhelfer einrichten oder eine Datenquelle nachtragen („Richte dieses Projekt als Lernhelfer ein“) | Initialisieren | `skill:faehigkeiten/initialisieren.md` | immer |
-| Fach anlegen, umbenennen oder löschen, Lernziele aus dem Modulhandbuch übernehmen, Dateien einem Fach zuordnen, ersetzen oder herausnehmen, fragen, welche Fächer es gibt, was zu einem Fach gehört oder welche Dateien zu keinem Fach gehören | Modul bearbeiten | `skill:faehigkeiten/modul-bearbeiten.md` | eingerichtetes Projekt |
+| Fach anlegen, auch mehrere aus dem Modulhandbuch („Leg die Fächer aus dem Modulhandbuch an“), umbenennen oder löschen, Lernziele aus dem Modulhandbuch übernehmen, Dateien einem Fach zuordnen, ersetzen oder herausnehmen, fragen, welche Fächer es gibt, was zu einem Fach gehört oder welche Dateien zu keinem Fach gehören | Modul bearbeiten | `skill:faehigkeiten/modul-bearbeiten.md` | eingerichtetes Projekt |
 | Im Chat angehängte Dateien in die Datenquelle hochladen („Lade … hoch“) | Hochladen | `skill:faehigkeiten/hochladen.md` | Datenquelle |
 | Neue und geänderte Dateien der Datenquelle indizieren („Indiziere“) | Indizieren | `skill:faehigkeiten/indizieren.md` | Datenquelle |
 | Automatische Anweisungen einrichten, ihre Zeit ändern, sie ausschalten oder anzeigen („Richte die automatischen Anweisungen ein“) | Automatische Anweisungen | `skill:faehigkeiten/automatische-anweisungen.md` | Datenquelle |

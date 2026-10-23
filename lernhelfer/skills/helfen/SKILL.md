@@ -198,7 +198,10 @@ Anweisungen ein“ neu ein, denn ihr Text ändert sich nicht von selbst.
         <antwort>
 Nur im Projekt. Der Nutzer schreibt z.B. „/lernhelfer:verwalten Leg das Fach
 Mathematik an“. Gibt es ein Modulhandbuch, übernimmt Claude daraus Beschreibung
-und Lernziele, sonst fragt es nach einer kurzen Beschreibung. Unterlagen hängt
+und Lernziele. Fehlt es in der Datenquelle, fragt Claude zuerst, ob der Nutzer
+es hochladen will, sonst nach einer kurzen Beschreibung. Mehrere Fächer auf
+einmal legt „/lernhelfer:verwalten Leg die Fächer aus dem Modulhandbuch an“ an
+(siehe „Was passiert mit dem Modulhandbuch?“). Unterlagen hängt
 der Nutzer im Chat an und schreibt „/lernhelfer:verwalten Lade die Dateien in
 Mathematik hoch“. Claude legt sie dann im Ordner des Fachs in der Datenquelle
 ab. Der Nutzer kann sie auch selbst dort ablegen: Dateien im Ordner eines Fachs
@@ -219,6 +222,11 @@ liegt ohne Ordner in der Datenquelle, sein Dateiname muss „Modulhandbuch“ od
 zu diesem Fach und übernimmt eine kurze Beschreibung, die Lernziele wörtlich
 und die Angaben zur Prüfung (Form, Dauer, Hilfsmittel). Die Dauer und die
 Hilfsmittel stehen dann auf Übungsblättern in Prüfungslänge.
+Mit „/lernhelfer:verwalten Leg die Fächer aus dem Modulhandbuch an“ legt Claude
+die Fächer gleich aus dem Handbuch an, das dafür vor allen Fächern hochgeladen
+werden kann. Weil darin meist sehr viele Module stehen, fragt Claude, welche es
+anlegen soll (Namen oder z.B. „alle aus dem 3. Semester“), und zeigt die
+gefundene Liste vor dem Anlegen.
 Weil Claude dafür das ganze Handbuch liest, fragt es vorher, ob der Nutzer das
 lieber in einem neuen Chat mit Haiku erledigt, um sein Nutzungslimit zu schonen.
 Ist das Handbuch neu oder geändert, aktualisiert „Indizieren“ Beschreibung und

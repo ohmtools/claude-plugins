@@ -86,9 +86,10 @@ Für jede Aufgabe:
    „Aufgabe 2 von Blatt 3“: die Datei, deren Name oder Beschreibung zu Blatt 3
    passt, und ihre Seite mit `A2`), im **Chat** in der angehängten Datei.
    Stammt sie aus diesem Chat (z.B. aus einem Übungsblatt des Lernhelfers),
-   nimm sie von dort. Sonst wähl Aufgaben zum Stoff aus den Übungsblättern und
-   Altklausuren im Stichwortverzeichnis, im **Chat** aus den angehängten
-   Dateien. Findest du keine, antworte und warte auf die Antwort:
+   nimm sie von dort. Sonst wähl Aufgaben zum Stoff aus den Dateien im
+   Stichwortverzeichnis, deren Beschreibung mit dem Wort `Übungsblatt` oder
+   `Altklausur` beginnt, im **Chat** aus den angehängten Dateien. Findest du
+   keine, antworte und warte auf die Antwort:
 
    ```text
    Für das Niveau Leicht brauche ich Aufgaben aus deinen Übungsblättern oder Altklausuren zu diesem Stoff, ich finde aber keine. Häng mir eine Datei mit Aufgaben an oder sag mir, welches andere Niveau ich nehmen soll.
@@ -266,8 +267,9 @@ Prüfung können muss.
 Bestimm es einmal pro Übungsblatt, bevor du Aufgaben entwirfst:
 
 1. Nimm die neueste Altklausur des Moduls, im **Projekt** aus dem Abschnitt
-   „Dateien“ des Index (nach Name oder Beschreibung), im **Chat** aus den
-   angehängten Dateien. Lies alle ihre Aufgaben, aber nicht ihren Lösungsteil.
+   „Dateien“ des Index (Beschreibung beginnt mit dem Wort `Altklausur`, die
+   neueste nach Name oder Beschreibung), im **Chat** aus den angehängten
+   Dateien. Lies alle ihre Aufgaben, aber nicht ihren Lösungsteil.
 2. Notiere für dich:
    - den Routineanteil: die Punkte der Teilaufgaben, die ein eingeübtes
      Verfahren abfragen, als Anteil an allen Punkten
@@ -347,23 +349,24 @@ Aufgaben, und die vielen Regeln der Vorlage würden davon ablenken.
 1. **Kopfdaten:** Bestimm diese Angaben:
    - `{modulname}`, im **Chat** das Fach aus der Anfrage oder den Unterlagen.
    - `{pruefungsdauer}`: `Dauer` im Abschnitt „Prüfung“ von
-     `projekt:module/{modul}/info.md`. Steht dort keine, nimm die
-     Bearbeitungszeit einer Altklausur aus dem Index (lies dafür ihre erste
-     Seite), sonst `90 Minuten`.
+     `projekt:module/{modul}/info.md`. Steht dort keine (im **Chat** immer),
+     nimm die Bearbeitungszeit einer Altklausur, im **Projekt** aus dem Index,
+     im **Chat** einer angehängten (lies dafür ihre erste Seite), sonst
+     `90 Minuten`.
    - `{hilfsmittel}`: ebenso aus `Hilfsmittel` in
-     `projekt:module/{modul}/info.md`, sonst aus einer Altklausur, sonst
-     `keine Angabe`.
+     `projekt:module/{modul}/info.md`, sonst aus einer Altklausur wie bei
+     `{pruefungsdauer}`, sonst `keine Angabe`.
 2. **Rückfragen:** Frag nur, was sich nicht aus der Anfrage ergibt.
    - Bestimmte Aufgaben: Verlangt die Anfrage bestimmte bestehende Aufgaben
      mit neuen Werten (z.B. „Gib mir Aufgabe 2 von Blatt 3 mit anderen
      Zahlen“), ist `{niveau}` `Leicht`, das Blatt enthält genau diese
      Aufgaben, und die übrigen Rückfragen entfallen. `{dauer}` ist dann die
      Summe ihrer Punkte in Minuten.
-   - Vorrat: Nur im **Projekt**. Gibt es für das Modul ein gültiges Blatt im
-     Vorrat (Abschnitt „Vorrat“) und verlangt die Anfrage nichts, das nicht
-     dazu passt (z.B. bestimmte Themen, eine andere Länge, ein anderes Niveau
-     oder ausdrücklich ein neues Blatt ohne Vorrat), stell zuerst diese
-     Rückfrage, wobei `{vorrat-dauer}` und `{themen}` aus seinem Kopf stammen:
+   - Vorrat: Nur im **Projekt**. Liegen für das Modul Blätter im Vorrat
+     (Abschnitt „Vorrat“) und verlangt die Anfrage nichts, das nicht dazu
+     passt (z.B. eine andere Länge, ein anderes Niveau oder ausdrücklich ein
+     neues Blatt ohne Vorrat), wähl eins wie im Abschnitt „Vorrat“,
+     „Auswählen“. Bleibt eins übrig, stell zuerst diese Rückfrage:
 
      ```auswahl
      Ich habe für {modulname} schon ein Übungsblatt vorbereitet: {vorrat-dauer} auf Klausurniveau+ zu {themen}. Es ist sofort fertig und schont dein Nutzungslimit. Willst du es?
@@ -438,7 +441,12 @@ Aufgaben, und die vielen Regeln der Vorlage würden davon ablenken.
    3. Entwirf die Routineaufgaben wie im Abschnitt „Routineaufgaben“ und die
       Transferaufgaben wie im Abschnitt „Transferaufgaben“, jede auf der
       Stufe, die `{niveau}` für sie verlangt (Abschnitt „Niveau“). Prüf jede
-      zuletzt mit dem Niveau-Test.
+      zuletzt mit dem Niveau-Test. Nennt bei einer Schwachstelle im Stoff
+      `Ursache` eine Arbeitsweise statt einer Lücke im Verständnis (z.B.
+      `Flüchtigkeit`, `Aufgabe falsch gelesen` oder `Zeitdruck`), bekommt
+      eine Aufgabe eine Stelle, an der genau dieser Fehler naheliegt, damit
+      der Nutzer ihn vermeiden lernt, z.B. eine Angabe mit Durchmesser und
+      Radius oder eine Teilaufgabe, die eine Probe verlangt.
    4. Ordne die Aufgaben wie in der Klausur, sonst von der leichtesten zur
       schwersten.
 
@@ -544,7 +552,9 @@ Aufgaben, und die vielen Regeln der Vorlage würden davon ablenken.
       wählst nur die passenden Befehle und zeichnest die Abbildungen nach
       ihrer Beschreibung. Setz selbst keine Seitenumbrüche, auch kein
       `\neueseite`, denn jede Aufgabe beginnt von selbst auf einer neuen
-      Seite und soll auf sie passen.
+      Seite und soll auf sie passen. Entsteht das Blatt für den Vorrat
+      (Abschnitt „Vorrat“), binde keine eigenen Dateien ein (z.B. mit
+      `\bild` oder `\codedatei`), denn der Vorrat hält nur den Quelltext.
    6. Jede `Lösung:` des Entwurfs kommt in eine `loesung` direkt nach ihrer
       Teilaufgabe. Jedes Bewertungskriterium endet dort mit `\teilpunkt`,
       jedes fette Endergebnis steht in `\ergebnis`. „Zur Aufgabe“ und
@@ -631,85 +641,101 @@ Hier kann ich gerade keine PDFs erzeugen ({grund}), deshalb bekommst du es als T
 
 ## Vorrat
 
-Im **Projekt** kann es pro Modul ein vorbereitetes Übungsblatt geben:
-`projekt:vorrat/{modul}/uebungsblatt.tex`, etwa 45 Minuten auf Klausurniveau+
-zu den Schwachstellen und fälligen Themen. Die automatische Anweisung
-„Übungsblätter vorbereiten“, die der Nutzer einrichten kann, legt es einmal pro
-Woche an, wenn übrige Nutzung sonst verfallen würde. Der Nutzer bekommt es dann
+Im **Projekt** kann es pro Modul vorbereitete Übungsblätter geben, beliebig
+viele, jedes etwa 45 Minuten auf Klausurniveau+ zu den Schwachstellen und
+fälligen Themen. Die automatische Anweisung „Übungsblätter vorbereiten“, die
+der Nutzer einrichten kann, legt bei jedem Lauf einmal pro Woche ein weiteres
+an, wenn übrige Nutzung sonst verfallen würde. Der Nutzer bekommt es dann
 sofort, und es kostet nur einen Bruchteil eines neuen Blatts, vor allem das
 Abschreiben des Quelltexts. Gespeichert ist nur der LaTeX-Quelltext aus dem
 Abschnitt „Übungsblatt“, denn PDFs lassen sich nicht in den Projektdateien
-ablegen. Davor steht ein Kopf, dahinter eine Schlusszeile:
+ablegen, als `projekt:vorrat/{modul}/uebungsblatt-{erstellt}.tex`. Davor steht
+ein Kopf:
 
 ```latex
 % Lernhelfer-Vorrat
-% format: 1
 % erstellt: 2026-10-22
 % dauer: 45 Minuten
 % aufgaben: 3
 % punkte: 45
 % themen: Kettenregel, Partielle Integration
-% quelle: 3b18e512dba79e4c8300dd08aeb37f8e728b8dad analysis/skript.pdf
-% quelle: 7c4a8d09ca3762af61e59520943dc26494f8941b analysis/Blatt 3.pdf
 % =====================================================================
 %  uebungsblatt.tex – leeres Grundgerüst für ein neues Übungsblatt
 …
 \end{document}
-% Ende des Lernhelfer-Vorrats
 ```
 
+- `{erstellt}` und `erstellt`: der Tag der Erstellung. Gibt es für das Modul
+  an diesem Tag schon ein Blatt, bekommt der Dateiname `-2`, `-3` usw.
+  angehängt (z.B. `uebungsblatt-2026-10-22-2.tex`).
 - `dauer`, `aufgaben` und `punkte`: wie `{dauer}`, `{anzahl}` und `{punkte}`
   in Schritt 10 des Abschnitts „Übungsblatt“.
-- `themen`: die Schwachstellen und fälligen Themen, die das Blatt abdeckt.
-- `quelle`: eine Zeile pro Datei aus `daten:`, aus der du für das Blatt
-  gelesen hast, mit ihrer Identifikation in der Datenquelle beim Erstellen und
-  ihrem Pfad ohne Präfix.
-- Die Schlusszeile kommt als Letztes dazu. Fehlt sie, ist die Datei
-  unvollständig.
+- `themen`: die Schwachstellen und fälligen Themen, die das Blatt abdeckt,
+  durch Kommas getrennt und genau so geschrieben wie in der Spalte `Thema` von
+  `projekt:gedaechtnis/{modul}/probleme.md`, damit du sie beim Auswählen
+  wiederfindest.
 
-### Gültig
+Ein Blatt im Vorrat wurde vor dem Speichern vollständig geprüft. Prüf es
+danach nicht noch einmal, auch nicht gegen die Datenquelle.
 
-Ein Blatt ist gültig, wenn alles zutrifft. Prüf das mit der Liste der
-Datenquelle aus der Dateiprüfung (`skill:SKILL.md`, Abschnitt „Dateiprüfung“),
-ohne Dateien aus `daten:` zu öffnen:
+Damit du zum Auswählen nicht jedes Blatt lesen musst, was bei vielen Blättern
+viele Token kostet, steht jedes Blatt mit den Angaben aus seinem Kopf auch in
+`projekt:vorrat/{modul}/uebersicht.md`. Fehlt die Datei, gilt sie als leer.
+Ein Blatt ohne Zeile darin bietest du nie an.
 
-1. Die letzte Zeile ist `% Ende des Lernhelfer-Vorrats`.
-2. Der Kopf beginnt mit `% Lernhelfer-Vorrat` und `% format: 1` und hat alle
-   Zeilen aus dem Beispiel, `quelle` mindestens einmal.
-3. Jede Datei unter `quelle` steht im Abschnitt „Dateien“ von
-   `projekt:module/{modul}/index.md` und hat in der Datenquelle dieselbe
-   Identifikation wie im Kopf.
+```markdown
+# Vorrat
 
-Ein ungültiges Blatt benutzt du nicht und löschst es auch nicht. Das übernimmt
-die automatische Anweisung beim nächsten Lauf.
+| Datei | Erstellt | Dauer | Aufgaben | Punkte | Themen |
+|---|---|---|---|---|---|
+| uebungsblatt-2026-10-22.tex | 2026-10-22 | 45 Minuten | 3 | 45 | Kettenregel, Partielle Integration |
+```
 
 ### Speichern
 
-Nur die automatische Anweisung speichert Blätter, eins pro Modul, nur auf
-Klausurniveau+ und erst, wenn das Blatt Schritt 9 („Prüfen“) bestanden hat.
-So kommt nie ein halbes Blatt in den Vorrat
-(`plugin:skills/gemeinsam/grundlagen.md`, Abschnitt „Abbruch“). Ein Blatt,
-das eigene Dateien einbindet (z.B. mit `\bild` oder `\codedatei`), speicherst
-du nicht, denn der Vorrat hält nur den Quelltext.
+Nur die automatische Anweisung speichert Blätter, nur auf Klausurniveau+ und
+erst, wenn das Blatt Schritt 9 („Prüfen“) bestanden hat. So kommt nie ein
+halbes Blatt in den Vorrat (`plugin:skills/gemeinsam/grundlagen.md`, Abschnitt
+„Abbruch“). Ein Blatt, das eigene Dateien einbindet (z.B. mit `\bild` oder
+`\codedatei`), speicherst du nicht, denn der Vorrat hält nur den Quelltext.
 
-1. Schreib den Kopf mit dem heutigen Datum unter `erstellt` nach
-   `arbeit:uebungsblatt/kopf.tex`. Führ dann im Ordner `arbeit:uebungsblatt/`
-   aus:
+1. Bestimm den Dateinamen aus dem heutigen Datum und den Blättern, die schon
+   in `projekt:vorrat/{modul}/` liegen. Schreib den Kopf mit dem heutigen
+   Datum unter `erstellt` nach `arbeit:uebungsblatt/kopf.tex`. Führ dann im
+   Ordner `arbeit:uebungsblatt/` aus:
 
    ```bash
    cat kopf.tex uebungsblatt.tex > vorrat.tex
-   echo '% Ende des Lernhelfer-Vorrats' >> vorrat.tex
-   tail -n 2 vorrat.tex
+   tail -n 1 vorrat.tex
    ```
 
-2. Prüf, dass `tail` `\end{document}` und die Schlusszeile ausgibt.
-3. Schreib sie mit einem einzigen Aufruf nach
-   `projekt:vorrat/{modul}/uebungsblatt.tex`, mit Angabe ihres Pfads statt
+2. Prüf, dass `tail` `\end{document}` ausgibt.
+3. Schreib `arbeit:uebungsblatt/vorrat.tex` mit einem einzigen Aufruf unter
+   dem Dateinamen nach `projekt:vorrat/{modul}/`, mit Angabe ihres Pfads statt
    ihres Inhalts (z.B. `local_path` bei `project_write`).
+4. Lies erst danach `projekt:vorrat/{modul}/uebersicht.md`, fehlt sie, nimm
+   die Vorlage ohne Zeilen unter der Kopfzeile. Häng eine Zeile mit dem
+   Dateinamen und den Angaben aus dem Kopf an und schreib die Datei. In dieser
+   Reihenfolge bleibt nach einem Abbruch höchstens ein Blatt ohne Zeile übrig,
+   nie eine Zeile ohne Blatt.
+
+### Auswählen
+
+1. Lies `projekt:vorrat/{modul}/uebersicht.md`, nicht die Blätter. In Frage
+   kommt jede Zeile, deren Datei in der Projektübersicht liegt. Nennt die
+   Anfrage bestimmte Themen, kommen nur Zeilen in Frage, deren `Themen` alle
+   diese Themen enthalten.
+2. Zähl für jede, wie viele ihrer `Themen` heute Schwachstellen sind
+   (Abschnitt „Niveau“, „Niveau des Blatts“) oder fällig (`skill:SKILL.md`,
+   Abschnitt „Fällige Themen“).
+3. Nimm das Blatt mit der höchsten Zahl, bei Gleichstand das neueste (das
+   späteste Datum unter `Erstellt`, dann die höchste Nummer im Dateinamen),
+   denn es kennt die neuesten Probleme. Für die Rückfrage ist `{vorrat-dauer}`
+   der Wert unter `Dauer` in seiner Zeile und `{themen}` der unter `Themen`.
 
 ### Benutzen
 
-1. Lies `projekt:vorrat/{modul}/uebungsblatt.tex`.
+1. Lies das Blatt aus „Auswählen“.
 2. Lösch `arbeit:uebungsblatt/`, falls es den Ordner aus diesem Chat schon
    gibt, leg ihn neu an und kopiere `skill:vorlagen/uebungsblatt.cls`,
    `skill:vorlagen/ohmtools-colors.sty` und `skill:vorlagen/build.sh` hinein.
@@ -719,12 +745,14 @@ du nicht, denn der Vorrat hält nur den Quelltext.
    `\fach` auf `{modulname}`, denn das Fach kann inzwischen anders heißen.
 3. Übersetze wie in Schritt 8. Endet es nicht mit `exit=0`, benutze das Blatt
    nicht und mach mit den übrigen Rückfragen in Schritt 2 weiter wie ohne
-   Vorrat. Lösch es dann aus dem Vorrat, außer die Meldung ist
-   `pdflatex: not found`, denn dann fehlt nur hier LaTeX.
+   Vorrat. Lösch es dann aus dem Vorrat wie in Punkt 5, außer eine Meldung
+   enthält `not found` (z.B. `pdflatex: not found` oder `File … not found`),
+   denn dann fehlen hier nur LaTeX oder ein Paket.
 4. Schritt 9 entfällt, das Blatt wurde vor dem Speichern geprüft.
-5. Lösch `projekt:vorrat/{modul}/uebungsblatt.tex`, bevor du die PDFs
-   bereitstellst. So bekommt der Nutzer kein Blatt zweimal, auch wenn der Chat
-   danach endet.
+5. Lösch das Blatt aus dem Vorrat, bevor du die PDFs bereitstellst: Entferne
+   zuerst seine Zeile aus `projekt:vorrat/{modul}/uebersicht.md` und schreib
+   die Datei, lösch dann das Blatt selbst. So bekommt der Nutzer kein Blatt
+   zweimal, auch wenn der Chat dazwischen endet.
 6. Mach mit Schritt 10 weiter, mit `{dauer}`, `{anzahl}` und `{punkte}` aus
    `dauer`, `aufgaben` und `punkte` im Kopf und `Klausurniveau+` als
    `{niveau}`. `{ohne-klausur}` entfällt, denn die Lösung nennt den Maßstab

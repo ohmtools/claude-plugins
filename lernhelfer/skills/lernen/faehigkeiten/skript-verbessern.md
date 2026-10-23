@@ -25,8 +25,8 @@ wenig erklärt, und lässt dem Nutzer das Denken, statt ihm alles vorzukauen.
 1. **Vorbereiten:** Im **Projekt** arbeite mit dem Modul wie in
    `skill:SKILL.md`, Abschnitt „Mit einem Modul arbeiten“, einschließlich der
    Dateiprüfung. Das Skript ist die Datei im Abschnitt „Dateien“ des Index,
-   deren Beschreibung mit `Skript` beginnt. Kommen mehrere in Frage, stell
-   diese Rückfrage, mit einer Option pro Datei:
+   deren Beschreibung mit dem Wort `Skript` beginnt. Kommen mehrere in Frage,
+   stell diese Rückfrage, mit einer Option pro Datei:
 
    ```auswahl
    Welches Skript soll ich verbessern?
@@ -258,11 +258,12 @@ wenig erklärt, und lässt dem Nutzer das Denken, statt ihm alles vorzukauen.
 
    `{weiter}`: Gibt es noch eine Etappe, setze diesen Absatz ein, wobei
    `{naechste}` die nächste Etappe mit Seiten ist, `{ab}` ihre erste Seite
-   als aufgedruckte Nummer und `{anhang}` im **Chat** ` und die PDF des
+   und `{bis}` die letzte Seite des Umfangs aus Schritt 2, beide als
+   aufgedruckte Nummer, und `{anhang}` im **Chat** ` und die PDF des
    Skripts`, im **Projekt** leer; sonst lass den Platzhalter samt Zeile weg:
 
    ```text
-   Als Nächstes kommt {naechste}. Schreib dafür „Mach mit dem Skript weiter“. Endet dieser Chat vorher, häng in einem neuen Chat {name}-quelle.zip{anhang} an und schreib „/lernhelfer:lernen Verbessere {datei} weiter ab Seite {ab}“.
+   Als Nächstes kommt {naechste}. Schreib dafür „Mach mit dem Skript weiter“. Endet dieser Chat vorher, häng in einem neuen Chat {name}-quelle.zip{anhang} an und schreib „/lernhelfer:lernen Verbessere {datei} weiter, Seite {ab} bis {bis}“.
    ```
 
 10. **Weitere Etappen:** Schreibt der Nutzer „Mach mit dem Skript weiter“,

@@ -168,8 +168,8 @@ Ein Modul ist ein Fach. Module gibt es nur im **Projekt**. Zu jedem Modul
 gehören der Ordner `projekt:module/{modul}/` mit
 `projekt:module/{modul}/info.md` und `projekt:module/{modul}/index.md` und der
 gleichnamige Ordner `projekt:gedaechtnis/{modul}/` (Abschnitt „Gedächtnis“).
-Dazu kann `projekt:vorrat/{modul}/` mit einem vorbereiteten Übungsblatt kommen,
-das eine automatische Anweisung anlegt (eine geplante Anweisung des Projekts,
+Dazu kann `projekt:vorrat/{modul}/` mit vorbereiteten Übungsblättern kommen,
+die eine automatische Anweisung anlegt (eine geplante Anweisung des Projekts,
 die einmal pro Woche ohne den Nutzer läuft). Die vorhandenen Module sind die
 Unterordner von `projekt:module/` in der Projektübersicht. Den Ordnernamen
 `{modul}` bildet „Modul bearbeiten“ beim Anlegen nach den Pfadregeln aus dem
@@ -243,7 +243,9 @@ format: 1
 ```
 
 - `Beschreibung`: Art und Inhalt der Datei in einer Zeile, `-`, solange sie
-  noch nicht indiziert ist.
+  noch nicht indiziert ist. Das erste Wort ist ihre Art, genau eines von
+  `Skript`, `Übungsblatt`, `Altklausur`, `Lösung`, `Formelsammlung` und
+  `Sonstiges`, denn daran finden die Fähigkeiten z.B. das Skript eines Moduls.
 - `Seite`: Seiten der Datei. Die erste Seite ist `1`, unabhängig von der
   aufgedruckten Seitenzahl. Bei Aufgaben folgt die Nummer (`53 A2`). Bei
   Dateien ohne Seiten steht hier die Überschrift des Abschnitts.

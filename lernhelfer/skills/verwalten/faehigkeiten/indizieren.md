@@ -79,8 +79,11 @@ ein Lernender danach suchen würde.
    Darin endet jede Seite mit einem Seitenvorschub (`\f`), auch eine leere:
    Seite 1 ist der Text vor dem ersten Seitenvorschub, Seite n der Text
    zwischen dem (n−1)-ten und dem n-ten. Notiere:
-   - **Beschreibung:** Art und Inhalt in einer Zeile (z.B.
-     `Skript, Kapitel 1–6` oder `Abiturprüfung 2023, 6 Aufgaben, mit Lösungen`).
+   - **Beschreibung:** Art und Inhalt in einer Zeile. Das erste Wort ist die
+     Art, genau eines von `Skript`, `Übungsblatt`, `Altklausur`, `Lösung`,
+     `Formelsammlung` und `Sonstiges`, auch wenn die Datei sich anders nennt
+     (z.B. Vorlesungsfolien: `Skript, Folien zu Kapitel 1–6`, eine
+     Abiturprüfung: `Altklausur, Abitur 2023, 6 Aufgaben, mit Lösungen`).
    - **Stichwörter mit Seiten:** Themen, Begriffe, Definitionen, Sätze,
      Formeln und Verfahren, nach denen jemand suchen würde, auch die Themen
      von Kapiteln. Ordne jede Aufgabe allen Stichwörtern zu, die man zu ihrer

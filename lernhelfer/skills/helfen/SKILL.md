@@ -114,8 +114,8 @@ die Kettenregel“. Claude wählt dann einen dieser Lernmodi:
   Aufgabe 2 von Blatt 3 mit anderen Zahlen“ ergibt ohne Rückfrage ein Blatt
   auf Leicht mit genau dieser Aufgabe. Maßstab sind die Altklausuren des
   Fachs, ohne sie ist das Niveau nur geschätzt. Hat eine
-  automatische Anweisung schon ein Blatt vorbereitet, bietet Claude es zuerst
-  an, dann ist es sofort fertig. Die Bloom-Leiter führt im Chat in sechs
+  automatische Anweisung schon Blätter vorbereitet, bietet Claude das
+  passendste zuerst an, dann ist es sofort fertig. Die Bloom-Leiter führt im Chat in sechs
   Stufen vom Erinnern bis zum Erschaffen.
 - Korrigieren: Der Nutzer schickt seine Lösung getippt oder als Foto. Bei
   einem Foto oder einer Datei schreibt Claude zuerst ab, was es gelesen hat,
@@ -254,13 +254,12 @@ Nur im Projekt mit Datenquelle. Automatische Anweisungen sind geplante
 Anweisungen des Claude.ai-Projekts. Sie laufen einmal pro Woche ohne den
 Nutzer, jede in einem neuen Chat im Projekt:
 - „Indizieren“ (mit Haiku) indiziert neue und geänderte Dateien.
-- „Übungsblätter vorbereiten“ (mit Opus) legt für jedes Fach, in dem es
-  Schwachstellen oder fällige Themen gibt, ein Übungsblatt von etwa 45
-  Minuten auf Klausurniveau+ in einen Vorrat. Schreibt der Nutzer später
-  „/lernhelfer:lernen Mach mir ein Übungsblatt“, bietet Claude es an, und es
-  ist sofort fertig.
-  Ändert sich eine Datei, auf der das Blatt beruht, benutzt Claude es nicht
-  mehr, und der nächste Lauf ersetzt es.
+- „Übungsblätter vorbereiten“ (mit Opus) legt bei jedem Lauf für jedes Fach,
+  in dem es Schwachstellen oder fällige Themen gibt, ein weiteres Übungsblatt
+  von etwa 45 Minuten auf Klausurniveau+ in einen Vorrat. Schreibt der Nutzer
+  später „/lernhelfer:lernen Mach mir ein Übungsblatt“, bietet Claude das Blatt
+  an, das am besten zu seinen aktuellen Schwachstellen passt, und es ist
+  sofort fertig. Ungenutzte Blätter bleiben im Vorrat.
 Sie laufen am besten etwa zwei Stunden vor dem Reset des Wochenlimits (zu
 sehen unter Settings > Usage), dann verbrauchen sie Nutzung, die sonst
 verfallen würde. Claude fragt danach, wenn es die Datenquelle einrichtet.
@@ -288,9 +287,10 @@ in der Datenquelle. In den Projektdateien liegen nur die Daten des Nutzers:
 - `projekt:gedaechtnis/`: pro Fach, womit der Nutzer Schwierigkeiten hat oder
   hatte und woran es liegt (`probleme.md`), dazu `benutzererfahrung.md` mit
   Notizen, wo der Umgang mit dem Lernhelfer hakt.
-- `projekt:vorrat/`: pro Fach höchstens ein vorbereitetes Übungsblatt als
-  LaTeX-Quelltext (`uebungsblatt.tex`), weil PDFs nicht in die Projektdateien
-  passen. Claude löscht es, sobald der Nutzer es bekommt.
+- `projekt:vorrat/`: pro Fach vorbereitete Übungsblätter als LaTeX-Quelltext
+  (`uebungsblatt-{datum}.tex`), weil PDFs nicht in die Projektdateien passen,
+  dazu eine Übersicht mit Datum, Länge und Themen jedes Blatts
+  (`uebersicht.md`). Claude löscht jedes Blatt, sobald der Nutzer es bekommt.
 Ein Update des Plugins ändert diese Daten nie. Braucht eine neue Fassung ein
 anderes Format, passt „Daten migrieren“ sie an. In einem Chat ohne Projekt
 speichert der Lernhelfer nichts.

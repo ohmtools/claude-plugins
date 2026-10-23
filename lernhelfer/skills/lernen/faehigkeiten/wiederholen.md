@@ -135,7 +135,7 @@ Prüft ohne Hilfestellung, ob Gelerntes noch sitzt.
    `{schwachstellen}`: eine Zeile `- {inhalt}: {fehlte}` pro Frage, die nicht
    `Richtig` war. Zuerst die, bei denen der Nutzer sich mit 4 oder 5 sicher
    war, mit ` (sicher, aber falsch)` am Ende, denn das sind die
-   gefährlichsten Lücken. Gab es keine solche Frage: `Alles saß.`
+   gefährlichsten Lücken. War jede Frage `Richtig`: `Alles saß.`
 
 ## Skript durchgehen
 
@@ -145,8 +145,8 @@ Seiten zählen wie im Index ab 1. Nennt der Nutzer eine Seite oder Folie, ist
 das eine aufgedruckte Nummer (`skill:SKILL.md`, Abschnitt „PDF-Dateien“).
 
 1. **Datei:** Nimm das Skript des Moduls, also die Datei im Abschnitt „Dateien“
-   des Index, deren Beschreibung mit `Skript` beginnt, im **Chat** das
-   angehängte. Kommen mehrere in Frage, stell diese Rückfrage, mit einer
+   des Index, deren Beschreibung mit dem Wort `Skript` beginnt, im **Chat**
+   das angehängte. Kommen mehrere in Frage, stell diese Rückfrage, mit einer
    Option pro Datei:
 
    ```auswahl

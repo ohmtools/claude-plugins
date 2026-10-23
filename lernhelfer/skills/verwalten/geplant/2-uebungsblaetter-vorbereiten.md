@@ -19,10 +19,8 @@ Bereite Übungsblätter für den Vorrat vor, wie ihn die Fähigkeit „Üben“ 
 Abschnitt „Vorrat“ beschreibt. Der Nutzer lernt hier nicht: Stell nichts
 bereit, und die Nachricht aus „Session beenden“ entfällt.
 
-1. **Aufräumen:** Lösch jedes Blatt im Vorrat, das ungültig ist oder zu keinem
-   Modul mehr gehört.
-2. **Blätter:** Nimm jedes Modul mit Schwachstellen oder fälligen Themen, das
-   danach kein Blatt im Vorrat hat. Fang mit dem an, dessen
+1. **Blätter:** Nimm jedes Modul mit Schwachstellen oder fälligen Themen, auch
+   wenn es schon Blätter im Vorrat hat. Fang mit dem an, dessen
    `projekt:gedaechtnis/{modul}/probleme.md` unter `Historie` das späteste
    Datum hat, dann das mit dem nächstspäteren. So bekommen bei knappem Limit
    zuerst die Fächer ein Blatt, mit denen der Nutzer gerade lernt. Arbeite
@@ -33,7 +31,7 @@ bereit, und die Nachricht aus „Session beenden“ entfällt.
    anfängst. Bleibt nach der Dateiprüfung keine Datei des Moduls übrig, lass
    es weg. Entsteht kein übersetzter LaTeX-Quelltext, speichere nichts und
    hör auf.
-3. **Abschluss:** Antworte, wobei `{module}` die Namen der Module mit neuem
+2. **Abschluss:** Antworte, wobei `{module}` die Namen der Module mit neuem
    Blatt durch Kommas getrennt sind:
 
    ```text

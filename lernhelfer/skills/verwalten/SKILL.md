@@ -87,7 +87,7 @@ Dafür brauchst du eine Datenquelle für deine Skripte und Übungen, z.B. ein Gi
 | `projekt:daten.xml` | Datenquelle und Stand ihrer Dateien beim letzten Indizieren |
 | `projekt:module/` | Ein Modul pro Fach: Beschreibung, Lernziele, Index |
 | `projekt:gedaechtnis/` | Was du dir pro Modul über den Nutzer merkst, dazu Erfahrungen mit dem Lernhelfer |
-| `projekt:vorrat/` | Pro Modul höchstens ein vorbereitetes Übungsblatt als LaTeX-Quelltext. Der Skill `lernen` legt es in einer automatischen Anweisung an und löscht es, wenn er es benutzt. |
+| `projekt:vorrat/` | Pro Modul beliebig viele vorbereitete Übungsblätter als LaTeX-Quelltext und eine Übersicht `uebersicht.md`. Der Skill `lernen` legt sie in einer automatischen Anweisung an und löscht jedes, das er benutzt. |
 | `daten:` | Skripte, Übungen, Altklausuren und Modulhandbuch des Nutzers |
 
 Wer wohin schreibt:

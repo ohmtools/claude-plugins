@@ -1,6 +1,6 @@
 ---
 name: lernen
-description: "Lernen mit dem Lernhelfer, einer Lernumgebung für Oberstufe, Berufsschule und Studium: erklärt Themen als Tutor, wiederholt, übt mit Übungsblättern als PDF, korrigiert Lösungen, listet Schwachstellen und macht aus Skripten interaktive Webseiten mit Erklärungen, jeweils mit den eigenen Unterlagen des Nutzers. Im Claude.ai-Projekt nutzt er den Index der Fächer und merkt sich Schwierigkeiten, im einzelnen Chat arbeitet er mit angehängten Unterlagen. Verwende diesen Skill, wenn der Nutzer lernen, sich etwas erklären lassen, wiederholen, üben oder sich abfragen lassen will (z.B. „Frag mich zu Kapitel 3 ab“, „Ich erkläre dir jetzt …“, „Lass uns das Skript durchgehen“, „Mach mir ein Übungsblatt“), eine eigene Lösung getippt oder als Foto korrigieren lassen will, „Schwachstellen listen“ schreibt, ein Skript verbessern oder aufbereiten lassen will („Verbessere mein Skript“, „Bereite Kapitel 3 auf“) oder mit angehängten Unterlagen lernen will. Fächer anlegen, hochladen und indizieren gehören zum Skill verwalten."
+description: "Lernen mit dem Lernhelfer (Lernumgebung für Oberstufe, Berufsschule und Studium): erklärt als Tutor, wiederholt, übt mit Übungsblättern als PDF, korrigiert Lösungen, listet Schwachstellen und macht aus Skripten interaktive Webseiten, mit den eigenen Unterlagen des Nutzers. Im Claude.ai-Projekt merkt er sich Fächer und Schwierigkeiten, im einzelnen Chat nutzt er angehängte Unterlagen. Verwende diesen Skill, wenn der Nutzer lernen, sich etwas erklären lassen, wiederholen, üben oder sich abfragen lassen will (z.B. „Frag mich zu Kapitel 3 ab“, „Ich erkläre dir jetzt …“, „Lass uns das Skript durchgehen“, „Mach mir ein Übungsblatt“), eine eigene Lösung getippt oder als Foto korrigieren lassen will, „Schwachstellen listen“ schreibt, ein Skript verbessern oder aufbereiten lassen will („Verbessere mein Skript“, „Bereite Kapitel 3 auf“) oder mit angehängten Unterlagen lernen will. Fächer anlegen, hochladen und indizieren gehören zum Skill verwalten."
 ---
 
 # Lernhelfer – Lernen
@@ -208,8 +208,9 @@ Hängt der Nutzer eine Datei im Chat an, arbeite mit ihr, auch ohne Index. Sie
 steht nur in diesem Chat zur Verfügung.
 
 Ist sie eine Unterlage (z.B. ein Skript, ein Übungsblatt oder eine
-Altklausur), gibt es eine Datenquelle und liegt dort keine Datei mit demselben
-Namen, beende deine Antwort einmal pro Chat und Datei mit dieser Nachricht.
+Altklausur), arbeitest du mit einem Modul, gibt es eine Datenquelle und liegt
+dort keine Datei mit demselben Namen, beende deine Antwort einmal pro Chat und
+Datei mit dieser Nachricht.
 Nimm dafür die Liste aus der Dateiprüfung, sonst hol sie wie
 `projekt:daten.xml` es beschreibt. Lade die Datei nie von dir aus hoch.
 

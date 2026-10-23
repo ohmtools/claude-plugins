@@ -136,7 +136,9 @@ Einmal pro Chat, vor der ersten Änderung oder dem ersten Export.
      `kopie:skills/gemeinsam/grundlagen.md`). Nimm in die Beschreibung im
      Frontmatter ihres Skills die Sätze auf, mit denen der Nutzer sie aufruft.
      Danach entscheidet Claude, wann es den Skill lädt. Die Beschreibung hat
-     höchstens 1024 Zeichen, sonst speichert Claude.ai sie gekürzt. Kürze
+     höchstens 1024 Zeichen, sonst speichert Claude.ai sie gekürzt. Zähl
+     dabei Bytes (z.B. `len(text.encode())`), denn ob Claude.ai Umlaute und
+     typografische Anführungszeichen mehrfach zählt, ist ungeprüft. Kürze
      lieber die Aufzählung davor als diese Sätze.
    - Jede Fähigkeit steht für sich. Verweise nie auf Schritte oder Abschnitte
      einer anderen Fähigkeit und führe keine andere Fähigkeit als Teil deines
@@ -281,11 +283,12 @@ Einmal pro Chat, vor der ersten Änderung oder dem ersten Export.
      bleibt er gültig, wenn sich die Fähigkeit ändert. Auf Fähigkeiten, Abschnitte und Schritte verweist er
      nur mit ihrem Namen, nie mit einer Nummer. Benennst du etwas um, auf das
      ein Prompt verweist, pass den Prompt an.
-   - Ändert sich der Aufbau der Blätter im Vorrat
-     (`kopie:skills/lernen/faehigkeiten/ueben.md`, Abschnitt „Vorrat“),
-     erhöhe dort die Nummer in `% format:`. Ältere Blätter gelten dann als
-     ungültig, und die automatische Anweisung löscht sie. Eine Migration
-     braucht es dafür nicht, denn der Vorrat ist nur ein Zwischenspeicher.
+   - Blätter im Vorrat (`kopie:skills/lernen/faehigkeiten/ueben.md`,
+     Abschnitt „Vorrat“) werden vor dem Speichern vollständig geprüft und
+     danach nie wieder. Ändert sich ihr Aufbau oder die Vorlage, bleiben
+     ältere Blätter deshalb liegen. Ein Blatt, das sich beim Benutzen nicht
+     übersetzen lässt, löscht „Üben“. Eine Migration braucht es nicht, denn
+     der Vorrat ist nur ein Zwischenspeicher.
    - „Testen“ (`kopie:skills/verwalten/faehigkeiten/testen.md`) prüft nur
      Annahmen über die Umgebung, die noch kein Testlauf bestätigt hat, damit
      ein Testlauf kurz bleibt. Verlässt sich eine Änderung auf etwas
@@ -311,7 +314,7 @@ aus.
      `arbeit:lernhelfer-entwicklung/.claude-plugin/marketplace.json`, falls es
      sie gibt.
    - Jede `SKILL.md` unter `kopie:skills/` hat im Frontmatter `name` (gleich
-     dem Ordnernamen) und `description` mit höchstens 1024 Zeichen und sonst
+     dem Ordnernamen) und `description` mit höchstens 1024 Bytes und sonst
      nichts.
    - Keine Datei ist leer, keine Zeile endet auf ein Leerzeichen.
 

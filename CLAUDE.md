@@ -146,7 +146,8 @@ die Änderung betrifft, vollständig.
   - Vorspann der automatischen Anweisungen (niemand liest mit, keine
     Rückfragen, „Abbruch“): beide Dateien in `verwalten/geplant/`.
   - Namen von Abschnitten, auf die die Prompts in `verwalten/geplant/`
-    verweisen: „Abbruch“ in `grundlagen.md`; „Vorrat“ in `ueben.md`;
+    verweisen: „Abbruch“ in `grundlagen.md`; „Vorrat“ in `ueben.md` (dort
+    auch die Spalte `Thema` für `% themen:`);
     „Dateiprüfung“ und „Session beenden“ in `lernen/SKILL.md`; die Spalte
     `Historie` von `probleme.md` in `grundlagen.md`. Dazu muss die
     Anfrage im Prompt „Übungsblätter vorbereiten“ (Stoff, Umfang, Niveau,
@@ -189,6 +190,12 @@ die Änderung betrifft, vollständig.
   - Etappen von „Skript verbessern“ (höchstens ein Kapitel und 20 Seiten,
     ZIP `{name}-quelle.zip` zum Weitermachen): `skript-verbessern.md` und
     `helfen/SKILL.md`.
+  - Arten als erstes Wort der Beschreibung im Index (`Skript`,
+    `Übungsblatt`, `Altklausur`, `Lösung`, `Formelsammlung`, `Sonstiges`):
+    Vorlage für `index.md` in `grundlagen.md` und `indizieren.md`,
+    Schritt 4. Darauf verlassen sich `wiederholen.md` („Skript
+    durchgehen“), `skript-verbessern.md` (Schritt 1) und `ueben.md`
+    („Klausurprofil“, „Aufgaben mit neuen Werten“).
 
 ## Stand
 
@@ -205,7 +212,7 @@ die Änderung betrifft, vollständig.
   `lernen` arbeitet mit genau einem Modul, liest `module/`, `daten.xml` und
   `daten:` und schreibt nur `gedaechtnis/{modul}/probleme.md`,
   `gedaechtnis/benutzererfahrung.md` und in „Üben“ den Vorrat
-  (`vorrat/{modul}/uebungsblatt.tex`). Nur eine automatische Anweisung lässt
+  (`vorrat/{modul}/uebungsblatt-{erstellt}.tex`). Nur eine automatische Anweisung lässt
   `lernen` mehrere Module nacheinander bearbeiten, jedes für sich.
   `verwalten` darf überall schreiben und mit mehreren Modulen arbeiten.
   Verweise auf den anderen Skill stehen in Nachrichten als
@@ -216,16 +223,19 @@ die Änderung betrifft, vollständig.
   anderen Skill wechselt keiner.
 - Daten im Projekt: `daten.xml`, pro Modul `module/{modul}/info.md`
   (Beschreibung, Lernziele, Prüfung) und `module/{modul}/index.md` (Abschnitt
-  „Dateien“ als einzige Zuordnung, Stichwortverzeichnis mit Dateiseiten),
+  „Dateien“ als einzige Zuordnung, Beschreibung beginnt mit der Art der
+  Datei, Stichwortverzeichnis mit Dateiseiten),
   `gedaechtnis/{modul}/probleme.md` (Thema, Beschreibung, Ursache,
   Verstanden, Historie), `gedaechtnis/benutzererfahrung.md` und der Vorrat
-  `vorrat/{modul}/uebungsblatt.tex` (ohne Eintrag in „Formate“). Alle Formate
+  `vorrat/{modul}/uebungsblatt-{erstellt}.tex` (ohne Eintrag in „Formate“). Alle Formate
   sind 1, es gibt noch keine Migration. Das Plugin wird noch nicht genutzt.
   Deshalb gibt es keine Regeln für ältere Dateien, und die Spalte `Ursache`
   in `probleme.md` (Fehlerursache, Fischgräte, gefüllt von „Korrigieren“) und
   der Abschnitt „Prüfung“ in `info.md` (Form, Dauer, Hilfsmittel aus dem
   Modulhandbuch, für den Kopf des Übungsblatts) kamen ohne neue Formatnummer
-  dazu.
+  dazu, ebenso die Art am Anfang der Beschreibung im Index (seit 2026-10-23,
+  damit Haiku nicht z.B. „Vorlesungsfolien“ schreibt und „Skript durchgehen“
+  das Skript nicht findet).
 - Datenquelle (`daten:`): freiwillig, zurzeit nur ein GitHub-Repository,
   öffentlich oder privat. `daten.xml` beschreibt den Zugriff in Worten
   (`<art>`, `<identifizieren>`), damit später andere Arten dazukommen
@@ -288,7 +298,11 @@ die Änderung betrifft, vollständig.
     (Führung, Denkschritte, Verknüpfung, Sonderfälle, Transfer) über der
     Vergleichsaufgabe, nie mit Fremdwissen, Fangfragen oder mehr Rechnen.
     Das Niveau jeder Aufgabe steht mit ihrer Vergleichsaufgabe in „Zur
-    Aufgabe“.
+    Aufgabe“. Nennt bei einer Schwachstelle `Ursache` eine Arbeitsweise
+    (Flüchtigkeit, Aufgabe falsch gelesen, Zeitdruck), bekommt eine Aufgabe
+    eine Stelle, an der genau dieser Fehler naheliegt. Deshalb trägt
+    Korrigieren auch solche Fehler in `probleme.md` ein (so hat es der Nutzer
+    am 2026-10-23 entschieden).
   - Korrigieren: bei einer angehängten Lösung zuerst eine wörtliche Abschrift
     des Gelesenen, auch mit den Fehlern, damit der Nutzer Lesefehler
     erkennt (Wunsch des Nutzers vom 2026-10-22), strenger Prüfer, Punkte als
@@ -418,24 +432,41 @@ die Änderung betrifft, vollständig.
   ihrer Läufe, der Nutzer wollte am 2026-10-17 trotzdem kein Ändern der
   vorhandenen. Ohne Werkzeug nennt Claude die Einstellungen zum Anlegen von
   Hand.
-- Vorrat: pro Modul höchstens ein Übungsblatt, 45 Minuten, Klausurniveau+,
+- Vorrat: pro Modul beliebig viele Übungsblätter (seit 2026-10-23, Wunsch
+  des Nutzers, vorher höchstens eins), je 45 Minuten, Klausurniveau+,
   Schwachstellen und fällige Themen (so hat es der Nutzer entschieden), als
-  LaTeX-Quelltext, weil PDFs nicht in die Projektdateien passen, deshalb ohne
-  eigene Dateien (`\bild`, `\codedatei`). Beim Benutzen kommen
+  LaTeX-Quelltext `uebungsblatt-{erstellt}.tex` (am selben Tag mit `-2`
+  usw.), weil PDFs nicht in die Projektdateien passen, deshalb ohne eigene
+  Dateien (`\bild`, `\codedatei`). Beim Benutzen kommen
   `uebungsblatt.cls`, `ohmtools-colors.sty` und `build.sh` aus der Vorlage
-  dazu. Kopf mit `format`, Themen und `quelle` (Identifikation und Pfad jeder
-  gelesenen Datei), Schlusszeile `% Ende des Lernhelfer-Vorrats`. Das Niveau
-  steht nicht im Kopf, weil der Vorrat nur Klausurniveau+ hält, und `format`
-  blieb 1, weil es noch keine Blätter im Vorrat gibt. Üben bietet ein gültiges Blatt als erste
-  Rückfrage an, übersetzt es, löscht es und stellt es dann bereit. Ungültige
-  löscht erst der nächste Lauf. Ein geänderter Kopf erhöht `% format:` statt
-  einer Migration. Module ohne Schwachstellen bekommen kein Blatt. Der Prompt
+  dazu. Kopf mit `erstellt`, Dauer, Aufgaben, Punkten und `themen` (genau wie
+  in der Spalte `Thema` von `probleme.md`). Das Niveau steht nicht im Kopf,
+  weil der Vorrat nur Klausurniveau+ hält. Ein Blatt wird vor dem Speichern
+  geprüft und danach nie wieder (Entscheidung des Nutzers vom 2026-10-23),
+  deshalb gibt es keine Gültigkeit, kein `format`, keine `quelle` und keine
+  Schlusszeile mehr, und Üben braucht für den Vorrat keine Datenquelle.
+  `vorrat/{modul}/uebersicht.md` hält Datei, Datum, Dauer, Aufgaben, Punkte
+  und Themen jedes Blatts, damit Üben zum Auswählen nicht alle Blätter liest
+  (je etwa 25 KB). Speichern schreibt erst das Blatt, dann seine Zeile,
+  Benutzen löscht erst die Zeile, dann das Blatt. Ein Blatt ohne Zeile bietet
+  Üben nie an. Üben wählt aus der Übersicht (bei bestimmten Themen nur Blätter,
+  die alle enthalten), bietet das mit den meisten heute offenen oder fälligen
+  Themen als erste Rückfrage an (bei Gleichstand das neueste), übersetzt es,
+  löscht es und stellt es dann bereit. Scheitert das Übersetzen, löscht es das
+  Blatt, außer bei `not found` (dann fehlen nur LaTeX oder ein Paket).
+  Ausschalten der automatischen Anweisungen lässt den Vorrat unberührt.
+  Module ohne Schwachstellen und ohne fällige Themen bekommen
+  kein Blatt. Ein Blatt für den Vorrat bindet keine eigenen Dateien ein. Der Prompt
   beschreibt keinen Ablauf von „Üben“ (Wunsch des Nutzers, Konvention in
-  `entwicklung.md`): Er löscht ungültige Blätter, ruft „Üben“ für jedes
-  Modul ohne Blatt wie ein Nutzer auf („… auf Klausurniveau+, als
-  LaTeX-Quelltext, ohne Vorrat“) und speichert den Quelltext. Gültige
-  Blätter bleiben. Module mit dem spätesten Datum unter `Historie` kommen
-  zuerst dran.
+  `entwicklung.md`): Er ruft „Üben“ bei jedem Lauf für jedes Modul mit
+  Schwachstellen oder fälligen Themen wie ein Nutzer auf („… auf
+  Klausurniveau+, als LaTeX-Quelltext, ohne Vorrat“), auch wenn es schon
+  Blätter hat, und speichert den Quelltext. Vorhandene Blätter bleiben, auch
+  wenn ihre Schwachstellen inzwischen verstanden sind.
+  Module mit dem spätesten Datum unter `Historie` kommen zuerst dran. Entsteht
+  kein übersetzter Quelltext, hört der Lauf ganz auf und speichert nichts.
+  Das ist gewollt, damit z.B. am Nutzungslimit nichts Halbes in den Vorrat
+  kommt (Entscheidung des Nutzers vom 2026-10-23).
 - Abbruch: Claude sieht das restliche Limit nicht, ein Chat kann nach jedem
   Schritt enden. Ins Projekt kommen nur fertige Dateien, je mit einem Aufruf,
   große aus `arbeit:` mit `local_path`. Abhängige Dateien werden so

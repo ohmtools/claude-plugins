@@ -14,8 +14,11 @@ vorzusagen, sagst klar, was sitzt und was nicht, und hältst das Tempo hoch.
 
 1. **Vorbereiten:** Im **Projekt** arbeite mit dem Modul wie in
    `skill:SKILL.md`, Abschnitt „Mit einem Modul arbeiten“, einschließlich der
-   Dateiprüfung. Pflege während der ganzen Fähigkeit die Probleme wie in
-   `skill:SKILL.md`, Abschnitt „Probleme pflegen“.
+   Dateiprüfung. Die Rückfragen dieser Fähigkeit (Modus, Datei, Startseite)
+   brauchen nur den Index: Stell sie vor der Dateiprüfung, dann muss der
+   Nutzer nicht auf die Datenquelle warten. Pflege während der ganzen
+   Fähigkeit die Probleme wie in `skill:SKILL.md`, Abschnitt „Probleme
+   pflegen“.
 2. **Modus wählen:** Wähl den Modus nach der Anfrage. Nach einem Wechsel
    beginnt das Thema mit dem Modus (z.B. `Skript durchgehen: skript.pdf,
    Seite 12`), dann gilt dieser.
@@ -159,27 +162,56 @@ das eine aufgedruckte Nummer (`skill:SKILL.md`, Abschnitt „PDF-Dateien“).
    auf die Antwort:
 
    ```text
-   Ab welcher Seite von {datei} machen wir weiter? Die Nummer, die auf der Folie steht, reicht. Schreib „1“, wenn wir vorne anfangen.
+   Ab welcher Seite von {datei} soll es losgehen? Die Nummer, die auf der Folie steht, reicht. Schreib „1“ für den Anfang.
    ```
 
 3. **Seite für Seite:** Für jede Seite ab der Startseite:
    1. Lies die Seite (`skill:SKILL.md`, Abschnitt „PDF-Dateien“) und notiere
       alle Konzepte, Stichwörter und Fachbegriffe darauf. Hat sie keine (z.B.
-      Titelseite, Gliederung, Literatur), geh zur nächsten Seite.
-   2. Antworte, wobei `{titel}` die Überschrift der Seite ist und `{begriffe}`
-      die notierten Begriffe durch Kommas getrennt:
+      Titelseite, Gliederung, Literatur), geh zur nächsten Seite. Teil sie
+      ein, denn nicht alles auf einer Seite ist gleich wichtig:
+      - **Kernbegriffe:** was in den Lernzielen in
+        `projekt:module/{modul}/info.md` vorkommt, was das
+        Stichwortverzeichnis auch bei einem Übungsblatt oder einer Altklausur
+        nennt oder worum es auf der Seite hauptsächlich geht. Im **Chat**
+        nur das Letzte.
+      - **Randbegriffe:** alle übrigen, z.B. Beispiele, Namen oder Details am
+        Rand.
+
+      Hat die Seite mehr als fünf Kernbegriffe, geh sie in zwei Durchgängen
+      durch: erst die der oberen, dann die der unteren Hälfte der Seite.
+   2. Antworte, wobei `{titel}` die Überschrift der Seite ist und `{kern}` die
+      Kernbegriffe dieses Durchgangs durch Kommas getrennt:
 
       ```text
       **Seite {seite}: {titel}**
-      Erklär mir in eigenen Worten: {begriffe}
+      Erklär mir in eigenen Worten: {kern}
+      {rand}
+      ```
+
+      `{rand}`: Gibt es Randbegriffe, setze diese Zeile ein, wobei
+      `{randbegriffe}` sie durch Kommas getrennt sind, sonst lass den
+      Platzhalter samt Zeile weg:
+
+      ```text
+      Kurz, je in einem Satz: {randbegriffe}
       ```
 
    3. Prüf seine Erklärung gegen die Seite. Ist alles richtig und
-      vollständig, geh zur nächsten Seite. Ist etwas vage, falsch oder fehlt
-      es, frag einmal gezielt nach. Bleibt es falsch oder fehlt es weiter, ist
-      das eine Lücke (Abschnitt „Lücken“), mit der Rückkehr
-      `Skript durchgehen: {datei}, Seite {seite}`. Nach der Rückkehr fragst du auf dieser Seite
-      nur noch nach den Begriffen, die er noch nicht erklärt hat.
+      vollständig, geh zur nächsten Seite. Sonst antworte wie im Abschnitt
+      „Spiegeltest“, Schritt 2. `{nachfrage}` fragt nach den Kernbegriffen,
+      die falsch sind oder fehlen, höchstens drei in einer Nachricht.
+      Randbegriffe nennst du dort nur, ohne nachzufragen. Bleibt ein
+      Kernbegriff nach der Nachfrage falsch oder fehlt er weiter, ist das eine
+      Lücke (Abschnitt „Lücken“), mit der Rückkehr
+      `Skript durchgehen: {datei}, Seite {seite}`. Nach der Rückkehr fragst
+      du auf dieser Seite nur noch nach den Begriffen, die er noch nicht
+      erklärt hat.
+   4. Sagt der Nutzer dabei etwas Falsches über Stoff, der erst auf einer
+      späteren Seite kommt, nenn es unter **Falsch** mit dem Zusatz
+      `(kommt auf Seite {spaeter})`, wobei `{spaeter}` diese Seite ist, ohne
+      es zu erklären, und frag auf dieser Seite gezielt danach. So verrätst
+      du nichts vorab, und der Fehler geht nicht verloren.
 4. **Etappen:** Damit eine spätere Session weitermachen kann, arbeitest du in
    Etappen. Eine Etappe endet nach zehn Seiten mit Begriffen oder am Ende
    eines Kapitels, je nachdem, was zuerst kommt. Stell dann diese Rückfrage,

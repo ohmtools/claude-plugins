@@ -23,8 +23,9 @@ angekommen ist.
 
 1. **Dateien finden:** Such die angehängten Dateien in deiner Arbeitsumgebung
    (`plugin:skills/gemeinsam/grundlagen.md`, Abschnitt „Pfade“). `{name}` ist
-   jeweils der Originalname ohne das Präfix aus acht Hex-Zeichen und
-   Bindestrich. Hat der Nutzer keine Datei angehängt, antworte:
+   jeweils der Originalname, ohne die Kennung aus acht Hex-Zeichen und
+   Bindestrich, falls der Dateiname eine hat. Hat der Nutzer keine Datei
+   angehängt, antworte:
 
    ```text
    Häng mir die Dateien, die ich hochladen soll, hier im Chat an und schreib dazu, zu welchem Fach sie gehören.
@@ -32,21 +33,30 @@ angekommen ist.
 
 2. **Ziel bestimmen:** Ein Modulhandbuch (`skill:SKILL.md`, Abschnitt „Dateien
    der Datenquelle“) kommt ohne Ordner nach `daten:{name}`. Jede andere Datei
-   kommt in den Ordner ihres Moduls nach `daten:{modul}/{name}`. Nennt der
-   Nutzer kein Modul oder ist es nicht eindeutig, stell diese Rückfrage, mit
-   einer Option pro vorhandenem Modul:
+   kommt in den Ordner ihres Fachs nach `daten:{ordner}/{name}`:
+   - Gehört sie zu einem vorhandenen Modul, ist `{ordner}` sein Ordnername
+     `{modul}`.
+   - Nennt der Nutzer ein Fach, das es noch nicht gibt (z.B. „Lade das in TEG
+     hoch“), ist `{neues-fach}` dieser Name und `{ordner}` der Ordnername, den
+     „Modul bearbeiten“ beim Anlegen daraus bilden wird: nach den Pfadregeln
+     (z.B. `teg`). Leg das Modul nicht selbst an.
+   - Nennt der Nutzer kein Fach oder ist es nicht eindeutig, stell diese
+     Rückfrage, mit einer Option pro vorhandenem Modul und zuletzt „Ein neues
+     Fach“:
 
-   ```auswahl
-   Zu welchem Fach gehört {name}?
-   - {modulname}
-   ```
+     ```auswahl
+     Zu welchem Fach gehört {name}?
+     - {modulname}
+     - Ein neues Fach
+     ```
 
-   Gibt es noch kein Modul und ist eine der Dateien kein Modulhandbuch,
-   antworte und beende die Fähigkeit:
+     Bei „Ein neues Fach“ antworte und warte auf die Antwort:
 
-   ```text
-   Es gibt noch keine Fächer. Leg zuerst eins an, z.B. mit „/lernhelfer:verwalten Leg das Fach Mathematik an“, und lade die Dateien danach hoch.
-   ```
+     ```text
+     Wie heißt das Fach, zu dem {name} gehört?
+     ```
+
+     Die Antwort ist dann `{neues-fach}`, `{ordner}` wie oben.
 
 3. **Schreibzugriff holen:** Hol dir über die GitHub-Anbindung deiner
    Arbeitsumgebung (z.B. ein Werkzeug `add_repo`) Schreibzugriff auf `{url}` aus
@@ -76,15 +86,16 @@ angekommen ist.
 
    Bei „Nicht hochladen“ lässt du diese Datei weg.
 5. **Hochladen:** Führ im Ordner `arbeit:` genau diese Befehle aus. `git reset`
-   ist nötig, weil der Klon keine Dateiinhalte hat. Füge nur die Zielpfade
-   hinzu, nie mit `git add -A` oder `commit -a`, sonst löschst du alle übrigen
-   Dateien der Datenquelle.
+   ist nötig, weil der Klon keine Dateiinhalte hat, `--sparse`, weil der Klon
+   nur die geholten Dateien zeigt. Füge nur die Zielpfade hinzu, nie mit
+   `git add -A` oder `commit -a`, sonst löschst du alle übrigen Dateien der
+   Datenquelle.
 
    ```bash
    git -C daten reset -q
-   mkdir -p "daten/{modul}"
+   mkdir -p "daten/{ordner}"
    cp "{anhang}" "daten/{ziel}"
-   git -C daten add -- "{ziel}"
+   git -C daten add --sparse -- "{ziel}"
    git -C daten -c user.name="Lernhelfer" -c user.email="lernhelfer@example.invalid" commit -q -m "Lernhelfer: {ziele} hochgeladen"
    git -C daten push origin HEAD
    ```
@@ -98,7 +109,10 @@ angekommen ist.
    weil sich die Datenquelle inzwischen geändert hat, oder mit HTTP 413), lösch
    `arbeit:daten/`, klone neu und wiederhol diesen Schritt einmal.
 6. **Prüfen:** `git ls-remote {url}.git HEAD` muss dieselbe ID ausgeben wie
-   `git -C daten rev-parse HEAD`. Stimmt das nicht oder lehnt der Server den
+   `git -C daten rev-parse HEAD`. Lösch danach `arbeit:daten/`, auch wenn es
+   nicht geklappt hat, denn nach diesen Befehlen kann git dort alle übrigen
+   Dateien als gelöscht zeigen. Braucht dieser Chat die Datenquelle noch
+   einmal, klont er sie neu. Stimmte die ID nicht oder lehnte der Server den
    Push auch beim zweiten Versuch ab, antworte, wobei `{grund}` die
    Fehlermeldung in wenigen Worten ist und `{ziele}` wie in Schritt 3, und
    beende die Fähigkeit:
@@ -114,11 +128,20 @@ angekommen ist.
 
    {dateiliste}
 
+   {anlegen}
    Damit ich sie beim Lernen nutzen kann, müssen sie noch indiziert werden. Das kann viel von deinem Nutzungslimit verbrauchen. Am sparsamsten: Starte einen neuen Chat, wähle das Modell Haiku und schreib „/lernhelfer:verwalten Indiziere“.
    ```
 
-   Gibt es noch kein Modul (dann hast du nach Schritt 2 nur Modulhandbücher
-   hochgeladen), antworte stattdessen:
+   `{anlegen}`: Hast du in Schritt 2 Dateien für ein Fach hochgeladen, das es
+   noch nicht gibt, setze diese Zeile ein, sonst lass den Platzhalter samt
+   Zeile weg:
+
+   ```text
+   Das Fach {neues-fach} gibt es noch nicht. Schreib zuerst „/lernhelfer:verwalten Leg das Fach {neues-fach} an“, dann gehören die Dateien im Ordner {ordner} von selbst dazu.
+   ```
+
+   Hast du nur Modulhandbücher hochgeladen und gibt es noch kein Modul,
+   antworte stattdessen:
 
    ```text
    Diese Dateien liegen jetzt in deiner Datenquelle:

@@ -6,19 +6,44 @@ damit der Nutzer und die anderen Fähigkeiten weiter mit dem Original-PDF
 arbeiten können. Wo das Skript zu knapp ist, kommen Ergänzungen dazu, jede
 ausdrücklich als Ergänzung markiert: die Bedeutung aller Variablen einer
 Gleichung, Erklärungen zu Abbildungen, fehlende Zwischenschritte, eigene
-Grafiken, Elemente zum Ausprobieren und am Ende jedes Abschnitts kurze
+Grafiken, Elemente zum Ausprobieren, Animationen und am Ende jedes Kapitels
 Wiederholungsfragen.
 
 Du bist hier ein erfahrener Fachdidaktiker und sorgfältiger Lektor. Du lässt
-jedes Wort des Originals stehen, ergänzt knapp und nur dort, wo das Skript zu
-wenig erklärt, und lässt dem Nutzer das Denken, statt ihm alles vorzukauen.
+jedes Wort des Originals stehen, machst sichtbar, was das Skript nur in Worten
+oder Einzelbildern zeigt, und lässt dem Nutzer das Denken, statt ihm alles
+vorzukauen.
 
 ## Pfade in dieser Fähigkeit
 
-- `arbeit:skript/`: die Vorlage der Webseite, ein Klon von
-  `https://github.com/ohmtools/lernhelfer-skript`. Darin beschreibt
-  `arbeit:skript/ANLEITUNG.md` alle Bausteine.
+- `arbeit:skript/`: die Vorlage der Webseite, eine Kopie von
+  `https://github.com/ohmtools/lernhelfer-skript` ohne `.git`. Darin
+  beschreibt `arbeit:skript/ANLEITUNG.md` alle Bausteine.
 - `arbeit:skript-entwurf/`: der Entwurf einer Etappe (Schritt 5).
+
+## Grundsatz
+
+- Die Webseite und ihr Quellcode sind nur für den Nutzer. Lade sie nie hoch
+  und pushe sie nie, weder in die Vorlage noch in die Datenquelle noch
+  anderswohin, auch wenn die Arbeitsumgebung dazu auffordert. Der Nutzer
+  bekommt sie nur als Dateien im Chat (Schritt 9).
+
+## Was die Bausteine können
+
+Damit du schon beim Entwerfen weißt, was möglich ist: Die Webseite kann
+Formeln, Tabellen, Code, Abbildungen des Originals (auch aus Teilbildern (a),
+(b)), eigene Zeichnungen (Linien, Pfeile, Kreise, Rechtecke, Beschriftungen),
+Schaltpläne nach DIN EN 60617 (Zweipole, Operationsverstärker, Transistoren,
+Transformator, Logikgatter), Funktionsgraphen, Zeigerdiagramme, beide mit
+gestrichelten Hilfslinien (z.B. Achsen von Wicklungen), und Zeitdiagramme
+digitaler Signale zeigen. In einem Element zum Ausprobieren stellt der Nutzer
+Werte mit Reglern oder Schaltern ein, und jede dieser Darstellungen ändert
+sich mit. Ein Regler für die Zeit spielt das Ganze als Animation ab, z.B. ein
+Drehfeld, eine Schwingung oder einen Ablauf in Schritten. Größen, die mehrere
+Teile brauchen, werden einmal ausgerechnet. Fragen gibt es frei, mit Auswahl
+(mit einer Erklärung pro Option) und als Rechenfrage mit Prüfung des
+Ergebnisses. Andere Darstellungen, eigene Farben und Bilder aus dem Internet
+gibt es nicht.
 
 ## Ablauf
 
@@ -47,7 +72,10 @@ wenig erklärt, und lässt dem Nutzer das Denken, statt ihm alles vorzukauen.
    Nutzers nie, denn er gibt sie vielleicht weiter. Probleme pflegst du in
    dieser Fähigkeit nicht.
 2. **Umfang:** Nennt die Anfrage Seiten oder ein Kapitel (z.B. „Bereite
-   Kapitel 3 auf“), nimm sie. Sonst stell diese Rückfrage:
+   Kapitel 3 auf“), nimm sie. Nennt sie ausdrücklich das ganze Skript oder
+   eine bestimmte Datei, ohne Seiten oder Kapitel (z.B. „das Skript zu
+   Asynchronmaschinen“), nimm die ganze Datei. Sonst (z.B. „Verbessere mein
+   Skript“) stell diese Rückfrage:
 
    ```auswahl
    Was soll ich aufbereiten?
@@ -89,10 +117,14 @@ wenig erklärt, und lässt dem Nutzer das Denken, statt ihm alles vorzukauen.
    - Sonst führ in `arbeit:` aus:
      `git clone --depth 1 https://github.com/ohmtools/lernhelfer-skript skript`
 
-   Führ dann im Ordner `arbeit:skript/` `npm ci --omit=dev; echo "exit=$?"`
-   aus. Endet es nicht mit `exit=0` (z.B. ohne Internet), arbeite nach dem
-   Abschnitt „Ohne Node“ weiter. Lies `arbeit:skript/ANLEITUNG.md` noch nicht,
-   denn beim Entwerfen zählt nur der Inhalt.
+   Lösch danach `arbeit:skript/.git`, falls es den Ordner gibt (z.B.
+   `rm -rf skript/.git`). Die Vorlage ist nur eine Kopie, und ohne `.git`
+   kann dort niemand versehentlich committen oder pushen. Führ dann im Ordner
+   `arbeit:skript/` `npm ci --omit=dev; echo "exit=$?"` aus. Endet es nicht
+   mit `exit=0` (z.B. ohne Internet), arbeite nach dem Abschnitt „Ohne Node“
+   weiter. Lies `arbeit:skript/ANLEITUNG.md` noch nicht, denn beim Entwerfen
+   zählt nur der Inhalt. Was möglich ist, steht im Abschnitt „Was die
+   Bausteine können“.
 4. **Seiten lesen:** Lösch `arbeit:skript-entwurf/`, falls es den Ordner gibt,
    und leg ihn mit dem Unterordner `bilder/` neu an. Für die Seiten der Etappe
    (Seiten wie im PDF ab 1):
@@ -105,11 +137,15 @@ wenig erklärt, und lässt dem Nutzer das Denken, statt ihm alles vorzukauen.
       Abbildungen kommen als Text oft falsch an.
    3. Schneide jede Abbildung aus, wie in `arbeit:skript/ANLEITUNG.md`
       beschrieben, Kapitel „Originaltext“, „Ausschneiden“: Rastergrafiken mit
-      `pdfimages`, gezeichnete im Ordner `arbeit:skript/` mit
+      `pdfimages -png -j` (Fotos werden dabei JPEG), gezeichnete im Ordner
+      `arbeit:skript/` mit
       `npm run ausschnitt -- '{datei}' {seite} {links} {oben} {rechts} {unten} ../skript-entwurf/bilder/s{seite}-{n}.png`
-      (Angaben von 0 bis 1 relativ zur Seite). Sieh dir jeden Ausschnitt an
-      und korrigiere ihn, bis die ganze Abbildung drin ist, ohne ihre
-      Bildunterschrift. Lies nur dieses Kapitel der Anleitung.
+      (Angaben von 0 bis 1 relativ zur Seite). Ein Foto oder ein Bild mit
+      Farbverläufen schneidest du mit der Endung `.jpg` statt `.png` aus,
+      dann ist die Datei viel kleiner. Hat eine Abbildung Teilbilder mit
+      eigenen Unterschriften ((a), (b)), schneide jedes einzeln aus. Sieh dir
+      jeden Ausschnitt an und korrigiere ihn, bis die ganze Abbildung drin
+      ist, ohne ihre Bildunterschrift. Lies nur dieses Kapitel der Anleitung.
 5. **Entwurf:** Schreib pro Kapitel der Etappe eine Datei
    `arbeit:skript-entwurf/{nn}-{name}.md`. `{nn}` ist die zweistellige
    Nummer des Kapitels in der Webseite (`01`, `02`, …, bei einer Fortsetzung
@@ -118,14 +154,31 @@ wenig erklärt, und lässt dem Nutzer das Denken, statt ihm alles vorzukauen.
    beginnt der Teil der nächsten Etappe eine eigene Datei, deren `#` die
    erste Abschnittsüberschrift dieses Teils ist.
    - **Original:** wortgleich, ohne Kopf- und Fußzeilen, Seitenzahlen und
-     Silbentrennung des PDFs. Der Kapiteltitel ist die einzige Überschrift
-     `#`, Abschnitte `##`, Unterabschnitte `###`. Absätze, Listen und
-     Tabellen in Markdown, Formeln in LaTeX zwischen `$…$` oder `$$…$$` mit
-     der Nummer des Originals als `\tag{…}`, Abbildungen als
-     `![Bildunterschrift des Originals](bilder/s{seite}-{n}.png)`. Vor den
-     Text jeder Seite kommt eine eigene Zeile `::seite[{seite}]` mit der Seite
-     wie im PDF. Korrigiere, kürze und ergänze im Original nichts, auch
-     keine Tippfehler.
+     Silbentrennung des PDFs, ohne Titelblatt und Inhaltsverzeichnis des
+     Skripts (Titel und Autor kommen in `skript.json`, Schritt 7, die
+     Gliederung zeigt die Webseite selbst). Der Kapiteltitel ist die einzige
+     Überschrift `#`, Abschnitte `##`, Unterabschnitte `###`. Absätze,
+     Listen und Tabellen in Markdown, Formeln in LaTeX zwischen `$…$` oder
+     `$$…$$` mit der Nummer des Originals als `\tag{…}`, Abbildungen als
+     `![Bildunterschrift des Originals](bilder/s{seite}-{n}.png)`.
+     Sonderzeichen wie eingekreiste Ziffern (①), Pfeile oder Häkchen
+     schreibst du als dasselbe Zeichen, nicht als Formatierung. Korrigiere,
+     kürze und ergänze im Original nichts, auch keine Tippfehler.
+   - **Seiten:** Vor den Text jeder Seite kommt eine eigene Zeile
+     `::seite[{seite}]` mit der Seite wie im PDF. Beginnt die Seite mitten in
+     einem Absatz, einer Liste oder einer Tabelle, kommt sie vor den
+     nächsten Block, der auf ihr beginnt.
+   - **Teilbilder:** Eine Abbildung aus Teilbildern steht so, jedes Teilbild
+     mit seiner eigenen Unterschrift, die gemeinsame in eckigen Klammern:
+
+     ```markdown
+     :::abbildung[Abb. 3.3: Läuferbauarten]
+     ![(a) Kurzschlussläufer](bilder/s12-1.png)
+
+     ![(b) Schleifringläufer](bilder/s12-2.jpg)
+     :::
+     ```
+
    - **Ergänzungen** stehen nur in diesen Markierungen, jede Markierung endet
      mit `:::` in einer eigenen Zeile:
 
@@ -135,19 +188,46 @@ wenig erklärt, und lässt dem Nutzer das Denken, statt ihm alles vorzukauen.
      | `:::anmerkung[Titel]` | Ein fehlender Zwischenschritt, eine Anschauung, ein Zusammenhang. Zu jeder Abbildung des Originals eine Erklärung, was zu sehen ist und worauf es ankommt (Titel `Zur Abbildung {nummer}`). |
      | `:::denkanstoss[Frage]` | Statt einer fertigen Erklärung, wo der Nutzer es selbst herausfinden kann, z.B. ein Umformungsschritt. Darunter die Auflösung, die verdeckt bleibt. |
      | `:::grafik[Titel]` | Eine eigene Grafik, wo eine Zeichnung mehr erklärt als Worte (z.B. Zählpfeile in einer Schaltung, ein Zeigerdiagramm, ein Graph). Im Entwurf in Worten beschrieben, so genau, dass du sie danach zeichnen kannst. |
-     | `:::interaktiv[Titel]` | Etwas zum Ausprobieren, wo ein Zusammenhang erst beim Verändern sichtbar wird (z.B. wie τ von R und C abhängt). Im Entwurf in Worten: welche Größen einstellbar sind, mit Bereich und Einheit, was angezeigt wird und was der Nutzer entdecken soll. |
-     | `:::frage[Frage]`, `:::auswahl[Frage]`, `:::rechnen[Frage]{ergebnis=… toleranz=… einheit="…"}` | Am Ende jedes Abschnitts zwei bis vier Wiederholungsfragen mit Antwort (Aufbau im Beispiel). |
+     | `:::interaktiv[Titel]` | Etwas zum Ausprobieren, wo ein Zusammenhang erst beim Verändern sichtbar wird (z.B. wie τ von R und C abhängt), oder eine Animation, wo sich etwas bewegt oder zeitlich ändert. Im Entwurf in Worten: welche Größen einstellbar sind, mit Bereich und Einheit, was abläuft, was angezeigt wird und was der Nutzer entdecken soll. |
+     | `:::frage[Frage]`, `:::auswahl[Frage]`, `:::rechnen[Frage]{ergebnis=… toleranz=… einheit="…"}` | Am Ende jedes Kapitels die Wiederholungsfragen mit Antwort (Aufbau im Beispiel). |
      | `:anm[…]` | Ein kurzer Hinweis mitten im Satz. |
 
+   - **Wo du ergänzt:** Geh jeden Abschnitt durch und frag dich, was man
+     sehen müsste, um ihn zu verstehen:
+     - Zeigt das Skript etwas, das sich bewegt, dreht oder zeitlich ändert
+       (z.B. ein Drehfeld, eine Schwingung, eine Welle, einen Ablauf), nur in
+       Einzelbildern oder in Worten, mach daraus eine Animation in
+       `:::interaktiv`.
+     - Hängt eine Größe von anderen ab (eine Gleichung, eine Kennlinie, ein
+       Diagramm), mach den Zusammenhang mit Reglern in `:::interaktiv`
+       erfahrbar.
+     - Beschreibt das Skript einen Aufbau, eine Schaltung oder eine Lage nur
+       in Worten, zeichne sie in `:::grafik`.
+     - Erst danach kommen Erklärungen in Worten in `:::anmerkung`.
+
+     Jedes Kapitel mit solchem Stoff bekommt mindestens eine Animation oder
+     ein Element zum Ausprobieren.
    - **Regeln für Ergänzungen:** Sie stimmen, sind knapp (eine Anmerkung
      höchstens etwa fünf Sätze) und nehmen dem Nutzer das Denken nicht ab:
      lieber ein Denkanstoß als eine fertige Herleitung. Übungsaufgaben im
      Skript löst du nicht, höchstens mit einem Denkanstoß als Hinweis. Für
      jede fachliche Aussage gilt `skill:SKILL.md`, Abschnitt „Belege“, für
-     jede Zahl und jedes Ergebnis Abschnitt „Nachrechnen“. Wiederholungsfragen
-     fragen das gerade Gelesene aus dem Gedächtnis ab, ohne neues Wissen;
-     bei `:::auswahl` steht jede falsche Option für eine echte
-     Fehlvorstellung, bei `:::rechnen` ist `ergebnis` nachgerechnet.
+     jede Zahl und jedes Ergebnis Abschnitt „Nachrechnen“. In `:::grafik`
+     und `:::interaktiv` nimmst du Werte aus dem Skript. Stehen dort keine,
+     nimm typische und schreib in den Satz darunter „(Beispielwerte, nicht
+     aus dem Skript)“.
+   - **Wiederholungsfragen:** Sie stehen gesammelt am Ende jedes Kapitels,
+     nach dem letzten Originaltext, nie zwischen den Abschnitten. Je nach
+     Länge des Kapitels drei bis acht, über seine wichtigsten Abschnitte
+     verteilt. Ein Kapitel ohne Lernstoff (z.B. Literatur, Anhang,
+     Verzeichnisse) bekommt keine. Reicht ein Kapitel über die Etappe
+     hinaus, stehen sie am Ende seiner letzten Datei. Sie fragen das Kapitel
+     aus dem Gedächtnis ab, ohne neues Wissen. Die meisten fragen nach
+     Verständnis (`:::frage`, `:::auswahl`), höchstens ein Drittel sind
+     Rechenfragen (`:::rechnen`, mit nachgerechnetem `ergebnis`). Bei
+     `:::auswahl` steht jede falsche Option für eine echte Fehlvorstellung
+     und bekommt nach einer Leerzeile eingerückt ihre eigene Erklärung. Text
+     nach der Liste gilt für alle Optionen.
 
    Beispiel:
 
@@ -181,10 +261,15 @@ wenig erklärt, und lässt dem Nutzer das Denken, statt ihm alles vorzukauen.
 
    :::interaktiv[Aufladen]
    Regler für R von 100 Ω bis 10 kΩ und C von 100 nF bis 10 µF, beide
-   logarithmisch. Graph von u_C/U_0 über t von 0 bis 50 ms, Punkt bei τ,
-   Anzeige von τ = RC. Entdecken: Doppeltes R oder C verschiebt τ und streckt
-   die ganze Kurve.
+   logarithmisch. Animation: Die Zeit t läuft in 5 s von 0 bis 50 ms. Graph
+   von u_C/U_0 über t von 0 bis 50 ms, ein Punkt wandert mit der Zeit auf der
+   Kurve, ein zweiter markiert τ, Anzeige von τ = RC. Entdecken: Doppeltes R
+   oder C verschiebt τ und streckt die ganze Kurve.
    :::
+
+   ::seite[15]
+
+   Weiter im Original bis zum Ende des Kapitels …
 
    :::frage[Was beschreibt die Zeitkonstante?]
    Wie schnell der Kondensator lädt: Nach τ ist er zu etwa 63 % geladen.
@@ -193,7 +278,11 @@ wenig erklärt, und lässt dem Nutzer das Denken, statt ihm alles vorzukauen.
    :::auswahl[Wie ändert sich τ, wenn sich R verdoppelt?]
    - [x] τ verdoppelt sich.
    - [ ] τ halbiert sich.
+
+     Das gälte, wenn τ = C/R wäre. Nach Gleichung 2.1 ist τ = RC.
    - [ ] τ bleibt gleich, nur $U_0$ zählt.
+
+     $U_0$ bestimmt, wie hoch die Spannung steigt, nicht wie schnell.
 
    Nach Gleichung 2.1 ist τ proportional zu R.
    :::
@@ -206,10 +295,10 @@ wenig erklärt, und lässt dem Nutzer das Denken, statt ihm alles vorzukauen.
 6. **Wortlaut prüfen:** Führ im Ordner `arbeit:skript/` aus:
    `npm run wortlaut -- ../skript-entwurf --gegen ../skript-entwurf/original.txt`.
    Behebe jede Stelle unter „Abweichungen vom Original“ im Entwurf, bis keine
-   mehr bleibt, außer Kopf- und Fußzeilen, Text in Abbildungen und Formeltext,
-   die pdftotext anders liest. „Kurze Auslassungen“ siehst du nur durch.
-   Meldet der Befehl einen Fehler im Aufbau (z.B. eine unbekannte
-   Markierung), behebe ihn und prüf neu.
+   mehr bleibt, außer Kopf- und Fußzeilen, Titelblatt, Inhaltsverzeichnis,
+   Text in Abbildungen und Formeltext, die pdftotext anders liest. „Kurze
+   Auslassungen“ siehst du nur durch. Meldet der Befehl einen Fehler im Aufbau
+   (z.B. eine unbekannte Markierung), behebe ihn und prüf neu.
 7. **Setzen:** Lies erst jetzt `arbeit:skript/ANLEITUNG.md` vollständig, falls
    du sie in diesem Chat noch nicht gelesen hast. Nur ihre Bausteine
    verwendest du. Führ dann im Ordner `arbeit:skript/` aus: bei einer neuen
@@ -235,9 +324,19 @@ wenig erklärt, und lässt dem Nutzer das Denken, statt ihm alles vorzukauen.
       „Häufige Fehler“ in der Anleitung).
    3. `npm run build`. Es erzeugt `arbeit:skript/dist/index.html`.
 
-   Wiederhole, bis alle drei mit `exit=0` enden. `{name}` ist der Dateiname
-   des Skripts ohne Endung nach den Pfadregeln mit `-verbessert` dahinter
-   (z.B. `skript-analysis-verbessert`). Kopier
+   Wiederhole, bis alle drei mit `exit=0` enden. `npm run pruefen` rechnet
+   Grafiken und Elemente zum Ausprobieren nur nach, zeichnet sie aber nicht.
+   Kann deine Arbeitsumgebung eine HTML-Datei als Bild aufnehmen (z.B. ein
+   Browser ohne Fenster oder Playwright), sieh dir deshalb jedes Kapitel
+   dieser Etappe in `arbeit:skript/dist/index.html` als Bild an (Adresse
+   `file://{pfad}#/{kapitel}`, wobei `{kapitel}` der Dateiname ohne `.mdx`
+   ist), jedes `:::grafik` und `:::interaktiv` mit den Startwerten und, wo
+   dein Werkzeug klicken kann, mit Reglern an beiden Enden und während einer
+   Animation: Nichts ist leer, abgeschnitten oder überlappt, und es zeigt,
+   was der Satz darunter verspricht. Behebe, was nicht stimmt, und bau neu.
+
+   `{name}` ist der Dateiname des Skripts ohne Endung nach den Pfadregeln mit
+   `-verbessert` dahinter (z.B. `skript-analysis-verbessert`). Kopier
    `arbeit:skript/dist/index.html` nach `arbeit:{name}.html` und führ im
    Ordner `arbeit:skript/` `npm run quelle -- ../{name}-quelle.zip` aus.
 9. **Bereitstellen:** Stell `arbeit:{name}.html` mit deinem Werkzeug zum
@@ -252,7 +351,7 @@ wenig erklärt, und lässt dem Nutzer das Denken, statt ihm alles vorzukauen.
    - {name}.html: die Webseite. Sie funktioniert auch heruntergeladen und ohne Internet, am Computer, Tablet und Handy.
    - {name}-quelle.zip: der Quellcode, falls du die Seite selbst ändern oder später weitermachen willst.
 
-   Der Originaltext steht unverändert darin. Alles, was ich ergänzt habe, trägt eine rote Linie und die Beschriftung „Ergänzung“; mit „Nur Original“ (am Handy unter Einstellungen) blendest du es aus. Beantworte die Wiederholungsfragen zuerst selbst, ohne nachzuschauen, und deck erst dann die Lösung auf.
+   Der Originaltext steht unverändert darin. Alles, was ich ergänzt habe, trägt eine rote Linie und die Beschriftung „Ergänzung“; mit „Nur Original“ (am Handy unter Einstellungen) blendest du es aus. Beantworte die Wiederholungsfragen am Ende jedes Kapitels zuerst selbst, ohne nachzuschauen, und deck erst dann die Lösung auf.
    {weiter}
    ```
 

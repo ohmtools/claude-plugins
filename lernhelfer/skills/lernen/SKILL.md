@@ -101,8 +101,8 @@ Bei jedem Wechsel:
   `projekt:gedaechtnis/{modul}/probleme.md` (Abschnitt „Probleme pflegen“),
   `projekt:gedaechtnis/benutzererfahrung.md` (Abschnitt „Benutzererfahrung“ in
   `plugin:skills/gemeinsam/grundlagen.md`) und Übungsblätter in
-  `projekt:vorrat/`, genau wie in `skill:faehigkeiten/ueben.md`, Abschnitt
-  „Vorrat“, beschrieben. Hilfsdateien wie Bilder von Seiten, die PDFs eines
+  `projekt:vorrat/`, genau wie in `skill:faehigkeiten/ueben-vorrat.md`
+  beschrieben. Hilfsdateien wie Bilder von Seiten, die PDFs eines
   Übungsblatts oder die Webseite eines Skripts legst du in `arbeit:` an.
 - Prüf nie von dir aus, ob ein Index stimmt, z.B. indem du ganze Dateien liest
   und mit dem Index vergleichst. Das ist Arbeit, nach der niemand gefragt hat,
@@ -172,8 +172,11 @@ eine eigene Anfrage.
    (Abschnitt „PDF-Dateien“). Nennt der Nutzer ein Kapitel statt eines Themas,
    such seine Seiten im Inhaltsverzeichnis der Datei, das meist auf den ersten
    Seiten steht. Seine Seitenzahlen sind aufgedruckte Nummern (Abschnitt
-   „PDF-Dateien“). Ein Kapitel reicht bis zur Seite vor dem nächsten. Durchsuch keine ganzen Dateien, das kostet viele Token. Steht
-   ein Thema nicht im Index, sag das offen.
+   „PDF-Dateien“). Ein Kapitel reicht bis zur Seite vor dem nächsten.
+   Nennen die Seiten zu einem Stichwort ein Thema nur, ohne es zu erklären
+   (z.B. das Kippmoment ohne seine Ursache), such auch unter den Größen,
+   Formeln und Verfahren, die es bestimmen. Durchsuch keine ganzen Dateien,
+   das kostet viele Token. Steht ein Thema nicht im Index, sag das offen.
 
 ## Dateiprüfung
 
@@ -264,10 +267,12 @@ entfallen sie.
 - **Verstanden:** Zeigt der Nutzer, dass er ein Thema verstanden hat (z.B.
   passende Aufgaben ohne Hilfe richtig lösen oder es selbst korrekt
   erklären), setz `Verstanden` auf das heutige Datum.
-- **Wann schreiben:** Schreib von selbst, ohne dass der Nutzer darum bittet:
-  am Ende eines Lernblocks, beim Wechsel des Themas oder der Fähigkeit und
-  spätestens nach etwa sechs Nachrichten, wenn sich seit dem letzten
-  Schreiben etwas geändert hat. Schreib nicht, wenn sich nichts geändert hat.
+- **Wann schreiben:** Schreib von selbst, ohne dass der Nutzer darum bittet.
+  Ein neues Problem und eine neue Ursache schreibst du noch in der Antwort,
+  in der du sie bemerkst, denn der Chat kann jederzeit am Nutzungslimit
+  enden. Übrige Änderungen (z.B. unter `Verstanden`) schreibst du am Ende
+  eines Lernblocks, beim Wechsel des Themas oder der Fähigkeit und spätestens
+  nach etwa sechs Nachrichten. Schreib nicht, wenn sich nichts geändert hat.
 
 ## Lernmodi
 
@@ -294,7 +299,9 @@ Reihenfolge:
 
 1. **Unterlagen:** eine Seite aus den Unterlagen des Nutzers. Schreib dahinter
    `({datei}, S. {seite})`, mit dem Dateinamen ohne Ordner und der Seite wie
-   im Index ab 1, z.B. `(skript.pdf, S. 45)`.
+   im Index ab 1, z.B. `(skript.pdf, S. 45)`. Steht die Aussage dort nicht
+   selbst, sondern hast du sie daraus hergeleitet (z.B. aus einer Formel),
+   schreib `(folgt aus {datei}, S. {seite})`.
 2. **Websuche:** Findest du dort nichts und hast du ein Werkzeug für die
    Websuche, such eine verlässliche Quelle (z.B. ein Lehrbuch oder die Seite
    einer Schule) und schreib dahinter `([{titel}]({link}))`.

@@ -52,8 +52,11 @@ einer neuen Angabe, so wie die Klausur es abfragt. Sie gehört auf jedes
 - Sie wendet ein Verfahren an, das Skript oder Übungen vorführen, z.B. eine
   Kurvendiskussion, das Knotenpotenzialverfahren oder eine Wahrheitstabelle.
 - Ihre Angabe ist neu, aber vom selben Typ wie in Klausur und Übungen (eine
-  andere Funktion, Schaltung oder Datenlage). Eine bestehende Aufgabe mit nur
-  anderen Zahlen nimmst du nicht, die gibt es nur auf dem Niveau Leicht.
+  andere Funktion, Schaltung oder Datenlage). Neu heißt: Gegebenes oder
+  Gesuchtes unterscheidet sich in mindestens einer Größe von jeder Aufgabe in
+  Skript, Übungen und Altklausuren, nicht nur in den Zahlen. Eine bestehende
+  Aufgabe mit nur anderen Zahlen nimmst du nicht, die gibt es nur auf dem
+  Niveau Leicht.
 - Ihre Zahlen sind so handlich wie in der Klausur.
 
 Prüf jeden Entwurf mit dem Stoff-, Löse-, Beleg- und Fairness-Test aus dem
@@ -127,9 +130,10 @@ Für jede Aufgabe:
    keiner, bleiben alle beim gleichen Lösungsweg.
 4. **Übernehmen:** Die Aufgabe bekommt den Text des Originals mit den neuen
    Werten und als Titel ihre Herkunft, z.B. `Blatt 3, Aufgabe 2 mit neuen
-   Werten`. Gib jeder Teilaufgabe so viele Punkte, wie sie etwa Minuten
-   braucht, auch wenn das Original andere Punkte hat, denn die Punktesumme ist
-   die Dauer des Blatts.
+   Werten`. Gib jeder Teilaufgabe so viele Punkte, wie sie Minuten braucht
+   (Abschnitt „Niveau“, „Zeit“, mit dem Original als Vergleichsaufgabe),
+   auch wenn das Original andere Punkte hat, denn die Punktesumme ist die
+   Dauer des Blatts.
 
 ## Transferaufgaben
 
@@ -152,7 +156,9 @@ Eine Aufgabe zählt nur, wenn alles zutrifft:
 3. Sie lässt sich weder durch Finden einer Stelle im Skript beantworten noch
    durch Nachspielen der Schritte einer gelösten Übung mit neuen Werten.
 4. Alles Nötige liegt im Stoff des Moduls: kein Fremdwissen, keine
-   Fangformulierungen.
+   Fangformulierungen. Was man über einen fremden Kontext wissen muss (Typ
+   E), steht vollständig in der Angabe, z.B. „Bei einer Strömungskupplung ist
+   das Drehmoment auf beiden Seiten gleich.“
 5. Es gibt eine vertretbare richtige Antwort oder, bei offenen Aufgaben, klare
    Bewertungskriterien.
 
@@ -178,7 +184,8 @@ Verwirf sofort:
 - **D Umgekehrte Richtung:** Ergebnis oder Verhalten ist gegeben, gesucht sind
   Eingangsgröße, System oder Parameter.
 - **E Fremder Kontext:** dieselbe Tiefenstruktur in einem fremden Fachgebiet
-  oder im Alltag, die der Nutzer auf das Konzept zurückführen muss.
+  oder im Alltag, die der Nutzer auf das Konzept zurückführen muss. Die
+  Angabe liefert alle Fakten über den Kontext.
 - **F Wählen und begründen:** Mehrere Methoden oder Modelle scheinen zu
   passen. Welche passt, und warum scheitern die anderen?
 - **G Verknüpfen:** ein Problem, das Konzepte aus zwei Kapiteln braucht.
@@ -234,27 +241,35 @@ Arbeite diese Schritte für dich ab. Der Nutzer sieht nur das Ergebnis.
 2. **Schwachstellen:** Gehören Schwachstellen zum Stoff, ordne jede einem
    Konzept oder einer Fehlvorstellung zu. Etwa die Hälfte der Aufgaben gilt
    ihnen, jede Schwachstelle aus mindestens zwei Richtungen.
-3. **Entwerfen:** Entwirf etwa doppelt so viele Aufgaben wie nötig, mit
-   mindestens fünf verschiedenen Aufgabentypen, auf kurzen Blättern nur
-   verschiedenen. Kombinier Kontext, Darstellung, Fragerichtung, Aufgabentyp
-   und Konzept, damit sich die Aufgaben nicht ähneln. Mischung: etwa 30 %
-   naher Transfer (AFB II), 50 % ferner Transfer (AFB II) und 20 % Reflexion
-   und Urteil (AFB III).
-4. **Testen:** Prüf jeden Entwurf. Verwirf oder überarbeite, was durchfällt:
+3. **Ideen sammeln:** Notiere etwa doppelt so viele Ideen, wie du
+   Transferaufgaben brauchst, jede in einem Satz mit Aufgabentyp, Konzept und
+   Kontext, z.B. `B, Zeitkonstante: Kommilitone hält 1,6τ für volle Ladung`.
+   Kombinier Kontext, Darstellung, Fragerichtung, Aufgabentyp und Konzept,
+   damit sich die Aufgaben nicht ähneln. Ausgearbeitet werden nur die, die
+   du in Schritt 5 auswählst.
+   - Mit fünf oder mehr Transferaufgaben: mindestens fünf verschiedene
+     Aufgabentypen, gemischt aus etwa 30 % nahem Transfer (AFB II), 50 %
+     fernem Transfer (AFB II) und 20 % Reflexion und Urteil (AFB III).
+   - Mit weniger: jede Aufgabe ein anderer Typ, mindestens eine ferner
+     Transfer.
+4. **Testen:** Prüf jede Idee mit dem Nachschlage-, Nachspiel- und
+   Stoff-Test, die ausgewählten Aufgaben danach mit allen Tests. Verwirf
+   oder überarbeite, was durchfällt:
    - Nachschlage-Test: Könnte jemand mit offenem Skript, aber ohne
      Verständnis, durch Abschreiben oder Umformulieren einer Stelle antworten?
      Dann verwerfen.
    - Nachspiel-Test: Lässt sie sich lösen, indem man die Schritte einer
      bestehenden Übung befolgt? Dann ist sie kein Transfer.
-   - Stoff-Test: Braucht sie etwas außerhalb des Moduls, oder schweift sie
-     mehr als ein wenig vom Skript ab? Dann verwerfen.
+   - Stoff-Test: Braucht sie etwas außerhalb des Moduls, das nicht in der
+     Angabe steht, oder schweift sie mehr als ein wenig vom Skript ab? Dann
+     verwerfen.
    - Löse-Test: Lös sie vollständig selbst und rechne nach (`skill:SKILL.md`,
      Abschnitt „Nachrechnen“). Ist die Antwort eindeutig und richtig?
-   - Beleg-Test: Stütz die Musterlösung auf eine Fundstelle (`skill:SKILL.md`,
-     Abschnitt „Belege“).
+   - Beleg-Test: Stütz die Lösung jeder Teilaufgabe auf eine Fundstelle
+     (`skill:SKILL.md`, Abschnitt „Belege“).
    - Fairness-Test: Ist sie eindeutig formuliert und in ihrer Zeit lösbar?
-5. **Auswählen:** Behalte die besten und ordne sie vom nahen zum fernen
-   Transfer.
+5. **Auswählen:** Behalte die besten, arbeite sie aus und ordne sie vom
+   nahen zum fernen Transfer.
 
 ## Niveau
 
@@ -269,10 +284,15 @@ Bestimm es einmal pro Übungsblatt, bevor du Aufgaben entwirfst:
 1. Nimm die neueste Altklausur des Moduls, im **Projekt** aus dem Abschnitt
    „Dateien“ des Index (Beschreibung beginnt mit dem Wort `Altklausur`, die
    neueste nach Name oder Beschreibung), im **Chat** aus den angehängten
-   Dateien. Lies alle ihre Aufgaben, aber nicht ihren Lösungsteil.
+   Dateien. Gibt es sie mit und ohne Lösung, nimm die ohne. Lies alle ihre
+   Aufgaben, aber keine Lösungen: Steht die Lösung direkt unter jeder
+   Aufgabe, lies jede Aufgabe nur bis zu ihrer Lösung, denn Lösungen kosten
+   viele Token und verraten für das Profil nichts.
 2. Notiere für dich:
    - den Routineanteil: die Punkte der Teilaufgaben, die ein eingeübtes
      Verfahren abfragen, als Anteil an allen Punkten
+   - die Minuten pro Punkt: ihre Bearbeitungszeit geteilt durch ihre
+     Gesamtpunkte, z.B. `1,8` bei 90 Minuten für 50 Punkte
    - die Aufgabenarten, z.B. Rechnung, Herleitung, Skizze, Multiple Choice
    - die Führung: wie viele Teilaufgaben eine Aufgabe hat und ob sie
      Zwischenschritte, Ansätze oder Formeln vorgibt
@@ -292,7 +312,9 @@ keine dasselbe, nimm die ähnlichste.
 
 - **Klausurniveau:** in jedem Hebel wie die Vergleichsaufgabe.
 - **Über Klausurniveau:** mindestens zwei Hebel eine Stufe höher als die
-  Vergleichsaufgabe, alle übrigen wie dort.
+  Vergleichsaufgabe, darunter mindestens einer außer Führung, alle übrigen
+  wie dort. Weggelassene Zwischenschritte allein machen eine Aufgabe kaum
+  schwerer.
 
 | Hebel | Über Klausurniveau heißt |
 |---|---|
@@ -304,8 +326,19 @@ keine dasselbe, nimm die ähnlichste.
 
 Schwerer machst du eine Aufgabe nur mit diesen Hebeln. Fremdwissen,
 Randdetails, Fangformulierungen, mehr Rechenaufwand ohne mehr Denken und
-knappere Zeit machen sie nicht schwerer, nur unfairer. Auch eine schwerere
-Aufgabe bekommt so viele Punkte, wie sie Minuten braucht.
+knappere Zeit machen sie nicht schwerer, nur unfairer.
+
+### Zeit
+
+Ein Punkt steht für etwa eine Minute, deshalb bekommt jede Teilaufgabe so
+viele Punkte, wie sie Minuten braucht, das Lesen der Angabe eingerechnet.
+Schätz die Minuten an ihrer Vergleichsaufgabe: deren Punkte mal die Minuten
+pro Punkt ihrer Klausur (Abschnitt „Klausurprofil“, bei einer anderen
+Altklausur von deren erster Seite), für jeden erhöhten Hebel etwa ein Fünftel
+mehr. Ein Beispiel: Eine Vergleichsaufgabe mit 6 Punkten bei 1,8 Minuten pro
+Punkt braucht etwa 11 Minuten, mit zwei erhöhten Hebeln etwa 15. Ist die
+Vergleichsaufgabe keine Aufgabe einer Altklausur, schätz, wie lange jemand
+braucht, der den Stoff beherrscht, mit Lesen.
 
 ### Niveau des Blatts
 
@@ -323,6 +356,11 @@ Aufgabe bekommt so viele Punkte, wie sie Minuten braucht.
 - Über Klausurniveau gilt auch für die Routineteilaufgaben einer Aufgabe: Ihr
   Verfahren bleibt eingeübt, aber z.B. ohne vorgegebene Zwischenschritte, mit
   einer Fallunterscheidung oder mit einem zweiten Verfahren verknüpft.
+- Transferanteil: Auf Klausurniveau bekommen Routineaufgaben den
+  Routineanteil der Klausur, Transferaufgaben den Rest. Auf Klausurniveau+
+  bekommt Transfer mindestens 20 % der Punkte, auf Expertenniveau mindestens
+  40 %, auch wenn die Klausur weniger hat. Routineaufgaben fallen nie ganz
+  weg.
 - Auf Leicht entfallen Klausurprofil, Vergleichsaufgabe und Niveau-Test, denn
   jede Aufgabe hat ihr Original als Maßstab.
 
@@ -355,7 +393,7 @@ Aufgaben, und die vielen Regeln der Vorlage würden davon ablenken.
      `90 Minuten`.
    - `{hilfsmittel}`: ebenso aus `Hilfsmittel` in
      `projekt:module/{modul}/info.md`, sonst aus einer Altklausur wie bei
-     `{pruefungsdauer}`, sonst `keine Angabe`.
+     `{pruefungsdauer}`, sonst leer.
 2. **Rückfragen:** Frag nur, was sich nicht aus der Anfrage ergibt.
    - Bestimmte Aufgaben: Verlangt die Anfrage bestimmte bestehende Aufgaben
      mit neuen Werten (z.B. „Gib mir Aufgabe 2 von Blatt 3 mit anderen
@@ -365,8 +403,9 @@ Aufgaben, und die vielen Regeln der Vorlage würden davon ablenken.
    - Vorrat: Nur im **Projekt**. Liegen für das Modul Blätter im Vorrat
      (Abschnitt „Vorrat“) und verlangt die Anfrage nichts, das nicht dazu
      passt (z.B. eine andere Länge, ein anderes Niveau oder ausdrücklich ein
-     neues Blatt ohne Vorrat), wähl eins wie im Abschnitt „Vorrat“,
-     „Auswählen“. Bleibt eins übrig, stell zuerst diese Rückfrage:
+     neues Blatt ohne Vorrat), wähl eins wie in
+     `skill:faehigkeiten/ueben-vorrat.md`, Abschnitt „Auswählen“. Bleibt eins
+     übrig, stell zuerst diese Rückfrage:
 
      ```auswahl
      Ich habe für {modulname} schon ein Übungsblatt vorbereitet: {vorrat-dauer} auf Klausurniveau+ zu {themen}. Es ist sofort fertig und schont dein Nutzungslimit. Willst du es?
@@ -374,23 +413,25 @@ Aufgaben, und die vielen Regeln der Vorlage würden davon ablenken.
      - Ein neues Übungsblatt
      ```
 
-     Bei „Das vorbereitete Blatt“ arbeite nach dem Abschnitt „Vorrat“,
-     „Benutzen“, weiter. Bei „Ein neues Übungsblatt“ stell die übrigen
-     Rückfragen.
+     Bei „Das vorbereitete Blatt“ arbeite nach
+     `skill:faehigkeiten/ueben-vorrat.md`, Abschnitt „Benutzen“, weiter. Bei
+     „Ein neues Übungsblatt“ stell die übrigen Rückfragen.
    - Stoff:
 
      ```auswahl
      Welchen Stoff soll das Übungsblatt abdecken?
      - Meine Schwachstellen und fällige Themen
      - Bestimmte Themen oder Kapitel
-     - Das ganze Skript
+     - Den ganzen Stoff des Fachs
      ```
 
      Die erste Option gibt es nur im **Projekt**, wenn
      `projekt:gedaechtnis/{modul}/probleme.md` Zeilen mit `-` unter
      `Verstanden` hat oder es fällige Themen gibt (`skill:SKILL.md`, Abschnitt
-     „Fällige Themen“). Bei „Bestimmte Themen oder Kapitel“ antworte und warte
-     auf die Antwort:
+     „Fällige Themen“). Der ganze Stoff ist alles aus den Dateien des Moduls,
+     auch Themen, die nur in Übungsblättern oder Altklausuren vorkommen, denn
+     auch sie kommen in der Prüfung dran. Bei „Bestimmte Themen oder Kapitel“
+     antworte und warte auf die Antwort:
 
      ```text
      Welche Themen oder Kapitel soll das Übungsblatt abdecken?
@@ -425,19 +466,21 @@ Aufgaben, und die vielen Regeln der Vorlage würden davon ablenken.
    `Expertenniveau`.
 3. **Stoff lesen:** Lies gezielt die Seiten zum Stoff: aus dem Skript die
    Kernkonzepte, aus Übungen und Altklausuren die Aufgaben dazu, damit du
-   Tiefenstruktur und Oberfläche trennen kannst. Beim ganzen Skript wählst du
-   die Konzepte über das Stichwortverzeichnis aus, statt alles zu lesen. Sieh
-   dir Seiten mit Abbildungen, Schaltplänen, Diagrammen oder Formeln als Bild
-   an (`skill:SKILL.md`, Abschnitt „PDF-Dateien“), denn als Text kommen sie
-   oft falsch an. Bestimm danach das Klausurprofil (Abschnitt „Niveau“,
+   Tiefenstruktur und Oberfläche trennen kannst. Beim ganzen Stoff wählst du
+   die Konzepte über das Stichwortverzeichnis aller Dateien des Moduls aus,
+   statt alles zu lesen. Sieh dir Seiten mit Abbildungen, Schaltplänen,
+   Diagrammen oder Formeln als Bild an (`skill:SKILL.md`, Abschnitt
+   „PDF-Dateien“), denn als Text kommen sie oft falsch an. Bestimm danach das Klausurprofil (Abschnitt „Niveau“,
    „Klausurprofil“), außer auf Leicht.
 4. **Aufgaben:** Entwirf die Aufgaben, beim Umfang „Kurz“ zwei oder drei:
    1. Auf Leicht entwirf alle Aufgaben wie im Abschnitt „Aufgaben mit neuen
       Werten“ und mach mit Punkt 4 weiter.
-   2. Teil die Punkte auf: für Routineaufgaben den Routineanteil aus dem
-      Klausurprofil, mindestens aber eine Teilaufgabe, den Rest für
-      Transferaufgaben. Eine Aufgabe darf wie in der Klausur Routine- und
-      Transferteilaufgaben mischen.
+   2. Teil die Punkte zwischen Routine- und Transferaufgaben auf, wie es
+      der Transferanteil für `{niveau}` verlangt (Abschnitt „Niveau“,
+      „Niveau des Blatts“), Routineaufgaben mindestens eine Teilaufgabe. Eine
+      Aufgabe darf wie in der Klausur Routine- und Transferteilaufgaben
+      mischen. Die Punkte jeder Teilaufgabe schätzt du wie im Abschnitt
+      „Niveau“, „Zeit“.
    3. Entwirf die Routineaufgaben wie im Abschnitt „Routineaufgaben“ und die
       Transferaufgaben wie im Abschnitt „Transferaufgaben“, jede auf der
       Stufe, die `{niveau}` für sie verlangt (Abschnitt „Niveau“). Prüf jede
@@ -462,8 +505,8 @@ Aufgaben, und die vielen Regeln der Vorlage würden davon ablenken.
    Zeigerdiagramme) zeigen, dazu Multiple Choice, Richtig/Falsch und
    Zuordnungen. Felder oder Linien zum Hineinschreiben gibt es nicht.
 5. **Lösungen:** Schreib zu jeder Teilaufgabe den vollständigen Lösungsweg mit
-   den Denkschritten, nicht nur das Ergebnis, nachgerechnet. Schreib danach zu
-   jeder Aufgabe:
+   den Denkschritten, nicht nur das Ergebnis, nachgerechnet, und an sein Ende
+   die Fundstelle, auf die er sich stützt. Schreib danach zu jeder Aufgabe:
    - welches Konzept sie prüft und worin sie sich von Skript und Übungen
      unterscheidet
    - ihr Niveau: `Niveau: {art}, {stufe}, verglichen mit {vergleich}: {hebel}`.
@@ -477,9 +520,6 @@ Aufgaben, und die vielen Regeln der Vorlage würden davon ablenken.
      Originals.
    - die verlockendste falsche Antwort und die Fehlvorstellung dahinter
    - die Bewertungskriterien: was eine volle Antwort enthält, mit Punkten
-   - die Fundstelle
-   - zwei Hinweise für den Fall, dass man hängt: erst einen vagen, dann einen
-     konkreten
 6. **Entwurf:** Lösch `arbeit:uebungsblatt/`, falls es den Ordner aus diesem
    Chat schon gibt, und leg ihn neu an. Schreib alle Aufgaben mit ihren
    Lösungen aus den Schritten 4 und 5 in `arbeit:uebungsblatt/entwurf.md`,
@@ -505,24 +545,22 @@ Aufgaben, und die vielen Regeln der Vorlage würden davon ablenken.
       Lösung: Der Schlauch bremst den Zufluss wie $R$ den Strom (1 P). Die
       Tonne speichert Wasser wie $C$ Ladung (1 P). Der Druck des Behälters
       treibt den Zufluss wie die Quellspannung den Strom (1 P).
+      (skript.pdf, S. 44)
 
    b) (4 P) Wie ändert sich die Füllzeit, wenn die Tonne die doppelte
       Grundfläche hat?
 
       Lösung: Für dieselbe Füllhöhe braucht sie doppelt so viel Wasser, ihre
       „Kapazität“ verdoppelt sich (2 P). Damit verdoppelt sich die
-      Zeitkonstante: **doppelte Füllzeit** (2 P).
+      Zeitkonstante: **doppelte Füllzeit** (2 P). (folgt aus skript.pdf,
+      S. 45)
 
    Zur Aufgabe: prüft die Zeitkonstante $\tau = RC$ in einem fremden
    Kontext, das Skript rechnet nur mit Schaltungen. Niveau: Transfer, über
    Klausurniveau, verglichen mit (Klausur 2024.pdf, S. 3 A2): fernerer
    Transfer, keine Formel vorgegeben. Verlockend falsch:
    „gleich lang, der Druck bleibt ja gleich“, Fehlvorstellung: Die Füllzeit
-   hänge nur vom Antrieb ab, nicht vom Speicher. Fundstelle:
-   (skript.pdf, S. 45)
-
-   Hinweise: vage: Was speichert die Tonne, und wovon hängt ab, wie viel?
-   Konkret: Vergleiche die Grundfläche mit $C$ in $\tau = RC$.
+   hänge nur vom Antrieb ab, nicht vom Speicher.
    ```
 
 7. **LaTeX schreiben:** Erst jetzt setzt du den Entwurf mit der Vorlage
@@ -535,17 +573,21 @@ Aufgaben, und die vielen Regeln der Vorlage würden davon ablenken.
       `exit=0`, fehlt LaTeX. Arbeite dann nach dem Abschnitt „Ohne LaTeX“
       weiter, ohne die Vorlage zu lesen.
    2. Lies `skill:vorlagen/ANLEITUNG.md` vollständig, falls du sie in diesem
-      Chat noch nicht gelesen hast. Sie beschreibt alle Befehle der Klasse,
-      und nur diese verwendest du. Ist dir ein Befehl unklar, lies in
+      Chat noch nicht gelesen hast, dazu jede weitere Anleitung, die ihr
+      Kapitel 12 für die Bausteine deines Entwurfs nennt (z.B.
+      `skill:vorlagen/ANLEITUNG-schaltungen.md` für Schaltpläne), und keine
+      andere, denn jede kostet viele Token. Sie beschreiben alle Befehle der
+      Klasse, und nur diese verwendest du. Ist dir ein Befehl unklar, lies in
       `skill:vorlagen/beispiel.tex` nur die Aufgabe, die ihn benutzt.
    3. Kopiere `skill:vorlagen/uebungsblatt.cls`,
       `skill:vorlagen/ohmtools-colors.sty`, `skill:vorlagen/uebungsblatt.tex`
       und `skill:vorlagen/build.sh` nach `arbeit:uebungsblatt/`.
    4. Ändere in der Kopie `arbeit:uebungsblatt/uebungsblatt.tex` vor
       `\begin{document}` `\fach` (`{modulname}`), `\bearbeitungszeit`
-      (`{dauer}`) und `\hilfsmittel` (`{hilfsmittel}`). Behalte von den Zeilen
-      mit `\hinweis` nur die, die zu deinen Aufgaben passen. Sonst änderst
-      du vor `\begin{document}` nichts.
+      (`{dauer}`) und `\hilfsmittel` (`{hilfsmittel}`). Ist `{hilfsmittel}`
+      leer, lösch die Zeile mit `\hilfsmittel`, dann nennt das Deckblatt
+      keine. Behalte von den Zeilen mit `\hinweis` nur die, die zu deinen
+      Aufgaben passen. Sonst änderst du vor `\begin{document}` nichts.
    5. Ersetze alles zwischen `\begin{document}` und `\end{document}` durch
       die Aufgaben aus `arbeit:uebungsblatt/entwurf.md`, jede in einer
       Umgebung `aufgabe`. Übertrag Texte, Lösungen und Punkte unverändert, du
@@ -555,13 +597,13 @@ Aufgaben, und die vielen Regeln der Vorlage würden davon ablenken.
       Seite und soll auf sie passen. Entsteht das Blatt für den Vorrat
       (Abschnitt „Vorrat“), binde keine eigenen Dateien ein (z.B. mit
       `\bild` oder `\codedatei`), denn der Vorrat hält nur den Quelltext.
-   6. Jede `Lösung:` des Entwurfs kommt in eine `loesung` direkt nach ihrer
-      Teilaufgabe. Jedes Bewertungskriterium endet dort mit `\teilpunkt`,
-      jedes fette Endergebnis steht in `\ergebnis`. „Zur Aufgabe“ und
-      „Hinweise“ kommen in zwei eigene `loesung` am Ende der Aufgabe,
-      `\begin{loesung}[Zur Aufgabe]` und `\begin{loesung}[Hinweise]`. Alles,
-      was eine Lösung verrät, auch in Abbildungen, steht in einer `loesung`,
-      in `\nurloesung` oder in den Lösungsmarkierungen der Antwortformate
+   6. Jede `Lösung:` des Entwurfs kommt mit ihrer Fundstelle in eine
+      `loesung` direkt nach ihrer Teilaufgabe. Jedes Bewertungskriterium
+      endet dort mit `\teilpunkt`, jedes fette Endergebnis steht in
+      `\ergebnis`. „Zur Aufgabe“ kommt in eine eigene `loesung` am Ende der
+      Aufgabe, `\begin{loesung}[Zur Aufgabe]`. Alles, was eine Lösung
+      verrät, auch in Abbildungen, steht in einer `loesung`, in
+      `\nurloesung` oder in den Lösungsmarkierungen der Antwortformate
       (`\antwort*`, `\aussage[r]`, `\aussage[f]`, `\paar[k]`).
    7. `arbeit:uebungsblatt/uebungsblatt.cls`,
       `arbeit:uebungsblatt/ohmtools-colors.sty` und
@@ -578,13 +620,17 @@ Aufgaben, und die vielen Regeln der Vorlage würden davon ablenken.
    Aufgaben, deren Punkte nicht stimmen. Behebe auch diese.
 9. **Prüfen:** Prüf vor dem Bereitstellen:
    - Beide PDFs sind ohne Fehler übersetzt.
-   - Du hast jede Seite beider PDFs als Bild angesehen (im Ordner
-     `arbeit:uebungsblatt/` mit `pdftoppm -r 80 -png uebungsblatt.pdf angabe`
-     und `pdftoppm -r 80 -png uebungsblatt-loesung.pdf loesung`):
+   - Du hast jede Seite der Angabe als Bild angesehen (im Ordner
+     `arbeit:uebungsblatt/` mit `pdftoppm -r 80 -png uebungsblatt.pdf angabe`):
      Abbildungen und Schaltpläne passen zum Text, nichts ist abgeschnitten
      oder ragt über den Rand, das Deckblatt nennt alle Aufgaben und zeigt
      nirgends `??`, jede Aufgabe beginnt auf einer neuen Seite, und die
      Angabe verrät keine Lösung.
+   - Du hast jede Seite der Lösung klein angesehen
+     (`pdftoppm -r 40 -png uebungsblatt-loesung.pdf loesung`), denn ihre
+     Aufgaben kennst du schon aus der Angabe: Keine Lösung ragt aus der
+     Seite. Seiten mit Abbildungen in einer Lösung oder mit etwas
+     Auffälligem siehst du dir danach mit `-r 80` an (`-f {seite} -l {seite}`).
    - In der Angabe passt jede Aufgabe auf ihre Seite. Reicht eine auf die
      nächste Seite, kürz sie oder verkleinere ihre Abbildung.
    - Alle Lösungen sind nachgerechnet, und die Teilpunkte jeder Teilaufgabe
@@ -604,7 +650,7 @@ Aufgaben, und die vielen Regeln der Vorlage würden davon ablenken.
     {ohne-latex}
 
     - {angabe}: die Angabe
-    - {loesung}: die Lösung mit Lösungsweg, Bewertungskriterien und Hinweisen
+    - {loesung}: die Lösung mit Lösungsweg und Bewertungskriterien
 
     Bearbeite das Blatt wie eine Prüfung: mit Zeitlimit, nur mit den angegebenen Hilfsmitteln und ohne mich. Öffne die Lösung erst danach. Hängst du fest, frag mich lieber nach einem Hinweis, als in die Lösung zu schauen. Deine fertige Lösung schick mir getippt oder als Foto, dann korrigiere ich sie. Hebst du beide Dateien auf, geht das auch später in einem neuen Chat.
     ```
@@ -619,8 +665,8 @@ Aufgaben, und die vielen Regeln der Vorlage würden davon ablenken.
     ```text
     Zu {modulname} hatte ich keine Altklausur, deshalb ist das Niveau nur geschätzt.
     ```
-11. **Danach:** Fragt der Nutzer zu einer Aufgabe, hilf mit den Hinweisen aus
-    Schritt 5 (`skill:SKILL.md`, Abschnitt „Leitplanken“). Schickt er seine
+11. **Danach:** Fragt der Nutzer zu einer Aufgabe, hilf mit Hinweisen wie in
+    `skill:SKILL.md`, Abschnitt „Leitplanken“. Schickt er seine
     Lösung, wechsle zu `skill:faehigkeiten/korrigieren.md` mit dem
     Übungsblatt als Thema (`skill:SKILL.md`, Abschnitt „Fähigkeit
     wechseln“).
@@ -629,8 +675,8 @@ Aufgaben, und die vielen Regeln der Vorlage würden davon ablenken.
 
 Mach aus `arbeit:uebungsblatt/entwurf.md` zwei Markdown-Dateien in
 `arbeit:uebungsblatt/`: `uebungsblatt.md` mit der Angabe, also dem Entwurf
-ohne `Lösung:`, „Zur Aufgabe“ und „Hinweise“, und `uebungsblatt-loesung.md`
-mit dem ganzen Entwurf. Abbildungen bleiben als Beschreibung in Worten
+ohne `Lösung:` und „Zur Aufgabe“, und `uebungsblatt-loesung.md` mit dem
+ganzen Entwurf. Abbildungen bleiben als Beschreibung in Worten
 stehen. Prüf Lösungen und Punkte wie in Schritt 9, ohne die Bilder. Mach dann
 mit Schritt 10 weiter, mit diesen Dateinamen und dieser Zeile für
 `{ohne-latex}`, wobei `{grund}` die Fehlermeldung in wenigen Worten ist:
@@ -642,162 +688,16 @@ Hier kann ich gerade keine PDFs erzeugen ({grund}), deshalb bekommst du es als T
 ## Vorrat
 
 Im **Projekt** kann es pro Modul vorbereitete Übungsblätter geben, beliebig
-viele, jedes etwa 45 Minuten auf Klausurniveau+ zu den Schwachstellen und
-fälligen Themen. Die automatische Anweisung „Übungsblätter vorbereiten“, die
-der Nutzer einrichten kann, legt bei jedem Lauf einmal pro Woche ein weiteres
-an, wenn übrige Nutzung sonst verfallen würde. Der Nutzer bekommt es dann
-sofort, und es kostet nur einen Bruchteil eines neuen Blatts, vor allem das
-Abschreiben des Quelltexts. Gespeichert ist nur der LaTeX-Quelltext aus dem
-Abschnitt „Übungsblatt“, denn PDFs lassen sich nicht in den Projektdateien
-ablegen, als `projekt:vorrat/{modul}/uebungsblatt-{erstellt}.tex`. Davor steht
-ein Kopf:
-
-```latex
-% Lernhelfer-Vorrat
-% erstellt: 2026-10-22
-% dauer: 45 Minuten
-% aufgaben: 3
-% punkte: 45
-% themen: Kettenregel, Partielle Integration
-% =====================================================================
-%  uebungsblatt.tex – leeres Grundgerüst für ein neues Übungsblatt
-…
-\end{document}
-```
-
-- `{erstellt}` und `erstellt`: der Tag der Erstellung. Gibt es für das Modul
-  an diesem Tag schon ein Blatt, bekommt der Dateiname `-2`, `-3` usw.
-  angehängt (z.B. `uebungsblatt-2026-10-22-2.tex`).
-- `dauer`, `aufgaben` und `punkte`: wie `{dauer}`, `{anzahl}` und `{punkte}`
-  in Schritt 10 des Abschnitts „Übungsblatt“.
-- `themen`: die Schwachstellen und fälligen Themen, die das Blatt abdeckt,
-  durch Kommas getrennt und genau so geschrieben wie in der Spalte `Thema` von
-  `projekt:gedaechtnis/{modul}/probleme.md`, damit du sie beim Auswählen
-  wiederfindest.
-
-Ein Blatt im Vorrat wurde vor dem Speichern vollständig geprüft. Prüf es
-danach nicht noch einmal, auch nicht gegen die Datenquelle.
-
-Damit du zum Auswählen nicht jedes Blatt lesen musst, was bei vielen Blättern
-viele Token kostet, steht jedes Blatt mit den Angaben aus seinem Kopf auch in
-`projekt:vorrat/{modul}/uebersicht.md`. Fehlt die Datei, gilt sie als leer.
-Ein Blatt ohne Zeile darin bietest du nie an.
-
-```markdown
-# Vorrat
-
-| Datei | Erstellt | Dauer | Aufgaben | Punkte | Themen |
-|---|---|---|---|---|---|
-| uebungsblatt-2026-10-22.tex | 2026-10-22 | 45 Minuten | 3 | 45 | Kettenregel, Partielle Integration |
-```
-
-### Speichern
-
-Nur die automatische Anweisung speichert Blätter, nur auf Klausurniveau+ und
-erst, wenn das Blatt Schritt 9 („Prüfen“) bestanden hat. So kommt nie ein
-halbes Blatt in den Vorrat (`plugin:skills/gemeinsam/grundlagen.md`, Abschnitt
-„Abbruch“). Ein Blatt, das eigene Dateien einbindet (z.B. mit `\bild` oder
-`\codedatei`), speicherst du nicht, denn der Vorrat hält nur den Quelltext.
-
-1. Bestimm den Dateinamen aus dem heutigen Datum und den Blättern, die schon
-   in `projekt:vorrat/{modul}/` liegen. Schreib den Kopf mit dem heutigen
-   Datum unter `erstellt` nach `arbeit:uebungsblatt/kopf.tex`. Führ dann im
-   Ordner `arbeit:uebungsblatt/` aus:
-
-   ```bash
-   cat kopf.tex uebungsblatt.tex > vorrat.tex
-   tail -n 1 vorrat.tex
-   ```
-
-2. Prüf, dass `tail` `\end{document}` ausgibt.
-3. Schreib `arbeit:uebungsblatt/vorrat.tex` mit einem einzigen Aufruf unter
-   dem Dateinamen nach `projekt:vorrat/{modul}/`, mit Angabe ihres Pfads statt
-   ihres Inhalts (z.B. `local_path` bei `project_write`).
-4. Lies erst danach `projekt:vorrat/{modul}/uebersicht.md`, fehlt sie, nimm
-   die Vorlage ohne Zeilen unter der Kopfzeile. Häng eine Zeile mit dem
-   Dateinamen und den Angaben aus dem Kopf an und schreib die Datei. In dieser
-   Reihenfolge bleibt nach einem Abbruch höchstens ein Blatt ohne Zeile übrig,
-   nie eine Zeile ohne Blatt.
-
-### Auswählen
-
-1. Lies `projekt:vorrat/{modul}/uebersicht.md`, nicht die Blätter. In Frage
-   kommt jede Zeile, deren Datei in der Projektübersicht liegt. Nennt die
-   Anfrage bestimmte Themen, kommen nur Zeilen in Frage, deren `Themen` alle
-   diese Themen enthalten.
-2. Zähl für jede, wie viele ihrer `Themen` heute Schwachstellen sind
-   (Abschnitt „Niveau“, „Niveau des Blatts“) oder fällig (`skill:SKILL.md`,
-   Abschnitt „Fällige Themen“).
-3. Nimm das Blatt mit der höchsten Zahl, bei Gleichstand das neueste (das
-   späteste Datum unter `Erstellt`, dann die höchste Nummer im Dateinamen),
-   denn es kennt die neuesten Probleme. Für die Rückfrage ist `{vorrat-dauer}`
-   der Wert unter `Dauer` in seiner Zeile und `{themen}` der unter `Themen`.
-
-### Benutzen
-
-1. Lies das Blatt aus „Auswählen“.
-2. Lösch `arbeit:uebungsblatt/`, falls es den Ordner aus diesem Chat schon
-   gibt, leg ihn neu an und kopiere `skill:vorlagen/uebungsblatt.cls`,
-   `skill:vorlagen/ohmtools-colors.sty` und `skill:vorlagen/build.sh` hinein.
-   Liefert dein Werkzeug die gelesene Datei als Datei, kopiere sie nach
-   `arbeit:uebungsblatt/uebungsblatt.tex`, sonst schreib ihren Inhalt
-   dorthin, Zeichen für Zeichen unverändert. Setz darin
-   `\fach` auf `{modulname}`, denn das Fach kann inzwischen anders heißen.
-3. Übersetze wie in Schritt 8. Endet es nicht mit `exit=0`, benutze das Blatt
-   nicht und mach mit den übrigen Rückfragen in Schritt 2 weiter wie ohne
-   Vorrat. Lösch es dann aus dem Vorrat wie in Punkt 5, außer eine Meldung
-   enthält `not found` (z.B. `pdflatex: not found` oder `File … not found`),
-   denn dann fehlen hier nur LaTeX oder ein Paket.
-4. Schritt 9 entfällt, das Blatt wurde vor dem Speichern geprüft.
-5. Lösch das Blatt aus dem Vorrat, bevor du die PDFs bereitstellst: Entferne
-   zuerst seine Zeile aus `projekt:vorrat/{modul}/uebersicht.md` und schreib
-   die Datei, lösch dann das Blatt selbst. So bekommt der Nutzer kein Blatt
-   zweimal, auch wenn der Chat dazwischen endet.
-6. Mach mit Schritt 10 weiter, mit `{dauer}`, `{anzahl}` und `{punkte}` aus
-   `dauer`, `aufgaben` und `punkte` im Kopf und `Klausurniveau+` als
-   `{niveau}`. `{ohne-klausur}` entfällt, denn die Lösung nennt den Maßstab
-   selbst. Mach danach mit Schritt 11 weiter.
+viele, in `projekt:vorrat/{modul}/`. Wie sie entstehen, ausgewählt und benutzt
+werden, steht in `skill:faehigkeiten/ueben-vorrat.md`, einem Teil dieser
+Fähigkeit. Lies sie vollständig, sobald dein Ablauf den Vorrat braucht: wenn
+in der Projektübersicht Blätter in `projekt:vorrat/{modul}/` liegen (Schritt 2
+des Abschnitts „Übungsblatt“) oder wenn eine automatische Anweisung Blätter für
+den Vorrat vorbereiten lässt. Sonst lies sie nicht, das spart Token.
 
 ## Bloom-Leiter
 
-Aufgaben zu einem Thema auf sechs Stufen, von „erinnern“ bis „erschaffen“.
-Erst die oberen Stufen zeigen echtes Können.
-
-| Stufe | Der Nutzer soll … |
-|---|---|
-| 1 erinnern | Wissen wiedergeben |
-| 2 verstehen | in eigenen Worten erklären und Beispiele finden |
-| 3 anwenden | ein Verfahren in einer neuen Situation einsetzen |
-| 4 analysieren | zerlegen, Zusammenhänge und Fehler finden |
-| 5 bewerten | beurteilen und begründet entscheiden |
-| 6 erschaffen | etwas Neues entwerfen, z.B. eine Lösung unter Randbedingungen |
-
-1. **Thema:** Nennt die Anfrage keins, schlag eines vor wie in
-   `skill:SKILL.md`, Abschnitt „Fällige Themen“. Lies die Seiten dazu.
-2. **Ankündigen:** Antworte:
-
-   ```text
-   Wir steigen die Bloom-Leiter zu {thema} hoch: erinnern, verstehen, anwenden, analysieren, bewerten, erschaffen. Pro Stufe bekommst du zwei Aufgaben, die nächste Stufe kommt, wenn beide sitzen.
-   ```
-
-3. **Aufgaben:** Stell pro Stufe zwei Aufgaben, eine pro Nachricht. Ab Stufe 3
-   nimm Aufgabentypen aus dem Abschnitt „Transferaufgaben“, z.B. B für
-   analysieren, F für bewerten und J für erschaffen. Rechne jede Lösung vorher
-   nach. Antworte für jede Aufgabe, wobei `{stufe}` der Name der Stufe ist:
-
-   ```text
-   **Stufe {nummer} von 6, {stufe}, Aufgabe {aufgabe} von 2:** {aufgabentext}
-   ```
-
-4. **Rückmelden:** Sag nach jeder Antwort, ob sie richtig, teilweise richtig
-   oder falsch ist und was fehlt, mit Fundstelle. Ist sie nicht richtig, hilf
-   mit Hinweisen, bis er sie selbst löst. Die nächste Stufe kommt erst, wenn
-   er beide Aufgaben der Stufe gelöst hat. Bei einer Lücke (Abschnitt
-   „Ablauf“, Schritt 3) ist die Rückkehr `Bloom-Leiter: {thema}, Stufe
-   {nummer}`.
-5. **Abschluss:** Nach Stufe 6 antworte und beende die Session wie in
-   `skill:SKILL.md`, Abschnitt „Session beenden“:
-
-   ```text
-   Du hast alle sechs Stufen zu {thema} geschafft, bis zum Erschaffen.
-   ```
+Die Bloom-Leiter übt ein Thema im Chat auf sechs Stufen, vom Erinnern bis zum
+Erschaffen. Ihr Ablauf steht in `skill:faehigkeiten/ueben-bloom-leiter.md`,
+einem Teil dieser Fähigkeit. Lies sie vollständig, wenn der Nutzer so üben
+will (Abschnitt „Ablauf“, Schritt 2), sonst nicht.

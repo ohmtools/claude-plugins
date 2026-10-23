@@ -1,6 +1,6 @@
 ---
 name: helfen
-description: "Hilfe zum Lernhelfer, einer Lernumgebung für Oberstufe, Berufsschule und Studium: erklärt, was der Lernhelfer kann, wie man ihn installiert, einrichtet, aktualisiert und benutzt, was die Datenquelle ist, wo die Daten liegen und wie man Rückmeldung gibt. Verwende diesen Skill, wenn der Nutzer Fragen zum Lernhelfer selbst stellt, z.B. „Was kannst du?“, „Wie funktioniert der Lernhelfer?“, „Brauche ich ein Projekt?“, „Brauche ich GitHub?“, „Was sind automatische Anweisungen?“, „Wie aktualisiere ich?“, oder um Hilfe oder Info zum Lernhelfer bittet."
+description: "Hilfe zum Lernhelfer, einer Lernumgebung für Oberstufe, Berufsschule und Studium: erklärt, was der Lernhelfer kann, wie man ihn installiert, einrichtet, aktualisiert und benutzt, was die Datenquelle ist, wo die Daten liegen und wie man Rückmeldung gibt, und notiert Rückmeldungen. Verwende diesen Skill, wenn der Nutzer Fragen zum Lernhelfer selbst stellt, z.B. „Was kannst du?“, „Wie funktioniert der Lernhelfer?“, „Brauche ich ein Projekt?“, „Brauche ich GitHub?“, „Was sind automatische Anweisungen?“, „Wie aktualisiere ich?“, um Hilfe oder Info zum Lernhelfer bittet oder ihm Rückmeldung gibt (Probleme, Wünsche, „Ist dir etwas aufgefallen?“)."
 ---
 
 # Lernhelfer – Helfen
@@ -12,7 +12,8 @@ benutzt und wie man ihn installiert und aktualisiert.
 
 - Antworte nur auf Basis dieses Skills. Erfinde keine Funktionen. Ist etwas
   als „noch nicht ausgearbeitet“ markiert, sag das offen.
-- Schreib nichts ins Projekt.
+- Ins Projekt schreibst du nur Rückmeldungen zum Lernhelfer (Abschnitt
+  „Rückmeldungen notieren“), sonst nichts.
 - Pfade mit dem Präfix `projekt:` liegen in den Projektdateien. Nennst du sie
   dem Nutzer, dann lass das Präfix weg.
 - Sprich Deutsch. Fachbegriffe dürfen englisch bleiben, aber bilde keine
@@ -27,6 +28,46 @@ benutzt und wie man ihn installiert und aktualisiert.
    nur in einem eingerichteten Projekt gibt, dass sie eines brauchen.
 3. Schließe mit einem konkreten nächsten Schritt, den der Nutzer direkt im
    Chat schreiben kann.
+
+## Rückmeldungen notieren
+
+Nennt der Nutzer ein Problem mit dem Lernhelfer, einen Wunsch oder einen
+Vorschlag, oder fragt er dich danach und du nennst selbst welche (z.B. „Ist
+dir beim Üben etwas aufgefallen?“), halte sie fest, damit die Person, die den
+Lernhelfer verbessert, davon erfährt. Das geht nur in einem Claude.ai-Projekt,
+dessen Projektübersicht (z.B. `project_info`) die Datei
+`projekt:gedaechtnis/benutzererfahrung.md` nennt. Sonst entfällt dieser
+Abschnitt.
+
+1. Lies `projekt:gedaechtnis/benutzererfahrung.md` vollständig. Steht in
+   ihrem Frontmatter nicht `format: 1`, schreib nichts.
+2. Häng für jeden Punkt eine Zeile an die Tabelle an, außer er steht dort
+   schon. Ändere nichts anderes. Aufbau:
+
+   ```markdown
+   | Datum | Fähigkeit | Art | Was passiert ist |
+   |---|---|---|---|
+   | 2026-10-23 | Üben | Wunsch | Hinweise zu den Aufgaben eines Übungsblatts auch ohne Lösungs-PDF erreichbar machen. |
+   ```
+
+   - `Datum`: heute.
+   - `Fähigkeit`: die Fähigkeit des Lernhelfers, um die es geht (z.B.
+     `Erlernen`, `Üben`, `Hochladen`), sonst `Helfen`.
+   - `Art`: `Wunsch` für Wünsche und Vorschläge, `Bedienung`, wenn der
+     Nutzer einen Ablauf oder eine Nachricht nicht verstanden hat,
+     `Anweisung`, wenn eine Anweisung des Lernhelfers unklar war oder nicht
+     passte, `Technik`, wenn ein Werkzeug versagt hat.
+   - `Was passiert ist`: ein oder zwei Sätze, so konkret, dass jemand ohne
+     diesen Chat den Lernhelfer gezielt verbessern kann, ohne persönliche
+     Daten und ohne Inhalte aus Skripten oder Übungen, denn die Datei ist zum
+     Weitergeben gedacht.
+3. Schreib die ganze Datei mit einem Aufruf zurück, unter dem Pfad
+   `gedaechtnis/benutzererfahrung.md`.
+4. Beende deine Antwort mit diesem Satz:
+
+   ```text
+   Das habe ich in den Notizen zur Benutzererfahrung festgehalten. Mit „/lernhelfer:verwalten Benutzererfahrung teilen“ bekommst du sie als Datei zum Weitergeben.
+   ```
 
 ## Häufige Fragen
 
@@ -44,7 +85,8 @@ Er besteht aus drei Skills:
   bewerten lassen, getippt oder als Foto). „Schwachstellen listen“ zeigt,
   womit der Nutzer in einem Fach noch Schwierigkeiten hat. „Skript
   verbessern“ macht aus einem Skript eine interaktive Webseite mit
-  Erklärungen und Wiederholungsfragen, der Originaltext bleibt unverändert.
+  Erklärungen, Animationen und Wiederholungsfragen, der Originaltext bleibt
+  unverändert.
 - Verwalten, nur in einem Claude.ai-Projekt: Projekt einrichten und mit einer
   Datenquelle verbinden, Fächer anlegen, umbenennen und löschen, Dateien
   hochladen und Fächern zuordnen, indizieren, Lernziele aus dem Modulhandbuch
@@ -96,12 +138,15 @@ Bindestrich, ohne Umlaute, z.B. lineare-algebra), das Modulhandbuch ohne Ordner.
 Der Nutzer schreibt einfach, was er will, z.B. „/lernhelfer:lernen Erklär mir
 die Kettenregel“. Claude wählt dann einen dieser Lernmodi:
 - Erlernen, für neuen Stoff: Claude stellt Leitfragen, eine nach der anderen,
-  statt die Antwort zu verraten. Bei Abläufen, Systemen oder Schaltungen gibt
-  es eine Darstellung, die der Nutzer danach aus dem Gedächtnis nachzeichnet.
+  statt die Antwort zu verraten. Ist ein Thema groß, fragt Claude zuerst, mit
+  welchem Teil es losgeht. Bei Abläufen, Systemen oder Schaltungen gibt es
+  eine Darstellung, die der Nutzer danach aus dem Gedächtnis nachzeichnet.
+  „Verstanden“ allein reicht nicht: Der Nutzer erklärt es zum Schluss selbst.
 - Wiederholen, für Gelerntes: „Frag mich zu Kapitel 3 ab“ (Fragen aus dem
   Gedächtnis, mit Angabe, wie sicher man ist), „Ich erkläre dir jetzt …“
   (Claude markiert, was falsch, vage oder lückenhaft ist) oder „Lass uns das
-  Skript durchgehen“ (Seite für Seite, in Etappen).
+  Skript durchgehen“ (Seite für Seite, in Etappen, die wichtigsten Begriffe
+  ausführlich, Randbegriffe kurz).
 - Üben, für die Prüfung: „Mach mir ein Übungsblatt“ liefert neue Aufgaben wie
   in einer typischen Klausur des Fachs, als zwei PDFs: Angabe und Lösung.
   Neben Aufgaben, die Verständnis statt Auswendiglernen prüfen, gibt es immer
@@ -110,10 +155,13 @@ die Kettenregel“. Claude wählt dann einen dieser Lernmodi:
   Übungsblättern und Altklausuren mit neuen Werten, darunter auch solche, bei
   denen sich das Ergebnis grundlegend ändert), Klausurniveau, Klausurniveau+
   (schwerer als die Klausur, außer bei den eigenen Schwachstellen, nur im
-  Projekt) oder Expertenniveau (alles schwerer als die Klausur). „Gib mir
-  Aufgabe 2 von Blatt 3 mit anderen Zahlen“ ergibt ohne Rückfrage ein Blatt
-  auf Leicht mit genau dieser Aufgabe. Maßstab sind die Altklausuren des
-  Fachs, ohne sie ist das Niveau nur geschätzt. Hat eine
+  Projekt) oder Expertenniveau (alles schwerer als die Klausur). Auf
+  Klausurniveau sind Routine- und Transferaufgaben gemischt wie in der
+  Klausur, darüber gibt es mehr Transfer. Hinweise stehen nicht auf dem
+  Blatt: Wer hängt, fragt Claude nach einem. „Gib mir Aufgabe 2 von Blatt 3
+  mit anderen Zahlen“ ergibt ohne Rückfrage ein Blatt auf Leicht mit genau
+  dieser Aufgabe. Maßstab sind die Altklausuren des Fachs, ohne sie ist das
+  Niveau nur geschätzt. Hat eine
   automatische Anweisung schon Blätter vorbereitet, bietet Claude das
   passendste zuerst an, dann ist es sofort fertig. Die Bloom-Leiter führt im Chat in sechs
   Stufen vom Erinnern bis zum Erschaffen.
@@ -144,19 +192,22 @@ heruntergeladen ohne Internet funktioniert, am Computer, Tablet und Handy. Der
 Originaltext steht Wort für Wort darin, Claude prüft das mit einem Programm,
 deshalb passen Seitenangaben weiter zum PDF. Alles, was Claude ergänzt, trägt
 eine rote Linie und die Beschriftung „Ergänzung“ und lässt sich mit „Nur
-Original“ ausblenden: die Bedeutung aller Variablen einer Gleichung,
-Erklärungen zu Abbildungen und fehlenden Zwischenschritten, Denkanstöße mit
-verdeckter Auflösung, eigene Grafiken (z.B. Schaltpläne, Graphen), Elemente
-zum Ausprobieren mit Reglern und am Ende jedes Abschnitts kurze
-Wiederholungsfragen mit verdeckter Lösung. Im Projekt erklärt Claude die
+Original“ ausblenden: die Bedeutung aller Variablen einer Gleichung, Erklärungen
+zu Abbildungen und fehlenden Zwischenschritten, Denkanstöße mit verdeckter
+Auflösung, eigene Grafiken (z.B. Schaltpläne, Graphen), Elemente zum
+Ausprobieren mit Reglern, Animationen für alles, was sich im Skript bewegt oder
+zeitlich ändert (z.B. ein Drehfeld), und am Ende jedes Kapitels
+Wiederholungsfragen mit verdeckter Lösung, bei Auswahlfragen mit einer Erklärung
+zu jeder Antwort. Im Projekt erklärt Claude die
 Themen gründlicher, mit denen der Nutzer Schwierigkeiten hat, ohne sie auf der
 Seite zu nennen. Ein ganzes Skript bereitet Claude in Etappen von höchstens
-einem Kapitel und 20 Seiten auf. Nach jeder Etappe gibt es die Webseite und
-eine Datei mit dem Quellcode (…-quelle.zip). Mit „Mach mit dem Skript weiter“
-geht es im selben Chat weiter, in einem neuen Chat mit der angehängten
-Quellcode-Datei. Die Vorlage der Webseite liegt öffentlich unter
+einem Kapitel und 20 Seiten auf. Nach jeder Etappe gibt es die Webseite und eine
+Datei mit dem Quellcode (…-quelle.zip). Mit „Mach mit dem Skript weiter“ geht es
+im selben Chat weiter, in einem neuen Chat mit der angehängten Quellcode-Datei.
+Die Vorlage der Webseite liegt öffentlich unter
 <https://github.com/ohmtools/lernhelfer-skript>. Der Originaltext gehört
-seinem Autor: Die Seite ist für den eigenen Gebrauch.
+seinem Autor: Die Seite ist für den eigenen Gebrauch, Claude lädt sie nirgends
+hoch.
         </antwort>
     </eintrag>
     <eintrag>
@@ -179,18 +230,20 @@ nach, bevor sie in eine Lösung kommen.
 Claude.ai verwaltet das Plugin unter Customize > Plugins. Am einfachsten fügt
 der Nutzer dort über Add > Add marketplace den Link
 <https://github.com/ohmtools/claude-plugins> hinzu, installiert daraus das
-Plugin „lernhelfer“ und schaltet den automatischen Abgleich ein. Dann bekommt er neue Fassungen von selbst. Wer das Plugin als
-Datei hochgeladen hat, lädt eine neue Datei hoch. Welche Fassung installiert
-ist, weiß der Lernhelfer selbst nicht. Fächer, Datenquelle und alles, was Claude
-sich gemerkt hat, bleiben bei einem Update erhalten. Braucht eine neue Fassung
-ein anderes Format für die gespeicherten Daten, sagt Claude das. Der Nutzer
-schreibt dann „/lernhelfer:verwalten Daten migrieren“ und den Namen eines Fachs,
-für jedes Fach einmal. Nach einem Update kann er in jedem Lernhelfer-Projekt
+Plugin „lernhelfer“ und schaltet den automatischen Abgleich ein. Dann bekommt er
+neue Fassungen von selbst. Wer das Plugin als Datei hochgeladen hat, lädt eine
+neue Datei hoch. Welche Fassung installiert ist, weiß der Lernhelfer selbst
+nicht. Fächer, Datenquelle und alles, was Claude sich gemerkt hat, bleiben bei
+einem Update erhalten. Braucht eine neue Fassung ein anderes Format für die
+gespeicherten Daten, sagt Claude das. Der Nutzer schreibt dann
+„/lernhelfer:verwalten Daten migrieren“ und den Namen eines Fachs, für jedes
+Fach einmal. Nach einem Update kann er in jedem Lernhelfer-Projekt
 „/lernhelfer:verwalten Richte dieses Projekt als Lernhelfer ein“ schreiben.
 Claude prüft dann, ob die Projektanweisungen noch passen, und gibt bei Bedarf
-den neuen Text. Wer automatische Anweisungen nutzt, richtet sie nach einem
-Update am besten mit „/lernhelfer:verwalten Richte die automatischen
-Anweisungen ein“ neu ein, denn ihr Text ändert sich nicht von selbst.
+den neuen Text. Außerdem bringt es den Zugriff auf die Datenquelle auf den Stand
+der neuen Fassung. Wer automatische Anweisungen nutzt, richtet sie nach einem
+Update am besten mit „/lernhelfer:verwalten Richte die automatischen Anweisungen
+ein“ neu ein, denn ihr Text ändert sich nicht von selbst.
         </antwort>
     </eintrag>
     <eintrag>
@@ -201,14 +254,16 @@ Mathematik an“. Gibt es ein Modulhandbuch, übernimmt Claude daraus Beschreibu
 und Lernziele. Fehlt es in der Datenquelle, fragt Claude zuerst, ob der Nutzer
 es hochladen will, sonst nach einer kurzen Beschreibung. Mehrere Fächer auf
 einmal legt „/lernhelfer:verwalten Leg die Fächer aus dem Modulhandbuch an“ an
-(siehe „Was passiert mit dem Modulhandbuch?“). Unterlagen hängt
-der Nutzer im Chat an und schreibt „/lernhelfer:verwalten Lade die Dateien in
-Mathematik hoch“. Claude legt sie dann im Ordner des Fachs in der Datenquelle
-ab. Der Nutzer kann sie auch selbst dort ablegen: Dateien im Ordner eines Fachs
-ordnet Claude beim nächsten Indizieren von selbst zu, Dateien an anderen Stellen
-mit z.B. „/lernhelfer:verwalten Blatt 3.pdf gehört zu Mathematik“. Eine Datei
-darf zu mehreren Fächern gehören. Welche Dateien noch zu keinem Fach gehören,
-sagt Claude auf Nachfrage. Zum Ersetzen lädt der Nutzer die neue Fassung unter
+(siehe „Was passiert mit dem Modulhandbuch?“). Unterlagen hängt der Nutzer im
+Chat an und schreibt „/lernhelfer:verwalten Lade die Dateien in Mathematik
+hoch“. Claude legt sie dann im Ordner des Fachs in der Datenquelle ab. Gibt es
+das Fach noch nicht, legt Claude sie schon in seinem Ordner ab und sagt, wie der
+Nutzer es anlegt; danach gehören sie von selbst dazu. Der Nutzer kann sie auch
+selbst dort ablegen: Dateien im Ordner eines Fachs ordnet Claude beim nächsten
+Indizieren von selbst zu, Dateien an anderen Stellen mit z.B.
+„/lernhelfer:verwalten Blatt 3.pdf gehört zu Mathematik“. Eine Datei darf zu
+mehreren Fächern gehören. Welche Dateien noch zu keinem Fach gehören, sagt
+Claude auf Nachfrage. Zum Ersetzen lädt der Nutzer die neue Fassung unter
 demselben Namen hoch. Nach dem Hochladen oder Zuordnen müssen die Dateien noch
 indiziert werden, bevor Claude beim Lernen damit arbeitet.
         </antwort>
@@ -248,11 +303,12 @@ außer der Nutzer will es ausdrücklich (z.B. „Indiziere alles neu“). Das
 Indizieren ist aufwendig, aber einfach, deshalb reicht das Modell Haiku und
 schont das Nutzungslimit. Der Nutzer startet dazu einen neuen Chat mit Haiku und
 schreibt „/lernhelfer:verwalten Indiziere“, oder er lässt es einmal pro Woche
-von einer automatischen Anweisung erledigen. Claude indiziert nur, wenn der
-Nutzer es verlangt oder eingerichtet hat. Hat sich eine Datei seit dem
-letzten Indizieren geändert, lernt Claude nicht mit ihr, sondern sagt
-Bescheid, damit es nicht mit falschen Inhalten arbeitet. Bis dahin kann der
-Nutzer die Datei direkt im Chat anhängen.
+von einer automatischen Anweisung erledigen. Verlangt er es in einem Chat mit
+einem größeren Modell, fragt Claude vorher, ob er lieber zu Haiku wechselt.
+Claude indiziert nur, wenn der Nutzer es verlangt oder eingerichtet hat. Hat
+sich eine Datei seit dem letzten Indizieren geändert, lernt Claude nicht mit
+ihr, sondern sagt Bescheid, damit es nicht mit falschen Inhalten arbeitet. Bis
+dahin kann der Nutzer die Datei direkt im Chat anhängen.
         </antwort>
     </eintrag>
     <eintrag>
@@ -333,10 +389,11 @@ Chat.
         <antwort>
 Im Projekt notiert Claude beim Lernen und Verwalten von selbst, wo der Umgang
 mit dem Lernhelfer hakt: Unklarheiten, Fehler, Wünsche, ohne persönliche Daten
-und ohne Inhalte der Unterlagen. Mit „/lernhelfer:verwalten Benutzererfahrung
-teilen“ bekommt der Nutzer diese Notizen als Datei, die er an die Person
-schickt, von der er den Lernhelfer hat. Danach kann Claude die geteilten
-Einträge löschen.
+und ohne Inhalte der Unterlagen. Auch was der Nutzer selbst als Wunsch oder
+Problem nennt, oder was Claude auf seine Frage danach nennt, kommt dort hinein.
+Mit „/lernhelfer:verwalten Benutzererfahrung teilen“ bekommt der Nutzer diese
+Notizen als Datei, die er an die Person schickt, von der er den Lernhelfer hat.
+Danach kann Claude die geteilten Einträge löschen.
         </antwort>
     </eintrag>
     <eintrag>

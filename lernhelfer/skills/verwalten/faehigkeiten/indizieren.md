@@ -78,6 +78,22 @@ ein Lernender danach suchen würde.
    {unzugeordnet}
    ```
 
+   **Modell:** Läuft diese Fähigkeit als automatische Anweisung oder weißt du
+   sicher, dass du selbst Haiku bist, mach mit Schritt 3 weiter. Sonst stell
+   diese Rückfrage, wobei `{anzahl}` die Zahl der zu lesenden Dateien ist:
+
+   ```auswahl
+   Ich muss {anzahl} Dateien vollständig lesen. Das kann viel von deinem Nutzungslimit verbrauchen. Am sparsamsten geht es in einem neuen Chat mit dem Modell Haiku. Wie willst du es machen?
+   - Jetzt indizieren
+   - Später mit Haiku
+   ```
+
+   Bei „Später mit Haiku“ ändere nichts, antworte und beende die Fähigkeit:
+
+   ```text
+   Fürs Indizieren starte einen neuen Chat, wähle das Modell Haiku und schreib „/lernhelfer:verwalten Indiziere“.
+   ```
+
 3. **Entfernte Dateien:** Gibt es entfernte Dateien, entferne in jedem Index
    ihre Zeilen aus „Dateien“ und aus dem Stichwortverzeichnis und schreib jeden
    geänderten Index. Entferne danach ihre `<datei>` aus `projekt:daten.xml` und
@@ -104,10 +120,12 @@ ein Lernender danach suchen würde.
      mit geraden Apostrophen und Anführungszeichen (`L'Hospital`, nicht
      `L’Hospital`), auch wenn der Text typografische Zeichen enthält.
 
-   Bist du bei einer Stelle unsicher, sieh dir die Seite als Bild an (im
-   Ordner `arbeit:` mit
-   `pdftoppm -f {seite} -l {seite} -r 150 -png '{datei}' seite`). Bleibt sie
-   unsicher, notiere sie für `{unsicher}`.
+   Sieh dir eine Seite als Bild an (im Ordner `arbeit:` mit
+   `pdftoppm -f {seite} -l {seite} -r 150 -png '{datei}' seite`), wenn du bei
+   einer Stelle unsicher bist oder wenn ihr Text kaum ganze Sätze enthält,
+   aber viele einzelne Wörter, Zahlen oder Zeichen. Das ist meist eine
+   Abbildung, ein Diagramm oder eine Schaltung, und ihre Beschriftungen sind
+   oft Stichwörter. Bleibt eine Stelle unsicher, notiere sie für `{unsicher}`.
 
    Schreib danach, bevor du die nächste Datei holst:
    1. jeden Index, zu dem die Datei gehört: Entferne ihre bisherigen Zeilen im

@@ -341,7 +341,7 @@ und frühere Folgen stehen im Verlauf dieser Datei (`git log -p -- CLAUDE.md`).
   Läufe. Startzeiten verschieben sich um einige Minuten.
 - `Write` entfernt Leerzeichen am Zeilenende.
 - Lokal: Die Übungsblatt-Vorlage übersetzt das Beispiel ohne Overfull-Box
-  (18 und 22 Seiten, `build.sh` etwa 20 s). Mit git über `file://` gehen
+  (18 und 23 Seiten, `build.sh` etwa 20 s). Mit git über `file://` gehen
   Commit und Push aus dem Klon ohne Dateiinhalte, auch in ein leeres
   Repository nach `symbolic-ref`.
 

@@ -88,7 +88,7 @@ Teil der Anleitung zur LaTeX-Vorlage `uebungsblatt.cls`. Lies zuerst
 ### Lösungen in Zeitdiagrammen und KV-Diagrammen
 
 * `\nurloesung` geht **nicht** in den Zeilen von `zeitdiagramm`.
-  Stattdessen in der `loesung`-Box das vollständige Zeitdiagramm wiederholen,
+  Stattdessen in der `loesung` das vollständige Zeitdiagramm wiederholen,
   die gesuchte Zeile mit `[loesung]` beginnen:
 
 ```latex
@@ -111,4 +111,4 @@ Teil der Anleitung zur LaTeX-Vorlage `uebungsblatt.cls`. Lies zuerst
 | Problem | Ursache / Lösung |
 |---|---|
 | Zeitdiagramm verrutscht | Alle Zeilen müssen dieselbe Gesamtlänge haben. |
-| Zeitdiagramm-Fehler mit `\nurloesung` | In `zeitdiagramm` nicht möglich; vollständige Kopie in die `loesung`-Box. |
+| Zeitdiagramm-Fehler mit `\nurloesung` | In `zeitdiagramm` nicht möglich; vollständige Kopie in die `loesung`. |

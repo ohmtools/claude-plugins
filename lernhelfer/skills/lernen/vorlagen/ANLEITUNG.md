@@ -55,15 +55,14 @@ automatisch. Steht auf dem Deckblatt „??“, einfach noch einmal kompilieren.
 
 Benötigte Pakete (in TeX Live enthalten): tikz, circuitikz, pgfplots,
 tikz-timing, siunitx, listings, tcolorbox, enumitem, fancyhdr, lastpage,
-booktabs, mathastext, microtype. Schrift: Inter (Paket `inter`, in TeX Live
-in texlive-fonts-extra); fehlt es, setzt die Klasse automatisch Helvetica. Code
-steht in TX-Typewriter oder Courier. Die Warnung „Inter nicht gefunden“ ist
-dann kein Fehler. Fehlen die deutschen Trennmuster, trennt die Klasse keine
-Wörter.
+booktabs, microtype. Schriften: Text in Helvetica, Zahlen als Daten
+(Punkte, Seiten, Werte in Tabellen) und Code in TX-Typewriter oder Courier,
+Formeln in Computer Modern. Die Klasse trennt keine Wörter und setzt
+Flattersatz.
 
-Das Aussehen folgt dem ohmtools-Design: Rot ist die einzige Akzentfarbe (auch
-für alle Lösungen), sonst Schwarz und Grau, keine Großbuchstaben, Linien statt
-Kästen, eckige Ecken.
+Das Aussehen folgt dem ohmtools-Design: Schwarz und Grau, Linien statt
+Kästen, keine Großbuchstaben. Rot steht nur für das, was der
+Lösungsvorschlag hinzufügt (Kapitel 11), nie in der Angabe.
 
 ---
 
@@ -162,17 +161,17 @@ Beispiel: `\documentclass[ohnedeckblatt,aufgabenoben]{uebungsblatt}`
 ## 4. Präambel: Angaben zum Blatt
 
 Alle Angaben stehen **vor** `\begin{document}`. Nur `\fach` ist Pflicht.
-Übungsblätter haben keine Nummer. Kopfzeile („Übungsblatt · Angabe“ bzw.
-„Lösung“, rechts das Fach, auf dem Deckblatt „OhmTools“), Fußzeile (nur
-„Seite x / y“) und die Zeile „Erstellt am … um …“ unter dem Titel setzt die
-Klasse selbst.
+Übungsblätter haben keine Nummer. Kopfzeile („OhmTools Lernhelfer“, rechts
+„Übungsblatt“ mit „Angabe“ bzw. „Lösung“), Fußzeile (Fach und „Seite x /
+y“) und auf dem Deckblatt „Auf einen Blick“ mit dem Zeitpunkt der Erstellung
+setzt die Klasse selbst.
 
 | Befehl | Bedeutung | Erscheint in |
 |---|---|---|
-| `\fach{Text}` | Fach / Titel des Blatts | Deckblatt (groß), Kopfzeile |
-| `\bearbeitungszeit{90 min}` | optional | Deckblatt |
-| `\hilfsmittel{Text}` | optional, erscheint als erster Hinweis | Deckblatt |
-| `\hinweis{Text}` | beliebig oft, je ein Punkt in der Hinweisliste | Deckblatt |
+| `\fach{Text}` | Fach / Titel des Blatts | Deckblatt (groß), Fußzeile |
+| `\bearbeitungszeit{90 min}` | optional | Deckblatt („Auf einen Blick“) |
+| `\hilfsmittel{Text}` | optional | Deckblatt („Auf einen Blick“) |
+| `\hinweis{Text}` | beliebig oft, je ein Punkt unter „Hinweise“ | Deckblatt |
 
 ---
 
@@ -216,7 +215,8 @@ Klasse selbst.
 \end{teilaufgaben}
 ```
 
-* Erzeugt a), b), c), … mit den Punkten am rechten Rand.
+* Erzeugt a, b, c, … mit den Punkten am rechten Rand, die Teilaufgaben
+  durch Linien getrennt.
 * Der Text der Teilaufgabe folgt **direkt** nach `\teil{..}` (kein Argument).
 * In einer Teilaufgabe dürfen weitere Bausteine stehen (z. B. `antworten`,
   `codeblock`, Abbildungen).
@@ -232,21 +232,23 @@ richtiger Zuordnung“. Zählt **nicht** zur Summe (nur Anzeige).
 
 ## 6. Textbausteine
 
-### `gegeben` mit `\wert{..}` und `\gesucht{..}`
+### `gegeben` mit `\wert[..]{..}` und `\gesucht{..}`
 
 ```latex
 \begin{gegeben}
-  \wert{U_0 = \qty{12}{V}}
-  \wert{R_1 = \qty{100}{\ohm}}
-  \wert{C = \qty{4.7}{\micro F}}
+  \wert[Quellenspannung]{U_0 = \qty{12}{V}}
+  \wert[Vorwiderstand]{R_1 = \qty{100}{\ohm}}
+  \wert[Kapazität]{C = \qty{4.7}{\micro F}}
   \gesucht{R_\mathrm{ges},\; I_1,\; U_2}
 \end{gegeben}
 ```
 
-* Abschnitt zwischen zwei Linien mit der Überschrift „Gegeben“; die Werte
-  fließen nebeneinander.
-* Das Argument von `\wert` und `\gesucht` ist **automatisch Mathematik**:
-  **keine** `$…$` hineinschreiben. Text in Mathe mit `\text{..}`.
+* Wird eine Tabelle „Symbol | Bedeutung | Wert“, darunter die Zeile
+  „Gesucht“.
+* `[Bedeutung]` ist ein kurzer Text (1–4 Wörter). Gib sie immer an; fehlt sie
+  bei allen Werten, hat die Tabelle nur „Symbol“ und „Wert“.
+* Das Pflichtargument ist **automatisch Mathematik**: **keine** `$…$`
+  hineinschreiben. Links vom ersten `=` steht das Symbol, rechts der Wert.
 * `\gesucht` ist optional und steht am Ende von `gegeben`.
 
 ### `hinweisbox` – Hinweis, Formel, Definition
@@ -284,7 +286,7 @@ richtiger Zuordnung“. Zählt **nicht** zur Summe (nur Anzeige).
 Gemeinsame Regeln für alle Abbildungs-Bausteine:
 
 * Das **letzte Pflichtargument ist die Bildunterschrift**. Sie wird
-  automatisch als „Abb. n: …“ gesetzt. Leeres Argument `{}` = keine
+  automatisch als „**Abb. n** …“ gesetzt. Leeres Argument `{}` = keine
   Unterschrift (und keine Nummer).
 * Verweis: `\label{abb:name}` **in** die Bildunterschrift schreiben und im
   Text `Abb.~\ref{abb:name}` verwenden.
@@ -331,8 +333,8 @@ TikZ-Syntax. Einheit: 1 = 1 cm. Pfeilspitzen sind voreingestellt.
 
 | Stil | Verwendung |
 |---|---|
-| `akzent` | Linie/Text in der Akzentfarbe Rot, z. B. Feldlinien: `\draw[->, akzent] …` |
-| `markiert` | hervorgehobener Knoten/Block (roter Rahmen, leichte Füllung) |
+| `akzent` | kräftige schwarze Linie, z. B. Feldlinien: `\draw[->, akzent] …` |
+| `markiert` | hervorgehobener Knoten/Block (kräftiger Rahmen, graue Füllung) |
 | `hilfslinie` | dünne gestrichelte graue Hilfslinie (Maßlinien, Projektionen) |
 | `block` | Rechteck für Blockdiagramme |
 | `summe` | Summationsstelle (Kreis) |
@@ -341,8 +343,10 @@ TikZ-Syntax. Einheit: 1 = 1 cm. Pfeilspitzen sind voreingestellt.
 | `gewicht` | Kantengewicht (kleine Schrift, weißer Hintergrund) |
 
 Farbnamen, falls ausnahmsweise nötig (z. B. Füllung): `ohmForeground`
-(Schwarz), `ohmMutedForeground` (Grau), `ohmPrimary` (Rot), `ohmBorder`
-(helles Grau für Linien). Keine anderen Farben und nie Farbwerte.
+(Schwarz), `ohmMutedForeground` (Grau), `ohmMuted` (helles Grau für
+Flächen), `ohmBorder` (helles Grau für Linien). Keine anderen Farben, nie
+Farbwerte und nie Rot in der Angabe; Lösungen zeichnest du mit den Stilen aus
+Kapitel 11.
 
 ### Weitere Abbildungen
 
@@ -368,12 +372,13 @@ nur, wenn dein Blatt einen ihrer Bausteine braucht (Kapitel 12):
 
 * Optionen im ersten Argument sind normale pgfplots-Achsenoptionen:
   `xmin, xmax, ymin, ymax, domain, samples, xlabel, ylabel, xtick, ytick,
-  legend pos, height, width`.
+  height, width`.
 * Logarithmische Achsen (Bode-Diagramm): `xmode=log` (bzw. `ymode=log`).
 * Achsenbeschriftung mit Einheit: `xlabel={$f$ in \unit{Hz}}`.
-* Mehrere Kurven bekommen automatisch unterschiedliche Rottöne und
-  Stricharten (durchgezogen, gestrichelt, gepunktet); Legende mit
-  `\legend{$U_1$, $U_2$}`.
+* Kurven sind schwarz; mehrere bekommen automatisch eigene Stricharten
+  (durchgezogen, gestrichelt, gepunktet). Keine Legende: Beschrifte jede
+  Kurve an der Kurve, z. B.
+  `\addplot {..} node[pos=0.8, above] {$U_1$};`.
 * pgfplots-Funktionen: `sin(deg(x))` (Winkel in Grad!), `exp(x)`, `ln(x)`,
   `log10(x)`, `sqrt(x)`, `abs(x)`, `x^2`.
 * Zahlen an den Achsen erscheinen automatisch mit Dezimalkomma.
@@ -387,8 +392,9 @@ nur, wenn dein Blatt einen ihrer Bausteine braucht (Kapitel 12):
 \end{koordinatensystem}
 ```
 
-Achsen mit Pfeilen durch den Ursprung und feines Raster. Für „Skizzieren
-Sie …“-Aufgaben. Es darf auch ein gegebener Graph hinein (`\addplot`).
+Achsen mit Pfeilen durch den Ursprung auf Millimeterpapier (jede fünfte
+Linie kräftiger). Für „Skizzieren Sie …“-Aufgaben. Es darf auch ein gegebener
+Graph hinein (`\addplot`).
 
 ### `blockdiagramm` – Regelkreise, Signalflusspläne
 
@@ -438,7 +444,7 @@ Sie …“-Aufgaben. Es darf auch ein gegebener Graph hinein (`\addplot`).
   `p{3cm}`). **Keine senkrechten Striche `|`.** Einen Abstand vor der
   Ergebnisspalte erzeugt `@{\hspace{8mm}}`.
 * 2. Argument: Unterschrift („Tab. n: …“), `{}` = keine.
-* Linien oben und unten automatisch; `\trennlinie` unter der Kopfzeile.
+* Linie unten automatisch; `\trennlinie` unter der Kopfzeile.
 * Keine Tabellen mit leeren Zellen zum Ausfüllen.
 
 ---
@@ -575,11 +581,13 @@ Lösungen mit `\documentclass[loesung]{uebungsblatt}` ein und mit
 Ausgeblendete Lösungen nehmen **keinen Platz** ein: Das Aufgabenblatt sieht
 Pixel für Pixel genauso aus, als stünden sie nicht in der Datei.
 
-Im Lösungsvorschlag ändert sich automatisch: Die Kopfzeile trägt „Lösung“
-statt „Angabe“, ebenso die Marke über dem Titel auf dem Deckblatt, alle
-Seiten bleiben vertikal zentriert, alle Lösungselemente erscheinen in Rot.
+Im Lösungsvorschlag ändert sich automatisch: Die Kopfzeile trägt das rote
+„Lösung“ statt „Angabe“, alle Seiten bleiben vertikal zentriert, und alles,
+was die Lösung hinzufügt, ist rot: das Etikett „Lösung“, Endergebnisse,
+Teilpunkte, Kreuze, Linien und Kurven in Abbildungen. Die Angabe selbst
+bleibt schwarz.
 
-### `loesung` – die Lösungsbox
+### `loesung` – die Lösung
 
 ```latex
 \begin{teilaufgaben}
@@ -593,31 +601,33 @@ Seiten bleiben vertikal zentriert, alle Lösungselemente erscheinen in Rot.
 \end{teilaufgaben}
 ```
 
-* Abschnitt mit einer roten Linie links und der Überschrift „Lösung“. Im
-  Aufgabenblatt komplett unsichtbar (auch kein Leerraum).
-* Optionale Überschrift: `\begin{loesung}[Lösung mit Bewertungsschema]`,
-  `[Lösungsweg]`, `[Typische Fehler]`, `[Begründung]`.
+* Beginnt mit dem roten Etikett „Lösung“, der Text steht rechts daneben
+  und fluchtet in allen weiteren Zeilen. Im Aufgabenblatt komplett
+  unsichtbar (auch kein Leerraum).
+* Optionale fette Überschrift nach dem Etikett:
+  `\begin{loesung}[Bewertungsschema]`, `[Lösungsweg]`, `[Typische Fehler]`,
+  `[Begründung]`.
 * **Platzierung:** direkt hinter dem Text einer Teilaufgabe (innerhalb von
-  `teilaufgaben`, empfohlen) oder als eine Box am Ende der Aufgabe für
+  `teilaufgaben`, empfohlen) oder als eine Lösung am Ende der Aufgabe für
   alle Teilaufgaben (dann mit **a)**, **b)** … gliedern).
-* Innerhalb der Box ist alles erlaubt: Text, Formeln, `align*`,
+* Innerhalb der Lösung ist alles erlaubt: Text, Formeln, `align*`,
   `codeblock`, `tabelle`, Abbildungen.
 * Abbildungen und Tabellen in einer Lösung bekommen **keine Nummer**, damit
   die Nummerierung im Aufgabenblatt und im Lösungsvorschlag gleich bleibt.
-* Die Box nicht mit einer abgesetzten Formel (`\[`, `align*`) beginnen,
+* Die Lösung nicht mit einer abgesetzten Formel (`\[`, `align*`) beginnen,
   sondern mit einem kurzen Satz (sonst entsteht oben eine Leerzeile).
 * `\end{loesung}` muss allein in einer Zeile stehen (Einrückung erlaubt).
-* Eine Box wird nie geteilt: Passt sie nicht mehr auf die Seite, beginnt sie
-  auf der nächsten. Eine einzelne Box darf deshalb **höchstens etwa eine
-  halbe bis ganze Seite** lang sein. Längere Lösungen auf mehrere Boxen
-  aufteilen (z. B. eine Box pro Teilaufgabe).
+* Eine Lösung wird nie geteilt: Passt sie nicht mehr auf die Seite, beginnt sie
+  auf der nächsten. Eine einzelne Lösung darf deshalb **höchstens etwa eine
+  halbe bis ganze Seite** lang sein. Längere Lösungen auf mehrere `loesung`
+  aufteilen (z. B. eine pro Teilaufgabe).
 * **Nicht** innerhalb von `nebeneinander` und nicht in Argumenten anderer
-  Befehle. Dann die Box hinter `nebeneinander` setzen.
+  Befehle. Dann die Lösung hinter `nebeneinander` setzen.
 
 ### `\ergebnis{..}` – Endergebnis hervorheben
 
-`\ergebnis{\qty{54.5}{mA}}` umrahmt das Ergebnis (ersetzt das doppelte
-Unterstreichen). Das Argument ist **Mathematik** (wie bei `\wert`). Geht im
+`\ergebnis{\qty{54.5}{mA}}` setzt das Ergebnis fett und rot (ersetzt das
+doppelte Unterstreichen). Das Argument ist **Mathematik** (wie bei `\wert`). Geht im
 Fließtext und in Formeln: `$I = \ergebnis{\qty{2}{A}}$`,
 `\[ f = \ergebnis{\overline{B}\,\overline{D} + BD} \]`. Pro Rechenweg das
 Endergebnis (bzw. jedes Endergebnis) hervorheben, keine Zwischenergebnisse.
@@ -640,11 +650,19 @@ Gesamtpunktzahl.
 
 **`\nurloesung{..}`** fügt Inhalt nur im Lösungsvorschlag ein,
 **`\nuraufgabe{..}`** nur im Aufgabenblatt. Damit lassen sich Lösungen
-direkt in die Abbildung der Aufgabe zeichnen. Stil `loesung` verwenden:
+direkt in die Abbildung der Aufgabe zeichnen, mit diesen Stilen:
+
+| Stil | Verwendung |
+|---|---|
+| `loesung` | eingezeichnete Kurve, Linie, Pfeil oder Text (rot, kräftig) |
+| `loesung hilfslinie` | gestrichelte rote Hilfslinie, z. B. zum Ablesen |
+| `loesung punkt=below:{..}` | roter Punkt mit Beschriftung daneben (wie `label=`) |
 
 ```latex
 \begin{koordinatensystem}[xmin=0, xmax=6, ymin=-0.4, ymax=1.2]{}
-  \nurloesung{\addplot[loesung, domain=0:6] {(1-x)*exp(-x)};}
+  \nurloesung{\addplot[loesung, domain=0:6] {(1-x)*exp(-x)};
+    \draw[loesung hilfslinie] (axis cs:2,0) -- (axis cs:2,-0.135);
+    \node[loesung punkt=below:{Minimum}] at (axis cs:2,-0.135) {};}
 \end{koordinatensystem}
 
 \begin{schaltung}{Netzwerk}
@@ -671,7 +689,7 @@ direkt in die Abbildung der Aufgabe zeichnen. Stil `loesung` verwenden:
 | `ankreuzen` | `\aussage[r]{..}` bzw. `\aussage[f]{..}` |
 | `zuordnung` | `\paar[k]{..}{..}` (k = Zeile des passenden rechten Eintrags) |
 
-Zusätzlich kann eine `loesung`-Box eine Begründung enthalten.
+Zusätzlich kann eine `loesung` eine Begründung enthalten.
 
 ### Für Sonderfälle: `\ifloesung`
 
@@ -736,8 +754,8 @@ einen anderen Satz im Aufgabentext. In den allermeisten Fällen reichen
 | „There's no line here to end“ | `\\` direkt nach `\teilpunkt`: weglassen, `\teilpunkt` beendet die Zeile selbst. |
 | Lösung erscheint im Aufgabenblatt | Lösung nicht in `loesung` bzw. `\nurloesung` gesetzt. |
 | Aufgabenblatt endet plötzlich / Text fehlt | `\end{loesung}` fehlt oder steht nicht allein in seiner Zeile. |
-| Lösungsbox ragt unten aus der Seite | Box länger als eine Seite: auf mehrere `loesung`-Boxen aufteilen. |
-| Leerzeile oben in der Lösungsbox | Box beginnt mit `\[` oder `align*`: einen kurzen Satz davor schreiben. |
+| Lösung ragt unten aus der Seite | Lösung länger als eine Seite: auf mehrere `loesung` aufteilen. |
+| Leerzeile neben dem Etikett „Lösung“ | Lösung beginnt mit `\[` oder `align*`: einen kurzen Satz davor schreiben. |
 
 ---
 

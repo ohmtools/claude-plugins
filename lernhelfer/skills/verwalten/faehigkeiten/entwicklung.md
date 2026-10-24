@@ -224,15 +224,17 @@ Einmal pro Chat, vor der ersten Änderung oder dem ersten Export.
      an, wenn die Arbeitsumgebung das kann, denn Fehler in einer Zeichnung
      fallen im Quelltext nicht auf.
    - Webseiten-Vorlagen folgen `DESIGN.md` des ohmtools-Designs vollständig
-     (shadcn base-sera, Farben nur über die Tokens, `src/index.css` mit dem
+     (shadcn base-vega, Farben nur über die Tokens, `src/index.css` mit dem
      Theme unverändert aus `github.com/ohmtools/design`).
    - Vorlagen für Dokumente folgen dem ohmtools-Design (`DESIGN.md` im
      Repository `github.com/ohmtools/design`, Abschnitt „Documents“): Schrift
-     Inter, sonst die serifenlose Schrift des Werkzeugs, Rot als einzige
-     Akzentfarbe, keine Großbuchstaben und keine gesperrte Schrift, Linien
-     statt Kästen, eckige Ecken. Farben stehen nur mit ihren Namen aus
-     `kopie:skills/lernen/vorlagen/ohmtools-colors.sty` (z.B. `ohmPrimary`),
-     nie mit Werten. Diese Datei ist eine unveränderte Kopie aus dem
+     Geist, sonst die serifenlose Schrift des Werkzeugs, Zahlen als Daten in
+     Monospace, Formeln in der Mathe-Schrift des Werkzeugs, Schwarz und Grau,
+     keine Großbuchstaben und keine gesperrte Schrift, Linien statt Kästen
+     und Flächen. Rot nur für das, was eine Lösung oder Ergänzung hinzufügt.
+     Farben stehen nur mit ihren Namen aus
+     `kopie:skills/lernen/vorlagen/ohmtools-colors.sty` (z.B.
+     `ohmAccentRed`), nie mit Werten. Diese Datei ist eine unveränderte Kopie aus dem
      Design-Repository, ändere sie nicht.
    - Jede Fähigkeit in `lernen` arbeitet mit genau einem Modul. Sie liest nur
      dessen Dateien, `projekt:daten.xml` und `daten:` und schreibt nur

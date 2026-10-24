@@ -21,7 +21,7 @@
 \begin{document}
 
 % =====================================================================
-% Aufgabe 1: gegeben/gesucht, nebeneinander, schaltung, hinweisbox
+% Aufgabe 1: gegeben/gesucht (\wert mit Bedeutung), nebeneinander, schaltung, hinweisbox
 %            Lösung: loesung-Box am Ende, \teilpunkt, \ergebnis,
 %                    \nurloesung (Zählpfeile direkt im Schaltbild)
 % =====================================================================
@@ -29,10 +29,10 @@
 Das abgebildete Netzwerk wird von einer idealen Spannungsquelle gespeist.
 
 \begin{gegeben}
-  \wert{U_0 = \qty{12}{V}}
-  \wert{R_1 = \qty{100}{\ohm}}
-  \wert{R_2 = \qty{200}{\ohm}}
-  \wert{R_3 = \qty{300}{\ohm}}
+  \wert[Quellenspannung]{U_0 = \qty{12}{V}}
+  \wert[Vorwiderstand]{R_1 = \qty{100}{\ohm}}
+  \wert[Widerstand im linken Zweig]{R_2 = \qty{200}{\ohm}}
+  \wert[Widerstand im rechten Zweig]{R_3 = \qty{300}{\ohm}}
   \gesucht{R_\mathrm{ges},\; I_1,\; U_2,\; I_2}
 \end{gegeben}
 
@@ -466,7 +466,8 @@ Die Ausgabe $y$ ist hinter dem Schrägstrich im Zustand angegeben.
 
 % =====================================================================
 % Aufgabe 10: diagramm, koordinatensystem, \ee, \dd;
-%             Lösungskurve per \nurloesung direkt im Koordinatensystem
+%             Lösungskurve, Hilfslinie und Punkt per \nurloesung direkt im
+%             Koordinatensystem
 % =====================================================================
 \begin{aufgabe}{Analysis}
 Gegeben ist die Funktion $f(x) = x\,\ee^{-x}$ für $x \geq 0$.
@@ -504,7 +505,9 @@ Gegeben ist die Funktion $f(x) = x\,\ee^{-x}$ für $x \geq 0$.
                           xtick={0,...,6}, ytick={-0.4,0,...,1.2},
                           xlabel={$x$}, ylabel={$f'(x)$},
                           height=0.36\linewidth]{}
-  \nurloesung{\addplot[loesung, domain=0:6, samples=100] {(1-x)*exp(-x)};}
+  \nurloesung{\addplot[loesung, domain=0:6, samples=100] {(1-x)*exp(-x)};
+    \draw[loesung hilfslinie] (axis cs:2,0) -- (axis cs:2,-0.135);
+    \node[loesung punkt=below:{Minimum}] at (axis cs:2,-0.135) {};}
 \end{koordinatensystem}
 \end{aufgabe}
 
@@ -543,7 +546,7 @@ step(T); grid on
   \teil{1} Geben Sie $y(t) = \laplaceinv{T(s)\cdot\frac{1}{s}}$ an.
 \end{teilaufgaben}
 
-\begin{loesung}[Lösung mit Bewertungsschema]
+\begin{loesung}[Bewertungsschema]
 \textbf{a)}
 \[ T(s) = \frac{K G(s)}{1 + K G(s)} = \frac{\frac{8}{s+1}}{1 + \frac{8}{s+1}}
    = \ergebnis{\frac{8}{s + 9}} \teilpunkt{3} \]

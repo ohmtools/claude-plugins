@@ -11,8 +11,8 @@ Wiederholungsfragen.
 
 Du bist hier ein erfahrener Fachdidaktiker und sorgfältiger Lektor. Du lässt
 jedes Wort des Originals stehen, machst sichtbar, was das Skript nur in Worten
-oder Einzelbildern zeigt, und lässt dem Nutzer das Denken, statt ihm alles
-vorzukauen.
+oder Einzelbildern zeigt, ergänzt nur, was beim Verstehen hilft, und lässt dem
+Nutzer das Denken, statt ihm alles vorzukauen.
 
 ## Pfade in dieser Fähigkeit
 
@@ -40,10 +40,10 @@ digitaler Signale zeigen. In einem Element zum Ausprobieren stellt der Nutzer
 Werte mit Reglern oder Schaltern ein, und jede dieser Darstellungen ändert
 sich mit. Ein Regler für die Zeit spielt das Ganze als Animation ab, z.B. ein
 Drehfeld, eine Schwingung oder einen Ablauf in Schritten. Größen, die mehrere
-Teile brauchen, werden einmal ausgerechnet. Fragen gibt es frei, mit Auswahl
-(mit einer Erklärung pro Option) und als Rechenfrage mit Prüfung des
-Ergebnisses. Andere Darstellungen, eigene Farben und Bilder aus dem Internet
-gibt es nicht.
+Teile brauchen, werden einmal ausgerechnet. Fragen gibt es nur am Ende eines
+Kapitels: frei, mit Auswahl (mit einer Erklärung pro Option) und als
+Rechenfrage mit Prüfung des Ergebnisses. Andere Darstellungen, eigene Farben
+und Bilder aus dem Internet gibt es nicht.
 
 ## Ablauf
 
@@ -186,10 +186,9 @@ gibt es nicht.
      |---|---|
      | `:::variablen` | Direkt nach jeder Gleichung, deren Symbole der Text dort nicht erklärt: jedes Symbol mit Bedeutung und Einheit, als Liste. |
      | `:::anmerkung[Titel]` | Ein fehlender Zwischenschritt, eine Anschauung, ein Zusammenhang. Zu jeder Abbildung des Originals eine Erklärung, was zu sehen ist und worauf es ankommt (Titel `Zur Abbildung {nummer}`). |
-     | `:::denkanstoss[Frage]` | Statt einer fertigen Erklärung, wo der Nutzer es selbst herausfinden kann, z.B. ein Umformungsschritt. Darunter die Auflösung, die verdeckt bleibt. |
      | `:::grafik[Titel]` | Eine eigene Grafik, wo eine Zeichnung mehr erklärt als Worte (z.B. Zählpfeile in einer Schaltung, ein Zeigerdiagramm, ein Graph). Im Entwurf in Worten beschrieben, so genau, dass du sie danach zeichnen kannst. |
-     | `:::interaktiv[Titel]` | Etwas zum Ausprobieren, wo ein Zusammenhang erst beim Verändern sichtbar wird (z.B. wie τ von R und C abhängt), oder eine Animation, wo sich etwas bewegt oder zeitlich ändert. Im Entwurf in Worten: welche Größen einstellbar sind, mit Bereich und Einheit, was abläuft, was angezeigt wird und was der Nutzer entdecken soll. |
-     | `:::frage[Frage]`, `:::auswahl[Frage]`, `:::rechnen[Frage]{ergebnis=… toleranz=… einheit="…"}` | Am Ende jedes Kapitels die Wiederholungsfragen mit Antwort (Aufbau im Beispiel). |
+     | `:::interaktiv[Titel]` | Etwas zum Ausprobieren, wo ein Zusammenhang erst beim Verändern sichtbar wird (z.B. wie τ von R und C abhängt), oder eine Animation, wo sich etwas bewegt oder zeitlich ändert. Im Entwurf in Worten: welche Größen einstellbar sind, mit Bereich und Einheit, was abläuft, was angezeigt wird und was der Nutzer dabei sieht, als Aussage. |
+     | `:::frage[Frage]`, `:::auswahl[Frage]`, `:::rechnen[Frage]{ergebnis=… toleranz=… einheit="…"}` | Nur am Ende jedes Kapitels: die Wiederholungsfragen mit Antwort (Aufbau im Beispiel). |
      | `:anm[…]` | Ein kurzer Hinweis mitten im Satz. |
 
    - **Wo du ergänzt:** Geh jeden Abschnitt durch und frag dich, was man
@@ -206,28 +205,60 @@ gibt es nicht.
      - Erst danach kommen Erklärungen in Worten in `:::anmerkung`.
 
      Jedes Kapitel mit solchem Stoff bekommt mindestens eine Animation oder
-     ein Element zum Ausprobieren.
+     ein Element zum Ausprobieren. Jede Ergänzung muss helfen, den Stoff zu
+     verstehen oder anzuwenden. Randinformationen wie Geschichte, Personen,
+     Jahreszahlen, die Herkunft eines Namens oder Nebenwissen aus dem Web
+     ergänzt du nicht, auch nicht zu einer Stelle, an der das Original sie
+     erwähnt (dort bleiben sie wortgleich stehen). Erklärt ein Name das
+     Prinzip (z.B. „asynchron“, weil der Läufer langsamer dreht als das
+     Feld), ist es kein Nebenwissen.
    - **Regeln für Ergänzungen:** Sie stimmen, sind knapp (eine Anmerkung
      höchstens etwa fünf Sätze) und nehmen dem Nutzer das Denken nicht ab:
-     lieber ein Denkanstoß als eine fertige Herleitung. Übungsaufgaben im
-     Skript löst du nicht, höchstens mit einem Denkanstoß als Hinweis. Für
+     eine Anmerkung gibt den fehlenden Schritt oder die Anschauung, keine
+     fertige Herleitung. Sie enthalten keine Fragen, auch nicht im Titel
+     oder im Satz unter `:::interaktiv`, denn alle Fragen stehen gesammelt
+     am Kapitelende. Übungsaufgaben im Skript löst du nicht. Für
      jede fachliche Aussage gilt `skill:SKILL.md`, Abschnitt „Belege“, für
      jede Zahl und jedes Ergebnis Abschnitt „Nachrechnen“. In `:::grafik`
      und `:::interaktiv` nimmst du Werte aus dem Skript. Stehen dort keine,
      nimm typische und schreib in den Satz darunter „(Beispielwerte, nicht
      aus dem Skript)“.
-   - **Wiederholungsfragen:** Sie stehen gesammelt am Ende jedes Kapitels,
-     nach dem letzten Originaltext, nie zwischen den Abschnitten. Je nach
-     Länge des Kapitels drei bis acht, über seine wichtigsten Abschnitte
+   - **Wiederholungsfragen:** Sie sind die einzigen Fragen der Webseite und
+     stehen gesammelt am Ende jedes Kapitels, nach dem letzten Originaltext,
+     nie zwischen den Abschnitten, über seine wichtigsten Abschnitte
      verteilt. Ein Kapitel ohne Lernstoff (z.B. Literatur, Anhang,
      Verzeichnisse) bekommt keine. Reicht ein Kapitel über die Etappe
-     hinaus, stehen sie am Ende seiner letzten Datei. Sie fragen das Kapitel
-     aus dem Gedächtnis ab, ohne neues Wissen. Die meisten fragen nach
+     hinaus, stehen sie am Ende seiner letzten Datei. Wie viele es sind,
+     richtet sich nach der Zeit: Das Beantworten braucht etwa ein Drittel
+     der Zeit, die der Nutzer für das Kapitel braucht, um es zu lesen,
+     darüber nachzudenken und Aufgaben des Originals zu bearbeiten,
+     mindestens aber eine Frage. Schätz beide Zeiten mit diesen
+     Richtwerten:
+
+     | Was | Minuten |
+     |---|---|
+     | Eine Seite Fließtext lesen und durchdenken | 2 |
+     | Eine Seite mit Formeln oder Herleitungen | 4 |
+     | Eine Aufgabe des Originals | geschätzte Zeit zum Lösen |
+     | Eine `:::auswahl` beantworten | 1 |
+     | Eine `:::frage` beantworten | 2 |
+     | Eine `:::rechnen` beantworten | 3 bis 5 |
+
+     Ein Kapitel aus einer Seite Fließtext (2 Minuten) bekommt also eine
+     Auswahlfrage, eins aus zehn Seiten mit Formeln (40 Minuten) Fragen für
+     etwa 13 Minuten, z.B. sechs bis acht. Sie fragen das Kapitel aus dem
+     Gedächtnis ab, ohne neues Wissen und ohne Randinformationen. Die
+     meisten fragen nach
      Verständnis (`:::frage`, `:::auswahl`), höchstens ein Drittel sind
      Rechenfragen (`:::rechnen`, mit nachgerechnetem `ergebnis`). Bei
      `:::auswahl` steht jede falsche Option für eine echte Fehlvorstellung
      und bekommt nach einer Leerzeile eingerückt ihre eigene Erklärung. Text
      nach der Liste gilt für alle Optionen.
+   - **Durchsehen:** Lies jeden Entwurf zum Schluss noch einmal: Steht in
+     einer Ergänzung außer den Wiederholungsfragen eine Frage, schreib sie
+     als Aussage oder streich sie. Streich jede Randinformation. Rechne die
+     Minuten der Wiederholungsfragen gegen die des Kapitels nach und
+     streich oder ergänze Fragen, bis es etwa ein Drittel ist.
 
    Beispiel:
 
@@ -255,15 +286,17 @@ gibt es nicht.
    desto kleiner der Ladestrom. (skript.pdf, S. 14)
    :::
 
-   :::denkanstoss[Woher kommen die 63 % nach einer Zeitkonstante?]
-   Setz $t = \tau$ ein: $u_C(\tau) = U_0(1 - e^{-1}) \approx 0{,}632\,U_0$.
+   :::anmerkung[Woher die 63 % kommen]
+   Mit $t = \tau$ in Gleichung 2.1 ist
+   $u_C(\tau) = U_0(1 - e^{-1}) \approx 0{,}632\,U_0$. (folgt aus
+   skript.pdf, S. 14)
    :::
 
    :::interaktiv[Aufladen]
    Regler für R von 100 Ω bis 10 kΩ und C von 100 nF bis 10 µF, beide
    logarithmisch. Animation: Die Zeit t läuft in 5 s von 0 bis 50 ms. Graph
    von u_C/U_0 über t von 0 bis 50 ms, ein Punkt wandert mit der Zeit auf der
-   Kurve, ein zweiter markiert τ, Anzeige von τ = RC. Entdecken: Doppeltes R
+   Kurve, ein zweiter markiert τ, Anzeige von τ = RC. Zu sehen: Doppeltes R
    oder C verschiebt τ und streckt die ganze Kurve.
    :::
 
@@ -308,8 +341,8 @@ gibt es nicht.
    Kapitel in `arbeit:skript/src/inhalt/` und kopiert die Bilder.
    - Ersetze in diesen Kapiteln nur die Beschreibungen in `:::grafik` und
      `:::interaktiv` durch Bausteine der Anleitung, mit dem Satz darunter,
-     was der Nutzer sehen oder ausprobieren soll. Alles andere übernimmst du
-     unverändert, denn es ist geprüft.
+     was der Nutzer sehen oder ausprobieren soll, als Aussage ohne Frage.
+     Alles andere übernimmst du unverändert, denn es ist geprüft.
    - Schreib `arbeit:skript/src/inhalt/skript.json` wie in der Anleitung,
      Kapitel „Angaben zum Skript“: `titel` und `autor` vom Titelblatt des
      Skripts, `fach` gleich `{modulname}` (im **Chat** das Fach aus Anfrage

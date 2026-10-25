@@ -191,7 +191,7 @@ Diese Stellen sind bewusst doppelt und müssen übereinstimmen:
     (Test 1), `helfen/SKILL.md`, README.
   - Was `skript-verbessern.md` von der Vorlage benutzt, muss zu ihrem
     Hauptzweig passen: die Markierungen (`:::variablen`, `:::anmerkung`,
-    `:::denkanstoss`, `:::grafik`, `:::interaktiv`, `:::frage`, `:::auswahl`
+    `:::grafik`, `:::interaktiv`, `:::frage`, `:::auswahl`
     mit eingerückten Erklärungen pro Option, `:::rechnen`, `:anm`,
     `::seite[n]`, `:::abbildung` für Teilbilder; dort in
     `plugins/ergaenzungen.mjs` und `ANLEITUNG.md`), die Bausteine aus
@@ -205,10 +205,17 @@ Diese Stellen sind bewusst doppelt und müssen übereinstimmen:
     Anleitung. `testen.md` (Test 1) nennt ihr Beispiel („Grundlagen der
     Elektrotechnik“, Kapitel 2 mit Regler für R und Animation „Vom Zeiger
     zur Sinuskurve“).
-  - Wiederholungsfragen gesammelt am Ende jedes Kapitels, drei bis acht,
-    höchstens ein Drittel Rechenfragen, keine bei Literatur und Anhang:
-    `skript-verbessern.md`, `ANLEITUNG.md` der Vorlage (Kapitel 3, 8 und
-    15), `helfen/SKILL.md`.
+  - Fragen nur gesammelt am Ende jedes Kapitels (keine im Text, kein
+    `:::denkanstoss`, Satz unter `:::interaktiv` als Aussage), so viele,
+    dass sie etwa ein Drittel der Lese- und Bearbeitungszeit brauchen
+    (Richtwerte 2 und 4 Minuten pro Seite, Auswahl 1, Erklären 2, Rechnen
+    3 bis 5), mindestens eine, höchstens ein Drittel Rechenfragen, keine bei
+    Literatur und Anhang; Ergänzungen ohne Randinformationen:
+    `skript-verbessern.md`, `ANLEITUNG.md` der Vorlage (Kapitel 2, Regeln 5
+    und 6, Kapitel 3, 7, 8 und 15), `helfen/SKILL.md`.
+  - Endmarke „Ende der Ergänzung“: `DESIGN.md` in `ohmtools/design`
+    („Original and Ergänzung“), `ergaenzungen.tsx` und `ANLEITUNG.md`
+    (Kapitel 7) der Vorlage, `helfen/SKILL.md`.
   - Etappen (höchstens ein Kapitel und 20 Seiten, ZIP `{name}-quelle.zip`
     zum Weitermachen): `skript-verbessern.md`, `helfen/SKILL.md`.
 
@@ -282,7 +289,12 @@ Nicht ohne Rückfrage ändern:
   Satz, damit das Handbuch nicht an fehlenden Fächern hängt.
 - Bewusst ohne Regel: Dateien, die ein Nutzer über die Projektseite hochlädt.
 - Skript verbessern: Wiederholungsfragen nur gesammelt am Ende jedes
-  Kapitels (eine Seite der Webseite), nicht nach Abschnitten. Was sich im
+  Kapitels (eine Seite der Webseite), nicht nach Abschnitten, und sonst
+  keine Fragen im Skript (kein Denkanstoß). Ihre Zahl richtet sich nach der
+  Zeit: etwa ein Drittel der Zeit zum Lesen, Durchdenken und Bearbeiten des
+  Kapitels. Ergänzungen nur, wenn sie beim Verstehen helfen, keine
+  Randinformationen. Jede Ergänzung endet sichtbar („Ende der
+  Ergänzung“). Was sich im
   Skript bewegt oder zeitlich ändert, wird eine Animation; Erlernen war das
   Vorbild für bildliche Erklärungen. Die Webseite und ihr Quellcode werden
   nie hochgeladen, auch nicht in die Vorlage.
@@ -413,7 +425,9 @@ und frühere Folgen stehen im Verlauf dieser Datei (`git log -p -- CLAUDE.md`).
      Altklausur und ohne Hilfsmittel (keine Zeile auf dem Deckblatt).
    - „Verbessere Kapitel 2 meines Skripts“ im Projekt mit einer Schwachstelle
      im Kapitel und im Chat mit angehängter PDF (Wortlaut, Abbildungen,
-     Fragen am Kapitelende mit Erklärungen pro Option, Animationen, Ansehen
+     Fragen nur am Kapitelende mit Erklärungen pro Option, ihre Zahl nach
+     der Zeit, bei einem kurzen Kapitel eine oder zwei, keine Frage im Text,
+     keine Randinformationen, „Ende der Ergänzung“, Animationen, Ansehen
      als Bild, Seite und ZIP, kein Push), danach „Mach mit dem Skript
      weiter“ und in einem neuen Chat mit der ZIP. Dazu das Skript zur
      Asynchronmaschine: Wird das Drehfeld eine Animation?

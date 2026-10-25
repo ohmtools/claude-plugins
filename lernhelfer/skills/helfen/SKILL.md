@@ -191,14 +191,17 @@ Webseite in einer einzigen HTML-Datei, die es im Chat zeigt und die auch
 heruntergeladen ohne Internet funktioniert, am Computer, Tablet und Handy. Der
 Originaltext steht Wort für Wort darin, Claude prüft das mit einem Programm,
 deshalb passen Seitenangaben weiter zum PDF. Alles, was Claude ergänzt, trägt
-das rote Badge „Ergänzung“ und lässt sich mit „Nur Original“
-ausblenden: die Bedeutung aller Variablen einer Gleichung, Erklärungen
-zu Abbildungen und fehlenden Zwischenschritten, Denkanstöße mit verdeckter
-Auflösung, eigene Grafiken (z.B. Schaltpläne, Graphen), Elemente zum
-Ausprobieren mit Reglern, Animationen für alles, was sich im Skript bewegt oder
-zeitlich ändert (z.B. ein Drehfeld), und am Ende jedes Kapitels
-Wiederholungsfragen mit verdeckter Lösung, bei Auswahlfragen mit einer Erklärung
-zu jeder Antwort. Im Projekt erklärt Claude die
+das rote Badge „Ergänzung“, endet mit einer roten Linie „Ende der Ergänzung“
+und lässt sich mit „Nur Original“ ausblenden: die Bedeutung aller Variablen
+einer Gleichung, Erklärungen zu Abbildungen und fehlenden Zwischenschritten,
+eigene Grafiken (z.B. Schaltpläne, Graphen), Elemente zum Ausprobieren mit
+Reglern, Animationen für alles, was sich im Skript bewegt oder zeitlich ändert
+(z.B. ein Drehfeld), und am Ende jedes Kapitels Wiederholungsfragen mit
+verdeckter Lösung, bei Auswahlfragen mit einer Erklärung zu jeder Antwort.
+Claude ergänzt nur, was beim Verstehen hilft, ohne Randinformationen wie
+Geschichte oder Namensherkunft. Fragen stehen nur am Kapitelende, nie im Text,
+und brauchen zusammen etwa ein Drittel der Zeit, die das Kapitel zum Lesen und
+Durchdenken braucht, bei wenig Text also nur eine oder zwei. Im Projekt erklärt Claude die
 Themen gründlicher, mit denen der Nutzer Schwierigkeiten hat, ohne sie auf der
 Seite zu nennen. Ein ganzes Skript bereitet Claude in Etappen von höchstens
 einem Kapitel und 20 Seiten auf. Nach jeder Etappe gibt es die Webseite und eine

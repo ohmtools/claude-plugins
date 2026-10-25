@@ -226,7 +226,8 @@
 \fancyhf{}
 \renewcommand\headrulewidth{0.75pt}
 \renewcommand\footrulewidth{0.75pt}
-\renewcommand\headrule{{\color{ohmForeground}\hrule\@height\headrulewidth\@width\headwidth}\vskip-\headrulewidth}
+% 2 mm Luft zwischen Badge und Linie
+\renewcommand\headrule{\vskip2mm{\color{ohmForeground}\hrule\@height\headrulewidth\@width\headwidth}\vskip-\dimexpr2mm+\headrulewidth\relax}
 \renewcommand\footrule{{\color{ohmForeground}\hrule\@height\footrulewidth\@width\headwidth}\vskip\footruleskip}
 \newcommand\ub@kopflinks[1]{{\bfseries #1}\ {\color{ohmMutedForeground}Lernhelfer}}
 \newcommand\ub@kopfrechts{{\footnotesize\color{ohmMutedForeground}Übungsblatt}\hspace{2.1mm}\ub@artbadge}

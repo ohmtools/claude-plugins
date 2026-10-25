@@ -224,8 +224,11 @@ Einmal pro Chat, vor der ersten Änderung oder dem ersten Export.
      an, wenn die Arbeitsumgebung das kann, denn Fehler in einer Zeichnung
      fallen im Quelltext nicht auf.
    - Webseiten-Vorlagen folgen `DESIGN.md` des ohmtools-Designs vollständig
-     (shadcn base-vega, Farben nur über die Tokens, `src/index.css` mit dem
-     Theme unverändert aus `github.com/ohmtools/design`).
+     (shadcn base-vega, Farben nur über die Tokens). Was das Design teilt
+     (`src/styles/ohmtools.css` mit Theme, Stufen und Bewegung, shadcns
+     Komponenten, Einstellungen, Blatt, Popover), kopieren sie unverändert
+     aus `github.com/ohmtools/design` (`npx --yes github:ohmtools/design
+     add …`), und `src/index.css` importiert das Stylesheet.
    - Vorlagen für Dokumente folgen dem ohmtools-Design (`DESIGN.md` im
      Repository `github.com/ohmtools/design`, Abschnitt „Documents“): Schrift
      Geist, sonst die serifenlose Schrift des Werkzeugs, Zahlen als Daten in
@@ -235,7 +238,10 @@ Einmal pro Chat, vor der ersten Änderung oder dem ersten Export.
      Farben stehen nur mit ihren Namen aus
      `kopie:skills/lernen/vorlagen/ohmtools-colors.sty` (z.B.
      `ohmAccentRed`), nie mit Werten. Diese Datei ist eine unveränderte Kopie aus dem
-     Design-Repository, ändere sie nicht.
+     Design-Repository, ändere sie nicht. Nach einer sichtbaren Änderung an
+     einer solchen Vorlage sieh dir das Beispiel in beiden Fassungen (Angabe
+     und Lösung) als Bild an (`pdftoppm -r 300`, zugeschnitten auf Kopfzeile,
+     Kopf einer Aufgabe und eine Abbildung).
    - Jede Fähigkeit in `lernen` arbeitet mit genau einem Modul. Sie liest nur
      dessen Dateien, `projekt:daten.xml` und `daten:` und schreibt nur
      `projekt:gedaechtnis/{modul}/probleme.md` und

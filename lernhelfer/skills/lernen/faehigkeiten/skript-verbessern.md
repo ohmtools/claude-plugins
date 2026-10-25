@@ -351,7 +351,7 @@ gibt es nicht.
    - {name}.html: die Webseite. Sie funktioniert auch heruntergeladen und ohne Internet, am Computer, Tablet und Handy.
    - {name}-quelle.zip: der Quellcode, falls du die Seite selbst ändern oder später weitermachen willst.
 
-   Der Originaltext steht unverändert darin. Alles, was ich ergänzt habe, trägt eine rote Linie und die Beschriftung „Ergänzung“; mit „Nur Original“ (am Handy unter Einstellungen) blendest du es aus. Beantworte die Wiederholungsfragen am Ende jedes Kapitels zuerst selbst, ohne nachzuschauen, und deck erst dann die Lösung auf.
+   Der Originaltext steht unverändert darin. Alles, was ich ergänzt habe, trägt das rote Badge „Ergänzung“; mit „Nur Original“ (am Handy unter Einstellungen) blendest du es aus. Beantworte die Wiederholungsfragen auf der Seite nach jedem Kapitel zuerst selbst, ohne nachzuschauen, und deck erst dann die Lösung auf.
    {weiter}
    ```
 

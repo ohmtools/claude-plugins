@@ -191,8 +191,8 @@ Webseite in einer einzigen HTML-Datei, die es im Chat zeigt und die auch
 heruntergeladen ohne Internet funktioniert, am Computer, Tablet und Handy. Der
 Originaltext steht Wort für Wort darin, Claude prüft das mit einem Programm,
 deshalb passen Seitenangaben weiter zum PDF. Alles, was Claude ergänzt, trägt
-eine rote Linie und die Beschriftung „Ergänzung“ und lässt sich mit „Nur
-Original“ ausblenden: die Bedeutung aller Variablen einer Gleichung, Erklärungen
+das rote Badge „Ergänzung“ und lässt sich mit „Nur Original“
+ausblenden: die Bedeutung aller Variablen einer Gleichung, Erklärungen
 zu Abbildungen und fehlenden Zwischenschritten, Denkanstöße mit verdeckter
 Auflösung, eigene Grafiken (z.B. Schaltpläne, Graphen), Elemente zum
 Ausprobieren mit Reglern, Animationen für alles, was sich im Skript bewegt oder

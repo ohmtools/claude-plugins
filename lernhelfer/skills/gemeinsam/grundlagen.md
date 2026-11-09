@@ -37,7 +37,7 @@ liegt:
 | `plugin:` | Ordner des installierten Plugins, zwei Ebenen über dem Ordner dieses Skills. Darin liegt diese Datei als `plugin:skills/gemeinsam/grundlagen.md`. |
 | `projekt:` | Projektdateien des Claude.ai-Projekts. Lies und schreib sie mit den Werkzeugen für Projektdateien (z.B. `Projects` mit `project_info` für die Projektübersicht, `project_read`, `project_write` und `project_delete`). Es gibt sie nur, wenn der Chat Teil eines Projekts ist. |
 | `daten:` | Datenquelle des Nutzers mit Skripten, Übungen, Altklausuren und Modulhandbuch, z.B. ein GitHub-Repository. Wie du sie liest, steht in `projekt:daten.xml`. |
-| `arbeit:` | Arbeitsverzeichnis deiner Arbeitsumgebung (z.B. `/home/claude`). |
+| `arbeit:` | Arbeitsverzeichnis deiner Arbeitsumgebung: das Verzeichnis, das `pwd` beim ersten Befehl im Chat ausgibt (z.B. `/home/claude`). Es kann von Chat zu Chat ein anderes sein, nimm deshalb nie einen Pfad aus einem Beispiel. |
 
 - Das Präfix gehört nicht zum Pfad. Lass es weg, wenn du eine Datei öffnest oder
   schreibst. Nennst du dem Nutzer eine Datei, lass es ebenfalls weg und sag bei
@@ -138,7 +138,11 @@ liegen:
   Hilfsdateien gehören nach `arbeit:`, nie nach `projekt:`.
 - Liegt eine große Datei schon fertig in `arbeit:`, schreib sie mit Angabe
   ihres Pfads statt mit ihrem Inhalt (z.B. `local_path` bei `project_write`).
-  Dann ist der Aufruf kurz und kann nicht mit halbem Inhalt abbrechen.
+  Dann ist der Aufruf kurz und kann nicht mit halbem Inhalt abbrechen. Das
+  Werkzeug nimmt nur Dateien aus dem Arbeitsverzeichnis. Lehnt es eine Datei
+  trotzdem ab (z.B. `local_path must be inside the working directory`), kopier
+  sie in einen Unterordner des Verzeichnisses, das `pwd` jetzt ausgibt, und
+  schreib sie von dort.
 - Hängen Dateien voneinander ab, schreib sie in einer Reihenfolge, nach der ein
   Abbruch dazwischen höchstens dazu führt, dass Arbeit wiederholt wird, nie
   dazu, dass etwas als erledigt gilt, das fehlt: zuerst die Inhalte, zuletzt

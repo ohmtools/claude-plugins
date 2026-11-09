@@ -33,7 +33,7 @@ die die Änderung betrifft, vollständig.
 |---|---|
 | Gemeinsam für `lernen` und `verwalten`: Pfade, Betriebsart, Nachrichten, Abbruch, Formate, Module, Datenquelle, Gedächtnis | `gemeinsam/grundlagen.md` |
 | Lernen: Fähigkeiten und Wechsel, Modul, Dateiprüfung, PDF-Dateien, Probleme pflegen, Regeln der Lernmodi | `lernen/SKILL.md` |
-| Lernmodi, Schwachstellen, Skript verbessern; Vorrat und Bloom-Leiter als Teile von Üben (`ueben-vorrat.md`, `ueben-bloom-leiter.md`) | `lernen/faehigkeiten/` |
+| Nachschlagen, Lernmodi, Schwachstellen, Skript verbessern; Vorrat und Bloom-Leiter als Teile von Üben (`ueben-vorrat.md`, `ueben-bloom-leiter.md`) | `lernen/faehigkeiten/` |
 | Übungsblatt-Vorlage (Klasse, Farben, `ANLEITUNG.md` mit Teilen `ANLEITUNG-*.md`, `build.sh`) | `lernen/vorlagen/` |
 | Verwalten: Fähigkeiten, Projektstruktur, Dateien der Datenquelle, automatische Anweisungen | `verwalten/SKILL.md` |
 | Einrichten, Fächer (auch aus dem Modulhandbuch), Hochladen, Indizieren, Migrationen, Testen | `verwalten/faehigkeiten/` |
@@ -94,6 +94,12 @@ Diese Stellen sind bewusst doppelt und müssen übereinstimmen:
   und `ueben.md` („Klausurprofil“, „Aufgaben mit neuen Werten“).
 - Wechsel zwischen Fähigkeiten: `entwicklung.md`, „Fähigkeit wechseln“ in
   `lernen/SKILL.md`, Grundregel in `verwalten/SKILL.md`.
+- Nachschlagefragen (kurze Frage nach einer Einzelheit, ohne Gegenfragen,
+  auch mitten in einer Fähigkeit mit Rückkehr): `nachschlagen.md`,
+  `lernen/SKILL.md` („Fähigkeiten“, „Fähigkeit wechseln“, Beschreibung im
+  Frontmatter), `helfen/SKILL.md`.
+- Hinweis vor der Freigabe der Datenquelle und Nachricht nach einer
+  Ablehnung: `lernen/SKILL.md` („Dateiprüfung“).
 - Mehrere Module nur in automatischen Anweisungen: `lernen/SKILL.md` („Mit
   einem Modul arbeiten“), `entwicklung.md`.
 - Zugriff auf die Datenquelle mit git: Vorlage für `daten.xml` in
@@ -129,11 +135,21 @@ Diese Stellen sind bewusst doppelt und müssen übereinstimmen:
   Nachricht in „Neues Modul anlegen“, Schritt 2), `indizieren.md`
   (Schritt 1), `hochladen.md` (Schritt 7), `verwalten/SKILL.md` (Tabelle
   „Was ist zu tun?“), `helfen/SKILL.md`.
-- Beschreibung, Lernziele und Prüfung aus dem Modulhandbuch auslesen:
-  `indizieren.md` (Schritt 5), `modul-bearbeiten.md` („Lernziele
-  übernehmen“, Schritte 3 und 4).
+- Beschreibung, Lernziele und Prüfung aus dem Modulhandbuch auslesen, mit
+  Rückfrage, wenn mehrere Teile passen oder keiner genau, aber welche
+  ähnlich (z.B. ein anderes Kürzel): `indizieren.md` (Schritt 5),
+  `modul-bearbeiten.md` („Lernziele übernehmen“, Schritte 3 und 4, „Module
+  aus dem Modulhandbuch anlegen“, Schritt 4).
 - Seiten zählen mit `pdftotext` und `\f`: `lernen/SKILL.md`
   („PDF-Dateien“), `indizieren.md` (Schritt 4).
+- `arbeit:` ist das Verzeichnis von `pwd`, denn `project_write` nimmt
+  `local_path` nur aus dem Arbeitsverzeichnis, und das war in einer
+  automatischen Anweisung ein anderes: `grundlagen.md` („Pfade“, „Abbruch“),
+  benutzt in `indizieren.md` (Arbeitskopien in `arbeit:indizieren/`) und
+  `ueben-vorrat.md` („Speichern“).
+- Indizieren in Portionen (höchstens zehn Dateien und etwa 150 Seiten),
+  Indexe und `daten.xml` nur aus Arbeitskopien geschrieben:
+  `indizieren.md` („Grundsatz“, Schritte 1, 3 bis 5), `helfen/SKILL.md`.
 - Schreibreihenfolge bei `daten.xml`, folgt aus „Abbruch“ in
   `grundlagen.md`: in `indizieren.md` erst der Index, zuletzt `daten.xml`, in
   `modul-bearbeiten.md` („Neues Modul anlegen“, „Dateien zuordnen“) erst
@@ -216,8 +232,16 @@ Diese Stellen sind bewusst doppelt und müssen übereinstimmen:
   - Endmarke „Ende der Ergänzung“: `DESIGN.md` in `ohmtools/design`
     („Original and Ergänzung“), `ergaenzungen.tsx` und `ANLEITUNG.md`
     (Kapitel 7) der Vorlage, `helfen/SKILL.md`.
-  - Etappen (höchstens ein Kapitel und 20 Seiten, ZIP `{name}-quelle.zip`
-    zum Weitermachen): `skript-verbessern.md`, `helfen/SKILL.md`.
+  - Etappen (etwa 20 Seiten aus ganzen Kapiteln, lange Kapitel geteilt, ein
+    Teil ohne Nummer beim Kapitel davor, Rückfrage „Etappe für Etappe“ oder
+    „alles in einem Durchgang“, ZIP `{name}-quelle.zip` zum Weitermachen):
+    `skript-verbessern.md`, `helfen/SKILL.md`.
+  - Im Projekt ohne indiziertes Skript nur der Verweis aufs Anhängen und
+    Indizieren (Entscheidung des Nutzers, 2026-11-09):
+    `skript-verbessern.md` (Schritt 1), `helfen/SKILL.md`.
+  - Vorschau weiß (ohne JavaScript), dann im Browser öffnen:
+    Fertig-Nachricht in `skript-verbessern.md` (Schritt 9),
+    `helfen/SKILL.md`.
 
 ## Stand
 
@@ -312,6 +336,14 @@ Nicht ohne Rückfrage ändern:
   Modul an.
 - „Initialisieren“ ersetzt in einem bestehenden Projekt `<art>` und
   `<identifizieren>` in `daten.xml` durch die aktuelle Vorlage.
+- Kurze Nachfragen (Begriff, Formelzeichen) beantwortet die eigene, minimale
+  Fähigkeit „Nachschlagen“, zu der Claude wechselt: ohne Verständnisfragen
+  und ohne Knöpfe am Ende. Will der Nutzer mehr, fragt er selbst, und Claude
+  wechselt dann zur passenden Fähigkeit (2026-11-09).
+- Skript verbessern: Bei mehr als einer Etappe fragt Claude am Anfang, ob es
+  nach jeder Etappe wartet oder alles in einem Durchgang macht. Ein Skript,
+  das im Projekt noch nicht indiziert ist, nimmt es nicht aus der
+  Datenquelle (2026-11-09).
 
 ## Testläufe
 
@@ -359,6 +391,15 @@ und frühere Folgen stehen im Verlauf dieser Datei (`git log -p -- CLAUDE.md`).
 
 ### Ungeprüft
 
+- Benutzererfahrung aus der Nutzung (bis 2026-11-09, nicht verifiziert):
+  Die Webseite von „Skript verbessern“ blieb in der Vorschau der iPad-App
+  weiß, in Edge lief sie. In einer automatischen Anweisung lehnte
+  `project_write` `local_path` aus `arbeit:uebungsblatt/` ab („local_path
+  must be inside the working directory“), weil das Arbeitsverzeichnis ein
+  anderes war. Indizieren von 172 Dateien in einem Lauf schrieb nichts.
+  Lokal bestätigt und in `lernhelfer-skript` behoben: Jeder Regler hatte
+  zwei Griffe (zwei `input[type=range]`), `pdftoppm -gray` schreibt PNG und
+  JPEG in RGB (poppler 24.02, jetzt `pdftocairo`).
 - Berichte von Claude aus der Nutzung (2026-10-23, nicht verifiziert):
   Anhänge lagen unter `/mnt/user-data/uploads/` ohne Kennung. Die Antwort
   von `add_repo` enthielt Anweisungen (Repository registrieren, `CLAUDE.md`
@@ -383,8 +424,9 @@ und frühere Folgen stehen im Verlauf dieser Datei (`git log -p -- CLAUDE.md`).
 - Ob ein Abbruch am Nutzungslimit mitten in einem Aufruf zum Schreiben
   passieren kann.
 - Ob Settings > Usage den Reset des Wochenlimits zeigt.
-- Die Webseite von „Skript verbessern“ in der iPad-App (Anzeige, Regler per
-  Touch, `pdfimages`; `testen.md`, Test 1).
+- Die Webseite von „Skript verbessern“ in der iPad-App (Anzeige laut
+  Bericht nur im Browser, Regler per Touch, `pdfimages`, `pdftocairo`;
+  `testen.md`, Test 1).
 
 ### Nächster Testlauf
 
@@ -405,7 +447,24 @@ und frühere Folgen stehen im Verlauf dieser Datei (`git log -p -- CLAUDE.md`).
    ohne Fach TEG, „Indiziere“ in einem Chat mit Opus (Rückfrage nach
    Haiku), eine Frage an `helfen` nach Problemen (Zeile in
    `benutzererfahrung.md`).
-5. Die Lernmodi, je im Projekt und im Chat ohne Projekt:
+5. Die Änderungen vom 2026-11-09:
+   - „Was heißt Schlupf?“ allein und mitten in „Lass uns das Skript
+     durchgehen“ (Wechsel zu Nachschlagen, keine Gegenfrage, zurück mit
+     „weiter“, zu Erlernen mit „Erklär mir das genauer“).
+   - „Erklär mir den Spannungsteiler“ (Zeichnung vor jeder Frage, keine
+     Vorwissensfrage, keine Schaltung aus Textzeichen).
+   - Foto eines halben Lösungswegs mit „Hier komme ich nicht weiter“ (keine
+     Punkte, was stimmt, vager, dann konkreter Hinweis).
+   - „Verbessere mein Skript“ mit einem Skript über 20 Seiten (Rückfrage,
+     „alles in einem Durchgang“ mit Zwischenständen, kurze Kapitel
+     zusammen), mit eingescannten Folien und in einem Projekt, dessen
+     Skript noch nicht indiziert ist. Die Webseite in der iPad-App.
+   - Erster Zugriff auf eine private Datenquelle (Hinweis vor der
+     Freigabe, nach einer Ablehnung „Versuch es noch einmal“).
+   - „Indiziere“ mit vielen Dateien (Portionen, Arbeitskopien mit
+     `local_path`, auch in einer automatischen Anweisung) und ein Fach,
+     dessen Kürzel im Modulhandbuch anders lautet (Rückfrage).
+6. Die Lernmodi, je im Projekt und im Chat ohne Projekt:
    - „Ich erkläre dir jetzt die Kettenregel“ (Spiegeltest), „Frag mich zu
      Kapitel 3 ab“, „Lass uns das Skript durchgehen“ (Kern- und
      Randbegriffe, Rückmeldung wie beim Spiegeltest, bei einer Lücke Wechsel

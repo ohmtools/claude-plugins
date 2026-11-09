@@ -75,14 +75,15 @@ Halte danach fest:
 ## Tests
 
 1. **Webseite:** Davon hängt „Skript verbessern“ ab: Node und npm, der Klon
-   der Vorlage, die Installation ihrer Pakete, das Bauen, `pdfimages` zum
-   Ausschneiden von Abbildungen und die Anzeige der HTML-Datei im Chat. Alles
-   geschieht in `arbeit:lernhelfer-test-webseite/`, nichts im Projekt oder in
-   der Datenquelle.
+   der Vorlage, die Installation ihrer Pakete, das Bauen, `pdfimages` und
+   `pdftocairo` zum Ausschneiden von Abbildungen (`pdftocairo` für
+   Graustufen) und die Anzeige der HTML-Datei im Chat. Alles geschieht in
+   `arbeit:lernhelfer-test-webseite/`, nichts im Projekt oder in der
+   Datenquelle.
    1. Führ aus und notiere Ausgabe, Exit-Code und Dauer (z.B. mit
       `date +%s.%N` davor und danach):
-      `node --version`, `npm --version`, `command -v pdfimages`, dann in
-      `arbeit:lernhelfer-test-webseite/`
+      `node --version`, `npm --version`, `command -v pdfimages pdftocairo`,
+      dann in `arbeit:lernhelfer-test-webseite/`
       `git clone --depth 1 https://github.com/ohmtools/lernhelfer-skript skript`,
       dann im Ordner `skript/` `npm ci --omit=dev`, `du -sh node_modules`,
       `df -h .`, `npm run pruefen` und `npm run build`, zuletzt
@@ -109,11 +110,12 @@ Halte danach fest:
       ```
 
    `ok`: Alle Befehle enden mit Exit-Code 0, und die Seite erscheint und ist
-   bedienbar. `teilweise`: Die Seite entsteht, aber `pdfimages` fehlt, oder
+   bedienbar. `teilweise`: Die Seite entsteht, aber `pdfimages` oder
+   `pdftocairo` fehlt, oder
    sie erscheint nicht oder nur eingeschränkt. `fehlgeschlagen`: Ein Befehl
    bricht ab, und es gibt keine Seite. Detail: die Node-Version, die Dauer
    von `npm ci` und `npm run build`, die Größe der HTML-Datei, ob es
-   `pdfimages` gibt, und was nicht ging. Protokoll: jeder Befehl mit Ausgabe
+   `pdfimages` und `pdftocairo` gibt, und was nicht ging. Protokoll: jeder Befehl mit Ausgabe
    (bei langen die ersten und letzten zehn Zeilen), Exit-Code und Dauer, das
    Werkzeug zum Bereitstellen mit Parametern und Rückmeldung und die
    Antworten des Nutzers. Lösch danach `arbeit:lernhelfer-test-webseite/`.

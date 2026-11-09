@@ -58,6 +58,26 @@ und Bilder aus dem Internet gibt es nicht.
    - {datei}
    ```
 
+   Hat der Nutzer im Chat ein Skript angehängt, nimm es statt einer Datei aus
+   dem Index. Gibt es weder das eine noch das andere, antworte und warte auf
+   die Antwort:
+
+   ```text
+   Im Fach {modulname} finde ich noch kein indiziertes Skript.{datenquelle} Häng mir die PDF hier im Chat an, dann fange ich gleich an.
+   ```
+
+   `{datenquelle}`: Liegt in der Liste der Datenquelle aus der Dateiprüfung
+   (führ sie dafür jetzt durch, falls noch nicht geschehen) eine PDF unter
+   `daten:{modul}/` oder im Abschnitt „Dateien“ des Index, die nicht oder
+   nicht mehr indiziert ist (sie fehlt in `<dateien>` oder hat dort eine
+   andere Identifikation), setze ein Leerzeichen und diesen Satz ein, wobei
+   `{datei}` ihr Pfad ohne Präfix ist, bei mehreren die, deren Name am
+   ehesten nach einem Skript klingt; sonst lass den Platzhalter weg:
+
+   ```text
+   In deiner Datenquelle liegt {datei}, ist aber noch nicht indiziert, deshalb benutze ich sie noch nicht. Damit ich sie auch in späteren Chats finde, starte am besten einen neuen Chat, wähle das Modell Haiku und schreib „/lernhelfer:verwalten Indiziere“.
+   ```
+
    Im **Chat** nimm das angehängte Skript. Gibt es keins, antworte und warte
    auf die Antwort:
 
@@ -95,17 +115,27 @@ und Bilder aus dem Internet gibt es nicht.
    aufgedruckte Nummern (`skill:SKILL.md`, Abschnitt „PDF-Dateien“). Ein
    Kapitel reicht bis zur Seite vor dem nächsten.
 
-   Teil den Umfang in **Etappen** von höchstens einem Kapitel und höchstens
-   20 Seiten, längere Kapitel an Abschnittsgrenzen, denn Wortlaut, Bilder und
-   Ergänzungen brauchen viel Platz im Chat, und nach jeder Etappe hat der
-   Nutzer eine fertige Seite. Gibt es mehr als eine Etappe, antworte, wobei
-   `{seiten}` die Zahl der Seiten ist und `{etappen}` die Etappen mit ihren
-   Seiten (z.B. `Kapitel 1 (Seite 1–14), Kapitel 2 (Seite 15–30)`), und mach
-   mit der ersten weiter:
+   Teil den Umfang in **Etappen** von höchstens etwa 20 Seiten, denn
+   Wortlaut, Bilder und Ergänzungen brauchen viel Platz im Chat, und nach
+   jeder Etappe hat der Nutzer eine fertige Seite. Eine Etappe besteht aus so
+   vielen ganzen Kapiteln, wie in etwa 20 Seiten passen, mindestens aus
+   einem. Ein längeres Kapitel teilst du an Abschnittsgrenzen auf mehrere
+   Etappen. Ein Teil ohne Kapitelnummer (z.B. ein Verweis- oder
+   Literaturverzeichnis) zählt wie ein Kapitel und kommt in die Etappe des
+   Kapitels davor, am Anfang des Skripts in die des Kapitels danach.
 
-   ```text
-   Das sind {seiten} Seiten. Ich bereite sie in Etappen auf: {etappen}. Nach jeder Etappe bekommst du die Webseite mit allem bis dahin, so geht nichts verloren, wenn der Chat endet.
+   Gibt es mehr als eine Etappe, stell diese Rückfrage, wobei `{seiten}` die
+   Zahl der Seiten ist, `{anzahl}` die der Etappen und `{etappen}` die
+   Etappen mit ihren Seiten (z.B.
+   `Kapitel 1–3 (Seite 1–18), Kapitel 4 (Seite 19–34)`):
+
+   ```auswahl
+   Das sind {seiten} Seiten, zu viel für einen Schritt. Ich bereite sie in {anzahl} Etappen auf: {etappen}. Nach jeder Etappe bekommst du die Webseite mit allem bis dahin, so geht nichts verloren, wenn der Chat endet. Soll ich nach jeder Etappe auf dich warten?
+   - Ja, Etappe für Etappe
+   - Nein, alles in einem Durchgang
    ```
+
+   Die Antwort gilt für alle Etappen dieses Umfangs (Schritte 9 und 10).
 
 3. **Vorlage holen:** Führ `command -v node npm; echo "exit=$?"` aus. Endet es
    nicht mit `exit=0`, arbeite nach dem Abschnitt „Ohne Node“ weiter.
@@ -132,9 +162,24 @@ und Bilder aus dem Internet gibt es nicht.
       `arbeit:skript-entwurf/`
       `pdftotext -enc UTF-8 -f {von} -l {bis} '{datei}' original.txt` aus,
       wobei `{datei}` der Pfad des Skripts in deiner Arbeitsumgebung ist.
+      Beginnt die Etappe mitten auf einer Seite oder beginnt auf ihrer
+      letzten Seite schon das nächste Kapitel, kürz `original.txt` (z.B. mit
+      `python3`): Lösch alles vor der Überschrift, mit der die Etappe
+      beginnt, und alles ab der Überschrift, mit der die nächste beginnt.
+      Sonst meldet die Prüfung deren Text als fehlend.
    2. Lies jede Seite als Text und sieh sie dir als Bild an
       (`skill:SKILL.md`, Abschnitt „PDF-Dateien“), denn Formeln, Tabellen und
-      Abbildungen kommen als Text oft falsch an.
+      Abbildungen kommen als Text oft falsch an. Original ist, was man auf der
+      Seite sieht:
+      - Steht Text nur als Bild auf der Seite (z.B. eine eingescannte Folie,
+        pdftotext liefert dann für sie nichts), schreib ihn vom Bild ab und
+        setz die Abschrift in `original.txt` an die Stelle dieser Seite (die
+        Seiten sind dort durch Seitenvorschübe `\f` getrennt). Prüf sie Wort
+        für Wort am Bild, denn die Prüfung vergleicht hier nur mit deiner
+        Abschrift.
+      - Liefert pdftotext Text, der auf dem Bild der Seite nicht zu sehen ist
+        (z.B. verdeckter Text, weiße Schrift oder Notizen einer Folie),
+        übernimm ihn nicht und lösch ihn aus `original.txt`.
    3. Schneide jede Abbildung aus, wie in `arbeit:skript/ANLEITUNG.md`
       beschrieben, Kapitel „Originaltext“, „Ausschneiden“: Rastergrafiken mit
       `pdfimages -png -j` (Fotos werden dabei JPEG), gezeichnete im Ordner
@@ -375,33 +420,49 @@ und Bilder aus dem Internet gibt es nicht.
 9. **Bereitstellen:** Stell `arbeit:{name}.html` mit deinem Werkzeug zum
    Bereitstellen von Dateien zum Anzeigen im Chat bereit (z.B.
    `display: render` bei `SendUserFile`) und `arbeit:{name}-quelle.zip` zum
-   Herunterladen. Antworte, wobei `{umfang}` die Seiten dieser Etappe sind
-   und `{datei}` der Name des Skripts:
+   Herunterladen. Für die Nachrichten gilt: `{umfang}` sind die Seiten dieser
+   Etappe, `{datei}` der Name des Skripts, `{naechste}` die nächste Etappe mit
+   Seiten, `{ab}` ihre erste Seite und `{bis}` die letzte Seite des Umfangs
+   aus Schritt 2, beide als aufgedruckte Nummer, und `{anhang}` im **Chat**
+   ` und die PDF des Skripts`, im **Projekt** leer.
+
+   Gibt es noch eine Etappe und hat der Nutzer in Schritt 2 „Nein, alles in
+   einem Durchgang“ gewählt, antworte nur mit dieser Nachricht und mach in
+   derselben Antwort mit Schritt 10 weiter, ohne auf ihn zu warten:
 
    ```text
-   Fertig: {umfang} aus {datei} als Webseite.
+   Zwischenstand: {umfang} aus {datei} sind fertig ({name}.html). Ich mache gleich mit {naechste} weiter. Endet dieser Chat vorher, häng in einem neuen Chat {name}-quelle.zip{anhang} an und schreib „/lernhelfer:lernen Verbessere {datei} weiter, Seite {ab} bis {bis}“.
+   ```
 
-   - {name}.html: die Webseite. Sie funktioniert auch heruntergeladen und ohne Internet, am Computer, Tablet und Handy.
+   Sonst antworte:
+
+   ```text
+   Fertig: {umfang} aus {datei} als Webseite{teil}.
+   {weiter}
+
+   - {name}.html: die Webseite. Sie funktioniert auch heruntergeladen und ohne Internet, am Computer, Tablet und Handy. Bleibt sie in der Vorschau weiß, lade sie herunter und öffne sie in einem Browser, am iPad z.B. über „Teilen“ in Edge oder Chrome, denn manche Vorschauen führen die Seite nicht aus.
    - {name}-quelle.zip: der Quellcode, falls du die Seite selbst ändern oder später weitermachen willst.
 
    Der Originaltext steht unverändert darin. Alles, was ich ergänzt habe, trägt das rote Badge „Ergänzung“; mit „Nur Original“ (am Handy unter Einstellungen) blendest du es aus. Beantworte die Wiederholungsfragen auf der Seite nach jedem Kapitel zuerst selbst, ohne nachzuschauen, und deck erst dann die Lösung auf.
-   {weiter}
    ```
 
-   `{weiter}`: Gibt es noch eine Etappe, setze diesen Absatz ein, wobei
-   `{naechste}` die nächste Etappe mit Seiten ist, `{ab}` ihre erste Seite
-   und `{bis}` die letzte Seite des Umfangs aus Schritt 2, beide als
-   aufgedruckte Nummer, und `{anhang}` im **Chat** ` und die PDF des
-   Skripts`, im **Projekt** leer; sonst lass den Platzhalter samt Zeile weg:
+   - `{teil}`: Gab es in Schritt 2 mehr als eine Etappe,
+     ` (Etappe {nummer} von {anzahl})` mit der Nummer dieser Etappe, sonst
+     leer.
+   - `{weiter}`: Gibt es noch eine Etappe, setze diesen Absatz ein, sonst
+     lass den Platzhalter samt Zeile weg:
 
-   ```text
-   Als Nächstes kommt {naechste}. Schreib dafür „Mach mit dem Skript weiter“. Endet dieser Chat vorher, häng in einem neuen Chat {name}-quelle.zip{anhang} an und schreib „/lernhelfer:lernen Verbessere {datei} weiter, Seite {ab} bis {bis}“.
-   ```
+     ```text
+     **Noch nicht fertig:** Es fehlen noch {offen}. Schreib „Mach mit dem Skript weiter“, dann kommt {naechste}. Endet dieser Chat vorher, häng in einem neuen Chat {name}-quelle.zip{anhang} an und schreib „/lernhelfer:lernen Verbessere {datei} weiter, Seite {ab} bis {bis}“.
+     ```
 
-10. **Weitere Etappen:** Schreibt der Nutzer „Mach mit dem Skript weiter“,
-    mach mit der nächsten Etappe ab Schritt 4 weiter, mit derselben
-    `arbeit:skript/`. Jede Etappe ergänzt die Webseite um ihre Kapitel, die
-    HTML-Datei enthält immer alle bisherigen.
+     `{offen}` sind die Seiten aller übrigen Etappen, z.B. `Seite 19–60`.
+
+10. **Weitere Etappen:** Hat der Nutzer „Nein, alles in einem Durchgang“
+    gewählt, oder schreibt er „Mach mit dem Skript weiter“, mach mit der
+    nächsten Etappe ab Schritt 4 weiter, mit derselben `arbeit:skript/`.
+    Jede Etappe ergänzt die Webseite um ihre Kapitel, die HTML-Datei enthält
+    immer alle bisherigen.
 
 ## Ohne Node
 

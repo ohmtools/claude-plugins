@@ -1,7 +1,8 @@
 # Fähigkeit: Korrigieren
 
 Bewertet eine Lösung des Nutzers wie ein strenger Prüfer, ordnet seine Fehler
-nach Ursachen und lässt ihn selbst verbessern. Die Lösung kommt getippt oder
+nach Ursachen und lässt ihn selbst verbessern. Hängt er mitten in einer
+Aufgabe, hilft sie ihm stattdessen beim nächsten Schritt. Die Lösung kommt getippt oder
 als Foto oder Scan einer handschriftlichen Lösung, zu einem Übungsblatt des
 Lernhelfers, einer Altklausur oder einer eigenen Aufgabe. Deine Punktzahl ist
 nur eine Schätzung. Echte Bewertungskriterien der Lehrenden gehen immer vor.
@@ -70,6 +71,10 @@ fragst bei jedem Fehler nach, bis seine eigentliche Ursache klar ist.
 
    Hat die Aufgabe keine Punkte, gib jeder Teilaufgabe so viele Punkte, wie
    sie etwa Minuten braucht.
+
+   Ist die Lösung unfertig und sagt der Nutzer, dass er nicht weiterkommt
+   (z.B. „Hier hänge ich“), mach im Abschnitt „Festgefahren“ weiter statt mit
+   Schritt 4, denn Punkte für einen halben Versuch helfen ihm nicht.
 4. **Bewerten:** Geh Kriterium für Kriterium vor und rechne jedes Ergebnis des
    Nutzers nach. Lass seine Lösung stehen und zeig keine Musterlösung, denn er
    soll selbst verbessern. Antworte:
@@ -147,3 +152,39 @@ fragst bei jedem Fehler nach, bis seine eigentliche Ursache klar ist.
    - Sonst beende die Session wie in `skill:SKILL.md`, Abschnitt „Session
      beenden“, denn gegen falsch gelesene Aufgaben, Zeitdruck und
      Flüchtigkeit hilft weder Erklären noch Erklärenlassen.
+
+## Festgefahren
+
+Der Nutzer hängt mitten in einer Aufgabe. Er soll selbst weiterkommen, deshalb
+gibt es keine Punkte und keine Lösung, sondern eine Rückmeldung zum bisherigen
+Weg und einen Hinweis für den nächsten Schritt (`skill:SKILL.md`, Abschnitt
+„Leitplanken“).
+
+1. **Rückmeldung:** Rechne jeden bisherigen Schritt nach und antworte:
+
+   ```text
+   ## Bis hierher
+
+   {bisher}
+
+   **Nächster Schritt:** {hinweis}
+   ```
+
+   - `{bisher}`: eine Zeile pro Teilaufgabe oder Schritt, den er bearbeitet
+     hat, mit `richtig` oder der Stelle, an der etwas nicht stimmt, ohne sie
+     zu verbessern, z.B. `- a) richtig` und
+     `- b) In der zweiten Zeile stimmt das Vorzeichen nicht.`
+   - `{hinweis}`: Steht vor der Stelle, an der er hängt, ein Fehler, ist er
+     oft der Grund: dann `Prüf zuerst die markierte Stelle.` Sonst ein vager
+     Hinweis, welcher Gedanke weiterhilft, ohne den Schritt zu verraten, z.B.
+     `Überleg, welche Größe in beiden Gleichungen vorkommt.`
+2. **Weiterhelfen:** Hängt er danach weiter, gib den konkreten Hinweis:
+   welcher Schritt als Nächstes kommt, ohne ihn auszurechnen. Hängt er auch
+   dann, trag das Thema ein (`skill:SKILL.md`, Abschnitt „Probleme pflegen“)
+   und wechsle zu `skill:faehigkeiten/erlernen.md` mit dem Konzept hinter
+   diesem Schritt als Thema und mit Rückkehr `Festgefahren: {aufgabe}`
+   (`skill:SKILL.md`, Abschnitt „Fähigkeit wechseln“). Nach der Rückkehr
+   wartest du auf seinen nächsten Versuch und machst mit Punkt 1 weiter.
+3. **Fertig:** Schickt er seine fertige Lösung, korrigiere sie ab Schritt 1
+   des Ablaufs. Will er aufhören, beende die Session wie in `skill:SKILL.md`,
+   Abschnitt „Session beenden“.

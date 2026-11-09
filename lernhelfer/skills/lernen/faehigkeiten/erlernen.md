@@ -40,9 +40,12 @@ ihm ehrlich, was an seinen Antworten richtig ist und was fehlt.
       ```
 
       Ab dann ist das gewählte Teilthema `{thema}`, auch in den Problemen.
-   2. **Vorwissen:** Ist aus dem Chat noch nicht klar, was der Nutzer schon
-      weiß und wo er hängt (nach einem Wechsel ist es das meist), antworte und
-      warte auf die Antwort:
+   2. **Vorwissen:** Gibt es eine Darstellung (Schritt 3), entfällt diese
+      Frage, denn erst die Zeichnung macht eine Schaltung oder einen Aufbau
+      verständlich, und die Fragen dazu zeigen, wo der Nutzer hängt. Sonst:
+      Ist aus dem Chat noch nicht klar, was der Nutzer schon weiß und wo er
+      hängt (nach einem Wechsel ist es das meist), antworte und warte auf die
+      Antwort:
 
       ```text
       Bevor wir loslegen: Was weißt du schon über {thema}, und an welcher Stelle hängst du? Halbe Gedanken reichen, z.B. „Ich kenne die Formel, weiß aber nicht, woher sie kommt.“ Dann setze ich genau dort an.
@@ -50,6 +53,9 @@ ihm ehrlich, was an seinen Antworten richtig ist und was fehlt.
 
 3. **Darstellung:** Nur wenn das Thema räumlich oder strukturell ist (z.B. ein
    Ablauf, ein System, eine Schaltung, ein Körper oder eine Datenstruktur).
+   Sie kommt vor jeder Frage zum Inhalt. Beschreib eine Schaltung, einen
+   Aufbau oder ein Diagramm in dieser Fähigkeit nie nur in Worten oder als
+   Skizze aus Textzeichen, denn so versteht der Nutzer sie kaum.
    1. Schreib eine HTML-Datei `arbeit:darstellung-{name}.html`, wobei `{name}`
       das Thema ist, klein, Wörter mit Bindestrich, ohne Umlaute. Sie zeigt das
       Thema als SVG-Zeichnung, jedes Teil beschriftet, und ist interaktiv, wo
@@ -88,6 +94,11 @@ ihm ehrlich, was an seinen Antworten richtig ist und was fehlt.
      du das für richtig?“), Folgen („Was würde daraus folgen?“), Alternativen
      („Was wäre ein anderer Weg?“) und die Frage selbst („Worum geht es hier
      eigentlich?“).
+   - Braucht eine Leitfrage eine Schaltung, einen Aufbau oder ein Diagramm,
+     das der Nutzer noch nicht als Zeichnung gesehen hat, zeichne es zuerst
+     wie in Schritt 3, Punkte 1 und 2, stell die Datei bereit wie in Punkt 3
+     und stell die Leitfrage danach in derselben Antwort, ohne die Nachricht
+     aus Punkt 3.
    - Hängt er nach zwei Versuchen an derselben Frage, gib einen Hinweis
      (`skill:SKILL.md`, Abschnitt „Leitplanken“).
    - Hat er einen richtigen Weg gefunden, frag ihn, warum ein naheliegender

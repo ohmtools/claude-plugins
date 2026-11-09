@@ -77,12 +77,15 @@ Abschnitt.
         <antwort>
 Er besteht aus drei Skills:
 - Lernen, mit den eigenen Skripten, Übungsblättern und Altklausuren des
-  Nutzers: Erlernen (Claude führt als Tutor mit Fragen zum Verständnis, bei
+  Nutzers: Nachschlagen (eine kurze Frage, z.B. was ein Begriff oder ein
+  Formelzeichen auf einer Folie bedeutet, direkt beantwortet, ohne
+  Gegenfragen), Erlernen (Claude führt als Tutor mit Fragen zum Verständnis, bei
   Abläufen oder Schaltungen mit einer Darstellung), Wiederholen (abfragen,
   selbst erklären, das Skript Seite für Seite durchgehen), Üben (Übungsblatt
   als PDF mit Lösung, von bekannten Aufgaben mit neuen Werten bis schwerer als
   die Klausur, oder Bloom-Leiter im Chat) und Korrigieren (eine eigene Lösung
-  bewerten lassen, getippt oder als Foto). „Schwachstellen listen“ zeigt,
+  bewerten lassen, getippt oder als Foto, oder bei einem halben Versuch
+  Hilfe für den nächsten Schritt bekommen). „Schwachstellen listen“ zeigt,
   womit der Nutzer in einem Fach noch Schwierigkeiten hat. „Skript
   verbessern“ macht aus einem Skript eine interaktive Webseite mit
   Erklärungen, Animationen und Wiederholungsfragen, der Originaltext bleibt
@@ -136,11 +139,15 @@ Bindestrich, ohne Umlaute, z.B. lineare-algebra), das Modulhandbuch ohne Ordner.
         <frage>Wie lerne ich mit dem Lernhelfer?</frage>
         <antwort>
 Der Nutzer schreibt einfach, was er will, z.B. „/lernhelfer:lernen Erklär mir
-die Kettenregel“. Claude wählt dann einen dieser Lernmodi:
+die Kettenregel“. Kurze Fragen nach einer Einzelheit (z.B. „Was heißt Schlupf?“
+oder „Wofür steht η auf Folie 12?“) beantwortet Claude direkt mit Fundstelle,
+auch mitten in einem Lernmodus, und stellt keine Gegenfragen. Will der Nutzer
+mehr, fragt er einfach nach. Sonst wählt Claude einen dieser Lernmodi:
 - Erlernen, für neuen Stoff: Claude stellt Leitfragen, eine nach der anderen,
   statt die Antwort zu verraten. Ist ein Thema groß, fragt Claude zuerst, mit
   welchem Teil es losgeht. Bei Abläufen, Systemen oder Schaltungen gibt es
-  eine Darstellung, die der Nutzer danach aus dem Gedächtnis nachzeichnet.
+  zuerst eine Zeichnung und erst danach Fragen, und der Nutzer zeichnet sie
+  zum Schluss aus dem Gedächtnis nach.
   „Verstanden“ allein reicht nicht: Der Nutzer erklärt es zum Schluss selbst.
 - Wiederholen, für Gelerntes: „Frag mich zu Kapitel 3 ab“ (Fragen aus dem
   Gedächtnis, mit Angabe, wie sicher man ist), „Ich erkläre dir jetzt …“
@@ -169,7 +176,9 @@ die Kettenregel“. Claude wählt dann einen dieser Lernmodi:
   einem Foto oder einer Datei schreibt Claude zuerst ab, was es gelesen hat,
   damit der Nutzer Lesefehler sofort sieht. Dann bewertet es sie wie ein
   strenger Prüfer, mit geschätzter Punktzahl, gibt Hinweise statt der Lösung
-  und sucht zu jedem Fehler die Ursache. Danach geht
+  und sucht zu jedem Fehler die Ursache. Schickt der Nutzer einen unfertigen
+  Versuch und kommt nicht weiter, gibt es keine Punkte: Claude sagt, was
+  bisher stimmt, und gibt einen Hinweis für den nächsten Schritt. Danach geht
   es bei Verständnisfehlern mit Erlernen weiter, bei Fehlern in der
   Rechentechnik mit Wiederholen, in dem der Nutzer die Regel selbst erklärt.
 Außerdem macht „/lernhelfer:lernen Verbessere mein Skript“ aus einem Skript
@@ -203,10 +212,17 @@ Geschichte oder Namensherkunft. Fragen stehen nur am Kapitelende, nie im Text,
 und brauchen zusammen etwa ein Drittel der Zeit, die das Kapitel zum Lesen und
 Durchdenken braucht, bei wenig Text also nur eine oder zwei. Im Projekt erklärt Claude die
 Themen gründlicher, mit denen der Nutzer Schwierigkeiten hat, ohne sie auf der
-Seite zu nennen. Ein ganzes Skript bereitet Claude in Etappen von höchstens
-einem Kapitel und 20 Seiten auf. Nach jeder Etappe gibt es die Webseite und eine
-Datei mit dem Quellcode (…-quelle.zip). Mit „Mach mit dem Skript weiter“ geht es
-im selben Chat weiter, in einem neuen Chat mit der angehängten Quellcode-Datei.
+Seite zu nennen. Ein langes Skript bereitet Claude in Etappen von etwa 20
+Seiten auf, kurze Kapitel zusammen, lange geteilt, und fragt vorher, ob es nach
+jeder Etappe warten oder alles in einem Durchgang machen soll. Nach jeder Etappe
+gibt es die Webseite mit allem bis dahin und eine Datei mit dem Quellcode
+(…-quelle.zip). Nach einer Pause geht es mit „Mach mit dem Skript weiter“ im
+selben Chat weiter, in einem neuen Chat mit der angehängten Quellcode-Datei.
+Bleibt die Webseite in der Vorschau von Claude weiß (z.B. in der iPad-App),
+öffnet der Nutzer die heruntergeladene Datei in einem Browser, am iPad z.B.
+über „Teilen“ in Edge oder Chrome. Im Projekt nimmt Claude das Skript aus der
+Datenquelle erst, wenn es indiziert ist; bis dahin hängt der Nutzer es im Chat
+an.
 Die Vorlage der Webseite liegt öffentlich unter
 <https://github.com/ohmtools/lernhelfer-skript>. Der Originaltext gehört
 seinem Autor: Die Seite ist für den eigenen Gebrauch, Claude lädt sie nirgends
@@ -278,7 +294,9 @@ Nur im Projekt mit Datenquelle. Das Modulhandbuch (an der Schule: Lehrplan)
 liegt ohne Ordner in der Datenquelle, sein Dateiname muss „Modulhandbuch“ oder
 „Lehrplan“ enthalten. Legt der Nutzer ein Fach an, sucht Claude darin den Teil
 zu diesem Fach und übernimmt eine kurze Beschreibung, die Lernziele wörtlich
-und die Angaben zur Prüfung (Form, Dauer, Hilfsmittel). Die Dauer und die
+und die Angaben zur Prüfung (Form, Dauer, Hilfsmittel). Passt kein Modul im
+Handbuch genau (z.B. weil das Kürzel dort anders lautet), fragt Claude, welches
+gemeint ist. Die Dauer und die
 Hilfsmittel stehen dann auf Übungsblättern in Prüfungslänge.
 Mit „/lernhelfer:verwalten Leg die Fächer aus dem Modulhandbuch an“ legt Claude
 die Fächer gleich aus dem Handbuch an, das dafür vor allen Fächern hochgeladen
@@ -302,7 +320,9 @@ Dateien aller Fächer einmal vollständig und legt pro Fach ein Verzeichnis an:
 welche Dateien dazugehören und welche Stichwörter auf welchen Seiten stehen.
 Spätere Chats finden die richtigen Stellen dann schnell, ohne alles neu zu
 lesen. Dateien, die sich nicht geändert haben, liest Claude nicht noch einmal,
-außer der Nutzer will es ausdrücklich (z.B. „Indiziere alles neu“). Das
+außer der Nutzer will es ausdrücklich (z.B. „Indiziere alles neu“). Viele
+Dateien liest Claude in Portionen von bis zu zehn und speichert nach jeder,
+was fertig ist; den Rest erledigt der nächste Durchlauf. Das
 Indizieren ist aufwendig, aber einfach, deshalb reicht das Modell Haiku und
 schont das Nutzungslimit. Der Nutzer startet dazu einen neuen Chat mit Haiku und
 schreibt „/lernhelfer:verwalten Indiziere“, oder er lässt es einmal pro Woche

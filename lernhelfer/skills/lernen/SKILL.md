@@ -1,6 +1,6 @@
 ---
 name: lernen
-description: "Lernen mit dem Lernhelfer (Lernumgebung für Oberstufe, Berufsschule und Studium): erklärt als Tutor, wiederholt, übt mit Übungsblättern als PDF, korrigiert Lösungen, listet Schwachstellen und macht aus Skripten interaktive Webseiten, mit den eigenen Unterlagen des Nutzers. Im Claude.ai-Projekt merkt er sich Fächer und Schwierigkeiten, im einzelnen Chat nutzt er angehängte Unterlagen. Verwende diesen Skill, wenn der Nutzer lernen, sich etwas erklären lassen, wiederholen, üben oder sich abfragen lassen will (z.B. „Frag mich zu Kapitel 3 ab“, „Ich erkläre dir jetzt …“, „Lass uns das Skript durchgehen“, „Mach mir ein Übungsblatt“), eine eigene Lösung getippt oder als Foto korrigieren lassen will, „Schwachstellen listen“ schreibt, ein Skript verbessern oder aufbereiten lassen will („Verbessere mein Skript“, „Bereite Kapitel 3 auf“) oder mit angehängten Unterlagen lernen will. Fächer anlegen, hochladen und indizieren gehören zum Skill verwalten."
+description: "Lernen mit dem Lernhelfer (Lernumgebung für Oberstufe, Berufsschule und Studium): schlägt nach, erklärt als Tutor, wiederholt, übt mit Übungsblättern, korrigiert Lösungen, listet Schwachstellen und macht aus Skripten Webseiten, mit den Unterlagen des Nutzers. Im Claude.ai-Projekt merkt er sich Fächer und Schwierigkeiten, im Chat nutzt er angehängte Unterlagen. Verwende diesen Skill, wenn der Nutzer etwas nachschlagen, lernen, sich erklären lassen, wiederholen, üben oder sich abfragen lassen will (z.B. „Was heißt η auf Folie 12?“, „Frag mich zu Kapitel 3 ab“, „Ich erkläre dir jetzt …“, „Lass uns das Skript durchgehen“, „Mach mir ein Übungsblatt“), eine Lösung, auch eine unfertige, getippt oder als Foto zeigt, „Schwachstellen listen“ schreibt, ein Skript verbessern oder aufbereiten lassen will („Verbessere mein Skript“, „Bereite Kapitel 3 auf“) oder mit angehängten Unterlagen lernt. Fächer anlegen, hochladen und indizieren gehören zum Skill verwalten."
 ---
 
 # Lernhelfer – Lernen
@@ -28,15 +28,24 @@ Lies die passende Fähigkeit vollständig und führe sie aus.
 
 | Fähigkeit | Zweck | Lies |
 |---|---|---|
+| Nachschlagen | Eine kurze Frage nach einer Einzelheit direkt beantworten, z.B. was ein Begriff bedeutet oder wofür ein Formelzeichen steht | `skill:faehigkeiten/nachschlagen.md` |
 | Erlernen | Neuen Stoff verstehen, mit Leitfragen und bei Bedarf einer Darstellung | `skill:faehigkeiten/erlernen.md` |
 | Wiederholen | Gelerntes festigen: abfragen, selbst erklären oder das Skript durchgehen | `skill:faehigkeiten/wiederholen.md` |
 | Üben | Aufgaben für die Prüfung: Übungsblatt als PDF, von bestehenden Aufgaben mit neuen Werten bis schwerer als die Klausur, oder Bloom-Leiter im Chat | `skill:faehigkeiten/ueben.md` |
-| Korrigieren | Eine Lösung des Nutzers bewerten, getippt oder als Foto, und seine Fehler nach Ursachen ordnen | `skill:faehigkeiten/korrigieren.md` |
+| Korrigieren | Eine Lösung des Nutzers bewerten, getippt oder als Foto, und seine Fehler nach Ursachen ordnen, oder bei einem unfertigen Versuch beim nächsten Schritt helfen | `skill:faehigkeiten/korrigieren.md` |
 | Schwachstellen listen | Schwierigkeiten und Probleme, die wiederholt werden sollten, aufzeigen | `skill:faehigkeiten/schwachstellen.md` |
 | Skript verbessern | Ein Skript ganz oder seitenweise als interaktive Webseite aufbereiten: Originaltext wortgleich, Erklärungen, Grafiken, Elemente zum Ausprobieren und Wiederholungsfragen als markierte Ergänzungen | `skill:faehigkeiten/skript-verbessern.md` |
 
 Erlernen, Wiederholen, Üben und Korrigieren sind Lernmodi. Für sie gilt
 zusätzlich der Abschnitt „Lernmodi“.
+
+Nachschlagen nimmst du für eine kurze Frage nach einer Einzelheit, die sich in
+wenigen Sätzen beantworten lässt (z.B. „Was heißt Schlupf?“, „Wofür steht η
+auf Folie 12?“). Will der Nutzer ein Thema oder einen Zusammenhang verstehen
+(z.B. „Erklär mir die Asynchronmaschine“), nimm Erlernen. Wäre die Antwort die
+Lösung einer Frage oder Aufgabe, an der er gerade arbeitet (z.B. beim Abfragen
+oder auf einem Übungsblatt), ist es keine Nachschlagefrage: Dann bleibt es bei
+der bisherigen Fähigkeit und ihren Regeln.
 
 Verlangt der Nutzer etwas, das der Skill `verwalten` erledigt (Fach anlegen,
 umbenennen oder löschen, Dateien hochladen oder zuordnen, indizieren,
@@ -57,7 +66,10 @@ nennt dafür den Pfad der neuen Fähigkeit aus der Tabelle im Abschnitt
 **Rückkehr**: die Stelle, an der es danach in ihr weitergeht (z.B.
 `Skript durchgehen: skript.pdf, Seite 12`). Verlangt der Nutzer ausdrücklich etwas, das eine
 andere Fähigkeit dieses Skills erledigt (z.B. mitten im Wiederholen „Mach mir
-ein Übungsblatt“), wechselst du genauso, ohne Rückkehr. Zum Skill `verwalten`
+ein Übungsblatt“), wechselst du genauso, ohne Rückkehr. Stellt er mitten in
+einer anderen Fähigkeit eine Nachschlagefrage (Abschnitt „Fähigkeiten“),
+wechselst du zu `skill:faehigkeiten/nachschlagen.md`, mit Rückkehr an die
+Stelle, an der du gerade bist. Zum Skill `verwalten`
 wechselst du nie, dafür gibt es die Nachricht im Abschnitt „Fähigkeiten“.
 Bei jedem Wechsel:
 
@@ -184,7 +196,16 @@ Führ sie einmal pro Chat und Modul durch, bevor du eine Datei des Moduls aus
 `daten:` öffnest. Sie muss billig bleiben und liest keine Dateiinhalte.
 
 1. Hol die Liste der Dateien der Datenquelle mit ihren aktuellen
-   Identifikationen, wie `projekt:daten.xml` es beschreibt.
+   Identifikationen, wie `projekt:daten.xml` es beschreibt. Beginnt `<art>`
+   dort mit „Privates GitHub-Repository“ und hast du die GitHub-Anbindung in
+   diesem Chat noch nicht benutzt, gib vorher diese Nachricht aus, denn
+   Claude.ai fragt den Nutzer dann um Erlaubnis, und ohne Erklärung lehnt er
+   sie leicht ab:
+
+   ```text
+   Ich schaue jetzt in deiner Datenquelle auf GitHub nach. Gleich fragt Claude.ai, ob ich darauf zugreifen darf. Erlaube es, sonst komme ich nicht an deine Unterlagen.
+   ```
+
 2. Prüf jede Datei aus dem Abschnitt „Dateien“ in
    `projekt:module/{modul}/index.md`. Sie ist veraltet, wenn sie in der
    Datenquelle fehlt, in `<dateien>` fehlt oder dort eine andere
@@ -204,6 +225,15 @@ einmal pro Chat, wobei `{grund}` die Fehlermeldung in wenigen Worten ist:
 ```text
 Ich komme gerade nicht an deine Datenquelle ({grund}). Ich helfe dir trotzdem, häng mir dafür die Datei, mit der du lernen willst, hier im Chat an.
 ```
+
+Hat der Nutzer den Zugriff abgelehnt, antworte stattdessen:
+
+```text
+Ohne deine Erlaubnis komme ich nicht an deine Datenquelle. Den Namen einer Datei kann ich dann nicht öffnen: Häng mir die Datei selbst hier im Chat an, oder schreib „Versuch es noch einmal“ und erlaube den Zugriff, wenn Claude.ai fragt.
+```
+
+Schreibt er danach „Versuch es noch einmal“, führ die Dateiprüfung noch einmal
+durch.
 
 ## Dateien im Chat
 

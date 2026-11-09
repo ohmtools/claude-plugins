@@ -221,8 +221,12 @@ den bisherigen Inhalt von `projekt:module/{modul}/info.md` unter der
 3. **Modul im Handbuch finden:** Hol das Modulhandbuch, wie
    `projekt:daten.xml` es beschreibt, lies es vollständig (eine PDF mit
    `pdftotext -layout '{datei}' -`) und such den Teil, der zum Fach passt
-   (Name, Abkürzung oder Modulnummer). Passen mehrere, stell diese Rückfrage,
-   mit einer Option pro passendem Teil:
+   (Name, Abkürzung oder Modulnummer). Stell diese Rückfrage, mit einer
+   Option pro in Frage kommendem Teil, wenn mehrere Teile passen oder wenn
+   keiner genau passt, aber einer oder mehrere ähnlich sind (z.B. ein Kürzel,
+   das im Handbuch anders lautet, oder ein Name, der nur zum Teil
+   übereinstimmt), denn ein falsch zugeordnetes Modul bekäme fremde
+   Lernziele:
 
    ```auswahl
    Welches Modul aus {handbuch} gehört zu {modulname}?
@@ -318,8 +322,9 @@ nur einige belegt. Leg deshalb nur die an, die er auswählt.
    passen: zu einem Namen den Teil mit diesem Namen, dieser Abkürzung oder
    Modulnummer, zu einer Gruppe wie einem Semester jedes Modul, das das
    Handbuch ihr zuordnet (z.B. in einem Studienplan). Passen zu einem Namen
-   mehrere Teile, stell die Rückfrage aus dem Abschnitt „Lernziele
-   übernehmen“, Schritt 3, mit diesem Namen als `{modulname}`. Findest du zu
+   mehrere Teile oder keiner genau, aber welche ähnlich, stell die Rückfrage
+   aus dem Abschnitt „Lernziele übernehmen“, Schritt 3, mit diesem Namen als
+   `{modulname}`. Findest du zu
    einem Namen keinen Teil oder wählt der Nutzer dort „Keines davon“,
    antworte vor Schritt 5, wobei `{namen}` diese Namen durch Kommas getrennt
    sind:

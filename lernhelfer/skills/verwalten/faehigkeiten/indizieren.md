@@ -26,12 +26,22 @@ ein Lernender danach suchen würde.
   komplett neu“) oder alle („Indiziere alles neu“).
 - Arbeite, bis alle zu lesenden Dateien erledigt sind. Unterbrich nur für eine
   Rückfrage aus dieser Fähigkeit.
-- Schreib nach jeder Datei, nicht erst am Ende, und immer zuerst den Index,
-  zuletzt `projekt:daten.xml` (`plugin:skills/gemeinsam/grundlagen.md`,
-  Abschnitt „Abbruch“). Eine Datei gilt erst als indiziert, wenn ihre
-  Identifikation in `projekt:daten.xml` steht. Endet der Chat vorher, z.B. am
-  Nutzungslimit, hält die Dateiprüfung ihre Einträge für veraltet, und der
-  nächste Durchlauf liest sie noch einmal.
+- Arbeite die zu lesenden Dateien in **Portionen** ab und schreib nach jeder
+  Portion, nicht erst am Ende, immer zuerst die Indexe, zuletzt
+  `projekt:daten.xml` (`plugin:skills/gemeinsam/grundlagen.md`, Abschnitt
+  „Abbruch“). So schreibst du jeden Index pro Portion nur einmal statt nach
+  jeder Datei, und bei vielen Dateien bleibt trotzdem nach jeder Portion
+  etwas fertig. Eine Datei gilt erst als indiziert, wenn ihre Identifikation
+  in `projekt:daten.xml` steht. Endet der Chat vorher, z.B. am
+  Nutzungslimit, hält die Dateiprüfung die Einträge der angefangenen Portion
+  für veraltet, und der nächste Durchlauf liest sie noch einmal.
+- Schreib Indexe und `projekt:daten.xml` nie, indem du ihren ganzen Inhalt
+  ausgibst, denn ein großer Index kostet dann bei jedem Schreiben viele
+  Token. Halte von jeder dieser Dateien eine Arbeitskopie in
+  `arbeit:indizieren/` (z.B. `arbeit:indizieren/{modul}-index.md` und
+  `arbeit:indizieren/daten.xml`), ändere sie dort (z.B. mit `python3`) und
+  schreib sie mit Angabe ihres Pfads (z.B. `local_path` bei
+  `project_write`).
 
 ## Ablauf
 
@@ -53,7 +63,9 @@ ein Lernender danach suchen würde.
 
    Gibt es Module, lies `projekt:daten.xml` und von jedem Modul
    `projekt:module/{modul}/info.md` und `projekt:module/{modul}/index.md`
-   vollständig. Hol die Liste der Dateien der Datenquelle mit ihren aktuellen
+   vollständig. Lösch `arbeit:indizieren/`, falls es den Ordner gibt, und leg
+   darin die Arbeitskopien von `projekt:daten.xml` und jedem Index an
+   (Abschnitt „Grundsatz“). Hol die Liste der Dateien der Datenquelle mit ihren aktuellen
    Identifikationen, wie `projekt:daten.xml` es beschreibt.
 2. **Einordnen:** Vergleiche die Liste der Datenquelle mit `<dateien>`:
    - **neu:** Die Datei fehlt in `<dateien>`.
@@ -94,13 +106,16 @@ ein Lernender danach suchen würde.
    Fürs Indizieren starte einen neuen Chat, wähle das Modell Haiku und schreib „/lernhelfer:verwalten Indiziere“.
    ```
 
-3. **Entfernte Dateien:** Gibt es entfernte Dateien, entferne in jedem Index
-   ihre Zeilen aus „Dateien“ und aus dem Stichwortverzeichnis und schreib jeden
-   geänderten Index. Entferne danach ihre `<datei>` aus `projekt:daten.xml` und
-   schreib sie.
-4. **Dateien lesen:** Arbeite die zu lesenden Dateien, die kein Modulhandbuch
-   sind, nacheinander ab. Hol jede, wie `projekt:daten.xml` es beschreibt, und
-   lies sie vollständig. Eine PDF liest du mit `pdftotext -layout '{datei}' -`.
+3. **Entfernte Dateien:** Gibt es entfernte Dateien, entferne in den
+   Arbeitskopien jedes Index ihre Zeilen aus „Dateien“ und aus dem
+   Stichwortverzeichnis und schreib jeden geänderten Index. Entferne danach
+   ihre `<datei>` aus der Arbeitskopie von `projekt:daten.xml` und schreib
+   sie.
+4. **Dateien lesen:** Teil die zu lesenden Dateien, die kein Modulhandbuch
+   sind, in Portionen: Dateien desselben Moduls nacheinander, höchstens zehn
+   Dateien und etwa 150 Seiten pro Portion; eine längere Datei ist eine
+   Portion für sich. Lies die Dateien einer Portion nacheinander. Hol jede,
+   wie `projekt:daten.xml` es beschreibt, und lies sie vollständig. Eine PDF liest du mit `pdftotext -layout '{datei}' -`.
    Darin endet jede Seite mit einem Seitenvorschub (`\f`), auch eine leere:
    Seite 1 ist der Text vor dem ersten Seitenvorschub, Seite n der Text
    zwischen dem (n−1)-ten und dem n-ten. Notiere:
@@ -127,21 +142,28 @@ ein Lernender danach suchen würde.
    Abbildung, ein Diagramm oder eine Schaltung, und ihre Beschriftungen sind
    oft Stichwörter. Bleibt eine Stelle unsicher, notiere sie für `{unsicher}`.
 
-   Schreib danach, bevor du die nächste Datei holst:
-   1. jeden Index, zu dem die Datei gehört: Entferne ihre bisherigen Zeilen im
-      Stichwortverzeichnis, trag die neuen ein, eine Zeile pro Stichwort,
-      alphabetisch nach Stichwort, und setz in „Dateien“ ihre Beschreibung
-      ein. Hast du sie in Schritt 2 neu zugeordnet, füg ihre Zeile in
-      „Dateien“ ein. Gehört die Datei zu mehreren Modulen, bekommt jeder
-      ihrer Indexe dieselben Einträge.
-   2. danach `projekt:daten.xml`: Setze ihre aktuelle Identifikation in
-      `<dateien>` ein, eine neue Datei bekommt eine neue `<datei>`. Alles
-      andere bleibt.
+   Trag nach jeder Datei ihre Einträge in die Arbeitskopie jedes Index ein,
+   zu dem sie gehört: Entferne ihre bisherigen Zeilen im
+   Stichwortverzeichnis, trag die neuen ein, eine Zeile pro Stichwort,
+   alphabetisch nach Stichwort, und setz in „Dateien“ ihre Beschreibung ein.
+   Hast du sie in Schritt 2 neu zugeordnet, füg ihre Zeile in „Dateien“ ein.
+   Gehört die Datei zu mehreren Modulen, bekommt jeder ihrer Indexe dieselben
+   Einträge. Setz außerdem in der Arbeitskopie von `projekt:daten.xml` ihre
+   aktuelle Identifikation in `<dateien>` ein, eine neue Datei bekommt eine
+   neue `<datei>`. Alles andere bleibt.
+
+   Schreib nach jeder Portion, bevor du die nächste anfängst:
+   1. jeden Index, den die Portion geändert hat, aus seiner Arbeitskopie.
+   2. danach `projekt:daten.xml` aus ihrer Arbeitskopie.
 5. **Modulhandbuch lesen:** Nur wenn ein Modulhandbuch zu lesen ist. Hol es,
    wie `projekt:daten.xml` es beschreibt, lies es vollständig (eine PDF mit
    `pdftotext -layout '{datei}' -`) und such für jedes Modul den Teil, der dazu
-   passt (Name, Abkürzung oder Modulnummer). Passen mehrere, stell diese Rückfrage, mit
-   einer Option pro passendem Teil:
+   passt (Name, Abkürzung oder Modulnummer). Stell diese Rückfrage, mit
+   einer Option pro in Frage kommendem Teil, wenn mehrere Teile passen oder
+   wenn keiner genau passt, aber einer oder mehrere ähnlich sind (z.B. ein
+   Kürzel, das im Handbuch anders lautet, oder ein Name, der nur zum Teil
+   übereinstimmt), denn ein falsch zugeordnetes Modul bekäme fremde
+   Lernziele:
 
    ```auswahl
    Welches Modul aus {handbuch} gehört zu {modulname}?
@@ -165,8 +187,9 @@ ein Lernender danach suchen würde.
    `projekt:module/{modul}/info.md` dieses Moduls unverändert.
 
    Schreib danach zuerst `projekt:module/{modul}/info.md` jedes Moduls, für das
-   du etwas übernommen hast, dann in `projekt:daten.xml` die aktuelle
-   Identifikation des Modulhandbuchs wie in Schritt 4.
+   du etwas übernommen hast, dann `projekt:daten.xml` mit der aktuellen
+   Identifikation des Modulhandbuchs, eingetragen in ihre Arbeitskopie wie in
+   Schritt 4.
 6. **Abschluss:** Antworte:
 
    ```text

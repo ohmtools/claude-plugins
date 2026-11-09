@@ -353,6 +353,11 @@ braucht, der den Stoff beherrscht, mit Lesen.
   `projekt:gedaechtnis/{modul}/probleme.md`. Alle anderen Themen, auch die, die
   dort nicht stehen, gelten als verstanden. Klausurniveau+ gibt es deshalb nur
   im **Projekt**.
+- Ist jedes Thema im Stoff eine Schwachstelle (z.B. bei einem Blatt zu den
+  Schwachstellen in einem Modul, in dem noch nichts verstanden ist), liegen
+  auf Klausurniveau+ alle Aufgaben auf Klausurniveau. Das Blatt heißt
+  trotzdem Klausurniveau+, und der Transferanteil gilt weiter, denn bei
+  Schwachstellen hilft Klausurniveau mehr als ein schwereres Blatt.
 - Über Klausurniveau gilt auch für die Routineteilaufgaben einer Aufgabe: Ihr
   Verfahren bleibt eingeübt, aber z.B. ohne vorgegebene Zwischenschritte, mit
   einer Fallunterscheidung oder mit einem zweiten Verfahren verknüpft.

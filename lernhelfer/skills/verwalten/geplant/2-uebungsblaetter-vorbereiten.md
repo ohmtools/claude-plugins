@@ -22,7 +22,9 @@ bereit, und die Nachricht aus „Session beenden“ entfällt.
 1. **Blätter:** Nimm jedes Modul mit Schwachstellen oder fälligen Themen, auch
    wenn es schon Blätter im Vorrat hat. Fang mit dem an, dessen
    `projekt:gedaechtnis/{modul}/probleme.md` unter `Historie` das späteste
-   Datum hat, dann das mit dem nächstspäteren. So bekommen bei knappem Limit
+   Datum hat, dann das mit dem nächstspäteren. Bei gleichem Datum kommt
+   zuerst das Modul mit mehr Schwachstellen und fälligen Themen, dann das mit
+   dem alphabetisch früheren Ordnernamen. So bekommen bei knappem Limit
    zuerst die Fächer ein Blatt, mit denen der Nutzer gerade lernt. Arbeite
    jedes für sich ab, als hätte der Nutzer geschrieben: „Mach mir ein neues
    Übungsblatt für {modulname} zu meinen Schwachstellen und fälligen Themen,
